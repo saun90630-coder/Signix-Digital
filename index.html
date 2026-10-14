@@ -1,64 +1,475 @@
 <!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Signix Digital | Tasks</title>
 <style>
-:root{font-family:system-ui,sans-serif;color-scheme:dark;background:#0b1220;color:#eaf0f8}*{box-sizing:border-box}body{margin:0}header{padding:20px;border-bottom:1px solid #29354a;display:flex;justify-content:space-between}h1{font-size:21px;margin:0}main{max-width:980px;margin:auto;padding:18px}.panel{background:#121e30;border:1px solid #2c3c54;border-radius:16px;padding:18px;margin:12px 0}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px}button,input,select,textarea{font:inherit}button{cursor:pointer;border:1px solid #35445d;border-radius:10px;background:#1c2b42;color:white;padding:11px 14px}.primary{background:#3975db}button:disabled{opacity:.65;cursor:wait}input,select,textarea{width:100%;background:#0b1525;color:white;border:1px solid #40516b;border-radius:9px;padding:12px;margin:6px 0 12px}label{display:block;color:#cbd5e1;font-size:14px}.hidden{display:none!important}.muted{color:#aab8cd}.task{border-top:1px solid #29384f;padding:14px 0}.row{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}.badge{border-radius:20px;background:#26364d;padding:4px 9px;font-size:12px}.high{color:#ffaaa9}.medium{color:#ffda91}.low{color:#9be4c2}nav{display:flex;gap:8px;margin:14px 0}textarea{min-height:75px}.password-wrap{position:relative}.password-wrap input{padding-right:70px}.toggle-password{position:absolute;right:6px;top:10px;padding:7px 10px;font-size:13px;background:transparent;border:0;color:#cbd5e1}.link-button{background:transparent;border:0;color:#9fc2ff;padding:6px 0;text-decoration:underline}#message:not(:empty){padding:10px 0;white-space:pre-wrap}
-</style></head><body>
-<header><div><h1>Signix Digital</h1><small class="muted">Task Management</small></div><button id="logout" class="hidden">Log out</button></header>
-<main><p id="message" role="status" aria-live="polite"></p>
-<section id="auth" class="panel"><h2 id="authTitle">Sign in</h2>
-<form id="loginForm"><label>Email<input type="email" id="email" required autocomplete="email"></label><label>Password<div class="password-wrap"><input type="password" id="password" required autocomplete="current-password"><button class="toggle-password" type="button" data-toggle="password" aria-label="Show password" aria-pressed="false">Show</button></div></label><button id="signInButton" class="primary">Sign in</button></form>
-<p id="forgotLink"><button id="forgot" class="link-button" type="button">Forgot password?</button></p>
-<form id="requestForm" class="hidden"><label>Email address<input type="email" id="resetEmail" required autocomplete="email"></label><button id="sendResetButton" class="primary">Send password reset link</button></form>
-<form id="resetForm" class="hidden"><label>New password<div class="password-wrap"><input type="password" id="newPassword" minlength="8" required autocomplete="new-password"><button class="toggle-password" type="button" data-toggle="newPassword" aria-label="Show new password" aria-pressed="false">Show</button></div></label><label>Confirm new password<div class="password-wrap"><input type="password" id="confirmPassword" minlength="8" required autocomplete="new-password"><button class="toggle-password" type="button" data-toggle="confirmPassword" aria-label="Show confirmation password" aria-pressed="false">Show</button></div></label><button id="setPasswordButton" class="primary">Set password</button></form>
-<p id="backLink" class="hidden"><button id="back" class="link-button" type="button">Back to sign in</button></p>
+:root{font-family:system-ui,sans-serif;color-scheme:dark;background:#0b1220;color:#eaf0f8}
+*{box-sizing:border-box}
+body{margin:0}
+header{padding:20px;border-bottom:1px solid #29354a;display:flex;justify-content:space-between}
+h1{font-size:21px;margin:0}
+main{max-width:980px;margin:auto;padding:18px}
+.panel{background:#121e30;border:1px solid #2c3c54;border-radius:16px;padding:18px;margin:12px 0}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px}
+button,input,select,textarea{font:inherit}
+button{cursor:pointer;border:1px solid #35445d;border-radius:10px;background:#1c2b42;color:white;padding:11px 14px}
+.primary{background:#3975db}
+button:disabled{opacity:.65;cursor:wait}
+input,select,textarea{width:100%;background:#0b1525;color:white;border:1px solid #40516b;border-radius:9px;padding:12px;margin:6px 0 12px}
+label{display:block;color:#cbd5e1;font-size:14px}
+.hidden{display:none!important}
+.muted{color:#aab8cd}
+.task{border-top:1px solid #29384f;padding:14px 0}
+.row{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
+.badge{border-radius:20px;background:#26364d;padding:4px 9px;font-size:12px}
+.high{color:#ffaaa9}
+.medium{color:#ffda91}
+.low{color:#9be4c2}
+nav{display:flex;gap:8px;margin:14px 0}
+textarea{min-height:75px}
+.password-wrap{position:relative}
+.password-wrap input{padding-right:70px}
+.toggle-password{position:absolute;right:6px;top:10px;padding:7px 10px;font-size:13px;background:transparent;border:0;color:#cbd5e1}
+.link-button{background:transparent;border:0;color:#9fc2ff;padding:6px 0;text-decoration:underline}
+#message:not(:empty){padding:10px 0;white-space:pre-wrap}
+</style>
+</head>
+<body>
+
+<header>
+<div>
+<h1>Signix Digital</h1>
+<small class="muted">Task Management</small>
+</div>
+<button id="logout" class="hidden">Log out</button>
+</header>
+
+<main>
+<p id="message" role="status" aria-live="polite"></p>
+
+<section id="auth" class="panel">
+<h2 id="authTitle">Sign in</h2>
+
+<form id="loginForm">
+<label>Email
+<input type="email" id="email" required autocomplete="email">
+</label>
+<label>Password
+<div class="password-wrap">
+<input type="password" id="password" required autocomplete="current-password">
+<button class="toggle-password" type="button" data-toggle="password" aria-label="Show password" aria-pressed="false">Show</button>
+</div>
+</label>
+<button id="signInButton" class="primary">Sign in</button>
+</form>
+
+<p id="forgotLink">
+<button id="forgot" class="link-button" type="button">Forgot password?</button>
+</p>
+
+<form id="requestForm" class="hidden">
+<label>Email address
+<input type="email" id="resetEmail" required autocomplete="email">
+</label>
+<button id="sendResetButton" class="primary">Send password reset link</button>
+</form>
+
+<form id="resetForm" class="hidden">
+<label>New password
+<div class="password-wrap">
+<input type="password" id="newPassword" minlength="8" required autocomplete="new-password">
+<button class="toggle-password" type="button" data-toggle="newPassword" aria-label="Show new password" aria-pressed="false">Show</button>
+</div>
+</label>
+<label>Confirm new password
+<div class="password-wrap">
+<input type="password" id="confirmPassword" minlength="8" required autocomplete="new-password">
+<button class="toggle-password" type="button" data-toggle="confirmPassword" aria-label="Show confirmation password" aria-pressed="false">Show</button>
+</div>
+</label>
+<button id="setPasswordButton" class="primary">Set password</button>
+</form>
+
+<p id="backLink" class="hidden">
+<button id="back" class="link-button" type="button">Back to sign in</button>
+</p>
 </section>
-<section id="app" class="hidden"><nav><button id="adminBtn">My Dashboard</button><button id="clientBtn">Client Portal</button></nav>
-<section id="admin"><div class="grid"><div class="panel"><small>Open tasks</small><h1 id="openCount">0</h1></div><div class="panel"><small>Incoming requests</small><h1 id="requestCount">0</h1></div></div>
-<div class="panel"><h2>Add task</h2><form id="taskForm"><label>Task<input name="title" required></label><label>Client<input name="client" required></label><div class="grid"><label>Priority<select name="priority"><option>High</option><option selected>Medium</option><option>Low</option></select></label><label>Due date<input type="date" name="due"></label></div><button class="primary">Add task</button></form></div>
-<div class="panel"><h2>All tasks</h2><div id="adminTasks"></div></div></section>
-<section id="client" class="hidden"><div class="panel"><h2>Client Portal</h2><p class="muted">Preview only. Client access is disabled until database roles and row-level security are configured.</p><div id="clientTasks"></div></div></section>
-</section></main>
+
+<section id="app" class="hidden">
+<nav>
+<button id="adminBtn">My Dashboard</button>
+<button id="clientBtn">Client Portal</button>
+</nav>
+
+<section id="admin">
+<div class="grid">
+<div class="panel">
+<small>Open tasks</small>
+<h1 id="openCount">0</h1>
+</div>
+<div class="panel">
+<small>Incoming requests</small>
+<h1 id="requestCount">0</h1>
+</div>
+</div>
+
+<div class="panel">
+<h2>Add task</h2>
+<form id="taskForm">
+<label>Task
+<input name="title" required>
+</label>
+<label>Client
+<select name="client" required>
+<option value="">Select a client</option>
+</select>
+</label>
+<div class="grid">
+<label>Priority
+<select name="priority">
+<option>High</option>
+<option selected>Medium</option>
+<option>Low</option>
+</select>
+</label>
+<label>Due date
+<input type="date" name="due">
+</label>
+</div>
+<button class="primary">Add task</button>
+</form>
+</div>
+
+<div class="panel">
+<h2>All tasks</h2>
+<div id="adminTasks"></div>
+</div>
+</section>
+
+<section id="client" class="hidden">
+<div class="panel">
+<h2>Client Portal</h2>
+<p class="muted">Preview only. Client access is disabled until database roles and row-level security are configured.</p>
+<div id="clientTasks"></div>
+</div>
+</section>
+</section>
+</main>
+
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
 <script>
 'use strict';
+
 const SUPABASE_URL='https://mhpvdyfrtaazgabmcvtx.supabase.co';
 const KEY='sb_publishable_RljzO2G_ltUBbgnjWKF4gA_t-xHrkeI';
+const ADMIN_UID='21078b33-73fb-4a54-adfc-169a197102ec';
+
 const sb=window.supabase.createClient(SUPABASE_URL,KEY);
 const $=id=>document.getElementById(id);
 const show=(id,on)=>$(id).classList.toggle('hidden',!on);
 const notice=s=>{$('message').textContent=s};
-let currentUser=null,tasks=[],recoveryActive=false;
-const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+
+let currentUser=null,tasks=[],clients=[],recoveryActive=false;
+
+const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({
+'&':'&amp;',
+'<':'&lt;',
+'>':'&gt;',
+'"':'&quot;',
+"'":'&#39;'
+}[c]));
+
 function authMode(mode){
  recoveryActive=mode==='reset';
- show('auth',true);show('app',false);show('logout',false);
- show('loginForm',mode==='login');show('forgotLink',mode==='login');
- show('requestForm',mode==='request');show('resetForm',mode==='reset');show('backLink',mode!=='login');
+ show('auth',true);
+ show('app',false);
+ show('logout',false);
+ show('loginForm',mode==='login');
+ show('forgotLink',mode==='login');
+ show('requestForm',mode==='request');
+ show('resetForm',mode==='reset');
+ show('backLink',mode!=='login');
  $('authTitle').textContent=mode==='login'?'Sign in':mode==='request'?'Reset your password':'Set your password';
 }
-function busy(id,on,label){const b=$(id);if(!b.dataset.original)b.dataset.original=b.textContent;b.disabled=on;b.textContent=on?label:b.dataset.original}
+
+function busy(id,on,label){
+ const b=$(id);
+ if(!b.dataset.original)b.dataset.original=b.textContent;
+ b.disabled=on;
+ b.textContent=on?label:b.dataset.original;
+}
+
 document.querySelectorAll('[data-toggle]').forEach(b=>b.addEventListener('click',()=>{
- const field=$(b.dataset.toggle),visible=field.type==='password';field.type=visible?'text':'password';
- b.textContent=visible?'Hide':'Show';b.setAttribute('aria-pressed',String(visible));
+ const field=$(b.dataset.toggle),visible=field.type==='password';
+ field.type=visible?'text':'password';
+ b.textContent=visible?'Hide':'Show';
+ b.setAttribute('aria-pressed',String(visible));
  b.setAttribute('aria-label',(visible?'Hide ':'Show ')+ 'password');
 }));
-function view(which){show('admin',which==='admin');show('client',which==='client')}
+
+function view(which){
+ show('admin',which==='admin');
+ show('client',which==='client');
+}
+
 $('adminBtn').onclick=()=>view('admin');
 $('clientBtn').onclick=()=>view('client');
-$('logout').onclick=async()=>{const {error}=await sb.auth.signOut();if(error)notice(error.message);else{authMode('login');notice('Signed out.')}};
-$('forgot').onclick=()=>{ $('resetEmail').value=$('email').value.trim();authMode('request');notice('Enter your email to receive a reset link.')};
-$('back').onclick=()=>{if(recoveryActive){notice('Finish setting your new password before signing in.');return}authMode('login');notice('')};
-$('loginForm').onsubmit=async e=>{e.preventDefault();busy('signInButton',true,'Signing in…');try{const {error}=await sb.auth.signInWithPassword({email:$('email').value.trim(),password:$('password').value});if(error)notice(error.message);else{notice('Signed in.');await refresh()}}catch(err){notice(err.message||'Unable to sign in.')}finally{busy('signInButton',false)}};
-$('requestForm').onsubmit=async e=>{e.preventDefault();busy('sendResetButton',true,'Sending…');try{const email=$('resetEmail').value.trim();const {error}=await sb.auth.resetPasswordForEmail(email,{redirectTo:location.origin+location.pathname});notice(error?error.message:'If this email is registered, a password reset link will be sent. Check your inbox and spam folder.')}catch(err){notice(err.message||'Unable to send reset link.')}finally{busy('sendResetButton',false)}};
-$('resetForm').onsubmit=async e=>{e.preventDefault();const password=$('newPassword').value,confirm=$('confirmPassword').value;if(password!==confirm){notice('Passwords do not match. Please enter the same password twice.');return}if(password.length<8){notice('Password must be at least 8 characters.');return}busy('setPasswordButton',true,'Updating…');try{const {error}=await sb.auth.updateUser({password});if(error){notice(error.message);return}await sb.auth.signOut();recoveryActive=false;history.replaceState({},'',location.pathname);$('newPassword').value='';$('confirmPassword').value='';authMode('login');notice('Password updated successfully. Sign in using your new password.')}catch(err){notice(err.message||'Unable to update password.')}finally{busy('setPasswordButton',false)}};
-function resetMode(){authMode('reset');notice('Enter your new password twice. Both entries must match.')}
-function card(t){return `<div class="task"><div class="row"><strong>${esc(t.title)}</strong><span class="badge ${esc((t.priority||'medium').toLowerCase())}">${esc(t.priority||'Medium')}</span></div><p class="muted">Client ID: ${esc(t.client_id??'Unassigned')} · ${esc(t.status||'To do')}${t.due_date?' · Due '+esc(t.due_date):''}</p><label>Status<select data-task="${esc(t.id)}">${['Incoming','To do','In progress','Waiting on client','Completed'].map(s=>`<option ${t.status===s?'selected':''}>${s}</option>`).join('')}</select></label></div>`}
-function render(){$('openCount').textContent=tasks.filter(t=>t.status!=='Completed').length;$('requestCount').textContent=tasks.filter(t=>t.status==='Incoming').length;$('adminTasks').innerHTML=tasks.length?tasks.map(card).join(''):'No tasks yet.';$('clientTasks').textContent='Client accounts are not enabled yet.'}
-async function loadTasks(){const {data,error}=await sb.from('tasks').select('id,title,status,priority,due_date,client_id').order('id',{ascending:false});if(error){notice('Database access: '+error.message+'. Check the connected project, table schema, columns and RLS policies.');return}tasks=data||[];render()}
-async function refresh(){if(recoveryActive)return;const {data:{user},error}=await sb.auth.getUser();if(error){authMode('login');return}currentUser=user;show('auth',!user);show('app',!!user);show('logout',!!user);if(user){view('admin');await loadTasks()}}
-$('taskForm').onsubmit=async e=>{e.preventDefault();notice('Task creation is paused until client names are mapped to database client IDs and admin-only permissions are configured. No task was saved.')};
-$('adminTasks').addEventListener('change',async e=>{const id=e.target.dataset.task;if(!id)return;const {error}=await sb.from('tasks').update({status:e.target.value}).eq('id',id);if(error)notice(error.message);else await loadTasks()});
-sb.auth.onAuthStateChange((event)=>{if(event==='PASSWORD_RECOVERY')resetMode();else if(event==='SIGNED_OUT'&&!recoveryActive){show('app',false);show('auth',true);show('logout',false)}});
-(async()=>{const params=new URLSearchParams(location.search);if(params.has('error')){authMode('login');notice(params.get('error_description')||'Authentication link failed. Request another reset email.');return}const hash=new URLSearchParams(location.hash.slice(1));if(hash.get('type')==='recovery'&&hash.get('access_token')&&hash.get('refresh_token')){recoveryActive=true;const {error}=await sb.auth.setSession({access_token:hash.get('access_token'),refresh_token:hash.get('refresh_token')});if(error){recoveryActive=false;authMode('login');notice(error.message)}else resetMode()}else await refresh()})();
-</script></body></html>
+
+$('logout').onclick=async()=>{
+ const {error}=await sb.auth.signOut();
+ if(error)notice(error.message);
+ else{
+  authMode('login');
+  notice('Signed out.');
+ }
+};
+
+$('forgot').onclick=()=>{
+ $('resetEmail').value=$('email').value.trim();
+ authMode('request');
+ notice('Enter your email to receive a reset link.');
+};
+
+$('back').onclick=()=>{
+ if(recoveryActive){
+  notice('Finish setting your new password before signing in.');
+  return;
+ }
+ authMode('login');
+ notice('');
+};
+
+$('loginForm').onsubmit=async e=>{
+ e.preventDefault();
+ busy('signInButton',true,'Signing in…');
+ try{
+  const {error}=await sb.auth.signInWithPassword({
+   email:$('email').value.trim(),
+   password:$('password').value
+  });
+  if(error)notice(error.message);
+  else{
+   notice('Signed in.');
+   await refresh();
+  }
+ }catch(err){
+  notice(err.message||'Unable to sign in.');
+ }finally{
+  busy('signInButton',false);
+ }
+};
+
+$('requestForm').onsubmit=async e=>{
+ e.preventDefault();
+ busy('sendResetButton',true,'Sending…');
+ try{
+  const email=$('resetEmail').value.trim();
+  const {error}=await sb.auth.resetPasswordForEmail(email,{
+   redirectTo:location.origin+location.pathname
+  });
+  notice(error?error.message:'If this email is registered, a password reset link will be sent. Check your inbox and spam folder.');
+ }catch(err){
+  notice(err.message||'Unable to send reset link.');
+ }finally{
+  busy('sendResetButton',false);
+ }
+};
+
+$('resetForm').onsubmit=async e=>{
+ e.preventDefault();
+ const password=$('newPassword').value;
+ const confirm=$('confirmPassword').value;
+ if(password!==confirm){
+  notice('Passwords do not match. Please enter the same password twice.');
+  return;
+ }
+ if(password.length<8){
+  notice('Password must be at least 8 characters.');
+  return;
+ }
+ busy('setPasswordButton',true,'Updating…');
+ try{
+  const {error}=await sb.auth.updateUser({password});
+  if(error){
+   notice(error.message);
+   return;
+  }
+  await sb.auth.signOut();
+  recoveryActive=false;
+  history.replaceState({},'',location.pathname);
+  $('newPassword').value='';
+  $('confirmPassword').value='';
+  authMode('login');
+  notice('Password updated successfully. Sign in using your new password.');
+ }catch(err){
+  notice(err.message||'Unable to update password.');
+ }finally{
+  busy('setPasswordButton',false);
+ }
+};
+
+function resetMode(){
+ authMode('reset');
+ notice('Enter your new password twice. Both entries must match.');
+}
+
+function clientName(id){
+ return clients.find(c=>String(c.id)===String(id))?.Name||`ID ${id}`;
+}
+
+function card(t){
+ return `<div class="task">
+ <div class="row">
+ <strong>${esc(t.title)}</strong>
+ <span class="badge ${esc((t.priority||'medium').toLowerCase())}">${esc(t.priority||'Medium')}</span>
+ </div>
+ <p class="muted">Client: ${esc(clientName(t.client_id))} · ${esc(t.status||'To do')}${t.due_date?' · Due '+esc(t.due_date):''}</p>
+ <label>Status
+ <select data-task="${esc(t.id)}">
+ ${['Incoming','To do','In progress','Waiting on client','Completed'].map(s=>`<option ${t.status===s?'selected':''}>${s}</option>`).join('')}
+ </select>
+ </label>
+ </div>`;
+}
+
+function render(){
+ $('openCount').textContent=tasks.filter(t=>t.status!=='Completed').length;
+ $('requestCount').textContent=tasks.filter(t=>t.status==='Incoming').length;
+ $('adminTasks').innerHTML=tasks.length?tasks.map(card).join(''):'No tasks yet.';
+ $('clientTasks').textContent='Client accounts are not enabled yet.';
+}
+
+async function loadTasks(){
+ const {data,error}=await sb.from('tasks')
+  .select('id,title,status,priority,due_date,client_id')
+  .order('id',{ascending:false});
+ if(error){
+  notice('Database access: '+error.message+'. Check the connected project, table schema, columns and RLS policies.');
+  return;
+ }
+ tasks=data||[];
+ render();
+}
+
+async function loadClients(){
+ const {data,error}=await sb.from('Clients')
+  .select('id,Name')
+  .order('Name');
+ if(error){
+  notice('Unable to load clients: '+error.message);
+  return;
+ }
+ clients=data||[];
+ const select=document.querySelector('#taskForm select[name="client"]');
+ select.replaceChildren(
+  new Option('Select a client',''),
+  ...clients.map(c=>new Option(c.Name||`Client ${c.id}`,String(c.id)))
+ );
+}
+
+async function refresh(){
+ if(recoveryActive)return;
+ const {data:{user},error}=await sb.auth.getUser();
+ if(error){
+  authMode('login');
+  return;
+ }
+ currentUser=user;
+ show('auth',!user);
+ show('app',!!user);
+ show('logout',!!user);
+ if(user){
+  if(user.id!==ADMIN_UID){
+   show('app',false);
+   notice('This account is not authorized for the administrator dashboard.');
+   return;
+  }
+  view('admin');
+  await loadClients();
+  await loadTasks();
+ }
+}
+
+$('taskForm').onsubmit=async e=>{
+ e.preventDefault();
+ if(!currentUser||currentUser.id!==ADMIN_UID){
+  notice('Administrator sign-in required.');
+  return;
+ }
+ const form=e.currentTarget;
+ const fd=new FormData(form);
+ const button=form.querySelector('button[type="submit"],button.primary');
+ const title=String(fd.get('title')||'').trim();
+ const client_id=Number(fd.get('client'));
+
+ if(!title||!Number.isSafeInteger(client_id)||!clients.some(c=>c.id===client_id)){
+  notice('Enter a task and select a valid client.');
+  return;
+ }
+
+ button.disabled=true;
+ try{
+  const payload={
+   title,
+   client_id,
+   priority:fd.get('priority'),
+   status:'To do',
+   due_date:fd.get('due')||null
+  };
+  const {error}=await sb.from('tasks').insert(payload);
+  if(error)throw error;
+  form.reset();
+  notice('Task saved successfully.');
+  await loadTasks();
+ }catch(err){
+  notice('Task was not saved: '+(err.message||'Unknown error'));
+ }finally{
+  button.disabled=false;
+ }
+};
+
+$('adminTasks').addEventListener('change',async e=>{
+ const id=e.target.dataset.task;
+ if(!id)return;
+ const {error}=await sb.from('tasks')
+  .update({status:e.target.value})
+  .eq('id',id);
+ if(error)notice(error.message);
+ else await loadTasks();
+});
+
+sb.auth.onAuthStateChange((event)=>{
+ if(event==='PASSWORD_RECOVERY')resetMode();
+ else if(event==='SIGNED_OUT'&&!recoveryActive){
+  show('app',false);
+  show('auth',true);
+  show('logout',false);
+ }
+});
+
+(async()=>{
+ const params=new URLSearchParams(location.search);
+ if(params.has('error')){
+  authMode('login');
+  notice(params.get('error_description')||'Authentication link failed. Request another reset email.');
+  return;
+ }
+ const hash=new URLSearchParams(location.hash.slice(1));
+ if(hash.get('type')==='recovery'&&hash.get('access_token')&&hash.get('refresh_token')){
+  recoveryActive=true;
+  const {error}=await sb.auth.setSession({
+   access_token:hash.get('access_token'),
+   refresh_token:hash.get('refresh_token')
+  });
+  if(error){
+   recoveryActive=false;
+   authMode('login');
+   notice(error.message);
+  }else resetMode();
+ }else await refresh();
+})();
+</script>
+</body>
+</html>
