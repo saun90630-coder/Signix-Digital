@@ -109,18 +109,23 @@ button.tap:hover{filter:brightness(1.2)}
 }
 
 /* Task cards */
-.tcard{background:#121e30;border:1px solid #2c3c54;border-left:4px solid #64748b;border-radius:12px;padding:12px 12px 12px 14px;display:flex;flex-direction:column;gap:8px;min-width:0}
-.tcard.st-incoming{border-left-color:#a855f7}
-.tcard.st-to-do{border-left-color:#94a3b8}
-.tcard.st-in-progress{border-left-color:#6366f1}
-.tcard.st-waiting-on-client{border-left-color:#f97316}
-.tcard.st-completed{border-left-color:#22c55e;opacity:.85}
+.tcard{background:#121e30;border:1px solid #2c3c54;border-left:7px solid #64748b;border-radius:12px;padding:12px 12px 12px 13px;display:flex;flex-direction:column;gap:8px;min-width:0;overflow:hidden}
+.tcard.pr-high{border-left-color:#ef4444}
+.tcard.pr-medium{border-left-color:#eab308}
+.tcard.pr-low{border-left-color:#0ea5e9}
+.tcard.st-completed{opacity:.8}
+.tc-biz{display:flex;align-items:center;gap:10px;margin:-12px -12px 2px -13px;padding:8px 12px 8px 12px;background:var(--biz-bg,#1a2840);border-bottom:2px solid var(--biz,#3a4b66);min-width:0}
+.tc-biz .biz-name{font-size:12px;color:#e2e8f0;font-weight:600;opacity:.9;overflow-wrap:anywhere;min-width:0}
+.logo-circle.card{flex:0 0 38px;width:38px;height:38px;font-size:14px;border-width:2px}
+.layout-compact .tc-biz{padding:6px 10px;margin:-9px -10px 0 -12px}
+.layout-compact .logo-circle.card{flex-basis:30px;width:30px;height:30px;font-size:12px}
+.layout-list .tc-biz{margin:0;padding:4px 10px 4px 4px;border-radius:20px;border-bottom:0;flex:0 1 220px}
+.layout-list .logo-circle.card{flex-basis:28px;width:28px;height:28px;font-size:11px}
 .tc-title{margin:0;font-size:16px;line-height:1.3;overflow-wrap:anywhere}
 .tc-meta{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
 .tc-desc{margin:0;color:#d5deea;white-space:pre-wrap;overflow-wrap:anywhere;font-size:14px}
 .tc-attach{display:none;font-size:12px;color:#9fb0c7}
 .tc-edit{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
-.biz-chip{display:inline-flex;align-items:center;gap:6px;font-size:12px;color:#cbd5e1;font-weight:600;min-width:0;overflow-wrap:anywhere}
 .bdot{width:10px;height:10px;border-radius:3px;flex:0 0 10px;box-shadow:0 0 0 1px rgba(255,255,255,.25)}
 .layout-compact .tcard{padding:9px 10px 9px 12px;gap:6px}
 .layout-compact .tc-title{font-size:14px}
@@ -128,11 +133,16 @@ button.tap:hover{filter:brightness(1.2)}
 .layout-compact .tc-attach,.layout-list .tc-attach,.layout-board .tc-attach{display:inline-block}
 .layout-board .tc-body .media{display:none}
 .layout-board .tc-desc{display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
-.layout-list .tcard{flex-direction:row;flex-wrap:wrap;align-items:center;gap:6px 12px;padding:8px 10px 8px 12px;border-radius:10px}
+.layout-list .tcard{flex-direction:row;flex-wrap:wrap;align-items:center;gap:6px 12px;padding:8px 10px 8px 10px;border-radius:10px}
 .layout-list .tc-title{flex:1 1 200px;font-size:14px}
-.layout-list .biz-chip{flex:0 1 170px}
 .edit-form label{margin:0}
 .edit-form .row{justify-content:flex-start}
+
+#client .layout-board .tc-title{font-size:17px}
+#client .layout-board .tc-body .media{display:flex}
+#client .layout-board .tc-desc{display:block;-webkit-line-clamp:unset;overflow:visible}
+#client .layout-board .tc-attach{display:none}
+@media (orientation:landscape) and (min-width:900px){#client .layout-board .group{min-width:300px}}
 
 /* Media */
 .media{display:flex;flex-wrap:wrap;gap:10px}
@@ -424,7 +434,6 @@ details.fold[open]>summary{margin-bottom:12px}
 </div>
 <div class="toolbar">
 <div class="tool"><span class="tool-label">View</span><div class="chips" id="clientViews"></div></div>
-<div class="tool"><span class="tool-label">Layout</span><div class="chips" id="clientLayouts"></div></div>
 </div>
 <div id="clientBoard" class="board"></div>
 </div>
@@ -450,7 +459,8 @@ const notice=s=>{$('message').textContent=s};
 const STATUSES=['Incoming','To do','In progress','Waiting on client','Completed'];
 const PRIORITIES=['High','Medium','Low'];
 const ADMIN_VIEWS=[['status','By status'],['business','By business'],['deadline','By deadline'],['waiting','Waiting on client'],['high','High priority'],['recent','Recently added']];
-const CLIENT_VIEWS=[['status','By status'],['deadline','By deadline'],['needs','Needs your input'],['done','Recently completed']];
+const CLIENT_VIEWS=[['status','By status'],['deadline','By deadline']];
+const CLIENT_STATUS_LABELS={'Incoming':'Submitted','To do':'Scheduled','Waiting on client':'Needs your input'};
 const LAYOUTS=[['comfortable','Comfortable'],['compact','Compact'],['list','List'],['board','Board']];
 const BUCKETS=[['overdue','Overdue'],['today','Today'],['tomorrow','Tomorrow'],['week','This week'],['later','Later'],['none','No date']];
 const BIZ_PALETTE=['#38bdf8','#f472b6','#34d399','#fbbf24','#a78bfa','#fb7185','#2dd4bf','#fb923c','#60a5fa','#facc15','#c084fc','#4ade80'];
@@ -492,7 +502,7 @@ function setPref(scope,key,value){prefs[scope]={...(prefs[scope]||{}),[key]:valu
 const adminView=()=>getPref('admin','view','status',ADMIN_VIEWS.map(v=>v[0]));
 const adminLayout=()=>getPref('admin','layout','comfortable',LAYOUTS.map(v=>v[0]));
 const clientView=()=>getPref('client','view','status',CLIENT_VIEWS.map(v=>v[0]));
-const clientLayout=()=>getPref('client','layout','comfortable',LAYOUTS.map(v=>v[0]));
+const clientLayout=()=>'board';
 
 function buildChips(id,items,current,onPick){
  const root=$(id);
@@ -697,9 +707,19 @@ function bizColor(c){
  const n=Math.abs(Number(c?.id)||0);
  return BIZ_PALETTE[n%BIZ_PALETTE.length];
 }
-function bizChip(clientId){
+function statusLabel(st,clientSide){return clientSide?(CLIENT_STATUS_LABELS[st]||st):st;}
+function hexToRgba(hex,a){
+ const n=parseInt(String(hex).slice(1),16);
+ return `rgba(${(n>>16)&255},${(n>>8)&255},${n&255},${a})`;
+}
+function bizHeader(clientId){
  const c=clients.find(x=>String(x.id)===String(clientId));
- return `<span class="biz-chip"><span class="bdot" style="background:${bizColor(c)}"></span>${esc(c?.Name||'Client '+clientId)}</span>`;
+ const color=bizColor(c);
+ const url=c?.logo_path&&brandUrls[c.logo_path];
+ const logo=url
+  ?`<span class="logo-circle card" aria-hidden="true"><img src="${esc(url)}" alt=""></span>`
+  :`<span class="logo-circle card" style="background:${color};color:${textOn(color)}" aria-hidden="true">${esc(initials(c?.Name||'?'))}</span>`;
+ return `<div class="tc-biz" style="--biz:${color};--biz-bg:linear-gradient(90deg,${hexToRgba(color,.38)},${hexToRgba(color,.12)})">${logo}<span class="biz-name">${esc(c?.Name||'Client '+clientId)}</span></div>`;
 }
 
 /* ---------- Dates ---------- */
@@ -770,7 +790,7 @@ function groupTasks(list,v,clientSide){
   case 'done':
    return [g('done','Completed',list.filter(isDone).sort(byCompleted),{cls:'st-completed'})];
   default:
-   return STATUSES.map(s=>g(statusClass(s),s,list.filter(t=>normStatus(t)===s).sort(s==='Completed'?byCompleted:byDue),{cls:statusClass(s),keep:true}));
+   return STATUSES.map(s=>g(statusClass(s),statusLabel(s,clientSide),list.filter(t=>normStatus(t)===s).sort(s==='Completed'?byCompleted:byDue),{cls:statusClass(s),keep:true}));
  }
 }
 function emptyText(v){
@@ -827,7 +847,7 @@ function taskCard(t,o){
  const id=esc(t.id);
  const statusEl=o.admin
   ?`<button type="button" class="badge ${statusClass(st)} tap" data-act="status" data-id="${id}" aria-haspopup="menu" title="Change status">${esc(st)}</button>`
-  :`<span class="badge ${statusClass(st)}">${esc(st)}</span>`;
+  :`<span class="badge ${statusClass(st)}">${esc(statusLabel(st,o.clientSide))}</span>`;
  const prEl=o.admin
   ?`<button type="button" class="badge ${priorityClass(pr)} tap" data-act="priority" data-id="${id}" aria-haspopup="menu" title="Change priority">${esc(pr)} priority</button>`
   :`<span class="badge ${priorityClass(pr)}">${esc(pr)} priority</span>`;
@@ -835,8 +855,8 @@ function taskCard(t,o){
   ?`<button type="button" class="due-chip ${due?.cls||''} tap" data-act="due" data-id="${id}" aria-haspopup="menu" title="Change due date">${esc(due?due.label:'Set due date')}</button>`
   :(due?`<span class="due-chip ${due.cls}">${esc(due.label)}</span>`:'');
  const editable=o.client&&canEdit(t);
- return `<article class="tcard ${statusClass(st)}" data-id="${id}">
- ${o.admin?bizChip(t.client_id):''}
+ return `<article class="tcard ${priorityClass(pr)} ${statusClass(st)}" data-id="${id}">
+ ${o.admin?bizHeader(t.client_id):''}
  <h4 class="tc-title">${esc(t.title||'Untitled')}</h4>
  <div class="tc-meta">${statusEl}${prEl}${dueEl}</div>
  ${(t.description||n)?`<div class="tc-body">${t.description?`<p class="tc-desc">${esc(t.description)}</p>`:''}${mediaHtml(t.id)}</div>`:''}
@@ -847,7 +867,7 @@ function taskCard(t,o){
 
 function editCard(t){
  const pr=normPriority(t);
- return `<article class="tcard ${statusClass(t.status)}" data-id="${esc(t.id)}">
+ return `<article class="tcard ${priorityClass(pr)} ${statusClass(t.status)}" data-id="${esc(t.id)}">
 <form class="edit-form" data-edit-id="${esc(t.id)}">
 <label>Task name<input name="title" maxlength="200" required value="${esc(t.title||'')}"></label>
 <label>Details<textarea name="description" maxlength="2000">${esc(t.description||'')}</textarea></label>
@@ -886,7 +906,7 @@ function renderBoard(root,list,o){
   return;
  }
  root.innerHTML=`<div class="groups">${groups.map(gr=>`<section class="group ${gr.cls||''}" data-group="${esc(gr.key)}" id="grp-${root.id}-${esc(gr.key)}">
-<header class="group-head">${gr.biz?`<span class="bdot" style="background:${bizColor(gr.biz)}"></span>`:'<span class="gdot"></span>'}<h3>${esc(gr.label)}</h3><span class="count">${gr.items.length}</span></header>
+<header class="group-head">${gr.biz?logoHtml({...gr.biz,brand_color:bizColor(gr.biz)},'sm'):'<span class="gdot"></span>'}<h3>${esc(gr.label)}</h3><span class="count">${gr.items.length}</span></header>
 <div class="group-body">${gr.items.length?gr.items.map(t=>taskCard(t,o)).join(''):'<p class="muted empty-col">Nothing here</p>'}</div>
 </section>`).join('')}</div>`;
  restoreScroll(root,saved);
@@ -980,14 +1000,16 @@ function renderPortal(){
  renderBoard(board,list,{admin:false,client:role==='client',clientSide:true,view:clientView(),layout:clientLayout()});
  updateCountdowns();
 }
-function portalJump(v){
- setPref('client','view',v);setChip('clientViews',v);
+function portalJump(groupKey){
+ setPref('client','view','status');setChip('clientViews','status');
  renderPortal();
- $('clientBoard').scrollIntoView({behavior:'smooth',block:'start'});
+ const el=groupKey?$(`grp-clientBoard-${groupKey}`):null;
+ (el||$('clientBoard')).scrollIntoView({behavior:'smooth',block:'start',inline:'start'});
+ if(el){el.classList.add('flash');setTimeout(()=>el.classList.remove('flash'),1800);}
 }
-$('portalOpenStat').onclick=()=>portalJump('status');
-$('portalNeedsStat').onclick=()=>portalJump('needs');
-$('portalDoneStat').onclick=()=>portalJump('done');
+$('portalOpenStat').onclick=()=>portalJump(null);
+$('portalNeedsStat').onclick=()=>portalJump('st-waiting-on-client');
+$('portalDoneStat').onclick=()=>portalJump('st-completed');
 
 /* ---------- Popover menu (status / priority / due date) ---------- */
 function closeMenu(){
@@ -1111,7 +1133,6 @@ $('clientBoard').addEventListener('submit',async e=>{
 buildChips('adminViews',ADMIN_VIEWS,adminView(),v=>{setPref('admin','view',v);renderAdmin();});
 buildChips('adminLayouts',LAYOUTS,adminLayout(),v=>{setPref('admin','layout',v);renderAdmin();});
 buildChips('clientViews',CLIENT_VIEWS,clientView(),v=>{setPref('client','view',v);renderPortal();});
-buildChips('clientLayouts',LAYOUTS,clientLayout(),v=>{setPref('client','layout',v);renderPortal();});
 $('bizFilter').addEventListener('change',()=>{setPref('admin','biz',$('bizFilter').value);renderAdmin();});
 $('popOutBtn').onclick=()=>{
  const w=window.open(location.pathname+'?mode=tasks','signix-all-tasks','popup=yes,width=1400,height=900');
