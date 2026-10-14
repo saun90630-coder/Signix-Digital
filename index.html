@@ -147,11 +147,22 @@ button.tap:hover{filter:brightness(1.2)}
 @keyframes media-pulse{0%,100%{box-shadow:0 0 0 0 rgba(56,189,248,.45)}50%{box-shadow:0 0 0 6px rgba(56,189,248,0)}}
 .tc-media{flex-basis:100%;min-width:0}
 .work-bar{position:relative;height:8px;border-radius:6px;background:rgba(99,102,241,.22);overflow:hidden}
-.work-bar::before{content:"";position:absolute;inset:0;border-radius:6px;background-image:linear-gradient(45deg,rgba(165,180,252,.38) 25%,transparent 25%,transparent 50%,rgba(165,180,252,.38) 50%,rgba(165,180,252,.38) 75%,transparent 75%,transparent);background-size:16px 16px;animation:work-drift calc(4s*var(--spd,1)) linear infinite}
-@keyframes work-drift{from{background-position:0 0}to{background-position:0 16px}}
+.work-bar{height:10px}
+/* In progress styles (chosen in the admin Animations panel); none move sideways */
+.work-bar::before{content:"";position:absolute;inset:0;border-radius:6px;background-image:repeating-linear-gradient(180deg,rgba(165,180,252,.5) 0 2px,transparent 2px 5px);background-size:100% 5px;animation:ip-drift calc(3s*var(--spd,1)) linear infinite}
+@keyframes ip-drift{from{background-position:0 0}to{background-position:0 -5px}}
+body[data-ip="pulse"] .work-bar::before{background-image:none;background-color:#818cf8;opacity:.35;animation:ip-pulse calc(3.6s*var(--spd,1)) ease-in-out infinite}
+@keyframes ip-pulse{0%,100%{opacity:.18}50%{opacity:.7}}
+body[data-ip="shimmer"] .work-bar::before{background-image:radial-gradient(ellipse closest-side,rgba(199,210,254,.75),rgba(199,210,254,0)),linear-gradient(45deg,rgba(165,180,252,.22) 25%,transparent 25%,transparent 50%,rgba(165,180,252,.22) 50%,rgba(165,180,252,.22) 75%,transparent 75%,transparent);background-repeat:no-repeat,repeat;background-position:center,0 0;background-size:60% 100%,12px 12px;animation:ip-shimmer calc(4s*var(--spd,1)) ease-in-out infinite}
+@keyframes ip-shimmer{0%,100%{background-size:15% 100%,12px 12px}50%{background-size:110% 100%,12px 12px}}
+body[data-ip="chevrons"] .work-bar::before{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='10'%3E%3Cpath d='M3 7.5 7 3.5 11 7.5' fill='none' stroke='%23c7d2fe' stroke-opacity='.75' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");background-size:14px 10px;animation:ip-chevrons calc(3s*var(--spd,1)) linear infinite}
+@keyframes ip-chevrons{from{background-position:0 0}to{background-position:0 -10px}}
+body[data-ip="dots"] .work-bar{background:rgba(99,102,241,.12)}
+body[data-ip="dots"] .work-bar::before{background-image:radial-gradient(circle closest-side,#a5b4fc 96%,transparent),radial-gradient(circle closest-side,#a5b4fc 96%,transparent);background-repeat:no-repeat;background-position:calc(50% - 9px) 50%,calc(50% + 9px) 50%;background-size:8px 8px,8px 8px;animation:ip-dots calc(2.4s*var(--spd,1)) ease-in-out infinite}
+@keyframes ip-dots{0%,100%{background-size:8px 8px,2px 2px}50%{background-size:2px 2px,8px 8px}}
 /* Animation switches (set from the admin Animations panel) */
 body.no-anim-high .tcard.pr-high{animation:none}
-body.no-anim-bar .work-bar::before{animation:none}
+body.no-anim-bar .work-bar::before{animation:none!important}
 body.no-anim-col .group.st-in-progress{box-shadow:none}
 body.no-anim-col .group.st-in-progress .group-head h3{text-shadow:none}
 body.no-anim-col .group.st-in-progress .gdot{animation:none}
@@ -162,7 +173,7 @@ body.no-anim-req .request-zone:not([open]) .req-icon,body.no-anim-req .pv-reques
 .anim-list .check{margin:0;padding:10px 0;border-top:1px solid #29384f}
 .anim-list .check input{width:22px;height:22px}
 #animStatus{font-size:13px;margin:8px 0 0}
-@media (prefers-reduced-motion:reduce){.tcard.pr-high:not(.st-completed),.group.st-in-progress .gdot{animation:none}.work-bar::before{animation:none}.media-toggle[aria-expanded="false"],.request-zone:not([open]) .req-icon,.pv-request .req-icon{animation:none}}
+@media (prefers-reduced-motion:reduce){.tcard.pr-high:not(.st-completed),.group.st-in-progress .gdot{animation:none}.work-bar::before{animation:none!important}.media-toggle[aria-expanded="false"],.request-zone:not([open]) .req-icon,.pv-request .req-icon{animation:none}}
 .layout-list .work-bar{display:none}
 .tc-edit{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
 .bdot{width:10px;height:10px;border-radius:3px;flex:0 0 10px;box-shadow:0 0 0 1px rgba(255,255,255,.25)}
@@ -282,7 +293,7 @@ details.fold[open]>summary{margin-bottom:12px}
 }
 </style>
 </head>
-<body>
+<body data-ip="drift">
 
 <header>
 <div>
@@ -445,6 +456,15 @@ details.fold[open]>summary{margin-bottom:12px}
 <label class="check"><input type="checkbox" name="media_pulse"> Photos / videos chip pulse</label>
 <label class="check"><input type="checkbox" name="request_pulse"> Client "Start a request" + pulse</label>
 </div>
+<label>In progress bar style
+<select name="ip_style">
+<option value="drift">Vertical drift</option>
+<option value="pulse">Pulse in place</option>
+<option value="shimmer">Shimmer</option>
+<option value="chevrons">Chevrons (pointing up)</option>
+<option value="dots">Blinking dots</option>
+</select>
+</label>
 <label>Speed
 <select name="speed">
 <option value="slow">Slow</option>
@@ -1339,33 +1359,42 @@ async function loadLogins(){
 /* ---------- Animation settings (admin controls, applied everywhere) ---------- */
 const ANIM_KEYS=[['high_pulse','no-anim-high'],['work_bar','no-anim-bar'],['ip_column','no-anim-col'],['media_pulse','no-anim-media'],['request_pulse','no-anim-req']];
 const SPEEDS={slow:1.5,normal:1,fast:0.7};
-const ANIM_DEFAULTS={high_pulse:true,work_bar:true,ip_column:true,media_pulse:true,request_pulse:true,speed:'normal'};
-let animSettings={...ANIM_DEFAULTS},animReady=false;
+const IP_STYLES=['drift','pulse','shimmer','chevrons','dots'];
+const ANIM_DEFAULTS={high_pulse:true,work_bar:true,ip_column:true,media_pulse:true,request_pulse:true,speed:'normal',ip_style:'drift'};
+const ANIM_COLS='high_pulse,work_bar,ip_column,media_pulse,request_pulse,speed';
+let animSettings={...ANIM_DEFAULTS},animReady=false,animHasStyle=true;
 function cleanAnim(row){
  const out={...ANIM_DEFAULTS};
  if(row){
   for(const [k] of ANIM_KEYS)if(typeof row[k]==='boolean')out[k]=row[k];
   if(SPEEDS[row.speed])out.speed=row.speed;
+  if(IP_STYLES.includes(row.ip_style))out.ip_style=row.ip_style;
  }
  return out;
 }
 function applyAnimations(a){
  for(const [k,cls] of ANIM_KEYS)document.body.classList.toggle(cls,!a[k]);
  document.body.style.setProperty('--spd',String(SPEEDS[a.speed]||1));
+ document.body.dataset.ip=IP_STYLES.includes(a.ip_style)?a.ip_style:'drift';
 }
 function fillAnimForm(){
  const f=$('animForm');
  for(const [k] of ANIM_KEYS)f.elements[k].checked=!!animSettings[k];
  f.elements.speed.value=animSettings.speed;
+ f.elements.ip_style.value=animSettings.ip_style;
 }
 async function loadAnimations(){
- const {data,error}=await sb.from('app_settings').select('high_pulse,work_bar,ip_column,media_pulse,request_pulse,speed').eq('id',1).maybeSingle();
+ let {data,error}=await sb.from('app_settings').select(animHasStyle?ANIM_COLS+',ip_style':ANIM_COLS).eq('id',1).maybeSingle();
+ if(error&&animHasStyle&&/ip_style/.test(error.message||'')){
+  animHasStyle=false;
+  ({data,error}=await sb.from('app_settings').select(ANIM_COLS).eq('id',1).maybeSingle());
+ }
  animReady=!error;
  animSettings=cleanAnim(error?null:data);
  applyAnimations(animSettings);
  if(role==='admin'){
   fillAnimForm();
-  $('animStatus').textContent=error?'Animation settings table not found. Run the latest SQL step in Supabase, then refresh.':'';
+  $('animStatus').textContent=error?'Animation settings table not found. Run the latest SQL step in Supabase, then refresh.':(!animHasStyle?'The In progress style will only save after you run the latest SQL step in Supabase.':'');
  }
 }
 $('animForm').addEventListener('change',async()=>{
@@ -1373,18 +1402,21 @@ $('animForm').addEventListener('change',async()=>{
  const f=$('animForm');
  const next={speed:SPEEDS[f.elements.speed.value]?f.elements.speed.value:'normal'};
  for(const [k] of ANIM_KEYS)next[k]=f.elements[k].checked;
+ next.ip_style=IP_STYLES.includes(f.elements.ip_style.value)?f.elements.ip_style.value:'drift';
  applyAnimations(next);
  if(!animReady){$('animStatus').textContent='Previewing only. Run the latest SQL step in Supabase to save these settings.';return;}
  $('animStatus').textContent='Saving…';
  try{
-  const {data,error}=await sb.from('app_settings').update(next).eq('id',1).select('id');
+  const payload={...next};
+  if(!animHasStyle)delete payload.ip_style;
+  const {data,error}=await sb.from('app_settings').update(payload).eq('id',1).select('id');
   if(error||!data?.length){
    applyAnimations(animSettings);fillAnimForm();
    $('animStatus').textContent='Not saved: '+(error?.message||'no row returned. Run the latest SQL step.');
    return;
   }
-  animSettings=next;
-  $('animStatus').textContent='Saved. Client portals update within a minute.';
+  animSettings=animHasStyle?next:{...next,ip_style:animSettings.ip_style};
+  $('animStatus').textContent=animHasStyle?'Saved. Client portals update within a minute.':'Saved, except the In progress style: run the latest SQL step in Supabase to save it.';
  }catch(err){
   applyAnimations(animSettings);fillAnimForm();
   $('animStatus').textContent='Not saved: '+(err.message||'unknown error');
