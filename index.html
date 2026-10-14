@@ -97,7 +97,7 @@ button.tap:hover{filter:brightness(1.2)}
 .group.bucket-overdue .group-head h3{color:#fca5a5}
 .group.st-in-progress{background:linear-gradient(180deg,rgba(99,102,241,.2),#0e1828 55%);border:1px solid rgba(129,140,248,.7);box-shadow:0 0 0 1px rgba(99,102,241,.25),0 0 26px rgba(99,102,241,.22)}
 .group.st-in-progress .group-head h3{color:#c7d2fe;text-shadow:0 0 12px rgba(129,140,248,.6)}
-.group.st-in-progress .gdot{animation:ip-dot 1.6s ease-in-out infinite}
+.group.st-in-progress .gdot{animation:ip-dot calc(2.6s*var(--spd,1)) ease-in-out infinite}
 .group.st-in-progress .count{background:#3730a3;color:#e0e7ff}
 @keyframes ip-dot{0%,100%{box-shadow:0 0 0 0 rgba(99,102,241,.7)}50%{box-shadow:0 0 0 6px rgba(99,102,241,0)}}
 .group-body{display:grid;gap:10px;grid-template-columns:repeat(auto-fill,minmax(290px,1fr))}
@@ -116,7 +116,7 @@ button.tap:hover{filter:brightness(1.2)}
 /* Task cards */
 .tcard{background:#121e30;border:1px solid #2c3c54;border-left:11px solid #64748b;border-radius:12px;padding:12px 12px 12px 13px;display:flex;flex-direction:column;gap:8px;min-width:0;overflow:hidden}
 .tcard.pr-high{border-left-color:#ff2828}
-.tcard.pr-high:not(.st-completed){animation:high-pulse 1.8s ease-in-out infinite}
+.tcard.pr-high:not(.st-completed){animation:high-pulse calc(3s*var(--spd,1)) ease-in-out infinite}
 @keyframes high-pulse{0%,100%{border-left-color:#ff2828;box-shadow:-2px 0 0 rgba(255,40,40,0)}50%{border-left-color:#ff6b6b;box-shadow:-6px 0 16px rgba(255,40,40,.6)}}
 .tcard.pr-medium{border-left-color:#eab308}
 .tcard.pr-low{border-left-color:#0ea5e9}
@@ -135,14 +135,27 @@ button.tap:hover{filter:brightness(1.2)}
 .media-toggle{align-self:flex-start;display:inline-flex;align-items:center;gap:8px;font-size:13px;padding:6px 12px;border-radius:20px;background:rgba(56,189,248,.12);border:1px solid rgba(56,189,248,.5);color:#bae6fd;min-height:34px}
 .media-toggle svg{width:16px;height:16px;flex:0 0 16px}
 .media-toggle .hint{opacity:.75;font-size:12px}
-.media-toggle[aria-expanded="false"]{animation:media-pulse 2.4s ease-in-out infinite}
+.media-toggle[aria-expanded="false"]{animation:media-pulse calc(3s*var(--spd,1)) ease-in-out infinite}
 .media-toggle[aria-expanded="true"]{background:#1c2b42;border-color:#40516b;color:#cbd5e1}
 @keyframes media-pulse{0%,100%{box-shadow:0 0 0 0 rgba(56,189,248,.45)}50%{box-shadow:0 0 0 6px rgba(56,189,248,0)}}
 .tc-media{flex-basis:100%;min-width:0}
 .work-bar{position:relative;height:6px;border-radius:6px;background:rgba(99,102,241,.18);overflow:hidden}
-.work-bar::before{content:"";position:absolute;top:0;bottom:0;left:-40%;width:40%;border-radius:6px;background:linear-gradient(90deg,rgba(99,102,241,0),#6366f1 45%,#a5b4fc 55%,rgba(99,102,241,0));animation:work-slide 1.6s ease-in-out infinite}
+.work-bar::before{content:"";position:absolute;top:0;bottom:0;left:-40%;width:40%;border-radius:6px;background:linear-gradient(90deg,rgba(99,102,241,0),#6366f1 45%,#a5b4fc 55%,rgba(99,102,241,0));animation:work-slide calc(2.5s*var(--spd,1)) ease-in-out infinite}
 @keyframes work-slide{0%{left:-40%}100%{left:100%}}
-@media (prefers-reduced-motion:reduce){.tcard.pr-high:not(.st-completed),.group.st-in-progress .gdot{animation:none}.work-bar::before{animation:none;left:0;width:100%;background:#6366f1;opacity:.7}.media-toggle[aria-expanded="false"],.request-zone:not([open]) .req-icon{animation:none}}
+/* Animation switches (set from the admin Animations panel) */
+body.no-anim-high .tcard.pr-high{animation:none}
+body.no-anim-bar .work-bar::before{animation:none;left:0;width:100%;background:#6366f1;opacity:.7}
+body.no-anim-col .group.st-in-progress{box-shadow:none}
+body.no-anim-col .group.st-in-progress .group-head h3{text-shadow:none}
+body.no-anim-col .group.st-in-progress .gdot{animation:none}
+body.no-anim-media .media-toggle[aria-expanded="false"]{animation:none}
+body.no-anim-req .request-zone:not([open]) .req-icon,body.no-anim-req .pv-request .req-icon{animation:none}
+.pv-request .req-icon{animation:req-pulse calc(2.8s*var(--spd,1)) ease-in-out infinite}
+.anim-list{display:grid;gap:2px;margin:0 0 12px}
+.anim-list .check{margin:0;padding:10px 0;border-top:1px solid #29384f}
+.anim-list .check input{width:22px;height:22px}
+#animStatus{font-size:13px;margin:8px 0 0}
+@media (prefers-reduced-motion:reduce){.tcard.pr-high:not(.st-completed),.group.st-in-progress .gdot{animation:none}.work-bar::before{animation:none;left:0;width:100%;background:#6366f1;opacity:.7}.media-toggle[aria-expanded="false"],.request-zone:not([open]) .req-icon,.pv-request .req-icon{animation:none}}
 .layout-list .work-bar{display:none}
 .tc-edit{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
 .bdot{width:10px;height:10px;border-radius:3px;flex:0 0 10px;box-shadow:0 0 0 1px rgba(255,255,255,.25)}
@@ -193,7 +206,7 @@ details.fold[open]>summary{margin-bottom:12px}
 .req-head{display:flex;align-items:center;gap:12px}
 .req-icon{flex:0 0 38px;width:38px;height:38px;border-radius:50%;background:var(--brand);color:var(--brand-text);display:grid;place-items:center;font-size:24px;font-weight:700;line-height:1;transition:transform .2s}
 .request-zone[open] .req-icon{transform:rotate(45deg)}
-.request-zone:not([open]) .req-icon{animation:req-pulse 2s ease-in-out infinite}
+.request-zone:not([open]) .req-icon{animation:req-pulse calc(2.8s*var(--spd,1)) ease-in-out infinite}
 @keyframes req-pulse{0%,100%{box-shadow:0 0 0 0 var(--brand-glow)}50%{box-shadow:0 0 0 10px rgba(0,0,0,0)}}
 .req-sub{display:block;font-size:13px;font-weight:400;color:#cbd5e1;margin-top:2px}
 .request-zone[open] .req-sub{display:none}
@@ -410,6 +423,28 @@ details.fold[open]>summary{margin-bottom:12px}
 </form>
 <div id="loginsList" aria-live="polite"></div>
 </details>
+
+<details id="animPanel" class="panel fold">
+<summary>Animations</summary>
+<p class="muted">Only you see these controls. Your choices apply to your dashboard and every client portal (clients pick them up within a minute). Changes save automatically.</p>
+<form id="animForm">
+<div class="anim-list">
+<label class="check"><input type="checkbox" name="high_pulse"> High priority red stripe pulse</label>
+<label class="check"><input type="checkbox" name="work_bar"> In progress bar on task cards</label>
+<label class="check"><input type="checkbox" name="ip_column"> In progress column glow and pulsing dot</label>
+<label class="check"><input type="checkbox" name="media_pulse"> Photos / videos chip pulse</label>
+<label class="check"><input type="checkbox" name="request_pulse"> Client "Start a request" + pulse</label>
+</div>
+<label>Speed
+<select name="speed">
+<option value="slow">Slow</option>
+<option value="normal">Normal</option>
+<option value="fast">Fast</option>
+</select>
+</label>
+</form>
+<p id="animStatus" class="muted"></p>
+</details>
 </div>
 </section>
 
@@ -602,6 +637,7 @@ function clearState(){
  currentUser=null;role=null;myClientName='';myClientId=null;
  tasks=[];clients=[];logins=[];attachments=[];signedUrls={};brandUrls={};brandLoadedAt=0;openClientId=null;editingId=null;
  expandedMedia.clear();
+ animSettings={...ANIM_DEFAULTS};animReady=false;applyAnimations(animSettings);
  stopTimers();
  closeMenu();
  stopRecording(true);
@@ -1277,6 +1313,61 @@ async function loadLogins(){
  logins=data||[];renderLogins();return true;
 }
 
+/* ---------- Animation settings (admin controls, applied everywhere) ---------- */
+const ANIM_KEYS=[['high_pulse','no-anim-high'],['work_bar','no-anim-bar'],['ip_column','no-anim-col'],['media_pulse','no-anim-media'],['request_pulse','no-anim-req']];
+const SPEEDS={slow:1.5,normal:1,fast:0.7};
+const ANIM_DEFAULTS={high_pulse:true,work_bar:true,ip_column:true,media_pulse:true,request_pulse:true,speed:'normal'};
+let animSettings={...ANIM_DEFAULTS},animReady=false;
+function cleanAnim(row){
+ const out={...ANIM_DEFAULTS};
+ if(row){
+  for(const [k] of ANIM_KEYS)if(typeof row[k]==='boolean')out[k]=row[k];
+  if(SPEEDS[row.speed])out.speed=row.speed;
+ }
+ return out;
+}
+function applyAnimations(a){
+ for(const [k,cls] of ANIM_KEYS)document.body.classList.toggle(cls,!a[k]);
+ document.body.style.setProperty('--spd',String(SPEEDS[a.speed]||1));
+}
+function fillAnimForm(){
+ const f=$('animForm');
+ for(const [k] of ANIM_KEYS)f.elements[k].checked=!!animSettings[k];
+ f.elements.speed.value=animSettings.speed;
+}
+async function loadAnimations(){
+ const {data,error}=await sb.from('app_settings').select('high_pulse,work_bar,ip_column,media_pulse,request_pulse,speed').eq('id',1).maybeSingle();
+ animReady=!error;
+ animSettings=cleanAnim(error?null:data);
+ applyAnimations(animSettings);
+ if(role==='admin'){
+  fillAnimForm();
+  $('animStatus').textContent=error?'Animation settings table not found. Run the latest SQL step in Supabase, then refresh.':'';
+ }
+}
+$('animForm').addEventListener('change',async()=>{
+ if(!isAdmin())return;
+ const f=$('animForm');
+ const next={speed:SPEEDS[f.elements.speed.value]?f.elements.speed.value:'normal'};
+ for(const [k] of ANIM_KEYS)next[k]=f.elements[k].checked;
+ applyAnimations(next);
+ if(!animReady){$('animStatus').textContent='Previewing only. Run the latest SQL step in Supabase to save these settings.';return;}
+ $('animStatus').textContent='Saving…';
+ try{
+  const {data,error}=await sb.from('app_settings').update(next).eq('id',1).select('id');
+  if(error||!data?.length){
+   applyAnimations(animSettings);fillAnimForm();
+   $('animStatus').textContent='Not saved: '+(error?.message||'no row returned. Run the latest SQL step.');
+   return;
+  }
+  animSettings=next;
+  $('animStatus').textContent='Saved. Client portals update within a minute.';
+ }catch(err){
+  applyAnimations(animSettings);fillAnimForm();
+  $('animStatus').textContent='Not saved: '+(err.message||'unknown error');
+ }
+});
+
 /* ---------- Auto refresh ---------- */
 function stopTimers(){
  clearInterval(pollTimer);pollTimer=null;
@@ -1294,6 +1385,7 @@ async function poll(force){
   if(role==='admin')await loadClients();
   else await loadOwnClient();
  }
+ await loadAnimations();
  await loadTasks();
 }
 document.addEventListener('visibilitychange',()=>{
@@ -1313,6 +1405,7 @@ async function refresh(){
   if(TASKS_ONLY){document.title='Signix Digital | All tasks';$('fullLink').href=location.pathname;show('fullLink',true);}
   show('auth',false);show('app',true);show('logout',true);show('mainNav',true);
   view('admin');
+  await loadAnimations();
   const clientsOk=await loadClients();
   const tasksOk=await loadTasks();
   const loginsOk=await loadLogins();
@@ -1334,6 +1427,7 @@ async function refresh(){
  myClientId=membership.client_id;
  document.body.classList.remove('tasks-only');
  await loadOwnClient();
+ await loadAnimations();
  show('auth',false);show('app',true);show('logout',true);show('mainNav',false);
  view('client');
  if(await loadTasks())notice('');
