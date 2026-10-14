@@ -23,10 +23,48 @@ label{display:block;color:#cbd5e1;font-size:14px}
 .muted{color:#aab8cd}
 .task{border-top:1px solid #29384f;padding:14px 0}
 .row{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
-.badge{border-radius:20px;background:#26364d;padding:4px 9px;font-size:12px}
-.high{color:#ffaaa9}
-.medium{color:#ffda91}
-.low{color:#9be4c2}
+.badge{display:inline-flex;align-items:center;gap:6px;border-radius:20px;background:#26364d;border:1px solid transparent;padding:4px 10px;font-size:12px;font-weight:600;white-space:nowrap}
+.badge::before{content:"";width:8px;height:8px;border-radius:50%;background:currentColor}
+.badges{display:flex;gap:6px;flex-wrap:wrap}
+.badge.pr-high{color:#fca5a5;background:rgba(239,68,68,.16);border-color:rgba(239,68,68,.5)}
+.badge.pr-medium{color:#fde047;background:rgba(234,179,8,.14);border-color:rgba(234,179,8,.5)}
+.badge.pr-low{color:#7dd3fc;background:rgba(14,165,233,.14);border-color:rgba(14,165,233,.5)}
+.badge.st-incoming{color:#d8b4fe;background:rgba(168,85,247,.16);border-color:rgba(168,85,247,.5)}
+.badge.st-to-do{color:#e2e8f0;background:rgba(148,163,184,.16);border-color:rgba(148,163,184,.45)}
+.badge.st-in-progress{color:#a5b4fc;background:rgba(99,102,241,.2);border-color:rgba(99,102,241,.55)}
+.badge.st-waiting-on-client{color:#fdba74;background:rgba(249,115,22,.15);border-color:rgba(249,115,22,.5)}
+.badge.st-completed{color:#86efac;background:rgba(34,197,94,.15);border-color:rgba(34,197,94,.5)}
+.task{border-left:4px solid transparent;padding-left:12px}
+.task.st-incoming{border-left-color:#a855f7}
+.task.st-to-do{border-left-color:#94a3b8}
+.task.st-in-progress{border-left-color:#6366f1}
+.task.st-waiting-on-client{border-left-color:#f97316}
+.task.st-completed{border-left-color:#22c55e}
+#client{--brand:#3975db;--brand-text:#ffffff;--brand2:#121e30}
+#client .primary{background:var(--brand);color:var(--brand-text);border-color:var(--brand)}
+.portal-hero{border-radius:14px;padding:22px 18px;margin:0 0 12px;background-color:#0b1525;background-image:linear-gradient(135deg,var(--brand2),#0b1525);background-size:cover;background-position:center;border:1px solid #2c3c54;border-top:4px solid var(--brand)}
+.portal-hero.has-backdrop{min-height:180px;display:flex;align-items:flex-end}
+.hero-inner{display:flex;align-items:center;gap:14px}
+.hero-inner h2{margin:0}
+.hero-inner p{margin:4px 0 0}
+.portal-hero.has-backdrop .muted{color:#e2e8f0}
+.logo-circle{flex:0 0 64px;width:64px;height:64px;border-radius:50%;background:var(--brand,#3975db);color:var(--brand-text,#fff);display:grid;place-items:center;font-weight:700;font-size:22px;overflow:hidden;border:2px solid rgba(255,255,255,.85)}
+.logo-circle img{width:100%;height:100%;object-fit:cover;background:#fff}
+.logo-circle.sm{flex-basis:34px;width:34px;height:34px;font-size:13px;border-width:1px}
+.client-card{border-top:1px solid #29384f;padding:10px 0}
+.client-card summary{display:flex;align-items:center;gap:10px;cursor:pointer;list-style:none;padding:4px 0}
+.client-card summary::-webkit-details-marker{display:none}
+.client-card summary .edit-hint{margin-left:auto;color:#9fc2ff;font-size:14px}
+.client-card form{margin-top:12px}
+.client-card fieldset{border:1px solid #2c3c54;border-radius:12px;padding:12px;margin:0 0 12px}
+.client-card legend{color:#cbd5e1;font-size:14px;padding:0 6px}
+.check{display:flex;align-items:center;gap:8px;margin:4px 0 10px}
+.check input{width:auto;margin:0}
+.colors{display:flex;gap:12px;flex-wrap:wrap}
+.colors label{flex:1 1 120px}
+.colors input[type=color]{height:46px;padding:4px;cursor:pointer}
+.brand-preview{display:flex;align-items:center;gap:10px;margin:4px 0 8px}
+.brand-preview img.backdrop{width:120px;height:56px;object-fit:cover;border-radius:8px;border:1px solid #2c3c54}
 nav{display:flex;gap:8px;margin:14px 0}
 nav button[aria-pressed="true"]{border-color:#90baff}
 textarea{min-height:75px}
@@ -40,6 +78,22 @@ textarea{min-height:75px}
 .client-edit input{margin-bottom:0}
 .client-edit button{margin-bottom:0}
 .task p{margin:8px 0}
+.media{display:flex;flex-wrap:wrap;gap:10px;margin:10px 0}
+.media a.thumb img{display:block;width:120px;height:120px;object-fit:cover;border-radius:10px;border:1px solid #2c3c54}
+.media video{width:280px;max-width:100%;border-radius:10px;background:#000}
+.media .clip{display:flex;flex-direction:column;gap:4px}
+.media audio{width:280px;max-width:100%}
+.media small a{color:#9fc2ff}
+.attach-row{display:flex;gap:8px;flex-wrap:wrap;margin:4px 0 12px}
+.file-button{display:inline-block;border:1px solid #35445d;border-radius:10px;background:#1c2b42;color:white;padding:11px 14px;cursor:pointer;font-size:16px}
+.file-button input{position:absolute;width:1px;height:1px;opacity:0;pointer-events:none}
+.recording{background:#7a2230!important;border-color:#c0475b!important}
+.pending{list-style:none;padding:0;margin:0 0 12px}
+.pending li{display:flex;align-items:center;gap:10px;flex-wrap:wrap;border-top:1px solid #29384f;padding:8px 0}
+.pending img{width:48px;height:48px;object-fit:cover;border-radius:8px}
+.pending audio{width:220px;max-width:100%}
+.pending .name{flex:1 1 140px;overflow-wrap:anywhere;font-size:14px}
+.pending button{padding:7px 10px;font-size:13px}
 button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:2px solid #90baff;outline-offset:2px}
 </style>
 </head>
@@ -154,7 +208,7 @@ button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-vis
 
 <div class="panel">
 <h2>Manage Clients</h2>
-<p class="muted">Add a client or update an existing client's name. Existing tasks stay connected to the same client ID.</p>
+<p class="muted">Add a client, or tap a client to edit their details and optional portal branding. Existing tasks stay connected to the same client.</p>
 <form id="addClientForm">
 <label>New client name<input name="name" maxlength="120" required placeholder="Enter client name"></label>
 <button class="primary" type="submit">Add client</button>
@@ -187,13 +241,41 @@ button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-vis
 
 <section id="client" class="hidden">
 <div class="panel">
+<div id="portalHero" class="portal-hero">
+<div class="hero-inner">
+<div id="portalLogo" class="logo-circle" aria-hidden="true">SD</div>
+<div>
 <h2 id="portalTitle">Client Portal</h2>
 <p id="portalIntro" class="muted"></p>
+</div>
+</div>
+</div>
 <label id="previewWrap" class="hidden">Preview as client
 <select id="previewClient">
 <option value="">Select a client</option>
 </select>
 </label>
+<div id="requestPanel" class="panel hidden">
+<h3 style="margin-top:0">Add request</h3>
+<p class="muted">Tell us what you need. Add photos, videos or a voice note if it helps. Your request goes straight to the Signix Digital team.</p>
+<form id="requestTaskForm">
+<label>Task name
+<input name="title" maxlength="200" required placeholder="Example: New window vinyl">
+</label>
+<label>Details
+<textarea name="description" maxlength="2000" placeholder="Sizes, colors, location, deadline, anything we should know"></textarea>
+</label>
+<span class="muted" style="font-size:14px">Attachments (optional, up to 10 files, 50 MB each)</span>
+<div class="attach-row">
+<label class="file-button">Add photos or videos
+<input type="file" id="mediaInput" accept="image/*,video/*" multiple>
+</label>
+<button type="button" id="recordBtn" aria-pressed="false">Record voice note</button>
+</div>
+<ul id="pendingList" class="pending" aria-live="polite"></ul>
+<button class="primary" type="submit" id="sendRequestBtn">Send request</button>
+</form>
+</div>
 <div class="grid">
 <div class="panel">
 <small>Open tasks</small>
@@ -223,7 +305,16 @@ const $=id=>document.getElementById(id);
 const show=(id,on)=>$(id).classList.toggle('hidden',!on);
 const notice=s=>{$('message').textContent=s};
 
-let currentUser=null,role=null,myClientName='',tasks=[],clients=[],logins=[],recoveryActive=false;
+let currentUser=null,role=null,myClientName='',myClientId=null,tasks=[],clients=[],logins=[],recoveryActive=false;
+let attachments=[],signedUrls={},pending=[],recorder=null,recStream=null,recChunks=[],recTimer=null,recStart=0;
+const BUCKET='task-attachments';
+const BRAND_BUCKET='client-branding';
+const MAX_BRAND_BYTES=5*1024*1024;
+const CLIENT_FIELDS='id,Name,Email,Company,logo_path,backdrop_path,brand_color,brand_color_2';
+let brandUrls={},openClientId=null;
+const MAX_FILE_BYTES=50*1024*1024;
+const MAX_FILES=10;
+const MAX_RECORD_SECONDS=300;
 
 const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({
 '&':'&amp;',
@@ -273,8 +364,10 @@ $('adminBtn').onclick=()=>view('admin');
 $('clientBtn').onclick=()=>view('client');
 
 function clearState(){
- currentUser=null;role=null;myClientName='';
- tasks=[];clients=[];logins=[];
+ currentUser=null;role=null;myClientName='';myClientId=null;
+ tasks=[];clients=[];logins=[];attachments=[];signedUrls={};brandUrls={};openClientId=null;
+ stopRecording(true);
+ clearPending();
 }
 
 $('logout').onclick=async()=>{
@@ -391,7 +484,47 @@ function duplicateName(name,exceptId){
 }
 function priorityClass(p){
  const v=String(p||'Medium').toLowerCase();
- return ['high','medium','low'].includes(v)?v:'medium';
+ return 'pr-'+(['high','medium','low'].includes(v)?v:'medium');
+}
+function statusClass(st){
+ const v=STATUSES.includes(st)?st:'To do';
+ return 'st-'+v.toLowerCase().replace(/[^a-z]+/g,'-');
+}
+function badgesHtml(t){
+ return `<span class="badges"><span class="badge ${statusClass(t.status)}">${esc(t.status||'To do')}</span><span class="badge ${priorityClass(t.priority)}">${esc(t.priority||'Medium')} priority</span></span>`;
+}
+function initials(name){
+ const parts=String(name||'').trim().split(/\s+/).filter(Boolean);
+ return ((parts[0]?.[0]||'S')+(parts[1]?.[0]||'')).toUpperCase();
+}
+function textOn(hex){
+ const n=parseInt(String(hex).slice(1),16);
+ const ch=[(n>>16)&255,(n>>8)&255,n&255].map(v=>{v/=255;return v<=0.03928?v/12.92:Math.pow((v+0.055)/1.055,2.4);});
+ const lum=0.2126*ch[0]+0.7152*ch[1]+0.0722*ch[2];
+ return lum>0.45?'#0b1220':'#ffffff';
+}
+function validHex(v){return /^#[0-9a-f]{6}$/i.test(String(v||''));}
+function logoHtml(c,extra){
+ const url=c?.logo_path&&brandUrls[c.logo_path];
+ const style=validHex(c?.brand_color)?` style="background:${c.brand_color};color:${textOn(c.brand_color)}"`:'';
+ return url
+  ?`<span class="logo-circle ${extra||''}" aria-hidden="true"><img src="${esc(url)}" alt=""></span>`
+  :`<span class="logo-circle ${extra||''}"${style} aria-hidden="true">${esc(initials(c?.Name))}</span>`;
+}
+function applyBranding(c){
+ const sec=$('client'),hero=$('portalHero'),logo=$('portalLogo');
+ const brand=validHex(c?.brand_color)?c.brand_color:null;
+ const brand2=validHex(c?.brand_color_2)?c.brand_color_2:null;
+ sec.style.setProperty('--brand',brand||'#3975db');
+ sec.style.setProperty('--brand-text',brand?textOn(brand):'#ffffff');
+ sec.style.setProperty('--brand2',brand2||'#121e30');
+ const bg=c?.backdrop_path&&brandUrls[c.backdrop_path];
+ hero.style.backgroundImage=bg?`linear-gradient(180deg,rgba(11,18,32,.2),rgba(11,18,32,.88)),url("${bg.replace(/"/g,'%22')}")`:'';
+ hero.classList.toggle('has-backdrop',!!bg);
+ const lg=c?.logo_path&&brandUrls[c.logo_path];
+ logo.replaceChildren();
+ if(lg){const img=new Image();img.src=lg;img.alt='';logo.append(img);}
+ else logo.textContent=initials(c?.Name||'Signix Digital');
 }
 function fillClientSelect(select){
  const prior=select.value;
@@ -399,12 +532,48 @@ function fillClientSelect(select){
  if(clients.some(c=>String(c.id)===prior))select.value=prior;
 }
 
+function formatSize(bytes){
+ if(bytes>=1048576)return (bytes/1048576).toFixed(1)+' MB';
+ return Math.max(1,Math.round(bytes/1024))+' KB';
+}
+const EXT_TYPES={jpg:'image/jpeg',jpeg:'image/jpeg',png:'image/png',gif:'image/gif',webp:'image/webp',heic:'image/heic',heif:'image/heif',mp4:'video/mp4',mov:'video/quicktime',webm:'video/webm',m4v:'video/x-m4v','3gp':'video/3gpp'};
+function fileType(file){
+ if(file.type)return file.type;
+ const ext=(file.name.split('.').pop()||'').toLowerCase();
+ return EXT_TYPES[ext]||'';
+}
+function kindOf(type){
+ if(type.startsWith('image/'))return 'image';
+ if(type.startsWith('video/'))return 'video';
+ if(type.startsWith('audio/'))return 'audio';
+ return null;
+}
+function extFor(file,type){
+ const fromName=(file.name.split('.').pop()||'').toLowerCase();
+ if(/^[a-z0-9]{2,5}$/.test(fromName)&&file.name.includes('.'))return fromName;
+ const sub=(type.split('/')[1]||'bin').split(';')[0];
+ return sub==='quicktime'?'mov':sub==='mpeg'?'mp3':sub==='mp4'&&type.startsWith('audio/')?'m4a':sub;
+}
+function mediaHtml(taskId){
+ const list=attachments.filter(a=>String(a.task_id)===String(taskId));
+ if(!list.length)return '';
+ return `<div class="media">${list.map(a=>{
+  const url=signedUrls[a.path];
+  if(!url)return `<small class="muted">${esc(a.kind)} file unavailable. Refresh the page.</small>`;
+  const u=esc(url);
+  if(a.kind==='image')return `<a class="thumb" href="${u}" target="_blank" rel="noopener"><img src="${u}" alt="Attached photo" loading="lazy"></a>`;
+  if(a.kind==='video')return `<div class="clip"><video src="${u}" controls preload="metadata" playsinline></video><small><a href="${u}" target="_blank" rel="noopener">Open video</a></small></div>`;
+  return `<div class="clip"><small class="muted">Voice note</small><audio src="${u}" controls preload="metadata"></audio><small><a href="${u}" target="_blank" rel="noopener">Download</a></small></div>`;
+ }).join('')}</div>`;
+}
+
 function card(t){
- return `<div class="task">
+ return `<div class="task ${statusClass(t.status)}">
  <div class="row"><strong>${esc(t.title)}</strong>
- <span class="badge ${priorityClass(t.priority)}">${esc(t.priority||'Medium')}</span></div>
+ ${badgesHtml(t)}</div>
  ${t.description?`<p>${esc(t.description)}</p>`:''}
- <p class="muted">Client: ${esc(clientName(t.client_id))} · ${esc(t.status||'To do')}${t.due_date?' · Due '+esc(t.due_date):''}</p>
+ ${mediaHtml(t.id)}
+ <p class="muted">Client: ${esc(clientName(t.client_id))}${t.due_date?' · Due '+esc(t.due_date):''}</p>
  <label>Status
  <select data-task="${esc(t.id)}" aria-label="Status for ${esc(t.title)}">
  ${STATUSES.map(s=>`<option value="${esc(s)}" ${t.status===s?'selected':''}>${esc(s)}</option>`).join('')}
@@ -412,11 +581,12 @@ function card(t){
 }
 
 function portalCard(t){
- return `<div class="task">
+ return `<div class="task ${statusClass(t.status)}">
  <div class="row"><strong>${esc(t.title)}</strong>
- <span class="badge ${priorityClass(t.priority)}">${esc(t.priority||'Medium')} priority</span></div>
+ ${badgesHtml(t)}</div>
  ${t.description?`<p>${esc(t.description)}</p>`:''}
- <p class="muted">Status: ${esc(t.status||'To do')}${t.due_date?' · Due '+esc(t.due_date):''}</p></div>`;
+ ${mediaHtml(t.id)}
+ ${t.due_date?`<p class="muted">Due ${esc(t.due_date)}</p>`:''}</div>`;
 }
 
 function render(){
@@ -430,6 +600,7 @@ function render(){
 
 function renderPortal(){
  let list=[];
+ show('requestPanel',role==='client');
  if(role==='admin'){
   show('previewWrap',true);
   $('portalTitle').textContent='Client Portal preview';
@@ -438,11 +609,13 @@ function renderPortal(){
    ?`This is exactly what ${clientName(id)} sees when they sign in.`
    :'Select a client to preview what they see when they sign in.';
   list=id?tasks.filter(t=>String(t.client_id)===id):[];
+  applyBranding(id?clients.find(c=>String(c.id)===id):null);
  }else if(role==='client'){
   show('previewWrap',false);
   $('portalTitle').textContent=myClientName||'Your projects';
   $('portalIntro').textContent='Track the status of your work with Signix Digital. Refresh the page to see the latest updates.';
   list=tasks;
+  applyBranding(clients.find(c=>String(c.id)===String(myClientId)));
  }else return;
  const open=list.filter(t=>t.status!=='Completed');
  const done=list.filter(t=>t.status==='Completed');
@@ -452,24 +625,42 @@ function renderPortal(){
  $('clientTasks').innerHTML=ordered.length?ordered.map(portalCard).join(''):'<p class="muted">No tasks to show yet.</p>';
 }
 
+function brandFileHtml(c,col,label,field,removeName){
+ const url=c[col]&&brandUrls[c[col]];
+ const preview=url?(field==='logo'
+  ?`<span class="logo-circle sm" aria-hidden="true"><img src="${esc(url)}" alt=""></span>`
+  :`<img class="backdrop" src="${esc(url)}" alt="">`):'';
+ return `<label>${label} (optional, image up to 5 MB)
+ ${url?`<span class="brand-preview">${preview}<span class="muted">Current ${field}</span></span>`:''}
+ <input type="file" name="${field}" accept="image/*">
+ </label>
+ ${c[col]?`<label class="check"><input type="checkbox" name="${removeName}"> Remove current ${field}</label>`:''}`;
+}
 function renderClients(){
  const root=$('clientsList');
- root.replaceChildren();
  if(!clients.length){root.textContent='No clients found. Add your first client above.';return;}
- for(const c of clients){
-  const form=document.createElement('form');
-  form.className='row client-edit';
-  form.dataset.clientId=String(c.id);
-  const label=document.createElement('label');
-  label.textContent='Client name';
-  label.style.flex='1 1 260px';
-  const input=document.createElement('input');
-  input.name='name';input.value=c.Name||'';input.required=true;input.maxLength=120;
-  input.setAttribute('aria-label','Edit '+(c.Name||'client'));
-  const button=document.createElement('button');
-  button.type='submit';button.textContent='Save name';
-  label.append(input);form.append(label,button);root.append(form);
- }
+ root.innerHTML=clients.map(c=>{
+  const hasColors=validHex(c.brand_color);
+  return `<details class="client-card" data-card="${esc(c.id)}"${String(openClientId)===String(c.id)?' open':''}>
+ <summary>${logoHtml(c,'sm')}<strong>${esc(c.Name||'Client '+c.id)}</strong><span class="edit-hint">Edit</span></summary>
+ <form data-client-id="${esc(c.id)}">
+ <label>Client name<input name="name" maxlength="120" required value="${esc(c.Name||'')}"></label>
+ <label>Email<input type="email" name="email" maxlength="200" value="${esc(c.Email||'')}"></label>
+ <label>Company<input name="company" maxlength="200" value="${esc(c.Company||'')}"></label>
+ <fieldset>
+ <legend>Client portal branding (optional)</legend>
+ <label class="check"><input type="checkbox" name="useColors"${hasColors?' checked':''}> Use custom brand colors</label>
+ <div class="colors">
+ <label>Main color<input type="color" name="brand_color" value="${esc(hasColors?c.brand_color:'#3975db')}"></label>
+ <label>Background color<input type="color" name="brand_color_2" value="${esc(validHex(c.brand_color_2)?c.brand_color_2:'#121e30')}"></label>
+ </div>
+ ${brandFileHtml(c,'logo_path','Logo','logo','removeLogo')}
+ ${brandFileHtml(c,'backdrop_path','Backdrop image','backdrop','removeBackdrop')}
+ </fieldset>
+ <button class="primary" type="submit">Save changes</button>
+ </form>
+ </details>`;
+ }).join('');
 }
 
 function renderLogins(){
@@ -485,17 +676,46 @@ async function loadTasks(){
   .select('id,title,description,status,priority,due_date,client_id')
   .order('id',{ascending:false});
  if(error){displayError('Unable to load tasks',error);return false;}
- tasks=data||[];render();return true;
+ tasks=data||[];
+ const attachmentsOk=await loadAttachments();
+ render();return attachmentsOk;
+}
+
+async function loadAttachments(){
+ const {data,error}=await sb.from('task_attachments')
+  .select('id,task_id,client_id,path,kind,mime_type,size_bytes')
+  .order('id',{ascending:true});
+ if(error){attachments=[];signedUrls={};displayError('Unable to load attachments',error);return false;}
+ attachments=data||[];
+ signedUrls={};
+ const paths=attachments.map(a=>a.path);
+ for(let i=0;i<paths.length;i+=100){
+  const {data:urls,error:urlError}=await sb.storage.from(BUCKET).createSignedUrls(paths.slice(i,i+100),3600);
+  if(urlError){displayError('Unable to open attachments',urlError);return false;}
+  for(const u of urls||[])if(u.signedUrl&&u.path)signedUrls[u.path]=u.signedUrl;
+ }
+ return true;
+}
+
+async function loadBranding(){
+ brandUrls={};
+ const paths=clients.flatMap(c=>[c.logo_path,c.backdrop_path]).filter(Boolean);
+ if(!paths.length)return true;
+ const {data,error}=await sb.storage.from(BRAND_BUCKET).createSignedUrls(paths,3600);
+ if(error){displayError('Unable to load client branding',error);return false;}
+ for(const u of data||[])if(u.signedUrl&&u.path)brandUrls[u.path]=u.signedUrl;
+ return true;
 }
 
 async function loadClients(){
- const {data,error}=await sb.from('Clients').select('id,Name').order('Name');
+ const {data,error}=await sb.from('Clients').select(CLIENT_FIELDS).order('Name');
  if(error){displayError('Unable to load clients',error);return false;}
  clients=data||[];
+ const brandingOk=await loadBranding();
  fillClientSelect(document.querySelector('#taskForm select[name="client"]'));
  fillClientSelect($('linkClient'));
  fillClientSelect($('previewClient'));
- renderClients();render();return true;
+ renderClients();render();return brandingOk;
 }
 
 async function loadLogins(){
@@ -532,9 +752,11 @@ async function refresh(){
   return;
  }
  role='client';
- const {data:own}=await sb.from('Clients').select('id,Name').eq('id',membership.client_id).maybeSingle();
+ myClientId=membership.client_id;
+ const {data:own}=await sb.from('Clients').select(CLIENT_FIELDS).eq('id',membership.client_id).maybeSingle();
  clients=own?[own]:[];
  myClientName=own?.Name||'';
+ await loadBranding();
  show('auth',false);show('app',true);show('logout',true);show('mainNav',false);
  view('client');
  if(await loadTasks())notice('');
@@ -594,6 +816,11 @@ $('addClientForm').onsubmit=async e=>{
  finally{button.disabled=false;}
 };
 
+$('clientsList').addEventListener('toggle',e=>{
+ const d=e.target.closest?.('details[data-card]');
+ if(d&&d.open)openClientId=d.dataset.card;
+},true);
+
 $('clientsList').addEventListener('submit',async e=>{
  const form=e.target.closest('form[data-client-id]');
  if(!form)return;
@@ -602,17 +829,53 @@ $('clientsList').addEventListener('submit',async e=>{
  const id=form.dataset.clientId;
  const client=clients.find(c=>String(c.id)===id);
  if(!client)return;
- const name=String(new FormData(form).get('name')||'').trim().replace(/\s+/g,' ');
+ const fd=new FormData(form);
+ const name=String(fd.get('name')||'').trim().replace(/\s+/g,' ');
+ const email=String(fd.get('email')||'').trim();
+ const company=String(fd.get('company')||'').trim().replace(/\s+/g,' ');
  if(!name){notice('Client name cannot be empty.');return;}
  if(duplicateName(name,id)){notice('Another client already has that name.');return;}
- if(name===client.Name){notice('No changes to save.');return;}
+ const update={Name:name,Email:email||null,Company:company||null};
+ if(fd.get('useColors')){
+  const c1=String(fd.get('brand_color')||''),c2=String(fd.get('brand_color_2')||'');
+  if(!validHex(c1)||!validHex(c2)){notice('Pick valid brand colors.');return;}
+  update.brand_color=c1;update.brand_color_2=c2;
+ }else{update.brand_color=null;update.brand_color_2=null;}
+ const files=[['logo','logo_path','removeLogo'],['backdrop','backdrop_path','removeBackdrop']];
+ for(const [field] of files){
+  const file=fd.get(field);
+  if(file&&file.size){
+   const type=fileType(file);
+   if(!type.startsWith('image/')){notice(`The ${field} must be an image.`);return;}
+   if(file.size>MAX_BRAND_BYTES){notice(`The ${field} is ${formatSize(file.size)}. The limit is 5 MB.`);return;}
+  }
+ }
  const button=form.querySelector('button[type="submit"]');button.disabled=true;
+ const oldPaths=[],newPaths=[];
  try{
-  const {data,error}=await sb.from('Clients').update({Name:name}).eq('id',client.id).select('id,Name');
-  if(error){displayError('Client name was not updated',error);return;}
-  if(!data?.length){notice('Client name not changed: no row returned. Check UPDATE and SELECT permissions.');return;}
-  if(await loadClients())notice('Client name updated successfully.');
- }catch(err){displayError('Client name was not updated',err);}
+  for(const [field,col,removeName] of files){
+   const file=fd.get(field);
+   if(file&&file.size){
+    notice(`Uploading ${field}…`);
+    const type=fileType(file);
+    const path=`${client.id}/${field}-${crypto.randomUUID()}.${extFor(file,type)}`;
+    const {error:upError}=await sb.storage.from(BRAND_BUCKET).upload(path,file,{contentType:type,upsert:false});
+    if(upError){displayError(`The ${field} was not uploaded`,upError);if(newPaths.length)await sb.storage.from(BRAND_BUCKET).remove(newPaths);return;}
+    newPaths.push(path);
+    update[col]=path;
+    if(client[col])oldPaths.push(client[col]);
+   }else if(fd.get(removeName)){
+    update[col]=null;
+    if(client[col])oldPaths.push(client[col]);
+   }
+  }
+  const {data,error}=await sb.from('Clients').update(update).eq('id',client.id).select('id');
+  if(error){displayError('Client was not updated',error);if(newPaths.length)await sb.storage.from(BRAND_BUCKET).remove(newPaths);return;}
+  if(!data?.length){notice('Client not updated: no row returned. Check UPDATE and SELECT permissions.');if(newPaths.length)await sb.storage.from(BRAND_BUCKET).remove(newPaths);return;}
+  if(oldPaths.length)await sb.storage.from(BRAND_BUCKET).remove(oldPaths);
+  openClientId=client.id;
+  if(await loadClients())notice(`${name} updated.`);
+ }catch(err){displayError('Client was not updated',err);}
  finally{button.disabled=false;}
 });
 
@@ -648,6 +911,150 @@ $('loginsList').addEventListener('click',async e=>{
 });
 
 $('previewClient').addEventListener('change',renderPortal);
+
+function renderPending(){
+ const root=$('pendingList');
+ root.replaceChildren();
+ pending.forEach((p,i)=>{
+  const li=document.createElement('li');
+  if(p.kind==='image'){
+   const img=document.createElement('img');img.src=p.url;img.alt='';li.append(img);
+  }else if(p.kind==='audio'){
+   const audio=document.createElement('audio');audio.src=p.url;audio.controls=true;li.append(audio);
+  }
+  const name=document.createElement('span');
+  name.className='name';
+  name.textContent=(p.kind==='video'?'Video: ':p.kind==='audio'?'Voice note: ':'Photo: ')+p.file.name+' ('+formatSize(p.file.size)+')';
+  const remove=document.createElement('button');
+  remove.type='button';remove.textContent='Remove';remove.dataset.remove=String(i);
+  li.append(name,remove);root.append(li);
+ });
+}
+function clearPending(){
+ pending.forEach(p=>URL.revokeObjectURL(p.url));
+ pending=[];
+ if($('pendingList'))renderPending();
+}
+function addPending(file,type){
+ const kind=kindOf(type);
+ if(!kind){notice(`${file.name} is not a photo, video or audio file.`);return false;}
+ if(file.size>MAX_FILE_BYTES){notice(`${file.name} is ${formatSize(file.size)}. The limit is 50 MB per file.`);return false;}
+ if(pending.length>=MAX_FILES){notice('You can attach up to 10 files per request.');return false;}
+ pending.push({file,type,kind,url:URL.createObjectURL(file)});
+ renderPending();
+ return true;
+}
+
+$('mediaInput').addEventListener('change',e=>{
+ for(const file of e.target.files)addPending(file,fileType(file));
+ e.target.value='';
+});
+
+$('pendingList').addEventListener('click',e=>{
+ const b=e.target.closest('button[data-remove]');
+ if(!b)return;
+ const [p]=pending.splice(Number(b.dataset.remove),1);
+ if(p)URL.revokeObjectURL(p.url);
+ renderPending();
+});
+
+function pickAudioType(){
+ const types=['audio/webm;codecs=opus','audio/webm','audio/mp4','audio/ogg;codecs=opus'];
+ return types.find(t=>MediaRecorder.isTypeSupported&&MediaRecorder.isTypeSupported(t))||'';
+}
+function updateRecordUi(on){
+ const b=$('recordBtn');
+ b.classList.toggle('recording',on);
+ b.setAttribute('aria-pressed',String(on));
+ if(!on){b.textContent='Record voice note';return;}
+ const secs=Math.floor((Date.now()-recStart)/1000);
+ b.textContent=`Stop recording (${Math.floor(secs/60)}:${String(secs%60).padStart(2,'0')})`;
+}
+function stopRecording(discard){
+ clearInterval(recTimer);recTimer=null;
+ if(recorder&&recorder.state!=='inactive'){
+  if(discard)recorder.onstop=null;
+  recorder.stop();
+ }
+ if(discard){
+  if(recStream)recStream.getTracks().forEach(t=>t.stop());
+  recorder=null;recStream=null;recChunks=[];
+  if($('recordBtn'))updateRecordUi(false);
+ }
+}
+
+$('recordBtn').onclick=async()=>{
+ if(recorder&&recorder.state==='recording'){stopRecording(false);return;}
+ if(!navigator.mediaDevices?.getUserMedia||!window.MediaRecorder){
+  notice('Voice recording is not supported in this browser. Try the latest Chrome or Safari.');return;
+ }
+ if(pending.length>=MAX_FILES){notice('You can attach up to 10 files per request.');return;}
+ try{
+  recStream=await navigator.mediaDevices.getUserMedia({audio:true});
+ }catch(err){
+  notice('Microphone access was blocked. Allow microphone access for this site and try again.');return;
+ }
+ const type=pickAudioType();
+ try{recorder=type?new MediaRecorder(recStream,{mimeType:type}):new MediaRecorder(recStream);}
+ catch(err){recStream.getTracks().forEach(t=>t.stop());recStream=null;notice('Unable to start recording on this device.');return;}
+ recChunks=[];
+ recorder.ondataavailable=e=>{if(e.data&&e.data.size)recChunks.push(e.data);};
+ recorder.onstop=()=>{
+  const mime=(recorder.mimeType||type||'audio/webm').split(';')[0];
+  if(recStream)recStream.getTracks().forEach(t=>t.stop());
+  recStream=null;
+  const blob=new Blob(recChunks,{type:mime});
+  recChunks=[];recorder=null;
+  updateRecordUi(false);
+  if(!blob.size){notice('The recording was empty. Please try again.');return;}
+  const ext=mime.includes('mp4')?'m4a':mime.includes('ogg')?'ogg':'webm';
+  const file=new File([blob],`voice-note-${new Date().toISOString().slice(0,19).replace(/[:T]/g,'-')}.${ext}`,{type:mime});
+  if(addPending(file,mime))notice('Voice note added. Press play to check it before sending.');
+ };
+ recStart=Date.now();
+ recorder.start();
+ updateRecordUi(true);
+ notice('Recording… press the button again to stop.');
+ recTimer=setInterval(()=>{
+  updateRecordUi(true);
+  if(Date.now()-recStart>=MAX_RECORD_SECONDS*1000)stopRecording(false);
+ },500);
+};
+
+$('requestTaskForm').onsubmit=async e=>{
+ e.preventDefault();
+ if(role!=='client'||myClientId==null){notice('Client sign-in required.');return;}
+ if(recorder&&recorder.state==='recording'){notice('Stop the voice recording before sending.');return;}
+ const form=e.currentTarget,fd=new FormData(form),button=$('sendRequestBtn');
+ const title=String(fd.get('title')||'').trim().replace(/\s+/g,' ');
+ const description=String(fd.get('description')||'').trim()||null;
+ if(!title){notice('Please enter a task name.');return;}
+ button.disabled=true;
+ try{
+  notice('Sending request…');
+  const {data:created,error}=await sb.from('tasks')
+   .insert({title,description,client_id:myClientId,status:'Incoming',priority:'Medium'})
+   .select('id').single();
+  if(error){displayError('Request was not sent',error);return;}
+  const taskId=created.id,failed=[];
+  for(let i=0;i<pending.length;i++){
+   const p=pending[i];
+   notice(`Request created. Uploading file ${i+1} of ${pending.length}…`);
+   const path=`${myClientId}/${taskId}/${crypto.randomUUID()}.${extFor(p.file,p.type)}`;
+   const {error:upError}=await sb.storage.from(BUCKET).upload(path,p.file,{contentType:p.type,upsert:false});
+   if(upError){failed.push(`${p.file.name}: ${upError.message}`);continue;}
+   const {error:rowError}=await sb.from('task_attachments').insert({task_id:taskId,client_id:myClientId,path,kind:p.kind,mime_type:p.type,size_bytes:p.file.size});
+   if(rowError)failed.push(`${p.file.name}: ${rowError.message}`);
+  }
+  form.reset();
+  clearPending();
+  await loadTasks();
+  notice(failed.length
+   ?`Request sent, but ${failed.length} file(s) did not upload:\n${failed.join('\n')}`
+   :'Request sent. Signix Digital will review it shortly.');
+ }catch(err){displayError('Request was not sent',err);}
+ finally{button.disabled=false;}
+};
 
 sb.auth.onAuthStateChange(event=>{
  if(event==='PASSWORD_RECOVERY')resetMode('recovery');
