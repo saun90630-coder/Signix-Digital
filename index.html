@@ -1,56 +1,51 @@
-<!doctype html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="theme-color" content="#0b1220">
+from pathlib import Path
+p=Path('/mnt/data/signix-index.html')
+html=r'''<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Signix Digital | Tasks</title>
 <style>
-:root{color-scheme:dark;font-family:system-ui,-apple-system,sans-serif;background:#0b1220;color:#eaf0f8}
-*{box-sizing:border-box}body{margin:0;background:#0b1220;color:#eaf0f8}
-header{padding:20px;border-bottom:1px solid #29354a;display:flex;justify-content:space-between;align-items:center}
-h1{font-size:21px;margin:0}small,.muted{color:#aab8cd}main{max-width:980px;margin:auto;padding:18px}
-nav{display:flex;gap:8px;overflow:auto;padding-bottom:15px}
-button,input,select,textarea{font:inherit}button{cursor:pointer;border:1px solid #35445d;border-radius:10px;background:#1c2b42;color:#f0f5ff;padding:11px 14px}
-button.active,.primary{background:#3975db;border-color:#3975db;color:white}
-.panel{background:#121e30;border:1px solid #2c3c54;border-radius:16px;padding:18px;margin:12px 0}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px}
-input,select,textarea{width:100%;background:#0b1525;color:#f5f8ff;border:1px solid #40516b;border-radius:9px;padding:12px;margin:6px 0 12px}
-label{display:block;color:#cbd5e1;font-size:14px}
-.task{border-top:1px solid #29384f;padding:14px 0}
-.row{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
-.badge{border-radius:20px;background:#26364d;padding:4px 9px;font-size:12px}
-.high{color:#ffaaa9}.medium{color:#ffda91}.low{color:#9be4c2}
-.hidden{display:none}textarea{min-height:75px}
-</style>
-</head>
-<body>
-<header><div><h1>Signix Digital</h1><small>Task Management</small></div><span class="badge">Prototype</span></header>
-<main>
-<nav><button id="adminBtn" class="active" onclick="view('admin')">My Dashboard</button><button id="clientBtn" onclick="view('client')">Client Portal</button></nav>
-<section id="admin">
-<div class="grid"><div class="panel"><small>Open tasks</small><h1 id="openCount">0</h1></div><div class="panel"><small>Incoming requests</small><h1 id="requestCount">0</h1></div></div>
-<div class="panel"><h2>Add task</h2><form id="taskForm"><label>Task<input name="title" required placeholder="Update El Rodeo banner"></label><label>Client<input name="client" required placeholder="El Rodeo"></label><div class="grid"><label>Priority<select name="priority"><option>High</option><option selected>Medium</option><option>Low</option></select></label><label>Due date<input type="date" name="due"></label></div><button class="primary">Add task</button></form></div>
-<div class="panel"><h2>All tasks</h2><div id="adminTasks"></div></div>
+:root{font-family:system-ui,sans-serif;color-scheme:dark;background:#0b1220;color:#eaf0f8}*{box-sizing:border-box}body{margin:0}header{padding:20px;border-bottom:1px solid #29354a;display:flex;justify-content:space-between}h1{font-size:21px;margin:0}main{max-width:980px;margin:auto;padding:18px}.panel{background:#121e30;border:1px solid #2c3c54;border-radius:16px;padding:18px;margin:12px 0}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px}button,input,select,textarea{font:inherit}button{cursor:pointer;border:1px solid #35445d;border-radius:10px;background:#1c2b42;color:white;padding:11px 14px}.primary{background:#3975db}input,select,textarea{width:100%;background:#0b1525;color:white;border:1px solid #40516b;border-radius:9px;padding:12px;margin:6px 0 12px}label{display:block;color:#cbd5e1;font-size:14px}.hidden{display:none!important}.muted{color:#aab8cd}.task{border-top:1px solid #29384f;padding:14px 0}.row{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}.badge{border-radius:20px;background:#26364d;padding:4px 9px;font-size:12px}.high{color:#ffaaa9}.medium{color:#ffda91}.low{color:#9be4c2}nav{display:flex;gap:8px;margin:14px 0}textarea{min-height:75px}
+</style></head><body>
+<header><div><h1>Signix Digital</h1><small class="muted">Task Management</small></div><button id="logout" class="hidden">Log out</button></header>
+<main><p id="message" role="status"></p>
+<section id="auth" class="panel"><h2 id="authTitle">Sign in</h2>
+<form id="loginForm"><label>Email<input type="email" id="email" required autocomplete="email"></label><label>Password<input type="password" id="password" required autocomplete="current-password"></label><button class="primary">Sign in</button></form>
+<form id="resetForm" class="hidden"><label>New password<input type="password" id="newPassword" minlength="8" required autocomplete="new-password"></label><button class="primary">Set password</button></form>
+<p><button id="forgot" type="button">Email me a password reset link</button></p>
 </section>
-<section id="client" class="hidden">
-<div class="panel"><h2>Client Portal</h2><p class="muted">Demo view only. Real client logins and privacy controls are not connected.</p><label>View client<input id="clientFilter" placeholder="Type client name" oninput="render()"></label><div id="clientTasks"></div></div>
-<div class="panel"><h2>Submit a request</h2><form id="requestForm"><label>Business<input name="client" required placeholder="Patrón Boots"></label><label>Request<input name="title" required placeholder="Update homepage"></label><label>Priority<select name="priority"><option>High</option><option selected>Medium</option><option>Low</option></select></label><button class="primary">Submit request</button></form></div>
-</section>
-</main>
+<section id="app" class="hidden"><nav><button id="adminBtn">My Dashboard</button><button id="clientBtn">Client Portal</button></nav>
+<section id="admin"><div class="grid"><div class="panel"><small>Open tasks</small><h1 id="openCount">0</h1></div><div class="panel"><small>Incoming requests</small><h1 id="requestCount">0</h1></div></div>
+<div class="panel"><h2>Add task</h2><form id="taskForm"><label>Task<input name="title" required></label><label>Client<input name="client" required></label><div class="grid"><label>Priority<select name="priority"><option>High</option><option selected>Medium</option><option>Low</option></select></label><label>Due date<input type="date" name="due"></label></div><button class="primary">Add task</button></form></div>
+<div class="panel"><h2>All tasks</h2><div id="adminTasks"></div></div></section>
+<section id="client" class="hidden"><div class="panel"><h2>Client Portal</h2><p class="muted">Preview only. Client access is disabled until database roles and row-level security are configured.</p><div id="clientTasks"></div></div></section>
+</section></main>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
 <script>
-const KEY='signix-demo-tasks-v1';
-let tasks=[];try{tasks=JSON.parse(localStorage.getItem(KEY))||[]}catch(e){}
+'use strict';
+const URL='https://mhpvdyfrtaazgabmcvtx.supabase.co';
+const KEY='sb_publishable_RljzO2G_ltUBbgnjWKF4gA_t-xHrkeI';
+const sb=window.supabase.createClient(URL,KEY);
+const $=id=>document.getElementById(id);
+const show=(id,on)=>$(id).classList.toggle('hidden',!on);
+const notice=s=>{$('message').textContent=s};
+let currentUser=null,tasks=[];
 const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-function save(){localStorage.setItem(KEY,JSON.stringify(tasks));render()}
-function view(which){document.getElementById('admin').classList.toggle('hidden',which!=='admin');document.getElementById('client').classList.toggle('hidden',which!=='client');document.getElementById('adminBtn').classList.toggle('active',which==='admin');document.getElementById('clientBtn').classList.toggle('active',which==='client');render()}
-function add(form,source){const d=new FormData(form);tasks.unshift({id:Date.now()+Math.random(),title:d.get('title'),client:d.get('client'),priority:d.get('priority'),due:d.get('due')||'',status:source==='Client'?'Incoming':'To do',source,comments:[]});form.reset();save()}
-document.getElementById('taskForm').onsubmit=e=>{e.preventDefault();add(e.target,'Admin')};
-document.getElementById('requestForm').onsubmit=e=>{e.preventDefault();add(e.target,'Client')};
-function change(id,value){let t=tasks.find(t=>String(t.id)===String(id));if(t){t.status=value;save()}}
-function comment(id){let t=tasks.find(t=>String(t.id)===String(id));let field=document.getElementById('comment-'+id);if(t&&field.value.trim()){t.comments.push(field.value.trim());save()}}
-function card(t,admin){return `<div class="task"><div class="row"><strong>${esc(t.title)}</strong><span class="badge ${esc(t.priority.toLowerCase())}">${esc(t.priority)}</span></div><p class="muted">${esc(t.client)} · ${esc(t.status)}${t.due?' · Due '+esc(t.due):''}</p>${admin?`<label>Status<select onchange="change('${t.id}',this.value)">${['Incoming','To do','In progress','Waiting on client','Completed'].map(s=>`<option ${t.status===s?'selected':''}>${s}</option>`).join('')}</select></label>`:''}<div>${t.comments.map(c=>`<p>💬 ${esc(c)}</p>`).join('')}</div><div class="row"><input id="comment-${t.id}" placeholder="Write a comment" style="flex:1;margin:0"><button onclick="comment('${t.id}')">Comment</button></div></div>`}
-function render(){document.getElementById('openCount').textContent=tasks.filter(t=>t.status!=='Completed').length;document.getElementById('requestCount').textContent=tasks.filter(t=>t.status==='Incoming').length;document.getElementById('adminTasks').innerHTML=tasks.length?tasks.map(t=>card(t,true)).join(''):'No tasks yet. Add your first task above.';let q=document.getElementById('clientFilter').value.toLowerCase().trim();let visible=tasks.filter(t=>!q||t.client.toLowerCase().includes(q));document.getElementById('clientTasks').innerHTML=visible.length?visible.map(t=>card(t,false)).join(''):'No matching tasks.'}
-render();
-</script>
-</body></html>
+function view(which){show('admin',which==='admin');show('client',which==='client')}
+$('adminBtn').onclick=()=>view('admin');
+$('clientBtn').onclick=()=>view('client');
+$('logout').onclick=async()=>{await sb.auth.signOut();location.replace(location.pathname)};
+$('loginForm').onsubmit=async e=>{e.preventDefault();const {error}=await sb.auth.signInWithPassword({email:$('email').value,password:$('password').value});notice(error?error.message:'Signed in');if(!error)await refresh()};
+$('forgot').onclick=async()=>{const email=$('email').value.trim();if(!email){notice('Enter your email address first.');return}const {error}=await sb.auth.resetPasswordForEmail(email,{redirectTo:location.origin+location.pathname});notice(error?error.message:'Check your email for the password reset link.')};
+$('resetForm').onsubmit=async e=>{e.preventDefault();const {error}=await sb.auth.updateUser({password:$('newPassword').value});if(error){notice(error.message);return}history.replaceState({},'',location.pathname);notice('Password updated. You can now sign in.');show('resetForm',false);show('loginForm',true);show('forgot',true);$('authTitle').textContent='Sign in';await sb.auth.signOut();show('auth',true);show('app',false)};
+function resetMode(){show('auth',true);show('app',false);show('loginForm',false);show('resetForm',true);show('forgot',false);$('authTitle').textContent='Set your password';notice('Enter a new password with at least 8 characters.')}
+function card(t){return `<div class="task"><div class="row"><strong>${esc(t.title)}</strong><span class="badge ${esc((t.priority||'medium').toLowerCase())}">${esc(t.priority||'Medium')}</span></div><p class="muted">Client ID: ${esc(t.client_id??'Unassigned')} · ${esc(t.status||'To do')}${t.due_date?' · Due '+esc(t.due_date):''}</p><label>Status<select data-task="${esc(t.id)}">${['Incoming','To do','In progress','Waiting on client','Completed'].map(s=>`<option ${t.status===s?'selected':''}>${s}</option>`).join('')}</select></label></div>`}
+function render(){$('openCount').textContent=tasks.filter(t=>t.status!=='Completed').length;$('requestCount').textContent=tasks.filter(t=>t.status==='Incoming').length;$('adminTasks').innerHTML=tasks.length?tasks.map(card).join(''):'No tasks yet.';$('clientTasks').textContent='Client accounts are not enabled yet.'}
+async function loadTasks(){const {data,error}=await sb.from('tasks').select('id,title,status,priority,due_date,client_id').order('id',{ascending:false});if(error){notice('Database access: '+error.message+'. Check table columns and RLS policies.');return}tasks=data||[];render()}
+async function refresh(){const {data:{user}}=await sb.auth.getUser();currentUser=user;show('auth',!user);show('app',!!user);show('logout',!!user);if(user){view('admin');await loadTasks()}}
+$('taskForm').onsubmit=async e=>{e.preventDefault();notice('Task creation is paused until client names are mapped to database client IDs and admin-only permissions are configured. No task was saved.')};
+$('adminTasks').addEventListener('change',async e=>{const id=e.target.dataset.task;if(!id)return;const {error}=await sb.from('tasks').update({status:e.target.value}).eq('id',id);if(error)notice(error.message);else await loadTasks()});
+sb.auth.onAuthStateChange((event)=>{if(event==='PASSWORD_RECOVERY')resetMode();else if(event==='SIGNED_OUT'){show('app',false);show('auth',true);show('logout',false)}});
+(async()=>{const params=new URLSearchParams(location.search);if(params.has('error'))notice(params.get('error_description')||'Authentication link failed. Request another reset email.');const hash=new URLSearchParams(location.hash.slice(1));if(hash.get('type')==='recovery'){const {error}=await sb.auth.setSession({access_token:hash.get('access_token'),refresh_token:hash.get('refresh_token')});if(error)notice(error.message);else resetMode()}else await refresh()})();
+</script></body></html>'''
+p.write_text(html)
+print(p, len(html))
