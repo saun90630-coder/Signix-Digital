@@ -1,6 +1,4 @@
-from pathlib import Path
-p=Path('/mnt/data/signix-index.html')
-html=r'''<!doctype html>
+<!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Signix Digital | Tasks</title>
 <style>
@@ -47,5 +45,3 @@ $('adminTasks').addEventListener('change',async e=>{const id=e.target.dataset.ta
 sb.auth.onAuthStateChange((event)=>{if(event==='PASSWORD_RECOVERY')resetMode();else if(event==='SIGNED_OUT'){show('app',false);show('auth',true);show('logout',false)}});
 (async()=>{const params=new URLSearchParams(location.search);if(params.has('error'))notice(params.get('error_description')||'Authentication link failed. Request another reset email.');const hash=new URLSearchParams(location.hash.slice(1));if(hash.get('type')==='recovery'){const {error}=await sb.auth.setSession({access_token:hash.get('access_token'),refresh_token:hash.get('refresh_token')});if(error)notice(error.message);else resetMode()}else await refresh()})();
 </script></body></html>'''
-p.write_text(html)
-print(p, len(html))
