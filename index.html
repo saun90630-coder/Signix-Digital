@@ -28,13 +28,18 @@ label{display:block;color:#cbd5e1;font-size:14px}
 .high{color:#ffaaa9}
 .medium{color:#ffda91}
 .low{color:#9be4c2}
-nav{display:flex;gap:8px;margin:14px 0;flex-wrap:wrap}
+nav{display:flex;gap:8px;margin:14px 0}
 textarea{min-height:75px}
 .password-wrap{position:relative}
 .password-wrap input{padding-right:70px}
 .toggle-password{position:absolute;right:6px;top:10px;padding:7px 10px;font-size:13px;background:transparent;border:0;color:#cbd5e1}
 .link-button{background:transparent;border:0;color:#9fc2ff;padding:6px 0;text-decoration:underline}
 #message:not(:empty){padding:10px 0;white-space:pre-wrap}
+.client-edit{border-top:1px solid #29384f;padding:10px 0;align-items:end}
+.client-edit label{margin:0}
+.client-edit input{margin-bottom:0}
+.client-edit button{margin-bottom:0}
+button:focus-visible,input:focus-visible,select:focus-visible{outline:2px solid #90baff;outline-offset:2px}
 </style>
 </head>
 <body>
@@ -101,7 +106,6 @@ textarea{min-height:75px}
 <section id="app" class="hidden">
 <nav>
 <button id="adminBtn">My Dashboard</button>
-<button id="clientsBtn">Manage Clients</button>
 <button id="clientBtn">Client Portal</button>
 </nav>
 
@@ -142,7 +146,16 @@ textarea{min-height:75px}
 </div>
 <button class="primary">Add task</button>
 </form>
-<button type="button" id="quickAddClient" class="link-button">+ Add new client</button>
+</div>
+
+<div class="panel">
+<h2>Manage Clients</h2>
+<p class="muted">Add a client or update an existing client's name. Existing tasks stay connected to the same client ID.</p>
+<form id="addClientForm">
+<label>New client name<input name="name" maxlength="120" required placeholder="Enter client name"></label>
+<button class="primary" type="submit">Add client</button>
+</form>
+<div id="clientsList" aria-live="polite"></div>
 </div>
 
 <div class="panel">
@@ -151,10 +164,6 @@ textarea{min-height:75px}
 </div>
 </section>
 
-<section id="clientsSection" class="hidden">
-<div class="panel"><h2>Add new client</h2><form id="clientForm"><label>Client name<input id="newClientName" required></label><button id="addClientButton" class="primary">Add client</button></form></div>
-<div class="panel"><h2>Manage clients</h2><div id="clientsList"></div></div>
-</section>
 <section id="client" class="hidden">
 <div class="panel">
 <h2>Client Portal</h2>
@@ -219,18 +228,17 @@ document.querySelectorAll('[data-toggle]').forEach(b=>b.addEventListener('click'
 function view(which){
  show('admin',which==='admin');
  show('client',which==='client');
- show('clientsSection',which==='clients');
 }
 
 $('adminBtn').onclick=()=>view('admin');
 $('clientBtn').onclick=()=>view('client');
-$('clientsBtn').onclick=()=>view('clients');
-$('quickAddClient').onclick=()=>view('clients');
 
 $('logout').onclick=async()=>{
  const {error}=await sb.auth.signOut();
  if(error)notice(error.message);
  else{
+  currentUser=null;
+  tasks=[];clients=[];
   authMode('login');
   notice('Signed out.');
  }
@@ -261,7 +269,6 @@ $('loginForm').onsubmit=async e=>{
   });
   if(error)notice(error.message);
   else{
-   notice('Signed in.');
    await refresh();
   }
  }catch(err){
@@ -325,150 +332,192 @@ function resetMode(){
  notice('Enter your new password twice. Both entries must match.');
 }
 
-function renderClients(){
- const list=$('clientsList');
- list.innerHTML=clients.length?clients.map(c=>`<div class="task"><div class="row"><strong>${esc(c.Name)}</strong><button type="button" data-edit="${esc(c.id)}">Edit</button></div><form class="hidden" data-client-form="${esc(c.id)}"><label>Client name<input name="name" required value="${esc(c.Name)}"></label><button class="primary">Save changes</button></form></div>`).join(''):'No clients yet.';
-}
 function clientName(id){
  return clients.find(c=>String(c.id)===String(id))?.Name||`ID ${id}`;
 }
-
+const STATUSES=['Incoming','To do','In progress','Waiting on client','Completed'];
+function isAdmin(){return currentUser?.id===ADMIN_UID;}
+function displayError(prefix,error){
+ const parts=[error?.message,error?.details,error?.hint].filter(Boolean);
+ notice(prefix+': '+(parts.join(' — ')||'Unknown error'));
+}
+function normalizedName(name){return String(name||'').trim().replace(/\s+/g,' ').toLocaleLowerCase();}
+function duplicateName(name,exceptId){
+ return clients.some(c=>String(c.id)!==String(exceptId??'')&&normalizedName(c.Name)===normalizedName(name));
+}
 function card(t){
  return `<div class="task">
- <div class="row">
- <strong>${esc(t.title)}</strong>
- <span class="badge ${esc((t.priority||'medium').toLowerCase())}">${esc(t.priority||'Medium')}</span>
- </div>
+ <div class="row"><strong>${esc(t.title)}</strong>
+ <span class="badge ${esc((t.priority||'medium').toLowerCase())}">${esc(t.priority||'Medium')}</span></div>
  <p class="muted">Client: ${esc(clientName(t.client_id))} · ${esc(t.status||'To do')}${t.due_date?' · Due '+esc(t.due_date):''}</p>
  <label>Status
- <select data-task="${esc(t.id)}">
- ${['Incoming','To do','In progress','Waiting on client','Completed'].map(s=>`<option ${t.status===s?'selected':''}>${s}</option>`).join('')}
- </select>
- </label>
- </div>`;
+ <select data-task="${esc(t.id)}" aria-label="Status for ${esc(t.title)}">
+ ${STATUSES.map(s=>`<option value="${esc(s)}" ${t.status===s?'selected':''}>${esc(s)}</option>`).join('')}
+ </select></label></div>`;
 }
-
 function render(){
  $('openCount').textContent=tasks.filter(t=>t.status!=='Completed').length;
  $('requestCount').textContent=tasks.filter(t=>t.status==='Incoming').length;
- $('adminTasks').innerHTML=tasks.length?tasks.map(card).join(''):'No tasks yet.';
+ $('adminTasks').innerHTML=tasks.length?tasks.map(card).join(''):'<p class="muted">No tasks yet.</p>';
  $('clientTasks').textContent='Client accounts are not enabled yet.';
 }
-
+function renderClients(){
+ const root=$('clientsList');
+ root.replaceChildren();
+ if(!clients.length){root.textContent='No clients found. Add your first client above.';return;}
+ for(const c of clients){
+  const form=document.createElement('form');
+  form.className='row client-edit';
+  form.dataset.clientId=String(c.id);
+  const label=document.createElement('label');
+  label.textContent='Client name';
+  label.style.flex='1 1 260px';
+  const input=document.createElement('input');
+  input.name='name'; input.value=c.Name||''; input.required=true;input.maxLength=120;
+  input.setAttribute('aria-label','Edit '+(c.Name||'client'));
+  const button=document.createElement('button');
+  button.type='submit';button.textContent='Save name';
+  label.append(input);form.append(label,button);root.append(form);
+ }
+}
 async function loadTasks(){
  const {data,error}=await sb.from('tasks')
   .select('id,title,status,priority,due_date,client_id')
   .order('id',{ascending:false});
- if(error){
-  notice('Cannot load tasks: '+error.message);
-  return;
- }
- tasks=data||[];
- render();
+ if(error){displayError('Unable to load tasks',error);return false;}
+ tasks=data||[];render();return true;
 }
-
 async function loadClients(){
- const {data,error}=await sb.from('Clients')
-  .select('id,Name')
-  .order('Name');
- if(error){
-  notice('Cannot load clients: '+error.message);
-  return;
- }
+ const {data,error}=await sb.from('Clients').select('id,Name').order('Name');
+ if(error){displayError('Unable to load clients',error);return false;}
  clients=data||[];
  const select=document.querySelector('#taskForm select[name="client"]');
- select.replaceChildren(
-  new Option('Select a client',''),
-  ...clients.map(c=>new Option(c.Name||`Client ${c.id}`,String(c.id)))
- );
+ const prior=select.value;
+ select.replaceChildren(new Option('Select a client',''),...clients.map(c=>new Option(c.Name||`Client ${c.id}`,String(c.id))));
+ if(clients.some(c=>String(c.id)===prior))select.value=prior;
+ renderClients();render();return true;
 }
-
 async function refresh(){
  if(recoveryActive)return;
  const {data:{user},error}=await sb.auth.getUser();
- if(error){
+ if(error){currentUser=null;authMode('login');displayError('Authentication',error);return;}
+ currentUser=user;
+ if(!user){authMode('login');return;}
+ if(!isAdmin()){
   authMode('login');
+  notice('Signed in, but this account is not authorized for the administrator dashboard.');
   return;
  }
- currentUser=user;
- show('auth',!user);
- show('app',!!user);
- show('logout',!!user);
- if(user){
-  if(user.id!==ADMIN_UID){
-   show('app',false);
-   notice('This account is not authorized for the administrator dashboard.');
-   return;
-  }
-  view('admin');
-  await loadClients();
-  await loadTasks();
- }
+ show('auth',false);show('app',true);show('logout',true);
+ view('admin');
+ const clientsOk=await loadClients();
+ const tasksOk=await loadTasks();
+ if(clientsOk&&tasksOk)notice('');
 }
-
-$('clientForm').onsubmit=async e=>{
- e.preventDefault();
- if(!currentUser||currentUser.id!==ADMIN_UID){notice('Administrator required.');return;}
- const name=$('newClientName').value.trim();
- if(!name)return;
- if(clients.some(c=>c.Name.toLowerCase()===name.toLowerCase())){notice('Client already exists.');return;}
- busy('addClientButton',true,'Saving…');
- try{
-  const {error}=await sb.from('Clients').insert({Name:name});
-  if(error)throw error;
-  $('clientForm').reset();
-  await loadClients();notice('Client added.');
- }catch(err){notice('Client not saved: '+err.message)}finally{busy('addClientButton',false)}
-};
-$('clientsList').addEventListener('click',e=>{
- const b=e.target.closest('[data-edit]');if(!b)return;
- document.querySelectorAll('[data-client-form]').forEach(f=>f.classList.toggle('hidden',f.dataset.clientForm!==b.dataset.edit));
-});
-$('clientsList').addEventListener('submit',async e=>{
- const form=e.target.closest('[data-client-form]');if(!form)return;
- e.preventDefault();if(!currentUser||currentUser.id!==ADMIN_UID)return;
- const name=String(new FormData(form).get('name')||'').trim();if(!name)return;
- const button=form.querySelector('button');button.disabled=true;
- try{
-  const {error}=await sb.from('Clients').update({Name:name}).eq('id',form.dataset.clientForm);
-  if(error)throw error;
-  await loadClients();render();notice('Client updated.');
- }catch(err){notice('Client update failed: '+err.message)}finally{button.disabled=false}
-});
-
 $('taskForm').onsubmit=async e=>{
  e.preventDefault();
- if(!currentUser||currentUser.id!==ADMIN_UID){
-  notice('Administrator sign-in required.');
-  return;
- }
- const form=e.currentTarget;
- const fd=new FormData(form);
- const button=form.querySelector('button[type="submit"],button.primary');
+ if(!isAdmin()){notice('Administrator sign-in required.');return;}
+ const form=e.currentTarget,fd=new FormData(form),button=form.querySelector('button[type="submit"],button.primary');
  const title=String(fd.get('title')||'').trim();
- const selectedClient=clients.find(c=>String(c.id)===String(fd.get('client')));
-  const client_id=selectedClient?.id;
-
- if(!title||!selectedClient){
-  notice('Enter a task and select a valid client.');
-  return;
+ const client_id=String(fd.get('client')||'');
+ if(!title||!clients.some(c=>String(c.id)===client_id)){
+  notice('Enter a task and select a valid client.');return;
  }
-
+ // Client IDs may be numeric or UUID strings. Preserve the actual database ID.
+ const realId=clients.find(c=>String(c.id)===client_id).id;
  button.disabled=true;
  try{
-  const payload={
-   title,
-   client_id,
-   priority:fd.get('priority'),
-   status:'To do',
-   due_date:fd.get('due')||null
-  };
+  const payload={title,client_id:realId,priority:String(fd.get('priority')||'Medium'),status:'To do',due_date:fd.get('due')||null};
   const {error}=await sb.from('tasks').insert(payload);
-  if(error)throw error;
+  if(error){displayError('Task was not saved',error);return;}
   form.reset();
-  notice('Task saved successfully.');
-  await loadTasks();
- }catch(err){
-  notice('Task was not saved: '+(err.message||'Unknown error'));
- }finally{
- 
+  const loaded=await loadTasks();
+  if(loaded)notice('Task saved successfully.');
+ }catch(err){displayError('Task was not saved',err);}
+ finally{button.disabled=false;}
+};
+$('adminTasks').addEventListener('change',async e=>{
+ const el=e.target,id=el.dataset.task;
+ if(!id||!isAdmin())return;
+ const t=tasks.find(x=>String(x.id)===String(id));
+ if(!t||!STATUSES.includes(el.value))return;
+ const prior=t.status;
+ el.disabled=true;
+ try{
+  const {data,error}=await sb.from('tasks').update({status:el.value}).eq('id',t.id).select('id,status');
+  if(error){el.value=prior;displayError('Status was not updated',error);return;}
+  if(!data?.length){el.value=prior;notice('Status not changed: no row was returned. Check UPDATE and SELECT RLS permissions.');return;}
+  t.status=data[0].status;render();notice('Task status updated.');
+ }catch(err){el.value=prior;displayError('Status was not updated',err);}
+ finally{el.disabled=false;}
+});
+$('addClientForm').onsubmit=async e=>{
+ e.preventDefault();
+ if(!isAdmin()){notice('Administrator sign-in required.');return;}
+ const form=e.currentTarget,name=String(new FormData(form).get('name')||'').trim().replace(/\s+/g,' ');
+ if(!name||duplicateName(name)){notice(name?'A client with that name already exists.':'Enter a client name.');return;}
+ const button=form.querySelector('button[type="submit"]');button.disabled=true;
+ try{
+  const {data,error}=await sb.from('Clients').insert({Name:name}).select('id,Name');
+  if(error){displayError('Client was not added',error);return;}
+  if(!data?.length){notice('Client insertion was not confirmed. Check INSERT and SELECT RLS policies.');return;}
+  form.reset();
+  if(await loadClients())notice('Client added successfully.');
+ }catch(err){displayError('Client was not added',err);}
+ finally{button.disabled=false;}
+};
+$('clientsList').addEventListener('submit',async e=>{
+ const form=e.target.closest('form[data-client-id]');
+ if(!form)return;
+ e.preventDefault();
+ if(!isAdmin()){notice('Administrator sign-in required.');return;}
+ const id=form.dataset.clientId;
+ const client=clients.find(c=>String(c.id)===id);
+ if(!client)return;
+ const name=String(new FormData(form).get('name')||'').trim().replace(/\s+/g,' ');
+ if(!name){notice('Client name cannot be empty.');return;}
+ if(duplicateName(name,id)){notice('Another client already has that name.');return;}
+ if(name===client.Name){notice('No changes to save.');return;}
+ const button=form.querySelector('button[type="submit"]');button.disabled=true;
+ try{
+  const {data,error}=await sb.from('Clients').update({Name:name}).eq('id',client.id).select('id,Name');
+  if(error){displayError('Client name was not updated',error);return;}
+  if(!data?.length){notice('Client name not changed: no row returned. Check UPDATE and SELECT RLS policies.');return;}
+  if(await loadClients())notice('Client name updated successfully.');
+ }catch(err){displayError('Client name was not updated',err);}
+ finally{button.disabled=false;}
+});
+
+sb.auth.onAuthStateChange((event)=>{
+ if(event==='PASSWORD_RECOVERY')resetMode();
+ else if(event==='SIGNED_OUT'&&!recoveryActive){
+  show('app',false);
+  show('auth',true);
+  show('logout',false);
+ }
+});
+
+(async()=>{
+ const params=new URLSearchParams(location.search);
+ if(params.has('error')){
+  authMode('login');
+  notice(params.get('error_description')||'Authentication link failed. Request another reset email.');
+  return;
+ }
+ const hash=new URLSearchParams(location.hash.slice(1));
+ if(hash.get('type')==='recovery'&&hash.get('access_token')&&hash.get('refresh_token')){
+  recoveryActive=true;
+  const {error}=await sb.auth.setSession({
+   access_token:hash.get('access_token'),
+   refresh_token:hash.get('refresh_token')
+  });
+  if(error){
+   recoveryActive=false;
+   authMode('login');
+   notice(error.message);
+  }else resetMode();
+ }else await refresh();
+})();
+</script>
+</body>
+</html>
