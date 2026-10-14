@@ -1,3 +1,4 @@
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -27,7 +28,7 @@ label{display:block;color:#cbd5e1;font-size:14px}
 .high{color:#ffaaa9}
 .medium{color:#ffda91}
 .low{color:#9be4c2}
-nav{display:flex;gap:8px;margin:14px 0}
+nav{display:flex;gap:8px;margin:14px 0;flex-wrap:wrap}
 textarea{min-height:75px}
 .password-wrap{position:relative}
 .password-wrap input{padding-right:70px}
@@ -100,6 +101,7 @@ textarea{min-height:75px}
 <section id="app" class="hidden">
 <nav>
 <button id="adminBtn">My Dashboard</button>
+<button id="clientsBtn">Manage Clients</button>
 <button id="clientBtn">Client Portal</button>
 </nav>
 
@@ -140,6 +142,7 @@ textarea{min-height:75px}
 </div>
 <button class="primary">Add task</button>
 </form>
+<button type="button" id="quickAddClient" class="link-button">+ Add new client</button>
 </div>
 
 <div class="panel">
@@ -148,6 +151,10 @@ textarea{min-height:75px}
 </div>
 </section>
 
+<section id="clientsSection" class="hidden">
+<div class="panel"><h2>Add new client</h2><form id="clientForm"><label>Client name<input id="newClientName" required></label><button id="addClientButton" class="primary">Add client</button></form></div>
+<div class="panel"><h2>Manage clients</h2><div id="clientsList"></div></div>
+</section>
 <section id="client" class="hidden">
 <div class="panel">
 <h2>Client Portal</h2>
@@ -212,10 +219,13 @@ document.querySelectorAll('[data-toggle]').forEach(b=>b.addEventListener('click'
 function view(which){
  show('admin',which==='admin');
  show('client',which==='client');
+ show('clientsSection',which==='clients');
 }
 
 $('adminBtn').onclick=()=>view('admin');
 $('clientBtn').onclick=()=>view('client');
+$('clientsBtn').onclick=()=>view('clients');
+$('quickAddClient').onclick=()=>view('clients');
 
 $('logout').onclick=async()=>{
  const {error}=await sb.auth.signOut();
@@ -315,6 +325,10 @@ function resetMode(){
  notice('Enter your new password twice. Both entries must match.');
 }
 
+function renderClients(){
+ const list=$('clientsList');
+ list.innerHTML=clients.length?clients.map(c=>`<div class="task"><div class="row"><strong>${esc(c.Name)}</strong><button type="button" data-edit="${esc(c.id)}">Edit</button></div><form class="hidden" data-client-form="${esc(c.id)}"><label>Client name<input name="name" required value="${esc(c.Name)}"></label><button class="primary">Save changes</button></form></div>`).join(''):'No clients yet.';
+}
 function clientName(id){
  return clients.find(c=>String(c.id)===String(id))?.Name||`ID ${id}`;
 }
@@ -346,7 +360,7 @@ async function loadTasks(){
   .select('id,title,status,priority,due_date,client_id')
   .order('id',{ascending:false});
  if(error){
-  notice('Database access: '+error.message+'. Check the connected project, table schema, columns and RLS policies.');
+  notice('Cannot load tasks: '+error.message);
   return;
  }
  tasks=data||[];
@@ -358,7 +372,7 @@ async function loadClients(){
   .select('id,Name')
   .order('Name');
  if(error){
-  notice('Unable to load clients: '+error.message);
+  notice('Cannot load clients: '+error.message);
   return;
  }
  clients=data||[];
@@ -392,6 +406,36 @@ async function refresh(){
  }
 }
 
+$('clientForm').onsubmit=async e=>{
+ e.preventDefault();
+ if(!currentUser||currentUser.id!==ADMIN_UID){notice('Administrator required.');return;}
+ const name=$('newClientName').value.trim();
+ if(!name)return;
+ if(clients.some(c=>c.Name.toLowerCase()===name.toLowerCase())){notice('Client already exists.');return;}
+ busy('addClientButton',true,'Saving…');
+ try{
+  const {error}=await sb.from('Clients').insert({Name:name});
+  if(error)throw error;
+  $('clientForm').reset();
+  await loadClients();notice('Client added.');
+ }catch(err){notice('Client not saved: '+err.message)}finally{busy('addClientButton',false)}
+};
+$('clientsList').addEventListener('click',e=>{
+ const b=e.target.closest('[data-edit]');if(!b)return;
+ document.querySelectorAll('[data-client-form]').forEach(f=>f.classList.toggle('hidden',f.dataset.clientForm!==b.dataset.edit));
+});
+$('clientsList').addEventListener('submit',async e=>{
+ const form=e.target.closest('[data-client-form]');if(!form)return;
+ e.preventDefault();if(!currentUser||currentUser.id!==ADMIN_UID)return;
+ const name=String(new FormData(form).get('name')||'').trim();if(!name)return;
+ const button=form.querySelector('button');button.disabled=true;
+ try{
+  const {error}=await sb.from('Clients').update({Name:name}).eq('id',form.dataset.clientForm);
+  if(error)throw error;
+  await loadClients();render();notice('Client updated.');
+ }catch(err){notice('Client update failed: '+err.message)}finally{button.disabled=false}
+});
+
 $('taskForm').onsubmit=async e=>{
  e.preventDefault();
  if(!currentUser||currentUser.id!==ADMIN_UID){
@@ -402,9 +446,10 @@ $('taskForm').onsubmit=async e=>{
  const fd=new FormData(form);
  const button=form.querySelector('button[type="submit"],button.primary');
  const title=String(fd.get('title')||'').trim();
- const client_id=Number(fd.get('client'));
+ const selectedClient=clients.find(c=>String(c.id)===String(fd.get('client')));
+  const client_id=selectedClient?.id;
 
- if(!title||!Number.isSafeInteger(client_id)||!clients.some(c=>c.id===client_id)){
+ if(!title||!selectedClient){
   notice('Enter a task and select a valid client.');
   return;
  }
@@ -426,50 +471,4 @@ $('taskForm').onsubmit=async e=>{
  }catch(err){
   notice('Task was not saved: '+(err.message||'Unknown error'));
  }finally{
-  button.disabled=false;
- }
-};
-
-$('adminTasks').addEventListener('change',async e=>{
- const id=e.target.dataset.task;
- if(!id)return;
- const {error}=await sb.from('tasks')
-  .update({status:e.target.value})
-  .eq('id',id);
- if(error)notice(error.message);
- else await loadTasks();
-});
-
-sb.auth.onAuthStateChange((event)=>{
- if(event==='PASSWORD_RECOVERY')resetMode();
- else if(event==='SIGNED_OUT'&&!recoveryActive){
-  show('app',false);
-  show('auth',true);
-  show('logout',false);
- }
-});
-
-(async()=>{
- const params=new URLSearchParams(location.search);
- if(params.has('error')){
-  authMode('login');
-  notice(params.get('error_description')||'Authentication link failed. Request another reset email.');
-  return;
- }
- const hash=new URLSearchParams(location.hash.slice(1));
- if(hash.get('type')==='recovery'&&hash.get('access_token')&&hash.get('refresh_token')){
-  recoveryActive=true;
-  const {error}=await sb.auth.setSession({
-   access_token:hash.get('access_token'),
-   refresh_token:hash.get('refresh_token')
-  });
-  if(error){
-   recoveryActive=false;
-   authMode('login');
-   notice(error.message);
-  }else resetMode();
- }else await refresh();
-})();
-</script>
-</body>
-</html>
+ 
