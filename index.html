@@ -35,6 +35,15 @@ textarea{min-height:75px}
 .toggle-password{position:absolute;right:6px;top:10px;padding:7px 10px;font-size:13px;background:transparent;border:0;color:#cbd5e1}
 .link-button{background:transparent;border:0;color:#9fc2ff;padding:6px 0;text-decoration:underline}
 #message:not(:empty){padding:10px 0;white-space:pre-wrap;margin:0}
+.form-msg{margin:10px 0 0;white-space:pre-wrap;font-size:15px;line-height:1.45}
+.form-msg:empty{display:none}
+.form-msg.error{color:#fecaca;background:rgba(239,68,68,.14);border:1px solid rgba(239,68,68,.5);border-radius:10px;padding:10px 12px}
+.form-msg.ok{color:#bbf7d0;background:rgba(34,197,94,.14);border:1px solid rgba(34,197,94,.5);border-radius:10px;padding:10px 12px}
+.form-msg.info{color:#cbd5e1}
+.pw-rules{margin:2px 0 12px;font-size:14px;color:#94a3b8;line-height:1.5}
+.pw-rules span{display:block}
+.pw-rules .met{color:#86efac}
+#resetIntro{margin:0 0 12px}
 button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible,summary:focus-visible{outline:2px solid #90baff;outline-offset:2px}
 
 /* Badges */
@@ -273,6 +282,17 @@ body.no-anim-req .request-zone:not([open]) .req-icon,body.no-anim-req .pv-reques
 .layout-list .tc-title{flex:1 1 200px;font-size:14px}
 .edit-form label{margin:0}
 .edit-form .row{justify-content:flex-start}
+/* Stack (desktop): one centered column, roomy cards, group titles stay visible while scrolling */
+.layout-stack .groups{max-width:900px;margin:0 auto;gap:16px}
+.layout-stack .group{padding:12px 14px}
+.layout-stack .group-head{position:sticky;top:0;z-index:3;background:inherit;margin:-12px -14px 10px;padding:12px 16px 10px;border-radius:14px 14px 0 0;border-bottom:1px solid #233149}
+.layout-stack .group-body{grid-template-columns:1fr;gap:8px}
+.layout-stack .tcard{border-left-width:8px;padding:10px 14px 12px;gap:7px}
+.layout-stack .tc-biz{margin:-10px -14px 2px -14px;padding:7px 14px}
+.layout-stack .logo-circle.card{flex-basis:30px;width:30px;height:30px;font-size:12px}
+.layout-stack .tc-title{font-size:16px}
+.layout-stack .tc-desc{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;color:#c3cede}
+.layout-stack .work-bar{height:6px}
 
 #client .layout-board .tc-title{font-size:17px}
 #client .layout-board .tc-desc{display:block;-webkit-line-clamp:unset;overflow:visible}
@@ -318,6 +338,7 @@ details.fold[open]>summary{margin-bottom:12px}
 #client .primary{background:var(--brand);color:var(--brand-text);border-color:var(--brand)}
 /* ===== END OF PART 1 of 10 ===== */
 
+ 
  #client .chip[aria-pressed="true"]{background:var(--brand);color:var(--brand-text);border-color:var(--brand)}
 .portal-hero{border-radius:14px;padding:22px 18px;margin:0 0 12px;background-color:#0b1525;background-image:linear-gradient(135deg,var(--brand2),#0b1525);background-size:cover;background-position:center;border:1px solid #2c3c54;border-top:4px solid var(--brand)}
 .portal-hero.has-backdrop{min-height:180px;display:flex;align-items:flex-end}
@@ -553,6 +574,8 @@ body.no-anim-req .add-zone .req-icon,body.no-anim-req .add-zone::before{animatio
 body.is-mobile main{padding:10px}
 body.is-mobile header{padding:10px 12px}
 body.is-mobile h1{font-size:18px}
+body.is-mobile .header-actions{gap:6px}
+body.is-mobile .header-actions button{padding:8px 10px;font-size:13px;white-space:nowrap}
 body.is-mobile .panel{padding:12px;border-radius:14px;margin:10px 0}
 body.is-mobile .stats{grid-template-columns:repeat(2,1fr);gap:6px;margin:8px 0}
 body.is-mobile .stat{padding:8px 10px;font-size:12px;border-radius:12px}
@@ -638,6 +661,7 @@ body.is-mobile #popOutBtn{display:none}
 .tasks-only main{max-width:none;padding:10px 14px}
 /* ===== END OF PART 2 of 10 ===== */
 
+ 
  .tasks-only header{padding:10px 14px}
 .tasks-only #mainNav,.tasks-only #addTaskPanel,.tasks-only .admin-tools,.tasks-only #popOutBtn,.tasks-only #ipOutBtn{display:none!important}
 .ip-only #admin>.stats,.ip-only #snapshot,.ip-only #viewTool{display:none!important}
@@ -697,6 +721,7 @@ body.is-mobile .tc-title{cursor:pointer}
 </div>
 <div class="header-actions">
 <a id="fullLink" class="hidden" href="./">Full dashboard</a>
+<button id="changePwBtn" class="hidden" type="button" aria-expanded="false" aria-controls="changePwPanel">Change password</button>
 <button id="logout" class="hidden">Log out</button>
 </div>
 </header>
@@ -704,10 +729,34 @@ body.is-mobile .tc-title{cursor:pointer}
 <main>
 <p id="message" role="status" aria-live="polite"></p>
 
+<section id="changePwPanel" class="panel hidden" aria-labelledby="changePwTitle">
+<h2 id="changePwTitle">Change your password</h2>
+<form id="changePwForm" novalidate>
+<label>New password
+<div class="password-wrap">
+<input type="password" id="cpNew" autocomplete="new-password">
+<button class="toggle-password" type="button" data-toggle="cpNew" aria-label="Show new password" aria-pressed="false">Show</button>
+</div>
+</label>
+<label>Confirm new password
+<div class="password-wrap">
+<input type="password" id="cpConfirm" autocomplete="new-password">
+<button class="toggle-password" type="button" data-toggle="cpConfirm" aria-label="Show confirmation password" aria-pressed="false">Show</button>
+</div>
+</label>
+<div id="cpRules" class="pw-rules" aria-live="polite"><span data-rule="len">• At least 8 characters</span><span data-rule="match">• Type the same password in both boxes</span></div>
+<div class="row" style="justify-content:flex-start">
+<button id="cpSave" class="primary" type="submit">Save new password</button>
+<button id="cpCancel" type="button">Cancel</button>
+</div>
+<p id="cpMsg" class="form-msg" role="alert" aria-live="assertive"></p>
+</form>
+</section>
+
 <section id="auth" class="panel">
 <h2 id="authTitle">Sign in</h2>
 
-<form id="loginForm">
+<form id="loginForm" novalidate>
 <label>Email
 <input type="email" id="email" required autocomplete="email">
 </label>
@@ -718,20 +767,23 @@ body.is-mobile .tc-title{cursor:pointer}
 </div>
 </label>
 <button id="signInButton" class="primary">Sign in</button>
+<p id="loginMsg" class="form-msg" role="alert" aria-live="assertive"></p>
 </form>
 
 <p id="forgotLink">
 <button id="forgot" class="link-button" type="button">Forgot password?</button>
 </p>
 
-<form id="requestForm" class="hidden">
+<form id="requestForm" class="hidden" novalidate>
 <label>Email address
 <input type="email" id="resetEmail" required autocomplete="email">
 </label>
 <button id="sendResetButton" class="primary">Send password reset link</button>
+<p id="requestMsg" class="form-msg" role="alert" aria-live="assertive"></p>
 </form>
 
-<form id="resetForm" class="hidden">
+<form id="resetForm" class="hidden" novalidate>
+<p id="resetIntro" class="muted"></p>
 <label>New password
 <div class="password-wrap">
 <input type="password" id="newPassword" minlength="8" required autocomplete="new-password">
@@ -744,7 +796,10 @@ body.is-mobile .tc-title{cursor:pointer}
 <button class="toggle-password" type="button" data-toggle="confirmPassword" aria-label="Show confirmation password" aria-pressed="false">Show</button>
 </div>
 </label>
+<div id="pwRules" class="pw-rules" aria-live="polite"><span data-rule="len">• At least 8 characters</span><span data-rule="match">• Type the same password in both boxes</span></div>
 <button id="setPasswordButton" class="primary">Set password</button>
+<p id="resetMsg" class="form-msg" role="alert" aria-live="assertive"></p>
+<p><button id="newLinkButton" class="link-button" type="button">Link not working? Email me a new link</button></p>
 </form>
 
 <p id="backLink" class="hidden">
@@ -856,6 +911,7 @@ body.is-mobile .tc-title{cursor:pointer}
 </select>
 </label>
 <button class="primary" type="submit">Link login</button>
+<p id="linkMsg" class="form-msg" role="alert" aria-live="assertive"></p>
 </form>
 <div id="loginsList" aria-live="polite"></div>
 </details>
@@ -965,6 +1021,7 @@ body.is-mobile .tc-title{cursor:pointer}
 
 <!-- ===== END OF PART 3 of 10 ===== -->
 
+ 
  <div class="stats">
 <button type="button" class="stat" id="portalOpenStat">Open tasks<strong id="portalOpen">0</strong></button>
 <button type="button" class="stat today" id="portalNeedsStat">Needs your input<strong id="portalNeeds">0</strong></button>
@@ -1018,7 +1075,8 @@ body.is-mobile .tc-title{cursor:pointer}
 <button type="button" data-bulk="done">Done</button>
 </div>
 
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.110.1/dist/umd/supabase.js"></script>
+<script>window.supabase||document.write('<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"><\/script>');</script>
 <script>
 'use strict';
 
@@ -1026,7 +1084,7 @@ const SUPABASE_URL='https://mhpvdyfrtaazgabmcvtx.supabase.co';
 const KEY='sb_publishable_RljzO2G_ltUBbgnjWKF4gA_t-xHrkeI';
 const ADMIN_UID='21078b33-73fb-4a54-adfc-169a197102ec';
 
-const sb=window.supabase.createClient(SUPABASE_URL,KEY);
+const sb=window.supabase.createClient(SUPABASE_URL,KEY,{auth:{detectSessionInUrl:false,persistSession:true,autoRefreshToken:true,flowType:'implicit'}});
 const $=id=>document.getElementById(id);
 const show=(id,on)=>$(id).classList.toggle('hidden',!on);
 const notice=s=>{$('message').textContent=s};
@@ -1041,6 +1099,7 @@ const LAYOUTS=[
  ['comfortable','Comfortable',svgIcon('<rect x="3" y="4" width="8" height="16" rx="2"/><rect x="13" y="4" width="8" height="16" rx="2"/>')],
  ['compact','Compact',svgIcon('<rect x="3" y="3" width="5" height="8" rx="1"/><rect x="10" y="3" width="5" height="8" rx="1"/><rect x="17" y="3" width="4" height="8" rx="1"/><rect x="3" y="13" width="5" height="8" rx="1"/><rect x="10" y="13" width="5" height="8" rx="1"/><rect x="17" y="13" width="4" height="8" rx="1"/>')],
  ['list','List',svgIcon('<path d="M4 6h16M4 12h16M4 18h16"/>')],
+ ['stack','Stack',svgIcon('<rect x="5" y="3" width="14" height="5" rx="1.5"/><rect x="5" y="10" width="14" height="5" rx="1.5"/><rect x="5" y="17" width="14" height="4" rx="1.5"/>')],
  ['board','Board',svgIcon('<rect x="3" y="3" width="5" height="18" rx="1"/><rect x="10" y="3" width="5" height="12" rx="1"/><rect x="17" y="3" width="4" height="15" rx="1"/>')]
 ];
 /* Phone layouts: add or change one here, then add/adjust its CSS block under "MOBILE" in the style section. */
@@ -1072,7 +1131,7 @@ const IP_ONLY=MODE==='inprogress';
 const TASKS_ONLY=MODE==='tasks'||IP_ONLY;
 const PREF_KEY='signix-prefs-'+(IP_ONLY?'ip':TASKS_ONLY?'popup':'main');
 
-let currentUser=null,role=null,myClientName='',myClientId=null,tasks=[],clients=[],logins=[],recoveryActive=false;
+let currentUser=null,role=null,myClientName='',myClientId=null,tasks=[],clients=[],logins=[],recoveryActive=false,linkEmail='';
 let attachments=[],signedUrls={};
 let brandUrls={},brandLoadedAt=0,openClientId=null,editingId=null,menuCtx=null,pollTimer=null,tickTimer=null,lastLoad=0;
 let prefs=loadPrefs();
@@ -1143,7 +1202,7 @@ function authMode(mode){
  recoveryActive=mode==='reset';
  show('auth',true);
  show('app',false);
- show('logout',false);
+ show('logout',false);show('changePwBtn',false);closeChangePw();
  show('loginForm',mode==='login');
  show('forgotLink',mode==='login');
  show('requestForm',mode==='request');
@@ -1210,33 +1269,72 @@ $('logout').onclick=async()=>{
  }
 };
 
+/* ---------- Messages shown right under the button that was tapped ---------- */
+function formMsg(id,text,kind){
+ const el=$(id);if(!el)return;
+ el.textContent=text||'';
+ el.className='form-msg'+(kind&&text?' '+kind:'');
+ if(text){
+  notice('');
+  requestAnimationFrame(()=>{try{el.scrollIntoView({block:'center',behavior:'smooth'});}catch(_){el.scrollIntoView();}});
+ }
+}
+function clearAuthMsgs(){['loginMsg','requestMsg','resetMsg'].forEach(id=>formMsg(id,''));}
+function errText(error){
+ const parts=[error?.message,error?.details,error?.hint].filter(Boolean);
+ return parts.join(' — ')||String(error||'Unknown error');
+}
+function friendlyAuthError(err){
+ const m=String(err?.message||err||'').trim();
+ if(/invalid login credentials/i.test(m))return 'Email or password is not correct.\nIf you were just invited, set your password first from the invite email, or tap "Forgot password?" to get a new link.';
+ if(/email not confirmed/i.test(m))return 'This email is not confirmed yet. Open the invite email and tap the link again, or tap "Forgot password?".';
+ if(/session.*(missing|not found)|jwt|expired|invalid.*(token|grant|flow)|refresh token|otp/i.test(m))return 'This link has expired or was already used.';
+ if(/different from the old password/i.test(m))return 'Choose a password you have not used before on this account.';
+ if(/password/i.test(m)&&/(at least|characters|weak|contain|short)/i.test(m))return 'Password not accepted: '+m;
+ if(/rate limit|too many/i.test(m))return 'Too many tries. Please wait a minute and try again.';
+ if(/failed to fetch|network|load failed|did not respond/i.test(m))return m.includes('did not respond')?m:'No connection to the server. Check your internet and try again.';
+ return m||'Something went wrong. Please try again.';
+}
+function withTimeout(promise,ms){
+ let t;
+ return Promise.race([promise,new Promise((_,rej)=>{t=setTimeout(()=>rej(new Error('The server did not respond. Check your internet and try again.')),ms);})]).finally(()=>clearTimeout(t));
+}
+function cleanAuthUrl(){
+ const q=new URLSearchParams(location.search);
+ ['code','token_hash','type','error','error_code','error_description'].forEach(k=>q.delete(k));
+ const qs=q.toString();
+ history.replaceState({},'',location.pathname+(qs?'?'+qs:''));
+}
+
 $('forgot').onclick=()=>{
  $('resetEmail').value=$('email').value.trim();
  authMode('request');
- notice('Enter your email to receive a reset link.');
+ clearAuthMsgs();
+ formMsg('requestMsg','Enter your email and we will send you a link to set a new password.','info');
 };
 
 $('back').onclick=()=>{
  if(recoveryActive){
-  notice('Finish setting your new password before signing in.');
+  formMsg('resetMsg','Finish setting your password first, or tap "Email me a new link".','error');
   return;
  }
  authMode('login');
+ clearAuthMsgs();
  notice('');
 };
 
 $('loginForm').onsubmit=async e=>{
  e.preventDefault();
+ const email=$('email').value.trim(),password=$('password').value;
+ if(!email||!password){formMsg('loginMsg',!email?'Enter your email.':'Enter your password.','error');return;}
+ formMsg('loginMsg','');
  busy('signInButton',true,'Signing in…');
  try{
-  const {error}=await sb.auth.signInWithPassword({
-   email:$('email').value.trim(),
-   password:$('password').value
-  });
-  if(error)notice(error.message);
+  const {error}=await withTimeout(sb.auth.signInWithPassword({email,password}),20000);
+  if(error)formMsg('loginMsg',friendlyAuthError(error),'error');
   else await refresh();
  }catch(err){
-  notice(err.message||'Unable to sign in.');
+  formMsg('loginMsg',friendlyAuthError(err),'error');
  }finally{
   busy('signInButton',false);
  }
@@ -1244,61 +1342,138 @@ $('loginForm').onsubmit=async e=>{
 
 $('requestForm').onsubmit=async e=>{
  e.preventDefault();
+ const email=$('resetEmail').value.trim();
+ if(!/^\S+@\S+\.\S+$/.test(email)){formMsg('requestMsg','Enter a valid email address.','error');return;}
+ formMsg('requestMsg','');
  busy('sendResetButton',true,'Sending…');
  try{
-  const email=$('resetEmail').value.trim();
-  const {error}=await sb.auth.resetPasswordForEmail(email,{
-   redirectTo:location.origin+location.pathname
-  });
-  notice(error?error.message:'If this email is registered, a password reset link will be sent. Check your inbox and spam folder.');
+  const {error}=await withTimeout(sb.auth.resetPasswordForEmail(email,{redirectTo:location.origin+location.pathname}),20000);
+  if(error)formMsg('requestMsg',friendlyAuthError(error),'error');
+  else formMsg('requestMsg','Done. If this email is registered, a link is on its way.\nCheck your inbox and spam folder, and use the newest email.','ok');
  }catch(err){
-  notice(err.message||'Unable to send reset link.');
+  formMsg('requestMsg',friendlyAuthError(err),'error');
  }finally{
   busy('sendResetButton',false);
  }
 };
 
+function updatePwRules(){setPwRules('pwRules',$('newPassword').value,$('confirmPassword').value);}
+['newPassword','confirmPassword'].forEach(id=>$(id).addEventListener('input',updatePwRules));
+
 $('resetForm').onsubmit=async e=>{
  e.preventDefault();
  const password=$('newPassword').value;
  const confirm=$('confirmPassword').value;
- if(password!==confirm){
-  notice('Passwords do not match. Please enter the same password twice.');
-  return;
- }
  if(password.length<8){
-  notice('Password must be at least 8 characters.');
+  formMsg('resetMsg',`Password must be at least 8 characters. You typed ${password.length}.`,'error');
   return;
  }
- busy('setPasswordButton',true,'Updating…');
+ if(password!==confirm){
+  formMsg('resetMsg','The two passwords do not match. Type the same password in both boxes.','error');
+  return;
+ }
+ formMsg('resetMsg','');
+ busy('setPasswordButton',true,'Saving…');
  try{
-  const {error}=await sb.auth.updateUser({password});
-  if(error){
-   notice(error.message);
+  const {data:{session}}=await withTimeout(sb.auth.getSession(),15000);
+  if(!session){
+   formMsg('resetMsg','This link has expired or was already used.\nTap "Email me a new link" below and use the newest email.','error');
    return;
   }
-  await sb.auth.signOut();
+  const {error}=await withTimeout(sb.auth.updateUser({password}),20000);
+  if(error){
+   const msg=friendlyAuthError(error);
+   formMsg('resetMsg',msg+(msg.includes('expired')?'\nTap "Email me a new link" below and use the newest email.':''),'error');
+   return;
+  }
   recoveryActive=false;
-  history.replaceState({},'',location.pathname);
+  cleanAuthUrl();
   $('newPassword').value='';
   $('confirmPassword').value='';
-  clearState();
-  authMode('login');
-  notice('Password saved. Sign in using your new password.');
+  updatePwRules();
+  clearAuthMsgs();
+  await refresh();
+  if(currentUser)notice('Password saved. Next time, sign in with your email and this password.');
  }catch(err){
-  notice(err.message||'Unable to update password.');
+  formMsg('resetMsg',friendlyAuthError(err),'error');
  }finally{
   busy('setPasswordButton',false);
  }
 };
 
+$('newLinkButton').onclick=async()=>{
+ const email=linkEmail||$('resetEmail').value.trim()||$('email').value.trim();
+ recoveryActive=false;
+ try{await sb.auth.signOut({scope:'local'});}catch(_){}
+ cleanAuthUrl();
+ clearState();
+ authMode('request');
+ clearAuthMsgs();
+ $('resetEmail').value=email;
+ formMsg('requestMsg',email?'Tap "Send password reset link" and we will email a new link to '+email+'.':'Enter your email and we will send you a new link.','info');
+};
+
+/* ---------- Change password (for anyone signed in) ---------- */
+function setPwRules(rootId,p,c){
+ const len=p.length>=8,match=!!p&&p===c,root=$(rootId);
+ const lenEl=root.querySelector('[data-rule="len"]'),matchEl=root.querySelector('[data-rule="match"]');
+ lenEl.textContent=(len?'✓ ':'• ')+'At least 8 characters'+(p&&!len?` (${p.length} so far)`:'');
+ lenEl.classList.toggle('met',len);
+ matchEl.textContent=(match?'✓ ':'• ')+(c&&!match?'The two boxes do not match yet':'Type the same password in both boxes');
+ matchEl.classList.toggle('met',match);
+}
+function closeChangePw(){
+ show('changePwPanel',false);
+ $('changePwBtn').setAttribute('aria-expanded','false');
+ $('cpNew').value='';$('cpConfirm').value='';
+ setPwRules('cpRules','','');formMsg('cpMsg','');
+}
+$('changePwBtn').onclick=()=>{
+ if(!$('changePwPanel').classList.contains('hidden')){closeChangePw();return;}
+ closeChangePw();
+ show('changePwPanel',true);
+ $('changePwBtn').setAttribute('aria-expanded','true');
+ $('changePwPanel').scrollIntoView({block:'start'});
+ $('cpNew').focus();
+};
+$('cpCancel').onclick=closeChangePw;
+['cpNew','cpConfirm'].forEach(id=>$(id).addEventListener('input',()=>setPwRules('cpRules',$('cpNew').value,$('cpConfirm').value)));
+$('changePwForm').onsubmit=async e=>{
+ e.preventDefault();
+ const password=$('cpNew').value,confirm=$('cpConfirm').value;
+ if(password.length<8){formMsg('cpMsg',`Password must be at least 8 characters. You typed ${password.length}.`,'error');return;}
+ if(password!==confirm){formMsg('cpMsg','The two passwords do not match. Type the same password in both boxes.','error');return;}
+ formMsg('cpMsg','');
+ busy('cpSave',true,'Saving…');
+ try{
+  const {error}=await withTimeout(sb.auth.updateUser({password}),20000);
+  if(error){
+   const msg=friendlyAuthError(error);
+   formMsg('cpMsg',msg.includes('expired')?'Your sign-in has expired. Log out, sign in again, and try once more.':msg,'error');
+   return;
+  }
+  $('cpNew').value='';$('cpConfirm').value='';setPwRules('cpRules','','');
+  formMsg('cpMsg','Password changed. Use the new password next time you sign in.','ok');
+  setTimeout(()=>{if($('cpMsg').classList.contains('ok'))closeChangePw();},4000);
+ }catch(err){
+  formMsg('cpMsg',friendlyAuthError(err),'error');
+ }finally{
+  busy('cpSave',false);
+ }
+};
+
 // ===== END OF PART 4 of 10 =====
 
- function resetMode(kind){
+ 
+function resetMode(kind){
  authMode('reset');
- notice(kind==='invite'
-  ?'Welcome to Signix Digital. Create a password for your account and enter it twice.'
-  :'Enter your new password twice. Both entries must match.');
+ clearAuthMsgs();
+ notice('');
+ updatePwRules();
+ const who=linkEmail?` for ${linkEmail}`:'';
+ $('resetIntro').textContent=kind==='invite'
+  ?`Welcome to Signix Digital. Create a password${who}.`
+  :`Choose a new password${who}.`;
 }
 
 /* ---------- Helpers ---------- */
@@ -1603,6 +1778,7 @@ function editCard(t){
 }
 // ===== END OF PART 5 of 10 =====
 
+ 
  
 /* ---------- Board rendering ---------- */
 function captureScroll(root){
@@ -1912,6 +2088,7 @@ function dueMenu(t){
 
 // ===== END OF PART 6 of 10 =====
 
+ 
  $('menu').addEventListener('click',e=>{
  const b=e.target.closest('[data-pick]');
  if(!b||!menuCtx)return;
@@ -2231,6 +2408,7 @@ async function loadNotes(){
 }
 // ===== END OF PART 7 of 10 =====
 
+ 
  
 /* ---------- Client welcome-back pop-up ---------- */
 function lastVisitKey(){return 'signix-lastvisit-'+(currentUser?.id||'x');}
@@ -2569,6 +2747,7 @@ $('animForm').addEventListener('change',async()=>{
 // ===== END OF PART 8 of 10 =====
 
  
+ 
 /* ---------- Auto refresh ---------- */
 function stopTimers(){
  clearInterval(pollTimer);pollTimer=null;
@@ -2597,7 +2776,7 @@ document.addEventListener('visibilitychange',()=>{
 async function refresh(){
  if(recoveryActive)return;
  const {data:{user},error}=await sb.auth.getUser();
- if(error){clearState();authMode('login');displayError('Authentication',error);return;}
+ if(error){clearState();authMode('login');formMsg('loginMsg',friendlyAuthError(error),'error');return;}
  currentUser=user;
  if(!user){clearState();authMode('login');return;}
 
@@ -2607,7 +2786,7 @@ async function refresh(){
   document.body.classList.toggle('ip-only',IP_ONLY);
   if(TASKS_ONLY){document.title=IP_ONLY?'Signix Digital | In progress':'Signix Digital | All tasks';$('fullLink').href=location.pathname;show('fullLink',true);}
   if(IP_ONLY)$('tasksTitle').textContent='In progress';
-  show('auth',false);show('app',true);show('logout',true);show('mainNav',true);
+  show('auth',false);show('app',true);show('logout',true);show('changePwBtn',true);show('mainNav',true);
   view('admin');
   await loadAnimations();
   await loadMemberNames();
@@ -2624,8 +2803,8 @@ async function refresh(){
   await sb.auth.signOut();
   clearState();
   authMode('login');
-  if(mErr)displayError('Unable to check client access',mErr);
-  else notice('This account is not linked to a client yet. Please contact Signix Digital.');
+  if(mErr)formMsg('loginMsg','Unable to check client access: '+errText(mErr),'error');
+  else formMsg('loginMsg','This account is not linked to a business yet. Please contact Signix Digital.','error');
   return;
  }
  role='client';
@@ -2634,7 +2813,7 @@ async function refresh(){
  await loadOwnClient();
  await loadAnimations();
  await loadMemberNames();
- show('auth',false);show('app',true);show('logout',true);show('mainNav',false);
+ show('auth',false);show('app',true);show('logout',true);show('changePwBtn',true);show('mainNav',false);
  view('client');
  if(await loadTasks())notice('');
  showWelcome();
@@ -2872,6 +3051,7 @@ $('clientsList').addEventListener('toggle',e=>{
 
 // ===== END OF PART 9 of 10 =====
 
+ 
  $('clientsList').addEventListener('submit',async e=>{
  const form=e.target.closest('form[data-client-id]');
  if(!form)return;
@@ -2932,12 +3112,13 @@ $('clientsList').addEventListener('toggle',e=>{
 
 $('linkForm').onsubmit=async e=>{
  e.preventDefault();
- if(!isAdmin()){notice('Administrator sign-in required.');return;}
+ if(!isAdmin()){formMsg('linkMsg','Administrator sign-in required.','error');return;}
  const form=e.currentTarget,fd=new FormData(form);
  const email=String(fd.get('email')||'').trim().toLowerCase();
  const name=String(fd.get('name')||'').trim().replace(/\s+/g,' ');
  const client=clients.find(c=>String(c.id)===String(fd.get('client')||''));
- if(!email||!client){notice("Enter the client's login email and select a business.");return;}
+ if(!email||!client){formMsg('linkMsg',"Enter the client's login email and select a business.",'error');return;}
+ formMsg('linkMsg','');
  const button=form.querySelector('button[type="submit"]');button.disabled=true;
  try{
   const args={p_email:email,p_client_id:client.id};
@@ -2948,11 +3129,11 @@ $('linkForm').onsubmit=async e=>{
    ({error}=await sb.rpc('admin_link_client',{p_email:email,p_client_id:client.id}));
    nameSkipped=!error;
   }
-  if(error){displayError('Login was not linked',error);return;}
+  if(error){formMsg('linkMsg','Login was not linked: '+errText(error),'error');return;}
   form.reset();
   await loadMemberNames();
-  if(await loadLogins())notice(`${name||email} can now sign in and see ${client.Name} tasks only.`+(nameSkipped?' The name was not saved: run the latest SQL step in Supabase first.':''));
- }catch(err){displayError('Login was not linked',err);}
+  if(await loadLogins())formMsg('linkMsg',`${name||email} can now sign in and see ${client.Name} tasks only.`+(nameSkipped?' The name was not saved: run the latest SQL step in Supabase first.':''),'ok');
+ }catch(err){formMsg('linkMsg','Login was not linked: '+errText(err),'error');}
  finally{button.disabled=false;}
 };
 
@@ -3156,32 +3337,51 @@ sb.auth.onAuthStateChange(event=>{
   stopTimers();
   show('app',false);
   show('auth',true);
-  show('logout',false);
+  show('logout',false);show('changePwBtn',false);closeChangePw();
  }
 });
 
 (async()=>{
- const params=new URLSearchParams(location.search);
- if(params.has('error')){
-  authMode('login');
-  notice(params.get('error_description')||'Authentication link failed. Request another email.');
+ const q=new URLSearchParams(location.search);
+ const h=new URLSearchParams(location.hash.slice(1));
+ const linkErr=h.get('error_description')||q.get('error_description')||((h.get('error')||q.get('error'))?'This link did not work.':'');
+ if(linkErr){
+  cleanAuthUrl();
+  authMode('request');
+  formMsg('requestMsg',(/expired|invalid|used|denied/i.test(linkErr)?'This link has expired or was already used.':linkErr.replace(/\+/g,' '))+'\nEnter your email and tap "Send password reset link" to get a new one.','error');
   return;
  }
- const hash=new URLSearchParams(location.hash.slice(1));
- const type=hash.get('type');
- if((type==='recovery'||type==='invite')&&hash.get('access_token')&&hash.get('refresh_token')){
-  recoveryActive=true;
-  const {error}=await sb.auth.setSession({
-   access_token:hash.get('access_token'),
-   refresh_token:hash.get('refresh_token')
-  });
-  if(error){
-   recoveryActive=false;
-   authMode('login');
-   notice(error.message);
-  }else resetMode(type);
- }else await refresh();
+ const type=h.get('type')||q.get('type')||'';
+ const wantsPassword=type==='invite'||type==='recovery';
+ let res=null;
+ try{
+  if(h.get('access_token')&&h.get('refresh_token')){
+   if(wantsPassword)recoveryActive=true;
+   res=await withTimeout(sb.auth.setSession({access_token:h.get('access_token'),refresh_token:h.get('refresh_token')}),20000);
+  }else if(q.get('token_hash')&&type){
+   if(wantsPassword)recoveryActive=true;
+   res=await withTimeout(sb.auth.verifyOtp({token_hash:q.get('token_hash'),type}),20000);
+  }
+  if(res){
+   cleanAuthUrl();
+   if(res.error)throw res.error;
+   const user=res.data?.user||res.data?.session?.user;
+   if(!res.data?.session)throw new Error('Auth session missing');
+   linkEmail=user?.email||'';
+   if(wantsPassword){resetMode(type);return;}
+  }
+ }catch(err){
+  recoveryActive=false;
+  cleanAuthUrl();
+  authMode('request');
+  formMsg('requestMsg',friendlyAuthError(err)+'\nEnter your email and tap "Send password reset link".','error');
+  return;
+ }
+ await refresh();
 })();
 </script>
 </body>
 </html>
+<!-- ===== END OF PART 10 of 10 ===== -->
+ 
+ 
