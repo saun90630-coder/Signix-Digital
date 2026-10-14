@@ -43,11 +43,12 @@ button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-vis
 .badge.pr-high{color:#ff8a8a;background:rgba(255,40,40,.2);border-color:rgba(255,40,40,.75)}
 .badge.pr-medium{color:#fde047;background:rgba(234,179,8,.14);border-color:rgba(234,179,8,.5)}
 .badge.pr-low{color:#7dd3fc;background:rgba(14,165,233,.14);border-color:rgba(14,165,233,.5)}
-.badge.st-incoming{color:#d8b4fe;background:rgba(168,85,247,.16);border-color:rgba(168,85,247,.5)}
-.badge.st-to-do{color:#e2e8f0;background:rgba(148,163,184,.16);border-color:rgba(148,163,184,.45)}
-.badge.st-in-progress{color:#86efac;background:rgba(34,197,94,.18);border-color:rgba(34,197,94,.6)}
-.badge.st-waiting-on-client{color:#fdba74;background:rgba(249,115,22,.15);border-color:rgba(249,115,22,.5)}
-.badge.st-completed{color:#bae6fd;background:rgba(56,189,248,.2);border-color:#38bdf8}
+.badge.st-incoming{color:color-mix(in srgb,var(--inc) 55%,#fff);background:color-mix(in srgb,var(--inc) 16%,transparent);border-color:color-mix(in srgb,var(--inc) 50%,transparent)}
+.badge.st-to-do{color:color-mix(in srgb,var(--todo) 35%,#fff);background:color-mix(in srgb,var(--todo) 16%,transparent);border-color:color-mix(in srgb,var(--todo) 45%,transparent)}
+:root{--inc:#a855f7;--todo:#94a3b8;--ip:#38bdf8;--wait:#f97316;--dn:#22c55e}
+.badge.st-in-progress{color:color-mix(in srgb,var(--ip) 55%,#fff);background:color-mix(in srgb,var(--ip) 18%,transparent);border-color:color-mix(in srgb,var(--ip) 60%,transparent)}
+.badge.st-waiting-on-client{color:color-mix(in srgb,var(--wait) 55%,#fff);background:color-mix(in srgb,var(--wait) 15%,transparent);border-color:color-mix(in srgb,var(--wait) 50%,transparent)}
+.badge.st-completed{color:color-mix(in srgb,var(--dn) 55%,#fff);background:color-mix(in srgb,var(--dn) 20%,transparent);border-color:var(--dn)}
 .due-chip{display:inline-flex;align-items:center;font-size:12px;color:#cbd5e1;border:1px dashed #40516b;border-radius:20px;padding:4px 10px;background:transparent;white-space:nowrap}
 .due-chip.due-overdue{color:#fecaca;border:1px solid rgba(239,68,68,.6);background:rgba(239,68,68,.15);font-weight:600}
 .due-chip.due-today{color:#fde68a;border-style:solid;border-color:rgba(234,179,8,.55)}
@@ -60,7 +61,7 @@ button.tap:hover{filter:brightness(1.2)}
 .stat{text-align:left;background:#121e30;border:1px solid #2c3c54;border-radius:14px;padding:14px;color:#aab8cd;font-size:13px}
 .stat strong{display:block;font-size:28px;color:#fff;margin-top:4px;line-height:1.1}
 .stat:hover{border-color:#90baff}
-.stat.incoming strong{color:#d8b4fe}
+.stat.incoming strong{color:color-mix(in srgb,var(--inc) 55%,#fff)}
 .stat.alert strong{color:#fca5a5}
 .stat.today strong{color:#fde68a}
 
@@ -95,24 +96,24 @@ button.tap:hover{filter:brightness(1.2)}
 .group-head h3{margin:0;font-size:15px}
 .count{margin-left:auto;background:#1c2b42;border-radius:20px;padding:2px 9px;font-size:12px;color:#cbd5e1}
 .gdot{width:10px;height:10px;border-radius:50%;background:#64748b;flex:0 0 10px}
-.group.st-incoming .gdot{background:#a855f7}
-.group.st-to-do .gdot{background:#94a3b8}
-.group.st-in-progress .gdot{background:#22c55e}
-.group.st-waiting-on-client .gdot{background:#f97316}
-.group.st-completed .gdot{background:#38bdf8}
-.group.st-completed{border-color:rgba(56,189,248,.45)}
-.group.st-completed .group-head h3{color:#bae6fd}
+.group.st-incoming .gdot{background:var(--inc)}
+.group.st-to-do .gdot{background:var(--todo)}
+.group.st-in-progress .gdot{background:var(--ip)}
+.group.st-waiting-on-client .gdot{background:var(--wait)}
+.group.st-completed .gdot{background:var(--dn)}
+.group.st-completed{border-color:color-mix(in srgb,var(--dn) 45%,transparent)}
+.group.st-completed .group-head h3{color:color-mix(in srgb,var(--dn) 55%,#fff)}
 .group.pr-high .gdot,.group.bucket-overdue .gdot{background:#ff2828}
 .group.bucket-today .gdot{background:#eab308}
 .group.bucket-tomorrow .gdot{background:#0ea5e9}
 .group.bucket-week .gdot{background:#6366f1}
 .group.bucket-later .gdot{background:#94a3b8}
 .group.bucket-overdue .group-head h3{color:#fca5a5}
-.group.st-in-progress{background:linear-gradient(180deg,rgba(34,197,94,.18),#0e1828 55%);border:1px solid rgba(74,222,128,.7);box-shadow:0 0 0 1px rgba(34,197,94,.25),0 0 26px rgba(34,197,94,.2)}
-.group.st-in-progress .group-head h3{color:#bbf7d0;text-shadow:0 0 12px rgba(74,222,128,.55)}
+.group.st-in-progress{background:linear-gradient(180deg,color-mix(in srgb,var(--ip) 18%,transparent),#0e1828 55%);border:1px solid color-mix(in srgb,var(--ip) 70%,transparent);box-shadow:0 0 0 1px color-mix(in srgb,var(--ip) 25%,transparent),0 0 26px color-mix(in srgb,var(--ip) 20%,transparent)}
+.group.st-in-progress .group-head h3{color:color-mix(in srgb,var(--ip) 35%,#fff);text-shadow:0 0 12px color-mix(in srgb,var(--ip) 55%,transparent)}
 .group.st-in-progress .gdot{animation:ip-dot calc(3.6s*var(--spd,1)) ease-in-out infinite}
-.group.st-in-progress .count{background:#166534;color:#dcfce7}
-@keyframes ip-dot{0%,100%{box-shadow:0 0 0 0 rgba(34,197,94,.7)}50%{box-shadow:0 0 0 6px rgba(34,197,94,0)}}
+.group.st-in-progress .count{background:color-mix(in srgb,var(--ip) 45%,#000);color:color-mix(in srgb,var(--ip) 20%,#fff)}
+@keyframes ip-dot{0%,100%{box-shadow:0 0 0 0 color-mix(in srgb,var(--ip) 70%,transparent)}50%{box-shadow:0 0 0 6px color-mix(in srgb,var(--ip) 0%,transparent)}}
 .group-body{display:grid;gap:10px;grid-template-columns:repeat(auto-fill,minmax(290px,1fr))}
 .empty-col{margin:4px;font-size:14px}
 .empty{padding:16px 4px}
@@ -315,9 +316,10 @@ details.fold[open]>summary{margin-bottom:12px}
 .req-sub{display:block;font-size:13px;font-weight:400;color:#cbd5e1;margin-top:2px}
 .request-zone[open] .req-sub{display:none}
 #client .primary{background:var(--brand);color:var(--brand-text);border-color:var(--brand)}
-#client .chip[aria-pressed="true"]{background:var(--brand);color:var(--brand-text);border-color:var(--brand)}
+/* ===== END OF PART 1 of 10 ===== */
 
- .portal-hero{border-radius:14px;padding:22px 18px;margin:0 0 12px;background-color:#0b1525;background-image:linear-gradient(135deg,var(--brand2),#0b1525);background-size:cover;background-position:center;border:1px solid #2c3c54;border-top:4px solid var(--brand)}
+ #client .chip[aria-pressed="true"]{background:var(--brand);color:var(--brand-text);border-color:var(--brand)}
+.portal-hero{border-radius:14px;padding:22px 18px;margin:0 0 12px;background-color:#0b1525;background-image:linear-gradient(135deg,var(--brand2),#0b1525);background-size:cover;background-position:center;border:1px solid #2c3c54;border-top:4px solid var(--brand)}
 .portal-hero.has-backdrop{min-height:180px;display:flex;align-items:flex-end}
 .hero-inner{display:flex;align-items:center;gap:14px}
 .hero-inner h2{margin:0}
@@ -395,7 +397,7 @@ details.fold[open]>summary{margin-bottom:12px}
 .tcard.mini:hover{opacity:1}
 .mini-dot{width:14px;height:14px;border-radius:50%;flex:0 0 14px;background:var(--biz,#64748b)}
 .mini-title{flex:1;min-width:0;font-size:13px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:#cbd5e1;text-decoration:line-through;text-decoration-color:rgba(203,213,225,.35)}
-.mini-when{font-size:11px;color:#7dd3fc;white-space:nowrap}
+.mini-when{font-size:11px;color:color-mix(in srgb,var(--dn) 55%,#fff);white-space:nowrap}
 .sel{position:absolute;top:6px;right:6px;z-index:3;display:grid;place-items:center;width:30px;height:30px;border-radius:8px;background:rgba(11,21,37,.85);border:1px solid #40516b;cursor:pointer;margin:0}
 .sel input{width:18px;height:18px;margin:0;cursor:pointer}
 .tcard.selected{outline:2px solid #3975db;outline-offset:-2px}
@@ -634,12 +636,14 @@ body.is-mobile #popOutBtn{display:none}
 
 /* Pop-out (all tasks only) mode */
 .tasks-only main{max-width:none;padding:10px 14px}
-.tasks-only header{padding:10px 14px}
+/* ===== END OF PART 2 of 10 ===== */
+
+ .tasks-only header{padding:10px 14px}
 .tasks-only #mainNav,.tasks-only #addTaskPanel,.tasks-only .admin-tools,.tasks-only #popOutBtn,.tasks-only #ipOutBtn{display:none!important}
 .ip-only #admin>.stats,.ip-only #snapshot,.ip-only #viewTool{display:none!important}
-.ip-only #tasksPanel{border-color:rgba(74,222,128,.7);box-shadow:0 0 0 1px rgba(34,197,94,.25),0 0 30px rgba(34,197,94,.18)}
-.ip-only #tasksTitle{color:#bbf7d0}
-.ip-btn{border-color:rgba(74,222,128,.7);color:#bbf7d0;background:rgba(34,197,94,.12)}
+.ip-only #tasksPanel{border-color:color-mix(in srgb,var(--ip) 70%,transparent);box-shadow:0 0 0 1px color-mix(in srgb,var(--ip) 25%,transparent),0 0 30px color-mix(in srgb,var(--ip) 18%,transparent)}
+.ip-only #tasksTitle{color:color-mix(in srgb,var(--ip) 35%,#fff)}
+.ip-btn{border-color:color-mix(in srgb,var(--ip) 70%,transparent);color:color-mix(in srgb,var(--ip) 35%,#fff);background:color-mix(in srgb,var(--ip) 12%,transparent)}
 .panel-btns{display:flex;gap:8px;flex-wrap:wrap}
 body:not(.is-mobile) #clientLayoutTool{display:none}
 .tag-chip{font-size:12px;min-height:30px;padding:4px 10px;border-radius:20px;border:1px solid rgba(167,139,250,.55);background:rgba(167,139,250,.12);color:#ddd6fe;display:inline-flex;align-items:center;gap:4px;white-space:nowrap}
@@ -649,8 +653,7 @@ body:not(.is-mobile) #clientLayoutTool{display:none}
 .layout-m-grid3 .tcard:not(.m-open) .tag-chip,.layout-m-slim .tcard:not(.m-open) .tag-chip{display:none}
 /* Modal (notes + welcome) */
 .modal-back{position:fixed;inset:0;z-index:70;background:rgba(3,7,15,.72);display:flex;align-items:center;justify-content:center;padding:12px}
-
- .modal{background:#121e30;border:1px solid #3a4b66;border-radius:16px;width:min(680px,100%);max-height:90vh;display:flex;flex-direction:column;box-shadow:0 20px 60px rgba(0,0,0,.6);overflow:hidden}
+.modal{background:#121e30;border:1px solid #3a4b66;border-radius:16px;width:min(680px,100%);max-height:90vh;display:flex;flex-direction:column;box-shadow:0 20px 60px rgba(0,0,0,.6);overflow:hidden}
 .modal-head{display:flex;align-items:center;gap:10px;padding:12px 14px;border-bottom:1px solid #29384f}
 .modal-head h3{margin:0;font-size:16px;flex:1;min-width:0;overflow-wrap:anywhere}
 .modal-head .logo-circle{flex:0 0 32px;width:32px;height:32px;font-size:12px;border-width:1px}
@@ -666,8 +669,8 @@ body:not(.is-mobile) #clientLayoutTool{display:none}
 #notesModal .note-list{max-height:none;overflow:visible}
 .wb-sec{border:1px solid #2c3c54;border-radius:12px;padding:10px 12px;background:#0b1525}
 .wb-sec h4{margin:0 0 6px;font-size:13px;text-transform:uppercase;letter-spacing:.06em}
-.wb-sec.done h4{color:#7dd3fc}.wb-sec.notes h4{color:#ddd6fe}.wb-sec.input h4{color:#fdba74}
-.wb-sec.input{border-color:rgba(249,115,22,.55)}
+.wb-sec.done h4{color:color-mix(in srgb,var(--dn) 55%,#fff)}.wb-sec.notes h4{color:#ddd6fe}.wb-sec.input h4{color:color-mix(in srgb,var(--wait) 55%,#fff)}
+.wb-sec.input{border-color:color-mix(in srgb,var(--wait) 55%,transparent)}
 .wb-line{display:block;width:100%;text-align:left;background:transparent;border:0;border-top:1px solid #1e2a3d;padding:7px 2px;font-size:14px;color:#e2e8f0;border-radius:0}
 .wb-line:first-of-type{border-top:0}
 .wb-line:hover{background:#16233a}
@@ -862,6 +865,15 @@ body.is-mobile .tc-title{cursor:pointer}
 <p class="muted">Only you see these controls. Your choices apply to your dashboard and every client portal (clients pick them up within a minute). Changes save automatically.</p>
 <form id="animForm">
 <div class="anim-sec">
+<h4>Status colors (your dashboard and every client portal)</h4>
+<div class="color-row"><input type="color" name="incoming_color" value="#a855f7" aria-label="Incoming color"><code data-code="incoming_color">#a855f7</code><span class="badge st-incoming">Incoming</span></div>
+<div class="color-row"><input type="color" name="todo_color" value="#94a3b8" aria-label="To do color"><code data-code="todo_color">#94a3b8</code><span class="badge st-to-do">To do</span></div>
+<div class="color-row"><input type="color" name="ip_color" value="#38bdf8" aria-label="In progress color"><code data-code="ip_color">#38bdf8</code><span class="badge st-in-progress">In progress</span></div>
+<div class="color-row"><input type="color" name="waiting_color" value="#f97316" aria-label="Waiting on client color"><code data-code="waiting_color">#f97316</code><span class="badge st-waiting-on-client">Waiting on client</span></div>
+<div class="color-row"><input type="color" name="done_color" value="#22c55e" aria-label="Completed color"><code data-code="done_color">#22c55e</code><span class="badge st-completed">Completed</span></div>
+<button type="button" id="statusColorReset">Reset to default colors</button>
+</div>
+<div class="anim-sec">
 <h4>Bottom progress bar (In progress cards)</h4>
 <label class="check"><input type="checkbox" name="work_bar"> Show the bottom progress bar</label>
 <label>Look
@@ -951,7 +963,9 @@ body.is-mobile .tc-title{cursor:pointer}
 </form>
 </details>
 
-<div class="stats">
+<!-- ===== END OF PART 3 of 10 ===== -->
+
+ <div class="stats">
 <button type="button" class="stat" id="portalOpenStat">Open tasks<strong id="portalOpen">0</strong></button>
 <button type="button" class="stat today" id="portalNeedsStat">Needs your input<strong id="portalNeeds">0</strong></button>
 <button type="button" class="stat" id="portalDoneStat">Completed<strong id="portalDone">0</strong></button>
@@ -1000,8 +1014,7 @@ body.is-mobile .tc-title{cursor:pointer}
 <button type="button" data-bulk="status">Status ▾</button>
 <button type="button" data-bulk="due">Due date ▾</button>
 <button type="button" data-bulk="archive">Archive</button>
-
- <button type="button" data-bulk="all">Select all</button>
+<button type="button" data-bulk="all">Select all</button>
 <button type="button" data-bulk="done">Done</button>
 </div>
 
@@ -1279,7 +1292,9 @@ $('resetForm').onsubmit=async e=>{
  }
 };
 
-function resetMode(kind){
+// ===== END OF PART 4 of 10 =====
+
+ function resetMode(kind){
  authMode('reset');
  notice(kind==='invite'
   ?'Welcome to Signix Digital. Create a password for your account and enter it twice.'
@@ -1550,8 +1565,7 @@ function taskCard(t,o){
   corner=taskOptional.includes('archived_at')
    ?`<button type="button" class="tc-arch" data-act="archive" data-id="${id}" title="Archive task" aria-label="Archive task: ${esc(t.title||'Untitled')}">${ARCHIVE_ICON}</button>`
    :`<button type="button" class="tc-trash" data-act="delete" data-id="${id}" title="Delete task" aria-label="Delete task: ${esc(t.title||'Untitled')}">${TRASH_ICON}</button>`;
-
-  }
+ }
  const editable=o.client&&canEdit(t);
  const nCount=notesFor(t.id).length;
  const notesBtn=notesReady?`<button type="button" class="notes-toggle${nCount?' has':''}" data-act="notes" data-id="${id}" aria-haspopup="dialog">${NOTE_ICON}<span class="nt-label">Notes</span>${nCount?`<b>${nCount}</b>`:''}</button>`:'';
@@ -1587,7 +1601,9 @@ function editCard(t){
 </form>
 </article>`;
 }
+// ===== END OF PART 5 of 10 =====
 
+ 
 /* ---------- Board rendering ---------- */
 function captureScroll(root){
  const groupsEl=root.querySelector('.groups');
@@ -1894,7 +1910,9 @@ function dueMenu(t){
  return `<form class="menu-due" data-pick-form="due"><div class="menu-title">${t?'Due date':'Due date for selected'}</div><input type="date" name="due" value="${esc(t?.due_date||'')}" aria-label="Due date"><div class="row"><button class="primary" type="submit">Save</button>${!t||t.due_date?'<button type="button" data-pick="due" data-value="">Clear date</button>':''}</div></form>`;
 }
 
-$('menu').addEventListener('click',e=>{
+// ===== END OF PART 6 of 10 =====
+
+ $('menu').addEventListener('click',e=>{
  const b=e.target.closest('[data-pick]');
  if(!b||!menuCtx)return;
  const ctx=menuCtx,field=b.dataset.pick,value=b.dataset.value;
@@ -2000,8 +2018,7 @@ $('bulkBar').addEventListener('click',e=>{
  e.stopPropagation();
  const act=b.dataset.bulk;
  if(act==='done'){setSelectMode(false);return;}
-
-  if(act==='all'){lastVisible.forEach(k=>selected.add(k));renderAdmin();return;}
+ if(act==='all'){lastVisible.forEach(k=>selected.add(k));renderAdmin();return;}
  if(act==='archive'){
   if(!selected.size)return;
   if(confirm(`Archive ${selected.size} selected task${selected.size===1?'':'s'}?\n\nThey disappear from the client portal. You can restore them any time from View → Archive.`))bulkApply('archive',new Date().toISOString());
@@ -2212,7 +2229,9 @@ async function loadNotes(){
  if(error){notes=[];notesReady=false;return false;}
  notes=data||[];notesReady=true;return true;
 }
+// ===== END OF PART 7 of 10 =====
 
+ 
 /* ---------- Client welcome-back pop-up ---------- */
 function lastVisitKey(){return 'signix-lastvisit-'+(currentUser?.id||'x');}
 function saveLastVisit(){try{localStorage.setItem(lastVisitKey(),new Date().toISOString());}catch(e){}}
@@ -2423,11 +2442,15 @@ async function loadLogins(){
 /* ---------- Animation settings (admin controls, applied everywhere) ---------- */
 const ANIM_KEYS=[['high_pulse','no-anim-high'],['work_bar','no-bar'],['ip_column','no-anim-col'],['media_pulse','no-anim-media'],['request_pulse','no-anim-req']];
 const SPEEDS={slow:1.5,normal:1,fast:0.7};
-const ANIM_DEFAULTS={high_pulse:true,work_bar:true,ip_column:true,media_pulse:true,request_pulse:true,speed:'normal',ip_style:'glide',bar_color:null,header_anim:false,header_style:'arrows'};
+const ANIM_DEFAULTS={high_pulse:true,work_bar:true,ip_column:true,media_pulse:true,request_pulse:true,speed:'normal',ip_style:'glide',bar_color:null,header_anim:false,header_style:'arrows',incoming_color:null,todo_color:null,ip_color:null,waiting_color:null,done_color:null};
+const STATUS_COLORS={incoming_color:'#a855f7',todo_color:'#94a3b8',ip_color:'#38bdf8',waiting_color:'#f97316',done_color:'#22c55e'};
+const STATUS_VARS={incoming_color:'--inc',todo_color:'--todo',ip_color:'--ip',waiting_color:'--wait',done_color:'--dn'};
 const ANIM_COLS_V1='high_pulse,work_bar,ip_column,media_pulse,request_pulse,speed';
 const ANIM_V2_KEYS=['ip_style','bar_color','header_anim','header_style'];
-const ANIM_COLS=ANIM_COLS_V1+','+ANIM_V2_KEYS.join(',');
-let animSettings={...ANIM_DEFAULTS},animReady=false,animV2=false;
+const ANIM_V3_KEYS=Object.keys(STATUS_COLORS);
+const ANIM_COLS_V2=ANIM_COLS_V1+','+ANIM_V2_KEYS.join(',');
+const ANIM_COLS=ANIM_COLS_V2+','+ANIM_V3_KEYS.join(',');
+let animSettings={...ANIM_DEFAULTS},animReady=false,animV2=false,animV3=false;
 function cleanAnim(row){
  const out={...ANIM_DEFAULTS};
  if(row){
@@ -2437,6 +2460,7 @@ function cleanAnim(row){
   out.bar_color=validHex(row.bar_color)?row.bar_color:null;
   if(typeof row.header_anim==='boolean')out.header_anim=row.header_anim;
   if(HEAD_STYLES.some(s=>s[0]===row.header_style))out.header_style=row.header_style;
+  for(const k of ANIM_V3_KEYS)out[k]=validHex(row[k])?row[k].toLowerCase():null;
  }
  return out;
 }
@@ -2449,6 +2473,8 @@ function applyAnimations(a){
  b.classList.toggle('head-on',!!a.header_anim);
  if(validHex(a.bar_color))b.style.setProperty('--bar-color',a.bar_color);
  else b.style.removeProperty('--bar-color');
+ const r=document.documentElement.style;
+ for(const k of ANIM_V3_KEYS)r.setProperty(STATUS_VARS[k],validHex(a[k])?a[k]:STATUS_COLORS[k]);
 }
 function readAnimForm(){
  const f=$('animForm').elements;
@@ -2458,6 +2484,7 @@ function readAnimForm(){
  next.bar_color=f.bar_biz.checked?null:(validHex(f.bar_color.value)?f.bar_color.value.toLowerCase():null);
  next.header_anim=f.header_anim.checked;
  next.header_style=HEAD_STYLES.some(s=>s[0]===f.header_style.value)?f.header_style.value:'arrows';
+ for(const k of ANIM_V3_KEYS){const v=String(f[k].value||'').toLowerCase();next[k]=validHex(v)&&v!==STATUS_COLORS[k]?v:null;}
  return next;
 }
 function syncColorRow(){
@@ -2465,6 +2492,7 @@ function syncColorRow(){
  f.bar_color.disabled=f.bar_biz.checked;
  $('barColorRow').style.opacity=f.bar_biz.checked?'.45':'1';
  $('barColorCode').textContent=f.bar_biz.checked?'Business colors':f.bar_color.value;
+ $('animForm').querySelectorAll('code[data-code]').forEach(c=>{c.textContent=f[c.dataset.code].value;});
 }
 function fillAnimForm(){
  const f=$('animForm').elements;
@@ -2475,6 +2503,7 @@ function fillAnimForm(){
  if(animSettings.bar_color)f.bar_color.value=animSettings.bar_color;
  f.header_anim.checked=!!animSettings.header_anim;
  f.header_style.value=animSettings.header_style;
+ for(const k of ANIM_V3_KEYS)f[k].value=animSettings[k]||STATUS_COLORS[k];
  syncColorRow();
 }
 function renderAnimPreview(){
@@ -2484,8 +2513,16 @@ function renderAnimPreview(){
 }
 $('barStyleSel').innerHTML=BAR_STYLES.map(([v,l])=>`<option value="${v}">${esc(l)}</option>`).join('');
 $('headStyleSel').innerHTML=HEAD_STYLES.map(([v,l])=>`<option value="${v}">${esc(l)}</option>`).join('');
+$('statusColorReset').onclick=()=>{
+ if(!isAdmin())return;
+ const f=$('animForm').elements;
+ for(const k of ANIM_V3_KEYS)f[k].value=STATUS_COLORS[k];
+ $('animForm').dispatchEvent(new Event('change'));
+};
 async function loadAnimations(){
  let {data,error}=await sb.from('app_settings').select(ANIM_COLS).eq('id',1).maybeSingle();
+ animV3=!error;
+ if(error)({data,error}=await sb.from('app_settings').select(ANIM_COLS_V2).eq('id',1).maybeSingle());
  animV2=!error;
  if(error)({data,error}=await sb.from('app_settings').select(ANIM_COLS_V1).eq('id',1).maybeSingle());
  animReady=!error;
@@ -2494,7 +2531,8 @@ async function loadAnimations(){
  if(role==='admin'){
   fillAnimForm();
   $('animStatus').textContent=error?'Animation settings table not found. Run the latest SQL step in Supabase, then refresh.'
-   :animV2?'':'Bar look, color and header animation need the latest SQL step. Until then they preview here but are not saved.';
+   :!animV2?'Bar look, color, header animation and status colors need the latest SQL step. Until then they preview here but are not saved.'
+   :animV3?'':'Status colors need the latest SQL step. Until then they preview here but are not saved.';
  }
 }
 $('animForm').addEventListener('input',e=>{
@@ -2509,6 +2547,7 @@ $('animForm').addEventListener('change',async()=>{
  applyAnimations(next);
  if(!animReady){$('animStatus').textContent='Previewing only. Run the latest SQL step in Supabase to save these settings.';return;}
  const payload={...next};
+ if(!animV3)ANIM_V3_KEYS.forEach(k=>delete payload[k]);
  if(!animV2)ANIM_V2_KEYS.forEach(k=>delete payload[k]);
  $('animStatus').textContent='Saving…';
  try{
@@ -2518,16 +2557,18 @@ $('animForm').addEventListener('change',async()=>{
    $('animStatus').textContent='Not saved: '+(error?.message||'no row returned. Run the latest SQL step.');
    return;
   }
-  animSettings=animV2?next:{...animSettings,...payload};
-  if(!animV2)applyAnimations(next);
-  $('animStatus').textContent=animV2?'Saved. Client portals update within a minute.':'Saved the basic settings. Run the latest SQL step to save the bar look, color and header animation.';
+  animSettings={...animSettings,...payload};
+  applyAnimations(next);
+  $('animStatus').textContent=animV3?'Saved. Client portals update within a minute.':animV2?'Saved. Run the latest SQL step to save the status colors.':'Saved the basic settings. Run the latest SQL step to save the bar look, color, header animation and status colors.';
  }catch(err){
   applyAnimations(animSettings);fillAnimForm();
   $('animStatus').textContent='Not saved: '+(err.message||'unknown error');
  }
 });
 
+// ===== END OF PART 8 of 10 =====
 
+ 
 /* ---------- Auto refresh ---------- */
 function stopTimers(){
  clearInterval(pollTimer);pollTimer=null;
@@ -2594,8 +2635,7 @@ async function refresh(){
  await loadAnimations();
  await loadMemberNames();
  show('auth',false);show('app',true);show('logout',true);show('mainNav',false);
-
-  view('client');
+ view('client');
  if(await loadTasks())notice('');
  showWelcome();
  startTimers();
@@ -2830,7 +2870,9 @@ $('clientsList').addEventListener('toggle',e=>{
  if(d&&d.open)openClientId=d.dataset.card;
 },true);
 
-$('clientsList').addEventListener('submit',async e=>{
+// ===== END OF PART 9 of 10 =====
+
+ $('clientsList').addEventListener('submit',async e=>{
  const form=e.target.closest('form[data-client-id]');
  if(!form)return;
  e.preventDefault();
@@ -3143,4 +3185,3 @@ sb.auth.onAuthStateChange(event=>{
 </script>
 </body>
 </html>
-                              
