@@ -45,9 +45,9 @@ button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-vis
 .badge.pr-low{color:#7dd3fc;background:rgba(14,165,233,.14);border-color:rgba(14,165,233,.5)}
 .badge.st-incoming{color:#d8b4fe;background:rgba(168,85,247,.16);border-color:rgba(168,85,247,.5)}
 .badge.st-to-do{color:#e2e8f0;background:rgba(148,163,184,.16);border-color:rgba(148,163,184,.45)}
-.badge.st-in-progress{color:#a5b4fc;background:rgba(99,102,241,.2);border-color:rgba(99,102,241,.55)}
+.badge.st-in-progress{color:#86efac;background:rgba(34,197,94,.18);border-color:rgba(34,197,94,.6)}
 .badge.st-waiting-on-client{color:#fdba74;background:rgba(249,115,22,.15);border-color:rgba(249,115,22,.5)}
-.badge.st-completed{color:#86efac;background:rgba(34,197,94,.15);border-color:rgba(34,197,94,.5)}
+.badge.st-completed{color:#bae6fd;background:rgba(56,189,248,.2);border-color:#38bdf8}
 .due-chip{display:inline-flex;align-items:center;font-size:12px;color:#cbd5e1;border:1px dashed #40516b;border-radius:20px;padding:4px 10px;background:transparent;white-space:nowrap}
 .due-chip.due-overdue{color:#fecaca;border:1px solid rgba(239,68,68,.6);background:rgba(239,68,68,.15);font-weight:600}
 .due-chip.due-today{color:#fde68a;border-style:solid;border-color:rgba(234,179,8,.55)}
@@ -97,20 +97,22 @@ button.tap:hover{filter:brightness(1.2)}
 .gdot{width:10px;height:10px;border-radius:50%;background:#64748b;flex:0 0 10px}
 .group.st-incoming .gdot{background:#a855f7}
 .group.st-to-do .gdot{background:#94a3b8}
-.group.st-in-progress .gdot{background:#6366f1}
+.group.st-in-progress .gdot{background:#22c55e}
 .group.st-waiting-on-client .gdot{background:#f97316}
-.group.st-completed .gdot{background:#22c55e}
+.group.st-completed .gdot{background:#38bdf8}
+.group.st-completed{border-color:rgba(56,189,248,.45)}
+.group.st-completed .group-head h3{color:#bae6fd}
 .group.pr-high .gdot,.group.bucket-overdue .gdot{background:#ff2828}
 .group.bucket-today .gdot{background:#eab308}
 .group.bucket-tomorrow .gdot{background:#0ea5e9}
 .group.bucket-week .gdot{background:#6366f1}
 .group.bucket-later .gdot{background:#94a3b8}
 .group.bucket-overdue .group-head h3{color:#fca5a5}
-.group.st-in-progress{background:linear-gradient(180deg,rgba(99,102,241,.2),#0e1828 55%);border:1px solid rgba(129,140,248,.7);box-shadow:0 0 0 1px rgba(99,102,241,.25),0 0 26px rgba(99,102,241,.22)}
-.group.st-in-progress .group-head h3{color:#c7d2fe;text-shadow:0 0 12px rgba(129,140,248,.6)}
+.group.st-in-progress{background:linear-gradient(180deg,rgba(34,197,94,.18),#0e1828 55%);border:1px solid rgba(74,222,128,.7);box-shadow:0 0 0 1px rgba(34,197,94,.25),0 0 26px rgba(34,197,94,.2)}
+.group.st-in-progress .group-head h3{color:#bbf7d0;text-shadow:0 0 12px rgba(74,222,128,.55)}
 .group.st-in-progress .gdot{animation:ip-dot calc(3.6s*var(--spd,1)) ease-in-out infinite}
-.group.st-in-progress .count{background:#3730a3;color:#e0e7ff}
-@keyframes ip-dot{0%,100%{box-shadow:0 0 0 0 rgba(99,102,241,.7)}50%{box-shadow:0 0 0 6px rgba(99,102,241,0)}}
+.group.st-in-progress .count{background:#166534;color:#dcfce7}
+@keyframes ip-dot{0%,100%{box-shadow:0 0 0 0 rgba(34,197,94,.7)}50%{box-shadow:0 0 0 6px rgba(34,197,94,0)}}
 .group-body{display:grid;gap:10px;grid-template-columns:repeat(auto-fill,minmax(290px,1fr))}
 .empty-col{margin:4px;font-size:14px}
 .empty{padding:16px 4px}
@@ -257,7 +259,7 @@ body.no-anim-req .request-zone:not([open]) .req-icon,body.no-anim-req .pv-reques
 .anim-list .check{margin:0;padding:10px 0;border-top:1px solid #29384f}
 .anim-list .check input{width:22px;height:22px}
 #animStatus{font-size:13px;margin:8px 0 0}
-@media (prefers-reduced-motion:reduce){.tcard.pr-high:not(.st-completed),.group.st-in-progress .gdot{animation:none}.work-bar,.work-bar::before,.work-bar::after,.tc-biz::before,.tc-biz::after{animation:none!important}.work-bar{background:var(--c)!important;-webkit-mask:none!important;mask:none!important}.work-bar::before,.work-bar::after,.tc-biz::before,.tc-biz::after{display:none!important}.media-toggle[aria-expanded="false"],.request-zone:not([open]) .req-icon,.pv-request .req-icon,.add-zone .req-icon,.add-zone::before,.pill.od,.group.overdue-pin .gdot,.fab{animation:none!important}}
+@media (prefers-reduced-motion:reduce){.tcard.pr-high:not(.st-completed),.group.st-in-progress .gdot{animation:none}.work-bar,.work-bar::before,.work-bar::after,.tc-biz::before,.tc-biz::after{animation:none!important}.work-bar{background:var(--c)!important;-webkit-mask:none!important;mask:none!important}.work-bar::before,.work-bar::after,.tc-biz::before,.tc-biz::after{display:none!important}.media-toggle[aria-expanded="false"],.request-zone:not([open]) .req-icon,.pv-request .req-icon,.add-zone .req-icon,.add-zone::before,.pill.od,.group.overdue-pin .gdot{animation:none!important}}
 .layout-list .work-bar{display:none}
 .tc-edit{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
 .bdot{width:10px;height:10px;border-radius:3px;flex:0 0 10px;box-shadow:0 0 0 1px rgba(255,255,255,.25)}
@@ -314,7 +316,8 @@ details.fold[open]>summary{margin-bottom:12px}
 .request-zone[open] .req-sub{display:none}
 #client .primary{background:var(--brand);color:var(--brand-text);border-color:var(--brand)}
 #client .chip[aria-pressed="true"]{background:var(--brand);color:var(--brand-text);border-color:var(--brand)}
-.portal-hero{border-radius:14px;padding:22px 18px;margin:0 0 12px;background-color:#0b1525;background-image:linear-gradient(135deg,var(--brand2),#0b1525);background-size:cover;background-position:center;border:1px solid #2c3c54;border-top:4px solid var(--brand)}
+
+ .portal-hero{border-radius:14px;padding:22px 18px;margin:0 0 12px;background-color:#0b1525;background-image:linear-gradient(135deg,var(--brand2),#0b1525);background-size:cover;background-position:center;border:1px solid #2c3c54;border-top:4px solid var(--brand)}
 .portal-hero.has-backdrop{min-height:180px;display:flex;align-items:flex-end}
 .hero-inner{display:flex;align-items:center;gap:14px}
 .hero-inner h2{margin:0}
@@ -392,10 +395,11 @@ details.fold[open]>summary{margin-bottom:12px}
 .tcard.mini:hover{opacity:1}
 .mini-dot{width:14px;height:14px;border-radius:50%;flex:0 0 14px;background:var(--biz,#64748b)}
 .mini-title{flex:1;min-width:0;font-size:13px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:#cbd5e1;text-decoration:line-through;text-decoration-color:rgba(203,213,225,.35)}
-.mini-when{font-size:11px;color:#86efac;white-space:nowrap}
+.mini-when{font-size:11px;color:#7dd3fc;white-space:nowrap}
 .sel{position:absolute;top:6px;right:6px;z-index:3;display:grid;place-items:center;width:30px;height:30px;border-radius:8px;background:rgba(11,21,37,.85);border:1px solid #40516b;cursor:pointer;margin:0}
 .sel input{width:18px;height:18px;margin:0;cursor:pointer}
 .tcard.selected{outline:2px solid #3975db;outline-offset:-2px}
+.tcard.flash{outline:3px solid #90baff;outline-offset:2px}
 .select-mode .tc-trash{display:none}
 .bulk-bar{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(14px + env(safe-area-inset-bottom));z-index:45;display:flex;gap:6px;align-items:center;flex-wrap:wrap;justify-content:center;background:#16233a;border:1px solid #3975db;border-radius:14px;padding:8px 10px;box-shadow:0 12px 30px rgba(0,0,0,.55);width:max-content;max-width:calc(100vw - 20px)}
 .bulk-bar button{padding:7px 11px;font-size:13px}
@@ -459,9 +463,6 @@ body.no-anim-req .add-zone .req-icon,body.no-anim-req .add-zone::before{animatio
 .pp-medium input:checked+span{background:#eab308;border-color:#eab308;color:#111;box-shadow:0 0 14px rgba(234,179,8,.5)}
 .pp-low input:checked+span{background:#0ea5e9;border-color:#0ea5e9;color:#fff;box-shadow:0 0 14px rgba(14,165,233,.5)}
 .pp input:focus-visible+span{outline:2px solid #90baff;outline-offset:2px}
-.fab{position:fixed;right:18px;bottom:calc(18px + env(safe-area-inset-bottom));z-index:40;width:58px;height:58px;border-radius:50%;background:#3975db;border:0;font-size:32px;line-height:1;color:#fff;padding:0;display:grid;place-items:center;box-shadow:0 8px 24px rgba(0,0,0,.45),0 0 0 4px rgba(57,117,219,.25)}
-.fab:hover{filter:brightness(1.15)}
-body.bulk-on .fab{bottom:calc(88px + env(safe-area-inset-bottom))}
 
 /* ===== Animations panel ===== */
 .anim-sec{border-top:1px solid #29384f;padding:10px 0 4px}
@@ -534,8 +535,7 @@ body.bulk-on .fab{bottom:calc(88px + env(safe-area-inset-bottom))}
 .tl-items{flex:1;display:flex;flex-wrap:wrap;gap:5px;min-width:0}
 .tl-items .pill{width:auto;max-width:100%;font-size:12.5px;padding:5px 9px}
 .cal-nodate{font-size:12px;color:#9fb0c7}
-
- .cal-nodate .pills{display:flex;flex-wrap:wrap;gap:5px;margin-top:6px}
+.cal-nodate .pills{display:flex;flex-wrap:wrap;gap:5px;margin-top:6px}
 .cal-nodate .pill{width:auto}
 .cal-detail{border:1px dashed #40516b;border-radius:12px;padding:10px;display:grid;gap:8px;background:#0b1525}
 .cal-detail-head{display:flex;justify-content:space-between;align-items:center;gap:8px;font-size:13px;color:#cbd5e1;font-weight:600}
@@ -560,7 +560,6 @@ body.is-mobile .tool-label{display:none}
 body.is-mobile details.fold>summary{font-size:16px}
 body.is-mobile .add-zone>summary,body.is-mobile .request-zone>summary{font-size:16px}
 body.is-mobile .biz-picker{grid-template-columns:repeat(2,minmax(0,1fr))}
-body.is-mobile .fab{width:52px;height:52px;font-size:28px;right:14px}
 /* Calendar on phones */
 body.is-mobile .cal-month{gap:2px}
 body.is-mobile .cal-month .cal-day{min-height:50px;padding:3px 2px;border-radius:6px;align-items:center}
@@ -636,7 +635,45 @@ body.is-mobile #popOutBtn{display:none}
 /* Pop-out (all tasks only) mode */
 .tasks-only main{max-width:none;padding:10px 14px}
 .tasks-only header{padding:10px 14px}
-.tasks-only #mainNav,.tasks-only #addTaskPanel,.tasks-only .admin-tools,.tasks-only #popOutBtn,.tasks-only #fab{display:none!important}
+.tasks-only #mainNav,.tasks-only #addTaskPanel,.tasks-only .admin-tools,.tasks-only #popOutBtn,.tasks-only #ipOutBtn{display:none!important}
+.ip-only #admin>.stats,.ip-only #snapshot,.ip-only #viewTool{display:none!important}
+.ip-only #tasksPanel{border-color:rgba(74,222,128,.7);box-shadow:0 0 0 1px rgba(34,197,94,.25),0 0 30px rgba(34,197,94,.18)}
+.ip-only #tasksTitle{color:#bbf7d0}
+.ip-btn{border-color:rgba(74,222,128,.7);color:#bbf7d0;background:rgba(34,197,94,.12)}
+.panel-btns{display:flex;gap:8px;flex-wrap:wrap}
+body:not(.is-mobile) #clientLayoutTool{display:none}
+.tag-chip{font-size:12px;min-height:30px;padding:4px 10px;border-radius:20px;border:1px solid rgba(167,139,250,.55);background:rgba(167,139,250,.12);color:#ddd6fe;display:inline-flex;align-items:center;gap:4px;white-space:nowrap}
+.tag-chip.everyone{border-style:dashed;border-color:#40516b;background:transparent;color:#9fb0c7}
+.tag-chip.me{background:#7c3aed;border-color:#7c3aed;color:#fff;font-weight:700}
+.board[class*="layout-m-"] .tag-chip{font-size:11px;padding:2px 7px;min-height:24px}
+.layout-m-grid3 .tcard:not(.m-open) .tag-chip,.layout-m-slim .tcard:not(.m-open) .tag-chip{display:none}
+/* Modal (notes + welcome) */
+.modal-back{position:fixed;inset:0;z-index:70;background:rgba(3,7,15,.72);display:flex;align-items:center;justify-content:center;padding:12px}
+
+ .modal{background:#121e30;border:1px solid #3a4b66;border-radius:16px;width:min(680px,100%);max-height:90vh;display:flex;flex-direction:column;box-shadow:0 20px 60px rgba(0,0,0,.6);overflow:hidden}
+.modal-head{display:flex;align-items:center;gap:10px;padding:12px 14px;border-bottom:1px solid #29384f}
+.modal-head h3{margin:0;font-size:16px;flex:1;min-width:0;overflow-wrap:anywhere}
+.modal-head .logo-circle{flex:0 0 32px;width:32px;height:32px;font-size:12px;border-width:1px}
+.modal-x{border:0;background:transparent;font-size:24px;line-height:1;padding:4px 10px;color:#cbd5e1}
+.modal-body{padding:12px 14px;overflow-y:auto;display:grid;gap:10px}
+.note-compose textarea{margin:0 0 8px;min-height:70px}
+.note-compose .attach-row{margin:0 0 6px}
+.note-compose .attach-row .file-button,.note-compose .attach-row button{padding:8px 11px;font-size:14px}
+.note-compose .row{justify-content:flex-start}
+.note .media{margin-top:6px;gap:6px}
+.note .media a.thumb img{width:84px;height:84px}
+.note .media video,.note .media audio{width:240px}
+#notesModal .note-list{max-height:none;overflow:visible}
+.wb-sec{border:1px solid #2c3c54;border-radius:12px;padding:10px 12px;background:#0b1525}
+.wb-sec h4{margin:0 0 6px;font-size:13px;text-transform:uppercase;letter-spacing:.06em}
+.wb-sec.done h4{color:#7dd3fc}.wb-sec.notes h4{color:#ddd6fe}.wb-sec.input h4{color:#fdba74}
+.wb-sec.input{border-color:rgba(249,115,22,.55)}
+.wb-line{display:block;width:100%;text-align:left;background:transparent;border:0;border-top:1px solid #1e2a3d;padding:7px 2px;font-size:14px;color:#e2e8f0;border-radius:0}
+.wb-line:first-of-type{border-top:0}
+.wb-line:hover{background:#16233a}
+.wb-more{font-size:12px;color:#9fb0c7;margin:4px 0 0}
+body.is-mobile .modal-back{align-items:flex-end;padding:0}
+body.is-mobile .modal{width:100%;max-height:92vh;border-radius:16px 16px 0 0}
 body.is-mobile .tc-title{cursor:pointer}
 .tasks-only #tasksPanel{margin-top:6px}
 
@@ -755,6 +792,9 @@ body.is-mobile .tc-title{cursor:pointer}
 <label>Due date (optional)
 <input type="date" name="due">
 </label>
+<label id="addAssignWrap" class="hidden">Who should look at it
+<select name="assign" id="addAssign"></select>
+</label>
 <div class="az-step"><b>4</b>Attachments (optional)</div>
 <span class="muted" style="font-size:13px">Up to 10 files, 50 MB each. The client will see them.</span>
 <div class="attach-row">
@@ -771,12 +811,12 @@ body.is-mobile .tc-title{cursor:pointer}
 
 <section id="tasksPanel" class="panel">
 <div class="panel-head">
-<h2>All tasks</h2>
-<button type="button" id="popOutBtn">Open in new window</button>
+<h2 id="tasksTitle">All tasks</h2>
+<div class="panel-btns"><button type="button" id="ipOutBtn" class="ip-btn">In progress window</button><button type="button" id="popOutBtn">Open in new window</button></div>
 </div>
 <div class="toolbar">
 <div class="search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg><input type="search" id="taskSearch" placeholder="Search tasks or businesses" aria-label="Search tasks" autocomplete="off"><button type="button" id="searchClear" class="hidden" aria-label="Clear search">×</button></div>
-<div class="tool"><span class="tool-label">View</span><div class="chips" id="adminViews"></div></div>
+<div class="tool" id="viewTool"><span class="tool-label">View</span><div class="chips" id="adminViews"></div></div>
 <div class="tool"><span class="tool-label">Layout</span><div class="chips" id="adminLayouts"></div></div>
 <select id="bizFilter" aria-label="Filter by business"><option value="">All businesses</option></select>
 <button type="button" class="tbtn" id="densityBtn" aria-pressed="true" title="Collapse completed tasks into thin lines">Quiet done</button>
@@ -854,10 +894,6 @@ body.is-mobile .tc-title{cursor:pointer}
 </select>
 </label>
 </div>
-<div class="anim-sec">
-<h4>Buttons</h4>
-<label class="check"><input type="checkbox" name="fab_button"> Floating "+" button to add a task from anywhere</label>
-</div>
 </form>
 <p id="animStatus" class="muted"></p>
 </details>
@@ -922,6 +958,7 @@ body.is-mobile .tc-title{cursor:pointer}
 </div>
 <div class="toolbar">
 <div class="tool"><span class="tool-label">View</span><div class="chips" id="clientViews"></div></div>
+<div class="tool" id="clientLayoutTool"><span class="tool-label">Layout</span><div class="chips" id="clientLayouts"></div></div>
 </div>
 <div id="clientBoard" class="board"></div>
 </div>
@@ -930,13 +967,41 @@ body.is-mobile .tc-title{cursor:pointer}
 </main>
 
 <div id="menu" class="menu hidden" role="menu"></div>
-<button type="button" id="fab" class="fab hidden" aria-label="Add a task" title="Add a task">+</button>
+<div id="notesModal" class="modal-back hidden" role="dialog" aria-modal="true" aria-labelledby="notesTitle">
+<div class="modal">
+<div class="modal-head"><span id="notesLogo"></span><h3 id="notesTitle">Notes</h3><button type="button" class="modal-x" id="notesClose" aria-label="Close notes">×</button></div>
+<div class="modal-body">
+<form id="noteForm" class="note-compose">
+<textarea name="body" id="noteText" maxlength="2000" placeholder="Write a note…" aria-label="Note"></textarea>
+<div id="noteFiles">
+<div class="attach-row">
+<label class="file-button">Add photos or videos
+<input type="file" id="noteMediaInput" accept="image/*,video/*" multiple>
+</label>
+<button type="button" id="noteRecordBtn" aria-pressed="false">Record voice note</button>
+</div>
+<ul id="notePendingList" class="pending" aria-live="polite"></ul>
+</div>
+<div class="row"><button class="primary" type="submit" id="noteSendBtn">Add note</button><small class="muted">Notes can't be edited or deleted. Each one is stamped with the name, date and time.</small></div>
+<p id="noteStatus" class="muted" role="status" aria-live="polite" style="margin:6px 0 0;font-size:13px;white-space:pre-wrap"></p>
+</form>
+<div id="notesList"></div>
+</div>
+</div>
+</div>
+<div id="welcomeModal" class="modal-back hidden" role="dialog" aria-modal="true" aria-labelledby="welcomeTitle">
+<div class="modal">
+<div class="modal-head"><h3 id="welcomeTitle">Welcome back</h3><button type="button" class="modal-x" id="welcomeClose" aria-label="Close">×</button></div>
+<div class="modal-body" id="welcomeBody"></div>
+</div>
+</div>
 <div id="bulkBar" class="bulk-bar hidden" role="toolbar" aria-label="Change selected tasks">
 <span class="bulk-count" id="bulkCount">0 selected</span>
 <button type="button" data-bulk="status">Status ▾</button>
 <button type="button" data-bulk="due">Due date ▾</button>
 <button type="button" data-bulk="archive">Archive</button>
-<button type="button" data-bulk="all">Select all</button>
+
+ <button type="button" data-bulk="all">Select all</button>
 <button type="button" data-bulk="done">Done</button>
 </div>
 
@@ -956,7 +1021,7 @@ const notice=s=>{$('message').textContent=s};
 const STATUSES=['Incoming','To do','In progress','Waiting on client','Completed'];
 const PRIORITIES=['High','Medium','Low'];
 const ADMIN_VIEWS=[['status','Status'],['business','Business'],['deadline','Deadline'],['calendar','Calendar'],['waiting','Waiting'],['high','High'],['recent','Recent'],['archive','Archive']];
-const CLIENT_VIEWS=[['status','By status'],['deadline','By deadline']];
+const CLIENT_VIEWS=[['status','Status'],['deadline','Deadline'],['calendar','Calendar'],['needs','Needs your input'],['recent','Recent'],['done','Completed']];
 const CLIENT_STATUS_LABELS={'Incoming':'Submitted','To do':'Scheduled','Waiting on client':'Needs your input'};
 const svgIcon=d=>`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${d}</svg>`;
 const LAYOUTS=[
@@ -967,6 +1032,7 @@ const LAYOUTS=[
 ];
 /* Phone layouts: add or change one here, then add/adjust its CSS block under "MOBILE" in the style section. */
 const MOBILE_LAYOUTS=[['stack','Stack'],['grid2','2-up'],['grid3','3-up'],['slim','Slim'],['swipe','Swipe']];
+const CLIENT_MOBILE_LAYOUTS=MOBILE_LAYOUTS.filter(l=>l[0]!=='swipe');
 const CAL_MODES=[['month','Month'],['week','Week'],['agenda','Agenda'],['timeline','Timeline']];
 const BAR_STYLES=[['glide','Glide (light streak)'],['comet','Comet'],['wave','Color wave'],['barber','Barber stripes'],['segments','Segments'],['edge','Glowing edge'],['frost','Frosted glass'],['trail','Dot trail'],['liquid','Liquid fill'],['pulse','Brand pulse']];
 const HEAD_STYLES=[['arrows','Arrows drifting right'],['sweep','Light sweep'],['stripes','Diagonal stripes'],['dots','Dot track'],['flow','Flowing edge'],['scan','Scan line'],['ripple','Logo ripple'],['comet','Shooting comet'],['sparks','Sparks'],['nudge','Arrow nudge']];
@@ -982,13 +1048,16 @@ const MAX_FILES=10;
 const MAX_RECORD_SECONDS=300;
 const CLIENT_FIELDS='id,Name,Email,Company,logo_path,backdrop_path,brand_color,brand_color_2';
 const TASK_FIELDS='id,title,description,status,priority,due_date,client_id,created_at,completed_at';
-let taskOptional=['created_by','archived_at'];
+let taskOptional=['created_by','archived_at','assigned_to'];
 const taskFields=()=>[TASK_FIELDS,...taskOptional].join(',');
-const NOTE_FIELDS='id,task_id,client_id,author_name,is_admin,body,created_at';
+const NOTE_FIELDS='id,task_id,client_id,author_id,author_name,is_admin,body,created_at';
+let noteFilesReady=true;
 const MQ=window.matchMedia('(max-width: 700px)');
 let mobile=MQ.matches;
-const TASKS_ONLY=new URLSearchParams(location.search).get('mode')==='tasks';
-const PREF_KEY='signix-prefs-'+(TASKS_ONLY?'popup':'main');
+const MODE=new URLSearchParams(location.search).get('mode');
+const IP_ONLY=MODE==='inprogress';
+const TASKS_ONLY=MODE==='tasks'||IP_ONLY;
+const PREF_KEY='signix-prefs-'+(IP_ONLY?'ip':TASKS_ONLY?'popup':'main');
 
 let currentUser=null,role=null,myClientName='',myClientId=null,tasks=[],clients=[],logins=[],recoveryActive=false;
 let attachments=[],signedUrls={};
@@ -997,8 +1066,9 @@ let prefs=loadPrefs();
 const expandedMedia=new Set();
 let memberNames={};
 let notes=[],notesReady=false,search='',selectMode=false,lastVisible=[];
-let calFocus=null,calDay=null,calAnchor=null,addPick=null,addBiz=null;
-const selected=new Set(),expandedNotes=new Set(),expandedDone=new Set(),mOpen=new Set();
+let addPick=null,addBiz=null,notesTaskId=null;
+const CAL={adminBoard:{focus:null,day:null,anchor:null},clientBoard:{focus:null,day:null,anchor:null}};
+const selected=new Set(),expandedDone=new Set(),mOpen=new Set();
 const noteDrafts={};
 
 const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({
@@ -1022,8 +1092,9 @@ const adminView=()=>getPref('admin','view','status',ADMIN_VIEWS.map(v=>v[0]));
 const adminMobileLayout=()=>getPref('admin','mlayout','stack',MOBILE_LAYOUTS.map(v=>v[0]));
 const adminLayout=()=>mobile?'m-'+adminMobileLayout():getPref('admin','layout','comfortable',LAYOUTS.map(v=>v[0]));
 const clientView=()=>getPref('client','view','status',CLIENT_VIEWS.map(v=>v[0]));
-const clientLayout=()=>mobile?'m-stack':'board';
-const calMode=()=>getPref('admin','cal','month',CAL_MODES.map(v=>v[0]));
+const clientMobileLayout=()=>getPref('client','mlayout','stack',CLIENT_MOBILE_LAYOUTS.map(v=>v[0]));
+const clientLayout=()=>mobile?'m-'+clientMobileLayout():'board';
+const calMode=scope=>getPref(scope||'admin','cal','month',CAL_MODES.map(v=>v[0]));
 const quietDone=()=>getPref('admin','density','quiet',['quiet','full'])==='quiet';
 
 function buildChips(id,items,current,onPick){
@@ -1042,6 +1113,7 @@ function buildChips(id,items,current,onPick){
  });
 }
 function buildLayoutChips(){
+ buildChips('clientLayouts',CLIENT_MOBILE_LAYOUTS,clientMobileLayout(),v=>{setPref('client','mlayout',v);mOpen.clear();renderPortal();});
  if(mobile)buildChips('adminLayouts',MOBILE_LAYOUTS,adminMobileLayout(),v=>{setPref('admin','mlayout',v);mOpen.clear();renderAdmin();});
  else buildChips('adminLayouts',LAYOUTS,adminLayout(),v=>{setPref('admin','layout',v);renderAdmin();});
 }
@@ -1059,8 +1131,7 @@ function authMode(mode){
  show('auth',true);
  show('app',false);
  show('logout',false);
-
-  show('loginForm',mode==='login');
+ show('loginForm',mode==='login');
  show('forgotLink',mode==='login');
  show('requestForm',mode==='request');
  show('resetForm',mode==='reset');
@@ -1091,7 +1162,6 @@ function view(which){
  closeMenu();
  if(which==='client')renderPortal();
  else renderAdmin();
- updateFab();
 }
 
 $('adminBtn').onclick=()=>view('admin');
@@ -1102,8 +1172,10 @@ function clearState(){
  tasks=[];clients=[];logins=[];attachments=[];signedUrls={};brandUrls={};brandLoadedAt=0;openClientId=null;editingId=null;
  expandedMedia.clear();
  memberNames={};
- notes=[];notesReady=false;search='';selectMode=false;calFocus=null;calDay=null;addPick=null;addBiz=null;
- [selected,expandedNotes,expandedDone,mOpen].forEach(s=>s.clear());
+ notes=[];notesReady=false;search='';selectMode=false;addPick=null;addBiz=null;
+ for(const k in CAL)CAL[k]={focus:null,day:null,anchor:null};
+ [selected,expandedDone,mOpen].forEach(s=>s.clear());
+ closeNotes(true);closeWelcome();
  for(const k in noteDrafts)delete noteDrafts[k];
  animSettings={...ANIM_DEFAULTS};animReady=false;applyAnimations(animSettings);
  stopTimers();
@@ -1334,6 +1406,8 @@ function groupTasks(list,v,clientSide){
   }
   case 'deadline':
    return BUCKETS.map(([k,l])=>g('due-'+k,l,list.filter(t=>!isDone(t)&&dueBucket(t)===k).sort(byDue),{cls:'bucket-'+k+(k==='overdue'?' overdue-pin':'')})).filter(x=>x.items.length);
+  case 'inprogress':
+   return [g(statusClass('In progress'),'In progress',list.filter(t=>normStatus(t)==='In progress').sort(byDue),{cls:statusClass('In progress'),keep:true})];
   case 'archive':
    return [g('archive','Archived',list.slice().sort((a,b)=>String(b.archived_at||'').localeCompare(String(a.archived_at||''))),{cls:'st-completed'})];
   case 'waiting':
@@ -1387,8 +1461,11 @@ function tick(){
 /* ---------- Cards ---------- */
 function urlFor(path){const e=signedUrls[path];return e&&e.exp>Date.now()?e.url:null;}
 function mediaHtml(taskId){
- const list=attachments.filter(a=>String(a.task_id)===String(taskId));
+ const list=taskFiles(taskId);
  if(!list.length)return '';
+ return mediaListHtml(list);
+}
+function mediaListHtml(list){
  return `<div class="media">${list.map(a=>{
   const url=urlFor(a.path);
   if(!url)return `<small class="muted">${esc(a.kind)} file unavailable. Refresh the page.</small>`;
@@ -1400,6 +1477,7 @@ function mediaHtml(taskId){
 }
 
 const CLIP_ICON='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21.4 11.1l-9.2 9.2a6 6 0 0 1-8.5-8.5l9.2-9.2a4 4 0 0 1 5.7 5.7l-9.2 9.2a2 2 0 0 1-2.8-2.8l8.5-8.5"/></svg>';
+const PERSON_ICON_SM='<svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg>';
 const PERSON_ICON='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg>';
 const TRASH_ICON='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 6h18"/><path d="M8 6V4h8v2"/><path d="M19 6l-1 14H6L5 6"/><path d="M10 11v6M14 11v6"/></svg>';
 function plural(n,word){return `${n} ${word}${n===1?'':'s'}`;}
@@ -1419,13 +1497,30 @@ function notesFor(id){
  return notes.filter(n=>String(n.task_id)===String(id))
   .sort((a,b)=>String(b.created_at||'').localeCompare(String(a.created_at||''))||Number(b.id)-Number(a.id));
 }
-function notesHtml(t){
- const id=esc(t.id),list=notesFor(t.id);
- return `<div class="tc-notes">
-<form class="note-form" data-note-for="${id}"><textarea name="body" maxlength="2000" rows="2" placeholder="Add a note…" aria-label="Add a note">${esc(noteDrafts[String(t.id)]||'')}</textarea><button class="primary" type="submit">Add</button></form>
-<p class="notes-hint">Notes can't be edited or deleted. Each one is stamped with the name, date and time.</p>
-${list.length?`<ul class="note-list">${list.map(n=>`<li class="note${n.is_admin?' by-admin':''}"><div class="note-head"><strong>${esc(n.author_name||'')}</strong><time datetime="${esc(n.created_at)}">${esc(fmtStamp(n.created_at))}</time></div><div class="note-body">${esc(n.body)}</div></li>`).join('')}</ul>`:'<p class="muted" style="font-size:13px;margin:0">No notes yet.</p>'}
-</div>`;
+function notesListHtml(t){
+ const list=notesFor(t.id);
+ if(!list.length)return '<p class="muted" style="font-size:13px;margin:0">No notes yet. Be the first to add one.</p>';
+ return `<ul class="note-list">${list.map(n=>{
+  const files=attachments.filter(a=>String(a.note_id)===String(n.id));
+  return `<li class="note${n.is_admin?' by-admin':''}"><div class="note-head"><strong>${esc(n.author_name||'')}</strong><time datetime="${esc(n.created_at)}">${esc(fmtStamp(n.created_at))}</time></div>${n.body?`<div class="note-body">${esc(n.body)}</div>`:''}${files.length?mediaListHtml(files):''}</li>`;
+ }).join('')}</ul>`;
+}
+function taskFiles(id){return attachments.filter(a=>String(a.task_id)===String(id)&&a.note_id==null);}
+function personName(uid){
+ if(!uid)return '';
+ const l=logins.find(x=>x.user_id===uid);
+ return (l&&(l.display_name||l.email))||memberNames[uid]||'Team member';
+}
+function tagChip(t,o){
+ if(!taskOptional.includes('assigned_to'))return '';
+ const id=esc(t.id),uid=t.assigned_to||null;
+ if(o.admin){
+  const label=uid?personName(uid):'Everyone';
+  return `<button type="button" class="tag-chip tap${uid?'':' everyone'}" data-act="tag" data-id="${id}" aria-haspopup="menu" title="Who should look at this">${PERSON_ICON_SM}${esc(label)}</button>`;
+ }
+ if(!uid)return '';
+ const mine=currentUser&&uid===currentUser.id;
+ return `<span class="tag-chip${mine?' me':''}">${PERSON_ICON_SM}${mine?'For you':'For '+esc(personName(uid))}</span>`;
 }
 function miniCard(t){
  const c=clientById(t.client_id);
@@ -1437,7 +1532,7 @@ function taskCard(t,o){
  if(o.client&&String(editingId)===String(t.id)&&canEdit(t))return editCard(t);
  const key=String(t.id);
  if(o.admin&&!o.detail&&!selectMode&&quietDone()&&isDone(t)&&!t.archived_at&&!expandedDone.has(key))return miniCard(t);
- const files=attachments.filter(a=>String(a.task_id)===key);
+ const files=taskFiles(t.id);
  const n=files.length;
  const id=esc(t.id);
  const od=isOverdue(t);
@@ -1455,11 +1550,11 @@ function taskCard(t,o){
   corner=taskOptional.includes('archived_at')
    ?`<button type="button" class="tc-arch" data-act="archive" data-id="${id}" title="Archive task" aria-label="Archive task: ${esc(t.title||'Untitled')}">${ARCHIVE_ICON}</button>`
    :`<button type="button" class="tc-trash" data-act="delete" data-id="${id}" title="Delete task" aria-label="Delete task: ${esc(t.title||'Untitled')}">${TRASH_ICON}</button>`;
- }
+
+  }
  const editable=o.client&&canEdit(t);
  const nCount=notesFor(t.id).length;
- const notesOpen=expandedNotes.has(key);
- const notesBtn=notesReady?`<button type="button" class="notes-toggle${nCount?' has':''}" data-act="notes" data-id="${id}" aria-expanded="${notesOpen}">${NOTE_ICON}<span class="nt-label">Notes</span>${nCount?`<b>${nCount}</b>`:''}</button>`:'';
+ const notesBtn=notesReady?`<button type="button" class="notes-toggle${nCount?' has':''}" data-act="notes" data-id="${id}" aria-haspopup="dialog">${NOTE_ICON}<span class="nt-label">Notes</span>${nCount?`<b>${nCount}</b>`:''}</button>`:'';
  const foot=(n||notesBtn)?`<div class="tc-foot">${n?mediaToggle(t,files):''}${notesBtn}</div>`:'';
  const sel=o.admin&&selectMode&&!o.detail?`<label class="sel" title="Select"><input type="checkbox" data-sel="${id}"${selected.has(key)?' checked':''} aria-label="Select ${esc(t.title||'Untitled')}"></label>`:'';
  const cls=['tcard',priorityClass(pr),statusClass(st),od?'is-overdue':'',selected.has(key)&&selectMode?'selected':'',mOpen.has(key)?'m-open':''].filter(Boolean).join(' ');
@@ -1467,13 +1562,12 @@ function taskCard(t,o){
  ${sel}
  ${o.admin?bizHeader(t.client_id):''}
  <h4 class="tc-title" data-act="mopen" data-id="${id}">${esc(t.title||'Untitled')}</h4>
- <div class="tc-meta">${od?'<span class="od-flag">Overdue</span>':''}${statusEl}${prEl}${dueEl}${corner}</div>
+ <div class="tc-meta">${od?'<span class="od-flag">Overdue</span>':''}${statusEl}${prEl}${dueEl}${tagChip(t,o)}${corner}</div>
  ${t.created_by&&memberNames[t.created_by]?`<div class="tc-by">${PERSON_ICON}<span>Submitted by <strong>${esc(memberNames[t.created_by])}</strong></span></div>`:''}
  ${st==='In progress'?`<div class="work-bar" role="img" aria-label="Being worked on"${o.admin?` style="--bc:${bizColor(clientById(t.client_id))}"`:''}></div>`:''}
  ${t.description?`<p class="tc-desc">${esc(t.description)}</p>`:''}
  ${foot}
  ${n&&expandedMedia.has(key)?`<div class="tc-media">${mediaHtml(t.id)}</div>`:''}
- ${notesReady&&notesOpen?notesHtml(t):''}
  ${o.admin&&t.archived_at?`<div class="arch-actions"><button type="button" data-act="restore" data-id="${id}">Restore</button><button type="button" class="del-link" data-act="delete" data-id="${id}">Delete forever</button><span class="arch-note">Archived ${esc(fmtShort(t.archived_at))}</span></div>`:''}
  ${editable?`<div class="tc-edit"><button type="button" class="link-button" data-act="edit" data-id="${id}">Edit request</button><button type="button" class="link-button del-link" data-act="delete-own" data-id="${id}">Delete request</button><small class="muted" data-until="${editUntil(t)}"></small></div>`:''}
 </article>`;
@@ -1514,7 +1608,7 @@ function renderBoard(root,list,o){
  const saved=captureScroll(root);
  root.className='board layout-'+o.layout;
  let groups;
- if(o.admin&&!['deadline','archive'].includes(o.view)){
+ if(o.admin&&!['deadline','archive','inprogress'].includes(o.view)){
   const od=list.filter(isOverdue);
   groups=groupTasks(list.filter(t=>!isOverdue(t)),o.view,o.clientSide);
   if(od.length)groups.unshift({key:'overdue',label:'Overdue',items:od.sort(byDue),cls:'overdue-pin'});
@@ -1560,8 +1654,7 @@ function renderSnapshot(live){
 function renderAdmin(){
  if(role!=='admin')return;
  const live=tasks.filter(t=>!t.archived_at);
-
-  const open=live.filter(t=>!isDone(t));
+ const open=live.filter(t=>!isDone(t));
  const overdue=open.filter(isOverdue).length;
  $('openCount').textContent=open.length;
  $('requestCount').textContent=live.filter(t=>t.status==='Incoming').length;
@@ -1569,8 +1662,9 @@ function renderAdmin(){
  $('overdueStat').classList.toggle('alert',overdue>0);
  $('todayCount').textContent=open.filter(t=>t.due_date&&daysUntil(t.due_date)===0).length;
  renderSnapshot(live);
- const v=adminView();
- const list=adminList(v);
+ const v=IP_ONLY?'inprogress':adminView();
+ let list=adminList(v);
+ if(IP_ONLY)list=list.filter(t=>normStatus(t)==='In progress');
  lastVisible=list.map(t=>String(t.id));
  for(const k of [...selected])if(!tasks.some(t=>String(t.id)===k))selected.delete(k);
  const note=$('searchNote');
@@ -1583,12 +1677,12 @@ function renderAdmin(){
  updateBulkBar();
 }
 
-/* ---------- Calendar (admin) ---------- */
+/* ---------- Calendar (admin + client) ---------- */
 const DOW=['Mon','Tue','Wed','Thu','Fri','Sat','Sun'];
 function calSort(a,b){return (isOverdue(b)-isOverdue(a))||(PR_RANK[normPriority(a)]-PR_RANK[normPriority(b)])||Number(b.id)-Number(a.id);}
-function pillHtml(t,showBiz){
+function pillHtml(t,showBiz,st){
  const c=clientById(t.client_id),od=isOverdue(t);
- const cls=['pill',priorityClass(normPriority(t)),od?'od':'',isDone(t)?'done':'',String(calFocus)===String(t.id)?'focus':''].filter(Boolean).join(' ');
+ const cls=['pill',priorityClass(normPriority(t)),od?'od':'',isDone(t)?'done':'',String(st.focus)===String(t.id)?'focus':''].filter(Boolean).join(' ');
  return `<button type="button" class="${cls}" style="--biz:${bizColor(c)}" data-act="calpick" data-id="${esc(t.id)}" title="${esc((c?.Name||'')+' — '+(t.title||'Untitled')+(od?' (overdue)':''))}"><span class="pt">${od?'! ':''}${esc(t.title||'Untitled')}</span>${showBiz?`<span class="pb">${esc(c?.Name||'')}</span>`:''}</button>`;
 }
 function calBar(mode,title,nav){
@@ -1596,9 +1690,9 @@ function calBar(mode,title,nav){
  return `<div class="cal-bar"><div class="chips" role="group" aria-label="Calendar view">${modes}</div>
 <div class="cal-nav">${nav?'<button type="button" data-calnav="prev" aria-label="Previous">‹</button>':''}<span class="cal-title">${esc(title)}</span>${nav?'<button type="button" data-calnav="next" aria-label="Next">›</button><button type="button" data-calnav="today">Today</button>':''}</div></div>`;
 }
-function odStrip(list){
+function odStrip(list,st,showBiz){
  const od=list.filter(isOverdue).sort(byDue);
- return od.length?`<div class="cal-od"><h4>Overdue · ${od.length}</h4><div class="pills">${od.map(t=>pillHtml(t,true)).join('')}</div></div>`:'';
+ return od.length?`<div class="cal-od"><h4>Overdue · ${od.length}</h4><div class="pills">${od.map(t=>pillHtml(t,showBiz,st)).join('')}</div></div>`:'';
 }
 function byDayMap(list){
  const m={};
@@ -1606,56 +1700,57 @@ function byDayMap(list){
  for(const k in m)m[k].sort(calSort);
  return m;
 }
-function dayCell(ds,items,o2){
+function dayCell(ds,items,o2,st){
  const today=todayStr();
- const cls=['cal-day',o2.out?'out':'',ds<today?'past':'',ds===today?'today':'',items.some(isOverdue)?'has-od':'',calDay===ds?'picked':''].filter(Boolean).join(' ');
+ const cls=['cal-day',o2.out?'out':'',ds<today?'past':'',ds===today?'today':'',items.some(isOverdue)?'has-od':'',st.day===ds?'picked':''].filter(Boolean).join(' ');
  const max=o2.max||99,shown=items.slice(0,max);
  const label=o2.label||String(parseDay(ds).getDate());
- return `<div class="${cls}" data-calday="${ds}" role="button" tabindex="0" aria-label="${esc(fmtDay(ds))}: ${items.length} task${items.length===1?'':'s'}"><span class="cal-num">${esc(label)}</span><div class="cal-pills">${shown.map(t=>pillHtml(t,false)).join('')}</div>${items.length>max?`<span class="cal-more">+${items.length-max} more</span>`:''}</div>`;
+ return `<div class="${cls}" data-calday="${ds}" role="button" tabindex="0" aria-label="${esc(fmtDay(ds))}: ${items.length} task${items.length===1?'':'s'}"><span class="cal-num">${esc(label)}</span><div class="cal-pills">${shown.map(t=>pillHtml(t,false,st)).join('')}</div>${items.length>max?`<span class="cal-more">+${items.length-max} more</span>`:''}</div>`;
 }
-function calDetail(list,o){
- if(calFocus!=null){
-  const t=tasks.find(x=>String(x.id)===String(calFocus));
+function calDetail(list,o,st){
+ if(st.focus!=null){
+  const t=tasks.find(x=>String(x.id)===String(st.focus));
   if(t)return `<div class="cal-detail"><div class="cal-detail-head"><span>Task</span><button type="button" data-calclose="1">Close</button></div><div class="group-body">${taskCard(t,{...o,detail:true})}</div></div>`;
-  calFocus=null;
+  st.focus=null;
  }
- if(calDay){
-  const items=list.filter(t=>t.due_date===calDay).sort(calSort);
-  return `<div class="cal-detail"><div class="cal-detail-head"><span>Due ${esc(fmtDay(calDay))} · ${items.length} task${items.length===1?'':'s'}</span><button type="button" data-calclose="1">Close</button></div><div class="group-body">${items.length?items.map(t=>taskCard(t,{...o,detail:true})).join(''):'<p class="muted" style="margin:0">Nothing due this day.</p>'}</div></div>`;
+ if(st.day){
+  const items=list.filter(t=>t.due_date===st.day).sort(calSort);
+  return `<div class="cal-detail"><div class="cal-detail-head"><span>Due ${esc(fmtDay(st.day))} · ${items.length} task${items.length===1?'':'s'}</span><button type="button" data-calclose="1">Close</button></div><div class="group-body">${items.length?items.map(t=>taskCard(t,{...o,detail:true})).join(''):'<p class="muted" style="margin:0">Nothing due this day.</p>'}</div></div>`;
  }
  return '';
 }
 function renderCalendar(root,list,o){
  root.className='board';
- const mode=calMode(),today=todayStr();
- if(!calAnchor)calAnchor=today;
+ const st=CAL[root.id],sb2=!!o.admin;
+ const mode=calMode(o.admin?'admin':'client'),today=todayStr();
+ if(!st.anchor)st.anchor=today;
  const map=byDayMap(list);
  let body='',title='',nav=false;
  if(mode==='month'){
   nav=true;
-  const a=parseDay(calAnchor),first=dayStr(new Date(a.getFullYear(),a.getMonth(),1));
+  const a=parseDay(st.anchor),first=dayStr(new Date(a.getFullYear(),a.getMonth(),1));
   title=a.toLocaleDateString(undefined,{month:'long',year:'numeric'});
   const start=mondayOf(first),month=a.getMonth();
   const dim=new Date(a.getFullYear(),month+1,0).getDate();
   const weeks=Math.ceil((((parseDay(first).getDay()+6)%7)+dim)/7);
   let cells='';
-  for(let i=0;i<weeks*7;i++){const ds=addDays(start,i);cells+=dayCell(ds,map[ds]||[],{out:parseDay(ds).getMonth()!==month,max:4});}
-  body=odStrip(list)+`<div class="cal-month">${DOW.map(d=>`<div class="cal-dow">${d}</div>`).join('')}${cells}</div>`;
+  for(let i=0;i<weeks*7;i++){const ds=addDays(start,i);cells+=dayCell(ds,map[ds]||[],{out:parseDay(ds).getMonth()!==month,max:4},st);}
+  body=odStrip(list,st,sb2)+`<div class="cal-month">${DOW.map(d=>`<div class="cal-dow">${d}</div>`).join('')}${cells}</div>`;
  }else if(mode==='week'){
   nav=true;
-  const start=mondayOf(calAnchor),end=addDays(start,6);
+  const start=mondayOf(st.anchor),end=addDays(start,6);
   title=`${parseDay(start).toLocaleDateString(undefined,{month:'short',day:'numeric'})} – ${parseDay(end).toLocaleDateString(undefined,{month:'short',day:'numeric',year:'numeric'})}`;
   let cells='';
-  for(let i=0;i<7;i++){const ds=addDays(start,i);cells+=dayCell(ds,map[ds]||[],{label:parseDay(ds).toLocaleDateString(undefined,{weekday:'short',day:'numeric'})});}
-  body=odStrip(list)+`<div class="cal-week">${DOW.map(d=>`<div class="cal-dow">${d}</div>`).join('')}${cells}</div>`;
+  for(let i=0;i<7;i++){const ds=addDays(start,i);cells+=dayCell(ds,map[ds]||[],{label:parseDay(ds).toLocaleDateString(undefined,{weekday:'short',day:'numeric'})},st);}
+  body=odStrip(list,st,sb2)+`<div class="cal-week">${DOW.map(d=>`<div class="cal-dow">${d}</div>`).join('')}${cells}</div>`;
  }else if(mode==='agenda'){
   title='Coming up';
   const open=list.filter(t=>!isDone(t));
   const od=open.filter(isOverdue).sort(byDue);
   const days=[...new Set(open.filter(t=>t.due_date&&t.due_date>=today).map(t=>t.due_date))].sort();
   const nodate=open.filter(t=>!t.due_date).sort(calSort);
-  const dayBlock=(ds,items,extra)=>{const d=parseDay(ds);return `<div class="ag-day ${extra||''}"><div class="ag-date${ds===today?' today':''}"><small>${esc(d.toLocaleDateString(undefined,{weekday:'short'}))}</small><b>${d.getDate()}</b><small>${esc(d.toLocaleDateString(undefined,{month:'short'}))}</small></div><div class="ag-list"><p class="ag-head">${ds===today?'Today':daysUntil(ds)===1?'Tomorrow':esc(fmtDay(ds))}</p>${items.map(t=>pillHtml(t,true)).join('')}</div></div>`;};
-  body=`<div class="cal-agenda">${od.length?`<div class="ag-day ag-od"><div class="ag-date"><small>Past</small><b>${od.length}</b><small>due</small></div><div class="ag-list"><p class="ag-head" style="color:#fecaca;font-weight:700">OVERDUE</p>${od.map(t=>pillHtml(t,true)).join('')}</div></div>`:''}${days.map(ds=>dayBlock(ds,map[ds].filter(t=>!isDone(t)))).join('')}${!od.length&&!days.length?'<p class="muted">No upcoming due dates.</p>':''}${nodate.length?`<div class="cal-nodate">No due date · ${nodate.length}<div class="pills">${nodate.map(t=>pillHtml(t,true)).join('')}</div></div>`:''}</div>`;
+  const dayBlock=(ds,items,extra)=>{const d=parseDay(ds);return `<div class="ag-day ${extra||''}"><div class="ag-date${ds===today?' today':''}"><small>${esc(d.toLocaleDateString(undefined,{weekday:'short'}))}</small><b>${d.getDate()}</b><small>${esc(d.toLocaleDateString(undefined,{month:'short'}))}</small></div><div class="ag-list"><p class="ag-head">${ds===today?'Today':daysUntil(ds)===1?'Tomorrow':esc(fmtDay(ds))}</p>${items.map(t=>pillHtml(t,sb2,st)).join('')}</div></div>`;};
+  body=`<div class="cal-agenda">${od.length?`<div class="ag-day ag-od"><div class="ag-date"><small>Past</small><b>${od.length}</b><small>due</small></div><div class="ag-list"><p class="ag-head" style="color:#fecaca;font-weight:700">OVERDUE</p>${od.map(t=>pillHtml(t,sb2,st)).join('')}</div></div>`:''}${days.map(ds=>dayBlock(ds,map[ds].filter(t=>!isDone(t)))).join('')}${!od.length&&!days.length?'<p class="muted">No upcoming due dates.</p>':''}${nodate.length?`<div class="cal-nodate">No due date · ${nodate.length}<div class="pills">${nodate.map(t=>pillHtml(t,sb2,st)).join('')}</div></div>`:''}</div>`;
  }else{
   title='Next 6 weeks';
   const open=list.filter(t=>!isDone(t));
@@ -1664,19 +1759,20 @@ function renderCalendar(root,list,o){
   for(let i=0;i<span;i++){
    const ds=addDays(today,i),items=(map[ds]||[]).filter(t=>!isDone(t)),d=parseDay(ds);
    const label=i===0?'Today':i===1?'Tomorrow':d.toLocaleDateString(undefined,{weekday:'short',month:'short',day:'numeric'});
-   rows+=`<div class="tl-day${items.length?' has':''}${i===0?' today':''}${i>0&&d.getDay()===1?' wk':''}"><span class="tl-label">${esc(label)}</span><div class="tl-items">${items.map(t=>pillHtml(t,true)).join('')}</div></div>`;
+   rows+=`<div class="tl-day${items.length?' has':''}${i===0?' today':''}${i>0&&d.getDay()===1?' wk':''}"><span class="tl-label">${esc(label)}</span><div class="tl-items">${items.map(t=>pillHtml(t,sb2,st)).join('')}</div></div>`;
   }
   const later=open.filter(t=>t.due_date&&t.due_date>last).sort(byDue);
-  if(later.length)rows+=`<div class="tl-day has wk"><span class="tl-label">Later</span><div class="tl-items">${later.map(t=>pillHtml(t,true)).join('')}</div></div>`;
-  body=odStrip(open)+`<div class="cal-timeline">${rows}</div>`;
+  if(later.length)rows+=`<div class="tl-day has wk"><span class="tl-label">Later</span><div class="tl-items">${later.map(t=>pillHtml(t,sb2,st)).join('')}</div></div>`;
+  body=odStrip(open,st,sb2)+`<div class="cal-timeline">${rows}</div>`;
  }
- const detail=calDetail(list,o);
+ const detail=calDetail(list,o,st);
  root.innerHTML=`<div class="cal${detail&&!mobile?' has-detail':''}">${calBar(mode,title,nav)}<div class="cal-main" style="display:grid;gap:10px;min-width:0">${body}</div>${detail}</div>`;
 }
 
 function render(){
  renderAdmin();
  renderPortal();
+ renderNotesModal();
 }
 
 function jumpTo(v,groupKey){
@@ -1731,13 +1827,13 @@ function renderPortal(){
    ?`This is exactly what ${clientName(id)} sees when they sign in.`
    :'Select a client to preview what they see when they sign in.';
   c=id?clients.find(x=>String(x.id)===id):null;
-  list=id?tasks.filter(t=>String(t.client_id)===id):[];
+  list=id?tasks.filter(t=>String(t.client_id)===id&&!t.archived_at):[];
  }else if(role==='client'){
   show('previewWrap',false);
   $('portalTitle').textContent=myClientName||'Your projects';
   $('portalIntro').textContent='Track the status of your work with Signix Digital. This page refreshes every minute.';
   c=clients.find(x=>String(x.id)===String(myClientId));
-  list=tasks;
+  list=tasks.filter(t=>!t.archived_at);
   $('requestDue').min=todayStr();
  }else return;
  applyBranding(c);
@@ -1746,7 +1842,9 @@ function renderPortal(){
  $('portalDone').textContent=list.filter(isDone).length;
  const board=$('clientBoard');
  if(role==='admin'&&!c){board.className='board';board.innerHTML='<p class="muted empty">Select a client above to preview their portal.</p>';return;}
- renderBoard(board,list,{admin:false,client:role==='client',clientSide:true,view:clientView(),layout:clientLayout()});
+ const co={admin:false,client:role==='client',clientSide:true,view:clientView(),layout:clientLayout()};
+ if(co.view==='calendar')renderCalendar(board,list,co);
+ else renderBoard(board,list,co);
  updateCountdowns();
 }
 function portalJump(groupKey){
@@ -1787,6 +1885,11 @@ function statusMenu(t){
 function priorityMenu(t){
  return `<div class="menu-title">Change priority</div>${PRIORITIES.map(p=>`<button type="button" role="menuitem" class="menu-item${p===normPriority(t)?' current':''}" data-pick="priority" data-value="${esc(p)}"><span class="badge ${priorityClass(p)}">${esc(p)} priority</span></button>`).join('')}`;
 }
+function tagMenu(t){
+ const people=logins.filter(l=>String(l.client_id)===String(t.client_id));
+ const cur=t.assigned_to||'';
+ return `<div class="menu-title">Who should look at this?</div><button type="button" role="menuitem" class="menu-item${cur?'':' current'}" data-pick="tag" data-value="">Everyone at ${esc(clientName(t.client_id))}</button>${people.map(p=>`<button type="button" role="menuitem" class="menu-item${p.user_id===cur?' current':''}" data-pick="tag" data-value="${esc(p.user_id)}">${esc(p.display_name||p.email)}${p.display_name?'':' <small class="muted">(no name yet)</small>'}</button>`).join('')}${people.length?'':'<p class="muted" style="font-size:12px;padding:4px 8px;margin:0">No logins linked to this business yet. Link one under Client Logins.</p>'}`;
+}
 function dueMenu(t){
  return `<form class="menu-due" data-pick-form="due"><div class="menu-title">${t?'Due date':'Due date for selected'}</div><input type="date" name="due" value="${esc(t?.due_date||'')}" aria-label="Due date"><div class="row"><button class="primary" type="submit">Save</button>${!t||t.due_date?'<button type="button" data-pick="due" data-value="">Clear date</button>':''}</div></form>`;
 }
@@ -1818,10 +1921,11 @@ async function applyChange(id,field,value){
  if(!isAdmin())return;
  const t=tasks.find(x=>String(x.id)===String(id));
  if(!t)return;
- const col={status:'status',priority:'priority',due:'due_date'}[field];
+ const col={status:'status',priority:'priority',due:'due_date',tag:'assigned_to'}[field];
  if(!col)return;
  if(field==='status'&&!STATUSES.includes(value))return;
  if(field==='priority'&&!PRIORITIES.includes(value))return;
+ if(field==='tag'&&value&&!logins.some(l=>l.user_id===value&&String(l.client_id)===String(t.client_id)))return;
  if((t[col]??null)===(value??null))return;
  notice('Saving…');
  try{
@@ -1830,13 +1934,14 @@ async function applyChange(id,field,value){
   if(!data?.length){notice('Change not saved: no row returned. Check UPDATE and SELECT permissions.');return;}
   Object.assign(t,data[0]);
   render();
-  notice(field==='status'?`"${t.title}" moved to ${t.status}.`:field==='priority'?`"${t.title}" set to ${t.priority} priority.`:t.due_date?`"${t.title}" is now due ${fmtDay(t.due_date)}.`:`Due date cleared for "${t.title}".`);
+  notice(field==='tag'?(t.assigned_to?`"${t.title}" is now tagged for ${personName(t.assigned_to)}.`:`"${t.title}" is now for everyone at ${clientName(t.client_id)}.`):field==='status'?`"${t.title}" moved to ${t.status}.`:field==='priority'?`"${t.title}" set to ${t.priority} priority.`:t.due_date?`"${t.title}" is now due ${fmtDay(t.due_date)}.`:`Due date cleared for "${t.title}".`);
  }catch(err){displayError('Change was not saved',err);}
 }
 
 /* ---------- Archive (reversible) ---------- */
 async function setArchived(t,on,button){
  if(!isAdmin()||!t)return;
+ if(on&&!confirm(`Archive "${t.title||'Untitled'}"?\n\nIt disappears from the client's portal. You can restore it any time from View → Archive.`))return;
  if(button)button.disabled=true;
  notice(on?'Archiving…':'Restoring…');
  try{
@@ -1844,7 +1949,7 @@ async function setArchived(t,on,button){
   if(error){displayError(on?'Task was not archived':'Task was not restored',error);if(button)button.disabled=false;return;}
   if(!data?.length){notice('Not saved: no row returned.');if(button)button.disabled=false;return;}
   Object.assign(t,data[0]);
-  if(String(calFocus)===String(t.id))calFocus=null;
+  if(String(CAL.adminBoard.focus)===String(t.id))CAL.adminBoard.focus=null;
   render();
   notice(on?`"${t.title}" archived. Find it under View → Archive to restore it.`:`"${t.title}" restored.`);
  }catch(err){displayError('Not saved',err);if(button)button.disabled=false;}
@@ -1861,8 +1966,7 @@ function updateBulkBar(){
  const arch=$('bulkBar').querySelector('[data-bulk="archive"]');
  arch.classList.toggle('hidden',!taskOptional.includes('archived_at')||adminView()==='archive');
 }
-
- function setSelectMode(on){
+function setSelectMode(on){
  selectMode=on;
  if(!on)selected.clear();
  closeMenu();
@@ -1896,10 +2000,11 @@ $('bulkBar').addEventListener('click',e=>{
  e.stopPropagation();
  const act=b.dataset.bulk;
  if(act==='done'){setSelectMode(false);return;}
- if(act==='all'){lastVisible.forEach(k=>selected.add(k));renderAdmin();return;}
+
+  if(act==='all'){lastVisible.forEach(k=>selected.add(k));renderAdmin();return;}
  if(act==='archive'){
   if(!selected.size)return;
-  if(confirm(`Archive ${selected.size} selected task${selected.size===1?'':'s'}? You can restore them any time from View → Archive.`))bulkApply('archive',new Date().toISOString());
+  if(confirm(`Archive ${selected.size} selected task${selected.size===1?'':'s'}?\n\nThey disappear from the client portal. You can restore them any time from View → Archive.`))bulkApply('archive',new Date().toISOString());
   return;
  }
  if(menuCtx&&menuCtx.anchor===b){closeMenu();return;}
@@ -1964,21 +2069,22 @@ function rerenderFor(root){if(root===$('adminBoard'))renderAdmin();else renderPo
 function onBoardClick(e){
  const root=e.currentTarget;
  const b=e.target.closest('[data-act]');
+ const st=CAL[root.id],scope=root===$('adminBoard')?'admin':'client';
  if(!b){
-  if(root!==$('adminBoard')||!isAdmin())return;
+  if(!st)return;
   const m=e.target.closest('[data-cal]');
-  if(m){setPref('admin','cal',m.dataset.cal);calDay=null;renderAdmin();return;}
+  if(m){setPref(scope,'cal',m.dataset.cal);st.day=null;rerenderFor(root);return;}
   const nav=e.target.closest('[data-calnav]');
   if(nav){
-   const mode=calMode(),dir=nav.dataset.calnav;
-   if(dir==='today')calAnchor=todayStr();
-   else if(mode==='week')calAnchor=addDays(calAnchor||todayStr(),dir==='next'?7:-7);
-   else{const a=parseDay(calAnchor||todayStr());calAnchor=dayStr(new Date(a.getFullYear(),a.getMonth()+(dir==='next'?1:-1),1));}
-   renderAdmin();return;
+   const mode=calMode(scope),dir=nav.dataset.calnav;
+   if(dir==='today')st.anchor=todayStr();
+   else if(mode==='week')st.anchor=addDays(st.anchor||todayStr(),dir==='next'?7:-7);
+   else{const a=parseDay(st.anchor||todayStr());st.anchor=dayStr(new Date(a.getFullYear(),a.getMonth()+(dir==='next'?1:-1),1));}
+   rerenderFor(root);return;
   }
-  if(e.target.closest('[data-calclose]')){calFocus=null;calDay=null;renderAdmin();return;}
+  if(e.target.closest('[data-calclose]')){st.focus=null;st.day=null;rerenderFor(root);return;}
   const day=e.target.closest('[data-calday]');
-  if(day){calFocus=null;calDay=calDay===day.dataset.calday?null:day.dataset.calday;renderAdmin();if(calDay&&mobile)root.querySelector('.cal-detail')?.scrollIntoView({behavior:'smooth',block:'start'});return;}
+  if(day){st.focus=null;st.day=st.day===day.dataset.calday?null:day.dataset.calday;rerenderFor(root);if(st.day&&mobile)root.querySelector('.cal-detail')?.scrollIntoView({behavior:'smooth',block:'start'});return;}
   return;
  }
  const act=b.dataset.act,id=b.dataset.id;
@@ -1989,17 +2095,12 @@ function onBoardClick(e){
   if(mOpen.has(key))mOpen.delete(key);else mOpen.add(key);
   rerenderFor(root);return;
  }
- if(act==='notes'){
-  if(expandedNotes.has(key))expandedNotes.delete(key);else expandedNotes.add(key);
-  rerenderFor(root);
-  if(expandedNotes.has(key))root.querySelector(`form[data-note-for="${CSS.escape(key)}"] textarea`)?.focus();
-  return;
- }
+ if(act==='notes'){if(t)openNotes(t.id);return;}
  if(act==='expand-done'){expandedDone.add(key);rerenderFor(root);return;}
  if(act==='calpick'){
-  calDay=null;calFocus=String(calFocus)===key?null:key;
-  renderAdmin();
-  if(calFocus&&mobile)root.querySelector('.cal-detail')?.scrollIntoView({behavior:'smooth',block:'start'});
+  st.day=null;st.focus=String(st.focus)===key?null:key;
+  rerenderFor(root);
+  if(st.focus&&mobile)root.querySelector('.cal-detail')?.scrollIntoView({behavior:'smooth',block:'start'});
   return;
  }
  if(act==='edit'){
@@ -2026,6 +2127,7 @@ function onBoardClick(e){
  if(act==='status')openMenu(b,statusMenu(t),{taskId:t.id});
  else if(act==='priority')openMenu(b,priorityMenu(t),{taskId:t.id});
  else if(act==='due')openMenu(b,dueMenu(t),{taskId:t.id});
+ else if(act==='tag')openMenu(b,tagMenu(t),{taskId:t.id});
 }
 function onBoardKey(e){
  if((e.key==='Enter'||e.key===' ')&&e.target.matches?.('[data-act="expand-done"],[data-calday]')){e.preventDefault();e.target.click();}
@@ -2033,14 +2135,6 @@ function onBoardKey(e){
 ['adminBoard','clientBoard'].forEach(id=>{
  $(id).addEventListener('click',onBoardClick);
  $(id).addEventListener('keydown',onBoardKey);
- $(id).addEventListener('input',e=>{
-  const f=e.target.closest?.('form[data-note-for]');
-  if(f)noteDrafts[f.dataset.noteFor]=e.target.value;
- });
- $(id).addEventListener('submit',e=>{
-  const f=e.target.closest('form[data-note-for]');
-  if(f){e.preventDefault();addNote(f);}
- });
 });
 $('adminBoard').addEventListener('change',e=>{
  const box=e.target.closest?.('input[data-sel]');
@@ -2051,31 +2145,127 @@ $('adminBoard').addEventListener('change',e=>{
  updateBulkBar();
 });
 
-/* ---------- Notes (add-only thread on every task) ---------- */
-async function addNote(form){
- const taskId=form.dataset.noteFor;
- const t=tasks.find(x=>String(x.id)===taskId);
- const body=String(new FormData(form).get('body')||'').trim();
- if(!t){notice('That task is no longer available.');return;}
- if(!body){notice('Write something before adding a note.');return;}
- if(body.length>2000){notice('Notes can be up to 2000 characters.');return;}
- const button=form.querySelector('button[type="submit"]');button.disabled=true;
+/* ---------- Notes (add-only thread, opens in a pop-up) ---------- */
+function noteSay(s){$('noteStatus').textContent=s;}
+function openNotes(id){
+ const t=tasks.find(x=>String(x.id)===String(id));
+ if(!t)return;
+ if(notesTaskId!=null&&String(notesTaskId)!==String(t.id)&&!closeNotes())return;
+ closeMenu();
+ notesTaskId=t.id;
+ $('noteText').value=noteDrafts[String(t.id)]||'';
+ noteSay('');
+ $('noteFiles').classList.toggle('hidden',!noteFilesReady);
+ renderNotesModal();
+ show('notesModal',true);
+ document.body.style.overflow='hidden';
+ if(!mobile)$('noteText').focus();
+}
+function renderNotesModal(){
+ if(notesTaskId==null)return;
+ const t=tasks.find(x=>String(x.id)===String(notesTaskId));
+ if(!t||(role==='client'&&t.archived_at)){closeNotes(true);return;}
+ $('notesTitle').textContent=`Notes · ${t.title||'Untitled'}`;
+ $('notesLogo').innerHTML=role==='admin'?bizLogo(clientById(t.client_id)):'';
+ $('notesList').innerHTML=notesListHtml(t);
+}
+function closeNotes(force){
+ if(notesTaskId==null)return true;
+ if(!force&&(noteFiles.pending.length||noteFiles.recorder)&&!confirm('Discard the files you attached to this note?'))return false;
+ noteFiles.stop(true);noteFiles.clear();
+ notesTaskId=null;
+ show('notesModal',false);
+ if($('welcomeModal').classList.contains('hidden'))document.body.style.overflow='';
+ return true;
+}
+$('notesClose').onclick=()=>closeNotes();
+$('notesModal').addEventListener('click',e=>{if(e.target===e.currentTarget)closeNotes();});
+$('noteText').addEventListener('input',e=>{if(notesTaskId!=null)noteDrafts[String(notesTaskId)]=e.target.value;});
+$('noteForm').onsubmit=async e=>{
+ e.preventDefault();
+ const t=tasks.find(x=>String(x.id)===String(notesTaskId));
+ if(!t){noteSay('That task is no longer available.');return;}
+ if(noteFiles.recorder&&noteFiles.recorder.state==='recording'){noteSay('Stop the voice recording first.');return;}
+ const body=$('noteText').value.trim();
+ const nFiles=noteFilesReady?noteFiles.pending.length:0;
+ if(!body&&!nFiles){noteSay('Write a note or attach a file.');return;}
+ if(body.length>2000){noteSay('Notes can be up to 2000 characters.');return;}
+ const button=$('noteSendBtn');button.disabled=true;
+ noteSay('Saving note…');
  try{
   const {data,error}=await sb.from('task_notes').insert({task_id:t.id,body}).select(NOTE_FIELDS).single();
-  if(error){displayError('Note was not added',error);return;}
+  if(error){noteSay('Note was not added: '+(error.message||'unknown error'));return;}
   if(data)notes.push(data);
-  delete noteDrafts[taskId];
+  let failed=[];
+  if(nFiles&&data)failed=await uploadPending(noteFiles,t.client_id,t.id,'Note saved.',data.id,noteSay);
+  delete noteDrafts[String(t.id)];
+  $('noteText').value='';
+  noteFiles.clear();
+  if(nFiles)await loadAttachments();
   render();
-  notice('Note added.');
- }catch(err){displayError('Note was not added',err);}
+  noteSay(failed.length?`Note saved, but ${failed.length} file(s) did not upload:\n${failed.join('\n')}`:'Note added.');
+ }catch(err){noteSay('Note was not added: '+(err.message||'unknown error'));}
  finally{button.disabled=false;}
-}
+};
 async function loadNotes(){
  const {data,error}=await sb.from('task_notes').select(NOTE_FIELDS).order('created_at',{ascending:false});
  if(error){notes=[];notesReady=false;return false;}
  notes=data||[];notesReady=true;return true;
 }
-function noteFocused(){return !!document.activeElement?.closest?.('.note-form');}
+
+/* ---------- Client welcome-back pop-up ---------- */
+function lastVisitKey(){return 'signix-lastvisit-'+(currentUser?.id||'x');}
+function saveLastVisit(){try{localStorage.setItem(lastVisitKey(),new Date().toISOString());}catch(e){}}
+function closeWelcome(){
+ show('welcomeModal',false);
+ if(notesTaskId==null)document.body.style.overflow='';
+}
+function showWelcome(){
+ if(role!=='client'||!currentUser)return;
+ let last=null;
+ try{last=localStorage.getItem(lastVisitKey());}catch(e){}
+ const since=last?Date.parse(last):NaN;
+ saveLastVisit();
+ const me=currentUser.id;
+ const vis=tasks.filter(t=>!t.archived_at&&(!t.assigned_to||t.assigned_to===me));
+ const after=s=>!isNaN(since)&&Date.parse(s)>since;
+ const done=vis.filter(t=>isDone(t)&&t.completed_at&&after(t.completed_at)).sort(byCompleted);
+ const fresh=notes.filter(n=>n.author_id!==me&&after(n.created_at)&&vis.some(t=>String(t.id)===String(n.task_id)))
+  .sort((a,b)=>Date.parse(b.created_at)-Date.parse(a.created_at));
+ const input=vis.filter(t=>t.status==='Waiting on client').sort(byDue);
+ if(!done.length&&!fresh.length&&!input.length)return;
+ const title=id=>tasks.find(t=>String(t.id)===String(id))?.title||'a task';
+ const sec=(cls,head,items,line,kind)=>items.length?`<div class="wb-sec ${cls}"><h4>${head}</h4>${items.slice(0,3).map(x=>`<button type="button" class="wb-line" data-wb="${kind}" data-id="${esc(kind==='note'?x.task_id:x.id)}">${line(x)}</button>`).join('')}${items.length>3?`<p class="wb-more">and ${items.length-3} more</p>`:''}</div>`:'';
+ $('welcomeBody').innerHTML=
+  sec('input',`Needs your input · ${input.length}`,input,t=>`⚠ ${esc(t.title||'Untitled')}${t.due_date?` <small class="muted">· ${esc(dueInfo(t)?.label||'')}</small>`:''}`,'task')+
+  sec('notes',`New notes · ${fresh.length}`,fresh,n=>`💬 <strong>${esc(n.author_name||'Someone')}</strong> added a note to “${esc(title(n.task_id))}”`,'note')+
+  sec('done',`Completed since your last visit · ${done.length}`,done,t=>`✓ ${esc(t.title||'Untitled')}`,'task');
+ show('welcomeModal',true);
+ document.body.style.overflow='hidden';
+}
+$('welcomeClose').onclick=closeWelcome;
+$('welcomeModal').addEventListener('click',e=>{
+ if(e.target===e.currentTarget){closeWelcome();return;}
+ const b=e.target.closest('[data-wb]');
+ if(!b)return;
+ closeWelcome();
+ if(b.dataset.wb==='note'){openNotes(b.dataset.id);return;}
+ jumpToTask(b.dataset.id);
+});
+function jumpToTask(id){
+ const board=role==='admin'?$('adminBoard'):$('clientBoard');
+ let card=board.querySelector(`.tcard[data-id="${CSS.escape(String(id))}"]`);
+ if(!card&&role==='client'){setPref('client','view','status');setChip('clientViews','status');renderPortal();card=board.querySelector(`.tcard[data-id="${CSS.escape(String(id))}"]`);}
+ if(!card)return;
+ card.scrollIntoView({behavior:'smooth',block:'center'});
+ card.classList.add('flash');setTimeout(()=>card.classList.remove('flash'),2000);
+}
+document.addEventListener('keydown',e=>{
+ if(e.key!=='Escape'||menuCtx)return;
+ if(!$('welcomeModal').classList.contains('hidden'))closeWelcome();
+ else if(notesTaskId!=null)closeNotes();
+});
+document.addEventListener('visibilitychange',()=>{if(document.hidden&&role==='client')saveLastVisit();});
 
 $('clientBoard').addEventListener('submit',async e=>{
  const form=e.target.closest('form[data-edit-id]');
@@ -2105,7 +2295,7 @@ $('clientBoard').addEventListener('submit',async e=>{
 
 /* ---------- Toolbars ---------- */
 applyMobile();
-buildChips('adminViews',ADMIN_VIEWS,adminView(),v=>{setPref('admin','view',v);calFocus=null;calDay=null;if(v==='archive'&&selectMode)selected.clear();renderAdmin();});
+buildChips('adminViews',ADMIN_VIEWS,adminView(),v=>{setPref('admin','view',v);CAL.adminBoard.focus=null;CAL.adminBoard.day=null;if(v==='archive'&&selectMode)selected.clear();renderAdmin();});
 buildLayoutChips();
 buildChips('clientViews',CLIENT_VIEWS,clientView(),v=>{setPref('client','view',v);renderPortal();});
 MQ.addEventListener('change',()=>{applyMobile();buildLayoutChips();mOpen.clear();render();});
@@ -2130,6 +2320,10 @@ function setDensityBtn(){
 }
 setDensityBtn();
 $('densityBtn').onclick=()=>{setPref('admin','density',quietDone()?'full':'quiet');expandedDone.clear();setDensityBtn();renderAdmin();};
+$('ipOutBtn').onclick=()=>{
+ const w=window.open(location.pathname+'?mode=inprogress','signix-in-progress','popup=yes,width=1100,height=900');
+ if(!w)notice('Your browser blocked the new window. Allow pop-ups for this site and try again.');
+};
 $('popOutBtn').onclick=()=>{
  const w=window.open(location.pathname+'?mode=tasks','signix-all-tasks','popup=yes,width=1400,height=900');
  if(!w)notice('Your browser blocked the new window. Allow pop-ups for this site and try again.');
@@ -2159,9 +2353,10 @@ async function loadTasks(){
 }
 
 async function loadAttachments(){
- const {data,error}=await sb.from('task_attachments')
-  .select('id,task_id,client_id,path,kind,mime_type,size_bytes')
+ let {data,error}=await sb.from('task_attachments')
+  .select('id,task_id,client_id,path,kind,mime_type,size_bytes'+(noteFilesReady?',note_id':''))
   .order('id',{ascending:true});
+ if(error&&noteFilesReady&&/note_id/.test(error.message||'')){noteFilesReady=false;return loadAttachments();}
  if(error){attachments=[];displayError('Unable to load attachments',error);return false;}
  attachments=data||[];
  const soon=Date.now()+5*60000;
@@ -2228,9 +2423,9 @@ async function loadLogins(){
 /* ---------- Animation settings (admin controls, applied everywhere) ---------- */
 const ANIM_KEYS=[['high_pulse','no-anim-high'],['work_bar','no-bar'],['ip_column','no-anim-col'],['media_pulse','no-anim-media'],['request_pulse','no-anim-req']];
 const SPEEDS={slow:1.5,normal:1,fast:0.7};
-const ANIM_DEFAULTS={high_pulse:true,work_bar:true,ip_column:true,media_pulse:true,request_pulse:true,speed:'normal',ip_style:'glide',bar_color:null,header_anim:false,header_style:'arrows',fab_button:true};
+const ANIM_DEFAULTS={high_pulse:true,work_bar:true,ip_column:true,media_pulse:true,request_pulse:true,speed:'normal',ip_style:'glide',bar_color:null,header_anim:false,header_style:'arrows'};
 const ANIM_COLS_V1='high_pulse,work_bar,ip_column,media_pulse,request_pulse,speed';
-const ANIM_V2_KEYS=['ip_style','bar_color','header_anim','header_style','fab_button'];
+const ANIM_V2_KEYS=['ip_style','bar_color','header_anim','header_style'];
 const ANIM_COLS=ANIM_COLS_V1+','+ANIM_V2_KEYS.join(',');
 let animSettings={...ANIM_DEFAULTS},animReady=false,animV2=false;
 function cleanAnim(row){
@@ -2242,7 +2437,6 @@ function cleanAnim(row){
   out.bar_color=validHex(row.bar_color)?row.bar_color:null;
   if(typeof row.header_anim==='boolean')out.header_anim=row.header_anim;
   if(HEAD_STYLES.some(s=>s[0]===row.header_style))out.header_style=row.header_style;
-  if(typeof row.fab_button==='boolean')out.fab_button=row.fab_button;
  }
  return out;
 }
@@ -2255,7 +2449,6 @@ function applyAnimations(a){
  b.classList.toggle('head-on',!!a.header_anim);
  if(validHex(a.bar_color))b.style.setProperty('--bar-color',a.bar_color);
  else b.style.removeProperty('--bar-color');
- updateFab(a);
 }
 function readAnimForm(){
  const f=$('animForm').elements;
@@ -2265,7 +2458,6 @@ function readAnimForm(){
  next.bar_color=f.bar_biz.checked?null:(validHex(f.bar_color.value)?f.bar_color.value.toLowerCase():null);
  next.header_anim=f.header_anim.checked;
  next.header_style=HEAD_STYLES.some(s=>s[0]===f.header_style.value)?f.header_style.value:'arrows';
- next.fab_button=f.fab_button.checked;
  return next;
 }
 function syncColorRow(){
@@ -2283,7 +2475,6 @@ function fillAnimForm(){
  if(animSettings.bar_color)f.bar_color.value=animSettings.bar_color;
  f.header_anim.checked=!!animSettings.header_anim;
  f.header_style.value=animSettings.header_style;
- f.fab_button.checked=!!animSettings.fab_button;
  syncColorRow();
 }
 function renderAnimPreview(){
@@ -2303,7 +2494,7 @@ async function loadAnimations(){
  if(role==='admin'){
   fillAnimForm();
   $('animStatus').textContent=error?'Animation settings table not found. Run the latest SQL step in Supabase, then refresh.'
-   :animV2?'':'Bar look, color, header animation and the + button setting need the latest SQL step. Until then they preview here but are not saved.';
+   :animV2?'':'Bar look, color and header animation need the latest SQL step. Until then they preview here but are not saved.';
  }
 }
 $('animForm').addEventListener('input',e=>{
@@ -2329,27 +2520,13 @@ $('animForm').addEventListener('change',async()=>{
   }
   animSettings=animV2?next:{...animSettings,...payload};
   if(!animV2)applyAnimations(next);
-  $('animStatus').textContent=animV2?'Saved. Client portals update within a minute.':'Saved the basic settings. Run the latest SQL step to save the bar look, color, header animation and + button.';
+  $('animStatus').textContent=animV2?'Saved. Client portals update within a minute.':'Saved the basic settings. Run the latest SQL step to save the bar look, color and header animation.';
  }catch(err){
   applyAnimations(animSettings);fillAnimForm();
   $('animStatus').textContent='Not saved: '+(err.message||'unknown error');
  }
 });
 
-/* ---------- Floating + button ---------- */
-function updateFab(a){
- const s=a||animSettings;
- const on=role==='admin'&&!TASKS_ONLY&&!!s.fab_button&&!$('admin').classList.contains('hidden')&&!$('app').classList.contains('hidden');
- $('fab').classList.toggle('hidden',!on);
-}
-$('fab').onclick=()=>{
- if(!isAdmin())return;
- view('admin');
- const p=$('addTaskPanel');
- p.open=true;
- p.scrollIntoView({behavior:'smooth',block:'start'});
- setTimeout(()=>{(addBiz!=null?document.querySelector('#taskForm input[name="title"]'):($('bizConfirm').querySelector('button')||$('bizPicker').querySelector('button')))?.focus({preventScroll:true});},350);
-};
 
 /* ---------- Auto refresh ---------- */
 function stopTimers(){
@@ -2363,7 +2540,7 @@ function startTimers(){
 }
 async function poll(force){
  if(!role||document.hidden)return;
- if(!force&&(menuCtx||editingId!=null||noteFocused()||(recordingNow())))return;
+ if(!force&&(menuCtx||editingId!=null||recordingNow()))return;
  if(Date.now()-brandLoadedAt>50*60000){
   if(role==='admin')await loadClients();
   else await loadOwnClient();
@@ -2386,7 +2563,9 @@ async function refresh(){
  if(isAdmin()){
   role='admin';
   document.body.classList.toggle('tasks-only',TASKS_ONLY);
-  if(TASKS_ONLY){document.title='Signix Digital | All tasks';$('fullLink').href=location.pathname;show('fullLink',true);}
+  document.body.classList.toggle('ip-only',IP_ONLY);
+  if(TASKS_ONLY){document.title=IP_ONLY?'Signix Digital | In progress':'Signix Digital | All tasks';$('fullLink').href=location.pathname;show('fullLink',true);}
+  if(IP_ONLY)$('tasksTitle').textContent='In progress';
   show('auth',false);show('app',true);show('logout',true);show('mainNav',true);
   view('admin');
   await loadAnimations();
@@ -2402,8 +2581,7 @@ async function refresh(){
  const {data:membership,error:mErr}=await sb.from('client_memberships').select('client_id').maybeSingle();
  if(mErr||!membership){
   await sb.auth.signOut();
-
-   clearState();
+  clearState();
   authMode('login');
   if(mErr)displayError('Unable to check client access',mErr);
   else notice('This account is not linked to a client yet. Please contact Signix Digital.');
@@ -2416,8 +2594,10 @@ async function refresh(){
  await loadAnimations();
  await loadMemberNames();
  show('auth',false);show('app',true);show('logout',true);show('mainNav',false);
- view('client');
+
+  view('client');
  if(await loadTasks())notice('');
+ showWelcome();
  startTimers();
 }
 
@@ -2444,6 +2624,13 @@ function renderBizPicker(){
   chosen.innerHTML=`${bizLogo(cc)}<span class="nm">${esc(cc.Name||'')}<br><span class="ok">✓ Business verified</span></span><button type="button" data-bizchange="1">Change</button>`;
  }else chosen.innerHTML='';
  $('addClient').value=cc?String(cc.id):'';
+ const as=$('addAssign');
+ $('addAssignWrap').classList.toggle('hidden',!cc||!taskOptional.includes('assigned_to'));
+ if(cc&&as.dataset.for!==String(cc.id)){
+  as.dataset.for=String(cc.id);
+  as.replaceChildren(new Option(`Everyone at ${cc.Name||'this business'}`,''),...logins.filter(l=>String(l.client_id)===String(cc.id)).map(l=>new Option(l.display_name||l.email,l.user_id)));
+ }
+ if(!cc)as.dataset.for='';
  $('azBody').disabled=!cc;
 }
 function resetAddBiz(){addPick=null;addBiz=null;$('bizSearch').value='';renderBizPicker();}
@@ -2461,15 +2648,17 @@ $('addTaskPanel').addEventListener('click',e=>{
  if(e.target.closest('[data-bizchange]')){addBiz=null;renderBizPicker();$('bizPicker').querySelector('.picked')?.focus();}
 });
 
-async function uploadPending(A,clientId,taskId,label){
- const failed=[];
+async function uploadPending(A,clientId,taskId,label,noteId,say){
+ const failed=[],tell=say||notice;
  for(let i=0;i<A.pending.length;i++){
   const p=A.pending[i];
-  notice(`${label} Uploading file ${i+1} of ${A.pending.length}…`);
-  const path=`${clientId}/${taskId}/${crypto.randomUUID()}.${extFor(p.file,p.type)}`;
+  tell(`${label} Uploading file ${i+1} of ${A.pending.length}…`);
+  const path=`${clientId}/${taskId}/${noteId?'note-'+noteId+'-':''}${crypto.randomUUID()}.${extFor(p.file,p.type)}`;
   const {error:upError}=await sb.storage.from(BUCKET).upload(path,p.file,{contentType:p.type,upsert:false});
   if(upError){failed.push(`${p.file.name}: ${upError.message}`);continue;}
-  const {error:rowError}=await sb.from('task_attachments').insert({task_id:taskId,client_id:clientId,path,kind:p.kind,mime_type:p.type,size_bytes:p.file.size});
+  const row={task_id:taskId,client_id:clientId,path,kind:p.kind,mime_type:p.type,size_bytes:p.file.size};
+  if(noteId)row.note_id=noteId;
+  const {error:rowError}=await sb.from('task_attachments').insert(row);
   if(rowError){failed.push(`${p.file.name}: ${rowError.message}`);await sb.storage.from(BUCKET).remove([path]);}
  }
  return failed;
@@ -2490,6 +2679,8 @@ $('taskForm').onsubmit=async e=>{
  button.disabled=true;
  try{
   const payload={title,description,client_id:client.id,priority,status:'To do',due_date:fd.get('due')||null};
+  const assign=String(fd.get('assign')||'');
+  if(assign&&taskOptional.includes('assigned_to'))payload.assigned_to=assign;
   const {data:created,error}=await sb.from('tasks').insert(payload).select('id').single();
   if(error){displayError('Task was not saved',error);return;}
   const failed=created?.id!=null?await uploadPending(adminFiles,client.id,created.id,'Task saved.'):[];
@@ -2882,7 +3073,8 @@ function pickAudioType(){
 }
 const clientFiles=makeAttacher('mediaInput','recordBtn','pendingList');
 const adminFiles=makeAttacher('adminMediaInput','adminRecordBtn','adminPendingList');
-function recordingNow(){return [clientFiles,adminFiles].some(A=>A.recorder&&A.recorder.state==='recording');}
+const noteFiles=makeAttacher('noteMediaInput','noteRecordBtn','notePendingList');
+function recordingNow(){return [clientFiles,adminFiles,noteFiles].some(A=>A.recorder&&A.recorder.state==='recording');}
 
 $('requestTaskForm').onsubmit=async e=>{
  e.preventDefault();
@@ -2951,3 +3143,4 @@ sb.auth.onAuthStateChange(event=>{
 </script>
 </body>
 </html>
+                              
