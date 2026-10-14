@@ -53,5 +53,4 @@ function card(t,admin){return `<div class="task"><div class="row"><strong>${esc(
 function render(){document.getElementById('openCount').textContent=tasks.filter(t=>t.status!=='Completed').length;document.getElementById('requestCount').textContent=tasks.filter(t=>t.status==='Incoming').length;document.getElementById('adminTasks').innerHTML=tasks.length?tasks.map(t=>card(t,true)).join(''):'No tasks yet. Add your first task above.';let q=document.getElementById('clientFilter').value.toLowerCase().trim();let visible=tasks.filter(t=>!q||t.client.toLowerCase().includes(q));document.getElementById('clientTasks').innerHTML=visible.length?visible.map(t=>card(t,false)).join(''):'No matching tasks.'}
 render();
 </script>
-</body></html>''')
-print(p, p.stat().st_size)
+</body></html>
