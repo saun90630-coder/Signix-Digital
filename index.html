@@ -138,6 +138,8 @@ button.tap:hover{filter:brightness(1.2)}
 .login-row .name-form{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
 .login-row .name-form input{flex:1 1 160px;margin:0;padding:9px 10px}
 .login-row .name-form button{padding:9px 12px}
+.tc-del{align-self:flex-end;background:transparent;border:1px solid rgba(248,113,113,.45);color:#fca5a5;font-size:12px;padding:5px 12px;border-radius:20px;min-height:30px}
+.tc-del:hover,.tc-del:focus-visible{background:rgba(239,68,68,.15)}
 .tc-desc{margin:0;color:#d5deea;white-space:pre-wrap;overflow-wrap:anywhere;font-size:14px}
 .media-toggle{align-self:flex-start;display:inline-flex;align-items:center;gap:8px;font-size:13px;padding:6px 12px;border-radius:20px;background:rgba(56,189,248,.12);border:1px solid rgba(56,189,248,.5);color:#bae6fd;min-height:34px}
 .media-toggle svg{width:16px;height:16px;flex:0 0 16px}
@@ -986,6 +988,7 @@ function taskCard(t,o){
  ${t.description?`<p class="tc-desc">${esc(t.description)}</p>`:''}
  ${n?mediaToggle(t,files):''}
  ${n&&expandedMedia.has(String(t.id))?`<div class="tc-media">${mediaHtml(t.id)}</div>`:''}
+ ${o.admin?`<button type="button" class="tc-del" data-act="delete" data-id="${id}" aria-label="Delete task: ${esc(t.title||'Untitled')}">Delete</button>`:''}
  ${editable?`<div class="tc-edit"><button type="button" class="link-button" data-act="edit" data-id="${id}">Edit request</button><small class="muted" data-until="${editUntil(t)}"></small></div>`:''}
 </article>`;
 }
@@ -1209,6 +1212,31 @@ async function applyChange(id,field,value){
  }catch(err){displayError('Change was not saved',err);}
 }
 
+async function deleteTask(t,button){
+ if(!isAdmin())return;
+ const title=t.title||'Untitled';
+ if(!confirm(`Delete "${title}"?\n\nThis removes the task and its attachments for you and the client. It can't be undone.`))return;
+ const paths=attachments.filter(a=>String(a.task_id)===String(t.id)).map(a=>a.path);
+ if(button)button.disabled=true;
+ closeMenu();
+ notice('Deleting…');
+ try{
+  const {data,error}=await sb.from('tasks').delete().eq('id',t.id).select('id');
+  if(error){displayError('Task was not deleted',error);if(button)button.disabled=false;return;}
+  if(!data?.length){notice(`"${title}" was not deleted: it may already be gone. Refreshing the list.`);await loadTasks();return;}
+  tasks=tasks.filter(x=>String(x.id)!==String(t.id));
+  attachments=attachments.filter(a=>String(a.task_id)!==String(t.id));
+  expandedMedia.delete(String(t.id));
+  render();
+  let msg=`"${title}" deleted.`;
+  if(paths.length){
+   const {error:fileError}=await sb.storage.from(BUCKET).remove(paths);
+   if(fileError)msg+=` ${paths.length} attached file(s) could not be removed from storage: ${fileError.message}`;
+  }
+  notice(msg);
+ }catch(err){displayError('Task was not deleted',err);if(button)button.disabled=false;}
+}
+
 function onBoardClick(e){
  const b=e.target.closest('[data-act]');
  if(!b)return;
@@ -1224,6 +1252,10 @@ function onBoardClick(e){
   const key=String(id);
   if(expandedMedia.has(key))expandedMedia.delete(key);else expandedMedia.add(key);
   if(e.currentTarget===$('adminBoard'))renderAdmin();else renderPortal();
+  return;
+ }
+ if(act==='delete'){
+  if(isAdmin()&&t&&e.currentTarget===$('adminBoard'))deleteTask(t,b);
   return;
  }
  if(!isAdmin()||!t)return;
