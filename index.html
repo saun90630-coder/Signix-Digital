@@ -291,4 +291,1655 @@ details.fold[open]>summary{margin-bottom:12px}
 </div>
 <div class="header-actions">
 <a id="fullLink" class="hidden" href="./">Full dashboard</a>
-<button id="logout" class="hidden">Log
+<button id="logout" class="hidden">Log out</button>
+</div>
+</header>
+
+<main>
+<p id="message" role="status" aria-live="polite"></p>
+
+<section id="auth" class="panel">
+<h2 id="authTitle">Sign in</h2>
+
+<form id="loginForm">
+<label>Email
+<input type="email" id="email" required autocomplete="email">
+</label>
+<label>Password
+<div class="password-wrap">
+<input type="password" id="password" required autocomplete="current-password">
+<button class="toggle-password" type="button" data-toggle="password" aria-label="Show password" aria-pressed="false">Show</button>
+</div>
+</label>
+<button id="signInButton" class="primary">Sign in</button>
+</form>
+
+<p id="forgotLink">
+<button id="forgot" class="link-button" type="button">Forgot password?</button>
+</p>
+
+<form id="requestForm" class="hidden">
+<label>Email address
+<input type="email" id="resetEmail" required autocomplete="email">
+</label>
+<button id="sendResetButton" class="primary">Send password reset link</button>
+</form>
+
+<form id="resetForm" class="hidden">
+<label>New password
+<div class="password-wrap">
+<input type="password" id="newPassword" minlength="8" required autocomplete="new-password">
+<button class="toggle-password" type="button" data-toggle="newPassword" aria-label="Show new password" aria-pressed="false">Show</button>
+</div>
+</label>
+<label>Confirm new password
+<div class="password-wrap">
+<input type="password" id="confirmPassword" minlength="8" required autocomplete="new-password">
+<button class="toggle-password" type="button" data-toggle="confirmPassword" aria-label="Show confirmation password" aria-pressed="false">Show</button>
+</div>
+</label>
+<button id="setPasswordButton" class="primary">Set password</button>
+</form>
+
+<p id="backLink" class="hidden">
+<button id="back" class="link-button" type="button">Back to sign in</button>
+</p>
+</section>
+
+<section id="app" class="hidden">
+<nav id="mainNav">
+<button id="adminBtn" type="button" aria-pressed="true">My Dashboard</button>
+<button id="clientBtn" type="button" aria-pressed="false">Client Portal</button>
+</nav>
+
+<section id="admin">
+<div class="stats">
+<button type="button" class="stat" id="openStat">Open tasks<strong id="openCount">0</strong></button>
+<button type="button" class="stat incoming" id="incomingStat">Incoming requests<strong id="requestCount">0</strong></button>
+<button type="button" class="stat" id="overdueStat">Overdue<strong id="overdueCount">0</strong></button>
+<button type="button" class="stat today" id="todayStat">Due today<strong id="todayCount">0</strong></button>
+</div>
+
+<details id="addTaskPanel" class="panel fold">
+<summary>Add task</summary>
+<form id="taskForm">
+<label>Task
+<input name="title" required>
+</label>
+<label>Details (optional, visible to the client)
+<textarea name="description"></textarea>
+</label>
+<label>Client
+<select name="client" required>
+<option value="">Select a client</option>
+</select>
+</label>
+<div class="grid">
+<label>Priority
+<select name="priority">
+<option>High</option>
+<option selected>Medium</option>
+<option>Low</option>
+</select>
+</label>
+<label>Due date
+<input type="date" name="due">
+</label>
+</div>
+<button class="primary" type="submit">Add task</button>
+</form>
+</details>
+
+<section id="tasksPanel" class="panel">
+<div class="panel-head">
+<h2>All tasks</h2>
+<button type="button" id="popOutBtn">Open in new window</button>
+</div>
+<div class="toolbar">
+<div class="tool"><span class="tool-label">View</span><div class="chips" id="adminViews"></div></div>
+<div class="tool"><span class="tool-label">Layout</span><div class="chips" id="adminLayouts"></div></div>
+<div class="tool"><span class="tool-label">Business</span><select id="bizFilter" aria-label="Filter by business"><option value="">All businesses</option></select></div>
+</div>
+<div id="adminBoard" class="board"></div>
+</section>
+
+<div class="admin-tools">
+<details class="panel fold">
+<summary>Manage Clients</summary>
+<p class="muted">Add a client, or tap a client to edit their details and optional portal branding. Existing tasks stay connected to the same client.</p>
+<form id="addClientForm">
+<label>New client name<input name="name" maxlength="120" required placeholder="Enter client name"></label>
+<button class="primary" type="submit">Add client</button>
+</form>
+<div id="clientsList" aria-live="polite"></div>
+</details>
+
+<details class="panel fold">
+<summary>Client Logins</summary>
+<p class="muted">Step 1: In Supabase, go to Authentication → Users → Add user → Send invitation, and enter the client's email.<br>Step 2: Link that email to their business below. Several people can be linked to the same business; they all see that business's tasks.</p>
+<form id="linkForm">
+<label>Person's name (shown on the requests they send)
+<input name="name" maxlength="80" autocomplete="off" placeholder="Example: Maria Lopez">
+</label>
+<label>Client login email
+<input type="email" name="email" required autocomplete="off">
+</label>
+<label>Business
+<select name="client" id="linkClient" required>
+<option value="">Select a client</option>
+</select>
+</label>
+<button class="primary" type="submit">Link login</button>
+</form>
+<div id="loginsList" aria-live="polite"></div>
+</details>
+
+<details id="animPanel" class="panel fold">
+<summary>Animations</summary>
+<p class="muted">Only you see these controls. Your choices apply to your dashboard and every client portal (clients pick them up within a minute). Changes save automatically.</p>
+<form id="animForm">
+<div class="anim-list">
+<label class="check"><input type="checkbox" name="high_pulse"> High priority red stripe pulse</label>
+<label class="check"><input type="checkbox" name="work_bar"> In progress bar on task cards</label>
+<label class="check"><input type="checkbox" name="ip_column"> In progress column glow and pulsing dot</label>
+<label class="check"><input type="checkbox" name="media_pulse"> Photos / videos chip pulse</label>
+<label class="check"><input type="checkbox" name="request_pulse"> Client "Start a request" + pulse</label>
+</div>
+<label>Speed
+<select name="speed">
+<option value="slow">Slow</option>
+<option value="normal">Normal</option>
+<option value="fast">Fast</option>
+</select>
+</label>
+</form>
+<p id="animStatus" class="muted"></p>
+</details>
+</div>
+</section>
+
+<section id="client" class="hidden">
+<div class="panel">
+<div id="portalHero" class="portal-hero">
+<div class="hero-inner">
+<div id="portalLogo" class="logo-circle" aria-hidden="true">SD</div>
+<div>
+<h2 id="portalTitle">Client Portal</h2>
+<p id="portalIntro" class="muted"></p>
+</div>
+</div>
+</div>
+<label id="previewWrap" class="hidden">Preview as client
+<select id="previewClient">
+<option value="">Select a client</option>
+</select>
+</label>
+
+<details id="requestPanel" class="panel fold request-zone hidden">
+<summary><span class="req-head"><span class="req-icon" aria-hidden="true">+</span><span>Need something? Start a request here<span class="req-sub">Tap to add a new request</span></span></span></summary>
+<p class="muted">Tell us what you need. Add photos, videos or a voice note if it helps. You can edit a request for 3 minutes after sending it.</p>
+<form id="requestTaskForm">
+<label>Task name
+<input name="title" maxlength="200" required placeholder="Example: New window vinyl">
+</label>
+<label>Details
+<textarea name="description" maxlength="2000" placeholder="Sizes, colors, location, anything we should know"></textarea>
+</label>
+<div class="grid2">
+<label>Priority
+<select name="priority">
+<option>Low</option>
+<option selected>Medium</option>
+<option>High</option>
+</select>
+</label>
+<label>Deadline (optional)
+<input type="date" name="due" id="requestDue">
+</label>
+</div>
+<span class="muted" style="font-size:14px">Attachments (optional, up to 10 files, 50 MB each)</span>
+<div class="attach-row">
+<label class="file-button">Add photos or videos
+<input type="file" id="mediaInput" accept="image/*,video/*" multiple>
+</label>
+<button type="button" id="recordBtn" aria-pressed="false">Record voice note</button>
+</div>
+<ul id="pendingList" class="pending" aria-live="polite"></ul>
+<button class="primary" type="submit" id="sendRequestBtn">Send request</button>
+</form>
+</details>
+
+<div class="stats">
+<button type="button" class="stat" id="portalOpenStat">Open tasks<strong id="portalOpen">0</strong></button>
+<button type="button" class="stat today" id="portalNeedsStat">Needs your input<strong id="portalNeeds">0</strong></button>
+<button type="button" class="stat" id="portalDoneStat">Completed<strong id="portalDone">0</strong></button>
+</div>
+<div class="toolbar">
+<div class="tool"><span class="tool-label">View</span><div class="chips" id="clientViews"></div></div>
+</div>
+<div id="clientBoard" class="board"></div>
+</div>
+</section>
+</section>
+</main>
+
+<div id="menu" class="menu hidden" role="menu"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
+<script>
+'use strict';
+
+const SUPABASE_URL='https://mhpvdyfrtaazgabmcvtx.supabase.co';
+const KEY='sb_publishable_RljzO2G_ltUBbgnjWKF4gA_t-xHrkeI';
+const ADMIN_UID='21078b33-73fb-4a54-adfc-169a197102ec';
+
+const sb=window.supabase.createClient(SUPABASE_URL,KEY);
+const $=id=>document.getElementById(id);
+const show=(id,on)=>$(id).classList.toggle('hidden',!on);
+const notice=s=>{$('message').textContent=s};
+
+const STATUSES=['Incoming','To do','In progress','Waiting on client','Completed'];
+const PRIORITIES=['High','Medium','Low'];
+const ADMIN_VIEWS=[['status','By status'],['business','By business'],['deadline','By deadline'],['waiting','Waiting on client'],['high','High priority'],['recent','Recently added']];
+const CLIENT_VIEWS=[['status','By status'],['deadline','By deadline']];
+const CLIENT_STATUS_LABELS={'Incoming':'Submitted','To do':'Scheduled','Waiting on client':'Needs your input'};
+const LAYOUTS=[['comfortable','Comfortable'],['compact','Compact'],['list','List'],['board','Board']];
+const BUCKETS=[['overdue','Overdue'],['today','Today'],['tomorrow','Tomorrow'],['week','This week'],['later','Later'],['none','No date']];
+const BIZ_PALETTE=['#38bdf8','#f472b6','#34d399','#fbbf24','#a78bfa','#fb7185','#2dd4bf','#fb923c','#60a5fa','#facc15','#c084fc','#4ade80'];
+const EDIT_WINDOW_MS=3*60*1000;
+const POLL_MS=60*1000;
+const BUCKET='task-attachments';
+const BRAND_BUCKET='client-branding';
+const MAX_BRAND_BYTES=5*1024*1024;
+const MAX_FILE_BYTES=50*1024*1024;
+const MAX_FILES=10;
+const MAX_RECORD_SECONDS=300;
+const CLIENT_FIELDS='id,Name,Email,Company,logo_path,backdrop_path,brand_color,brand_color_2';
+const TASK_FIELDS='id,title,description,status,priority,due_date,client_id,created_at,completed_at';
+let taskFields=TASK_FIELDS+',created_by';
+const TASKS_ONLY=new URLSearchParams(location.search).get('mode')==='tasks';
+const PREF_KEY='signix-prefs-'+(TASKS_ONLY?'popup':'main');
+
+let currentUser=null,role=null,myClientName='',myClientId=null,tasks=[],clients=[],logins=[],recoveryActive=false;
+let attachments=[],signedUrls={},pending=[],recorder=null,recStream=null,recChunks=[],recTimer=null,recStart=0;
+let brandUrls={},brandLoadedAt=0,openClientId=null,editingId=null,menuCtx=null,pollTimer=null,tickTimer=null,lastLoad=0;
+let prefs=loadPrefs();
+const expandedMedia=new Set();
+let memberNames={};
+
+const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({
+'&':'&amp;',
+'<':'&lt;',
+'>':'&gt;',
+'"':'&quot;',
+"'":'&#39;'
+}[c]));
+
+/* ---------- Preferences (view / layout / filter) ---------- */
+function loadPrefs(){try{return JSON.parse(localStorage.getItem(PREF_KEY))||{};}catch(e){return {};}}
+function savePrefs(){try{localStorage.setItem(PREF_KEY,JSON.stringify(prefs));}catch(e){}}
+function getPref(scope,key,fallback,allowed){
+ const v=prefs[scope]?.[key];
+ if(v===undefined||v===null)return fallback;
+ return allowed&&!allowed.includes(v)?fallback:v;
+}
+function setPref(scope,key,value){prefs[scope]={...(prefs[scope]||{}),[key]:value};savePrefs();}
+const adminView=()=>getPref('admin','view','status',ADMIN_VIEWS.map(v=>v[0]));
+const adminLayout=()=>getPref('admin','layout','comfortable',LAYOUTS.map(v=>v[0]));
+const clientView=()=>getPref('client','view','status',CLIENT_VIEWS.map(v=>v[0]));
+const clientLayout=()=>'board';
+
+function buildChips(id,items,current,onPick){
+ const root=$(id);
+ root.innerHTML=items.map(([v,l])=>`<button type="button" class="chip" data-value="${esc(v)}" aria-pressed="${v===current}">${esc(l)}</button>`).join('');
+ root.addEventListener('click',e=>{
+  const b=e.target.closest('button[data-value]');
+  if(!b)return;
+  setChip(id,b.dataset.value);
+  onPick(b.dataset.value);
+ });
+}
+function setChip(id,value){
+ $(id).querySelectorAll('button[data-value]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.value===value)));
+}
+
+/* ---------- Auth screens ---------- */
+function authMode(mode){
+ recoveryActive=mode==='reset';
+ show('auth',true);
+ show('app',false);
+ show('logout',false);
+ show('loginForm',mode==='login');
+ show('forgotLink',mode==='login');
+ show('requestForm',mode==='request');
+ show('resetForm',mode==='reset');
+ show('backLink',mode!=='login');
+ $('authTitle').textContent=mode==='login'?'Sign in':mode==='request'?'Reset your password':'Set your password';
+}
+
+function busy(id,on,label){
+ const b=$(id);
+ if(!b.dataset.original)b.dataset.original=b.textContent;
+ b.disabled=on;
+ b.textContent=on?label:b.dataset.original;
+}
+
+document.querySelectorAll('[data-toggle]').forEach(b=>b.addEventListener('click',()=>{
+ const field=$(b.dataset.toggle),visible=field.type==='password';
+ field.type=visible?'text':'password';
+ b.textContent=visible?'Hide':'Show';
+ b.setAttribute('aria-pressed',String(visible));
+ b.setAttribute('aria-label',(visible?'Hide ':'Show ')+'password');
+}));
+
+function view(which){
+ show('admin',which==='admin');
+ show('client',which==='client');
+ $('adminBtn').setAttribute('aria-pressed',String(which==='admin'));
+ $('clientBtn').setAttribute('aria-pressed',String(which==='client'));
+ closeMenu();
+ if(which==='client')renderPortal();
+ else renderAdmin();
+}
+
+$('adminBtn').onclick=()=>view('admin');
+$('clientBtn').onclick=()=>view('client');
+
+function clearState(){
+ currentUser=null;role=null;myClientName='';myClientId=null;
+ tasks=[];clients=[];logins=[];attachments=[];signedUrls={};brandUrls={};brandLoadedAt=0;openClientId=null;editingId=null;
+ expandedMedia.clear();
+ memberNames={};
+ animSettings={...ANIM_DEFAULTS};animReady=false;applyAnimations(animSettings);
+ stopTimers();
+ closeMenu();
+ stopRecording(true);
+ clearPending();
+ document.body.classList.remove('tasks-only');
+ show('fullLink',false);
+}
+
+$('logout').onclick=async()=>{
+ const {error}=await sb.auth.signOut();
+ if(error)notice(error.message);
+ else{
+  clearState();
+  authMode('login');
+  notice('Signed out.');
+ }
+};
+
+$('forgot').onclick=()=>{
+ $('resetEmail').value=$('email').value.trim();
+ authMode('request');
+ notice('Enter your email to receive a reset link.');
+};
+
+$('back').onclick=()=>{
+ if(recoveryActive){
+  notice('Finish setting your new password before signing in.');
+  return;
+ }
+ authMode('login');
+ notice('');
+};
+
+$('loginForm').onsubmit=async e=>{
+ e.preventDefault();
+ busy('signInButton',true,'Signing in…');
+ try{
+  const {error}=await sb.auth.signInWithPassword({
+   email:$('email').value.trim(),
+   password:$('password').value
+  });
+  if(error)notice(error.message);
+  else await refresh();
+ }catch(err){
+  notice(err.message||'Unable to sign in.');
+ }finally{
+  busy('signInButton',false);
+ }
+};
+
+$('requestForm').onsubmit=async e=>{
+ e.preventDefault();
+ busy('sendResetButton',true,'Sending…');
+ try{
+  const email=$('resetEmail').value.trim();
+  const {error}=await sb.auth.resetPasswordForEmail(email,{
+   redirectTo:location.origin+location.pathname
+  });
+  notice(error?error.message:'If this email is registered, a password reset link will be sent. Check your inbox and spam folder.');
+ }catch(err){
+  notice(err.message||'Unable to send reset link.');
+ }finally{
+  busy('sendResetButton',false);
+ }
+};
+
+$('resetForm').onsubmit=async e=>{
+ e.preventDefault();
+ const password=$('newPassword').value;
+ const confirm=$('confirmPassword').value;
+ if(password!==confirm){
+  notice('Passwords do not match. Please enter the same password twice.');
+  return;
+ }
+ if(password.length<8){
+  notice('Password must be at least 8 characters.');
+  return;
+ }
+ busy('setPasswordButton',true,'Updating…');
+ try{
+  const {error}=await sb.auth.updateUser({password});
+  if(error){
+   notice(error.message);
+   return;
+  }
+  await sb.auth.signOut();
+  recoveryActive=false;
+  history.replaceState({},'',location.pathname);
+  $('newPassword').value='';
+  $('confirmPassword').value='';
+  clearState();
+  authMode('login');
+  notice('Password saved. Sign in using your new password.');
+ }catch(err){
+  notice(err.message||'Unable to update password.');
+ }finally{
+  busy('setPasswordButton',false);
+ }
+};
+
+function resetMode(kind){
+ authMode('reset');
+ notice(kind==='invite'
+  ?'Welcome to Signix Digital. Create a password for your account and enter it twice.'
+  :'Enter your new password twice. Both entries must match.');
+}
+
+/* ---------- Helpers ---------- */
+function isAdmin(){return currentUser?.id===ADMIN_UID;}
+function clientName(id){
+ return clients.find(c=>String(c.id)===String(id))?.Name||`ID ${id}`;
+}
+function displayError(prefix,error){
+ const parts=[error?.message,error?.details,error?.hint].filter(Boolean);
+ notice(prefix+': '+(parts.join(' — ')||'Unknown error'));
+}
+function normalizedName(name){return String(name||'').trim().replace(/\s+/g,' ').toLocaleLowerCase();}
+function duplicateName(name,exceptId){
+ return clients.some(c=>String(c.id)!==String(exceptId??'')&&normalizedName(c.Name)===normalizedName(name));
+}
+function normStatus(t){return STATUSES.includes(t.status)?t.status:'To do';}
+function normPriority(t){return PRIORITIES.includes(t.priority)?t.priority:'Medium';}
+function isDone(t){return t.status==='Completed';}
+function priorityClass(p){return 'pr-'+String(PRIORITIES.includes(p)?p:'Medium').toLowerCase();}
+function statusClass(st){
+ const v=STATUSES.includes(st)?st:'To do';
+ return 'st-'+v.toLowerCase().replace(/[^a-z]+/g,'-');
+}
+function initials(name){
+ const parts=String(name||'').trim().split(/\s+/).filter(Boolean);
+ return ((parts[0]?.[0]||'S')+(parts[1]?.[0]||'')).toUpperCase();
+}
+function textOn(hex){
+ const n=parseInt(String(hex).slice(1),16);
+ const ch=[(n>>16)&255,(n>>8)&255,n&255].map(v=>{v/=255;return v<=0.03928?v/12.92:Math.pow((v+0.055)/1.055,2.4);});
+ const lum=0.2126*ch[0]+0.7152*ch[1]+0.0722*ch[2];
+ return lum>0.45?'#0b1220':'#ffffff';
+}
+function validHex(v){return /^#[0-9a-f]{6}$/i.test(String(v||''));}
+function bizColor(c){
+ if(validHex(c?.brand_color))return c.brand_color;
+ const n=Math.abs(Number(c?.id)||0);
+ return BIZ_PALETTE[n%BIZ_PALETTE.length];
+}
+function statusLabel(st,clientSide){return clientSide?(CLIENT_STATUS_LABELS[st]||st):st;}
+function hexToRgba(hex,a){
+ const n=parseInt(String(hex).slice(1),16);
+ return `rgba(${(n>>16)&255},${(n>>8)&255},${n&255},${a})`;
+}
+function bizHeader(clientId){
+ const c=clients.find(x=>String(x.id)===String(clientId));
+ const color=bizColor(c);
+ const url=c?.logo_path&&brandUrls[c.logo_path];
+ const logo=url
+  ?`<span class="logo-circle card" aria-hidden="true"><img src="${esc(url)}" alt=""></span>`
+  :`<span class="logo-circle card" style="background:${color};color:${textOn(color)}" aria-hidden="true">${esc(initials(c?.Name||'?'))}</span>`;
+ return `<div class="tc-biz" style="--biz:${color};--biz-bg:linear-gradient(90deg,${hexToRgba(color,.38)},${hexToRgba(color,.12)})">${logo}<span class="biz-name">${esc(c?.Name||'Client '+clientId)}</span></div>`;
+}
+
+/* ---------- Dates ---------- */
+function todayStr(){
+ const d=new Date();
+ return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
+}
+function parseDay(s){const [y,m,d]=String(s).split('-').map(Number);return new Date(y,(m||1)-1,d||1);}
+function daysUntil(s){
+ const now=new Date();
+ const start=new Date(now.getFullYear(),now.getMonth(),now.getDate());
+ return Math.round((parseDay(s)-start)/86400000);
+}
+function fmtDay(s){return parseDay(s).toLocaleDateString(undefined,{weekday:'short',month:'short',day:'numeric'});}
+function dueBucket(t){
+ if(!t.due_date)return 'none';
+ const d=daysUntil(t.due_date);
+ if(d<0)return 'overdue';
+ if(d===0)return 'today';
+ if(d===1)return 'tomorrow';
+ if(d<=7)return 'week';
+ return 'later';
+}
+function dueInfo(t){
+ if(!t.due_date)return null;
+ const d=daysUntil(t.due_date);
+ const when=d===0?'today':d===1?'tomorrow':d===-1?'yesterday':fmtDay(t.due_date);
+ if(d<0&&!isDone(t))return {label:`Overdue · was due ${when}`,cls:'due-overdue'};
+ return {label:`Due ${when}`,cls:d===0&&!isDone(t)?'due-today':''};
+}
+
+/* ---------- Sorting + grouping ---------- */
+const PR_RANK={High:0,Medium:1,Low:2};
+const ST_RANK=Object.fromEntries(STATUSES.map((s,i)=>[s,i]));
+function byDue(a,b){
+ const ad=a.due_date||'9999-12-31',bd=b.due_date||'9999-12-31';
+ if(ad!==bd)return ad<bd?-1:1;
+ const pa=PR_RANK[normPriority(a)],pb=PR_RANK[normPriority(b)];
+ if(pa!==pb)return pa-pb;
+ return Number(b.id)-Number(a.id);
+}
+function byNewest(a,b){return String(b.created_at||'').localeCompare(String(a.created_at||''))||Number(b.id)-Number(a.id);}
+function byCompleted(a,b){return String(b.completed_at||'').localeCompare(String(a.completed_at||''))||byNewest(a,b);}
+function byStatusThenDue(a,b){return (ST_RANK[normStatus(a)]-ST_RANK[normStatus(b)])||byDue(a,b);}
+
+function groupTasks(list,v,clientSide){
+ const g=(key,label,items,extra)=>({key,label,items,...(extra||{})});
+ switch(v){
+  case 'business':{
+   const groups=clients
+    .map(c=>g('biz-'+c.id,c.Name||'Client '+c.id,list.filter(t=>String(t.client_id)===String(c.id)).sort(byStatusThenDue),{biz:c}))
+    .filter(x=>x.items.length);
+   const orphans=list.filter(t=>!clients.some(c=>String(c.id)===String(t.client_id)));
+   if(orphans.length)groups.push(g('biz-other','Other',orphans.sort(byStatusThenDue)));
+   return groups;
+  }
+  case 'deadline':
+   return BUCKETS.map(([k,l])=>g('due-'+k,l,list.filter(t=>!isDone(t)&&dueBucket(t)===k).sort(byDue),{cls:'bucket-'+k})).filter(x=>x.items.length);
+  case 'waiting':
+  case 'needs':
+   return [g('waiting',clientSide?'Waiting on your input':'Waiting on client',list.filter(t=>t.status==='Waiting on client').sort(byDue),{cls:'st-waiting-on-client'})];
+  case 'high':
+   return [g('high','High priority (open)',list.filter(t=>t.priority==='High'&&!isDone(t)).sort(byDue),{cls:'pr-high'})];
+  case 'recent':{
+   const cutoff=Date.now()-7*86400000;
+   return [g('recent','Added in the last 7 days',list.filter(t=>t.created_at&&Date.parse(t.created_at)>=cutoff).sort(byNewest),{cls:'st-incoming'})];
+  }
+  case 'done':
+   return [g('done','Completed',list.filter(isDone).sort(byCompleted),{cls:'st-completed'})];
+  default:
+   return STATUSES.map(s=>g(statusClass(s),statusLabel(s,clientSide),list.filter(t=>normStatus(t)===s).sort(s==='Completed'?byCompleted:byDue),{cls:statusClass(s),keep:true}));
+ }
+}
+function emptyText(v){
+ return ({
+  business:'No tasks yet.',
+  deadline:'No open tasks.',
+  waiting:'Nothing is waiting on clients right now.',
+  needs:'Nothing needs your input right now.',
+  high:'No open high-priority tasks.',
+  recent:'No tasks added in the last 7 days.',
+  done:'No completed tasks yet.'
+ })[v]||'No tasks yet.';
+}
+
+/* ---------- Edit window (clients) ---------- */
+function editUntil(t){return t.created_at?Date.parse(t.created_at)+EDIT_WINDOW_MS:0;}
+function canEdit(t){return role==='client'&&t.status==='Incoming'&&Date.now()<editUntil(t);}
+function updateCountdowns(){
+ let expired=false;
+ document.querySelectorAll('[data-until]').forEach(el=>{
+  const left=Number(el.dataset.until)-Date.now();
+  if(left<=0){expired=true;return;}
+  const s=Math.ceil(left/1000);
+  el.textContent=`${Math.floor(s/60)}:${String(s%60).padStart(2,'0')} left to edit`;
+ });
+ return expired;
+}
+function tick(){
+ if(updateCountdowns()){
+  if(editingId!=null){editingId=null;notice('The 3-minute edit window has closed.');}
+  renderPortal();
+ }
+}
+
+/* ---------- Cards ---------- */
+function urlFor(path){const e=signedUrls[path];return e&&e.exp>Date.now()?e.url:null;}
+function mediaHtml(taskId){
+ const list=attachments.filter(a=>String(a.task_id)===String(taskId));
+ if(!list.length)return '';
+ return `<div class="media">${list.map(a=>{
+  const url=urlFor(a.path);
+  if(!url)return `<small class="muted">${esc(a.kind)} file unavailable. Refresh the page.</small>`;
+  const u=esc(url);
+  if(a.kind==='image')return `<a class="thumb" href="${u}" target="_blank" rel="noopener"><img src="${u}" alt="Attached photo" loading="lazy"></a>`;
+  if(a.kind==='video')return `<div class="clip"><video src="${u}" controls preload="metadata" playsinline></video><small><a href="${u}" target="_blank" rel="noopener">Open video</a></small></div>`;
+  return `<div class="clip"><small class="muted">Voice note</small><audio src="${u}" controls preload="metadata"></audio><small><a href="${u}" target="_blank" rel="noopener">Download</a></small></div>`;
+ }).join('')}</div>`;
+}
+
+const CLIP_ICON='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21.4 11.1l-9.2 9.2a6 6 0 0 1-8.5-8.5l9.2-9.2a4 4 0 0 1 5.7 5.7l-9.2 9.2a2 2 0 0 1-2.8-2.8l8.5-8.5"/></svg>';
+const PERSON_ICON='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg>';
+function plural(n,word){return `${n} ${word}${n===1?'':'s'}`;}
+function mediaSummary(list){
+ const c={image:0,video:0,audio:0};
+ list.forEach(a=>{if(c[a.kind]!==undefined)c[a.kind]++;});
+ return [c.image&&plural(c.image,'photo'),c.video&&plural(c.video,'video'),c.audio&&plural(c.audio,'voice note')].filter(Boolean).join(' · ');
+}
+function mediaToggle(t,list){
+ const open=expandedMedia.has(String(t.id));
+ return `<button type="button" class="media-toggle" data-act="media" data-id="${esc(t.id)}" aria-expanded="${open}">${CLIP_ICON}<span>${esc(mediaSummary(list))}</span><span class="hint">${open?'Hide':'Tap to view'}</span></button>`;
+}
+
+function taskCard(t,o){
+ const st=normStatus(t),pr=normPriority(t),due=dueInfo(t);
+ if(o.client&&String(editingId)===String(t.id)&&canEdit(t))return editCard(t);
+ const files=attachments.filter(a=>String(a.task_id)===String(t.id));
+ const n=files.length;
+ const id=esc(t.id);
+ const statusEl=o.admin
+  ?`<button type="button" class="badge ${statusClass(st)} tap" data-act="status" data-id="${id}" aria-haspopup="menu" title="Change status">${esc(st)}</button>`
+  :`<span class="badge ${statusClass(st)}">${esc(statusLabel(st,o.clientSide))}</span>`;
+ const prEl=o.admin
+  ?`<button type="button" class="badge ${priorityClass(pr)} tap" data-act="priority" data-id="${id}" aria-haspopup="menu" title="Change priority">${esc(pr)} priority</button>`
+  :`<span class="badge ${priorityClass(pr)}">${esc(pr)} priority</span>`;
+ const dueEl=o.admin
+  ?`<button type="button" class="due-chip ${due?.cls||''} tap" data-act="due" data-id="${id}" aria-haspopup="menu" title="Change due date">${esc(due?due.label:'Set due date')}</button>`
+  :(due?`<span class="due-chip ${due.cls}">${esc(due.label)}</span>`:'');
+ const editable=o.client&&canEdit(t);
+ return `<article class="tcard ${priorityClass(pr)} ${statusClass(st)}" data-id="${id}">
+ ${o.admin?bizHeader(t.client_id):''}
+ <h4 class="tc-title">${esc(t.title||'Untitled')}</h4>
+ <div class="tc-meta">${statusEl}${prEl}${dueEl}</div>
+ ${t.created_by&&memberNames[t.created_by]?`<div class="tc-by">${PERSON_ICON}<span>Submitted by <strong>${esc(memberNames[t.created_by])}</strong></span></div>`:''}
+ ${st==='In progress'?'<div class="work-bar" role="img" aria-label="Being worked on"></div>':''}
+ ${t.description?`<p class="tc-desc">${esc(t.description)}</p>`:''}
+ ${n?mediaToggle(t,files):''}
+ ${n&&expandedMedia.has(String(t.id))?`<div class="tc-media">${mediaHtml(t.id)}</div>`:''}
+ ${editable?`<div class="tc-edit"><button type="button" class="link-button" data-act="edit" data-id="${id}">Edit request</button><small class="muted" data-until="${editUntil(t)}"></small></div>`:''}
+</article>`;
+}
+
+function editCard(t){
+ const pr=normPriority(t);
+ return `<article class="tcard ${priorityClass(pr)} ${statusClass(t.status)}" data-id="${esc(t.id)}">
+<form class="edit-form" data-edit-id="${esc(t.id)}">
+<label>Task name<input name="title" maxlength="200" required value="${esc(t.title||'')}"></label>
+<label>Details<textarea name="description" maxlength="2000">${esc(t.description||'')}</textarea></label>
+<div class="grid2">
+<label>Priority<select name="priority">${['Low','Medium','High'].map(p=>`<option${p===pr?' selected':''}>${p}</option>`).join('')}</select></label>
+<label>Deadline (optional)<input type="date" name="due" min="${todayStr()}" value="${esc(t.due_date||'')}"></label>
+</div>
+<div class="row"><button class="primary" type="submit">Save changes</button><button type="button" data-act="cancel-edit" data-id="${esc(t.id)}">Cancel</button><small class="muted" data-until="${editUntil(t)}"></small></div>
+</form>
+</article>`;
+}
+
+/* ---------- Board rendering ---------- */
+function captureScroll(root){
+ const groupsEl=root.querySelector('.groups');
+ const bodies={};
+ root.querySelectorAll('.group[data-group]').forEach(gr=>{const b=gr.querySelector('.group-body');if(b)bodies[gr.dataset.group]=b.scrollTop;});
+ return {left:groupsEl?groupsEl.scrollLeft:0,bodies};
+}
+function restoreScroll(root,s){
+ const groupsEl=root.querySelector('.groups');
+ if(groupsEl)groupsEl.scrollLeft=s.left;
+ root.querySelectorAll('.group[data-group]').forEach(gr=>{const b=gr.querySelector('.group-body');if(b&&s.bodies[gr.dataset.group])b.scrollTop=s.bodies[gr.dataset.group];});
+}
+function updateBoardTop(root){
+ const groupsEl=root.querySelector('.groups');
+ if(groupsEl)root.style.setProperty('--board-top',Math.max(0,Math.round(groupsEl.getBoundingClientRect().top+window.scrollY))+'px');
+}
+function renderBoard(root,list,o){
+ const saved=captureScroll(root);
+ root.className='board layout-'+o.layout;
+ const groups=groupTasks(list,o.view,o.clientSide);
+ const total=groups.reduce((n,gr)=>n+gr.items.length,0);
+ if(!total&&!groups.some(gr=>gr.keep)){
+  root.innerHTML=`<p class="muted empty">${esc(emptyText(o.view))}</p>`;
+  return;
+ }
+ root.innerHTML=`<div class="groups">${groups.map(gr=>`<section class="group ${gr.cls||''}" data-group="${esc(gr.key)}" id="grp-${root.id}-${esc(gr.key)}">
+<header class="group-head">${gr.biz?logoHtml({...gr.biz,brand_color:bizColor(gr.biz)},'sm'):'<span class="gdot"></span>'}<h3>${esc(gr.label)}</h3><span class="count">${gr.items.length}</span></header>
+<div class="group-body">${gr.items.length?gr.items.map(t=>taskCard(t,o)).join(''):'<p class="muted empty-col">Nothing here</p>'}</div>
+</section>`).join('')}</div>`;
+ restoreScroll(root,saved);
+ updateBoardTop(root);
+}
+
+function renderAdmin(){
+ if(role!=='admin')return;
+ const open=tasks.filter(t=>!isDone(t));
+ const overdue=open.filter(t=>t.due_date&&daysUntil(t.due_date)<0).length;
+ $('openCount').textContent=open.length;
+ $('requestCount').textContent=tasks.filter(t=>t.status==='Incoming').length;
+ $('overdueCount').textContent=overdue;
+ $('overdueStat').classList.toggle('alert',overdue>0);
+ $('todayCount').textContent=open.filter(t=>t.due_date&&daysUntil(t.due_date)===0).length;
+ const biz=$('bizFilter').value;
+ const list=biz?tasks.filter(t=>String(t.client_id)===biz):tasks;
+ renderBoard($('adminBoard'),list,{admin:true,view:adminView(),layout:adminLayout()});
+}
+
+function render(){
+ renderAdmin();
+ renderPortal();
+}
+
+function jumpTo(v,groupKey){
+ view('admin');
+ setPref('admin','view',v);setChip('adminViews',v);
+ if($('bizFilter').value){$('bizFilter').value='';setPref('admin','biz','');}
+ renderAdmin();
+ const el=groupKey?$(`grp-adminBoard-${groupKey}`):null;
+ (el||$('tasksPanel')).scrollIntoView({behavior:'smooth',block:'start',inline:'start'});
+ if(el){el.classList.add('flash');setTimeout(()=>el.classList.remove('flash'),1800);}
+ else if(groupKey)notice('Nothing in that list right now.');
+}
+$('openStat').onclick=()=>jumpTo('status',null);
+$('incomingStat').onclick=()=>jumpTo('status','st-incoming');
+$('overdueStat').onclick=()=>jumpTo('deadline','due-overdue');
+$('todayStat').onclick=()=>jumpTo('deadline','due-today');
+
+/* ---------- Client portal ---------- */
+function logoHtml(c,extra){
+ const url=c?.logo_path&&brandUrls[c.logo_path];
+ const style=validHex(c?.brand_color)?` style="background:${c.brand_color};color:${textOn(c.brand_color)}"`:'';
+ return url
+  ?`<span class="logo-circle ${extra||''}" aria-hidden="true"><img src="${esc(url)}" alt=""></span>`
+  :`<span class="logo-circle ${extra||''}"${style} aria-hidden="true">${esc(initials(c?.Name))}</span>`;
+}
+function applyBranding(c){
+ const sec=$('client'),hero=$('portalHero'),logo=$('portalLogo');
+ const brand=validHex(c?.brand_color)?c.brand_color:null;
+ const brand2=validHex(c?.brand_color_2)?c.brand_color_2:null;
+ sec.style.setProperty('--brand',brand||'#3975db');
+ sec.style.setProperty('--brand-text',brand?textOn(brand):'#ffffff');
+ sec.style.setProperty('--brand2',brand2||'#121e30');
+ sec.style.setProperty('--brand-soft',hexToRgba(brand||'#3975db',.22));
+ sec.style.setProperty('--brand-glow',hexToRgba(brand||'#3975db',.5));
+ const bg=c?.backdrop_path&&brandUrls[c.backdrop_path];
+ hero.style.backgroundImage=bg?`linear-gradient(180deg,rgba(11,18,32,.2),rgba(11,18,32,.88)),url("${bg.replace(/"/g,'%22')}")`:'';
+ hero.classList.toggle('has-backdrop',!!bg);
+ const lg=c?.logo_path&&brandUrls[c.logo_path];
+ logo.replaceChildren();
+ if(lg){const img=new Image();img.src=lg;img.alt='';logo.append(img);}
+ else logo.textContent=initials(c?.Name||'Signix Digital');
+}
+
+function renderPortal(){
+ let list=[],c=null;
+ show('requestPanel',role==='client');
+ if(role==='admin'){
+  show('previewWrap',true);
+  $('portalTitle').textContent='Client Portal preview';
+  const id=$('previewClient').value;
+  $('portalIntro').textContent=id
+   ?`This is exactly what ${clientName(id)} sees when they sign in.`
+   :'Select a client to preview what they see when they sign in.';
+  c=id?clients.find(x=>String(x.id)===id):null;
+  list=id?tasks.filter(t=>String(t.client_id)===id):[];
+ }else if(role==='client'){
+  show('previewWrap',false);
+  $('portalTitle').textContent=myClientName||'Your projects';
+  $('portalIntro').textContent='Track the status of your work with Signix Digital. This page refreshes every minute.';
+  c=clients.find(x=>String(x.id)===String(myClientId));
+  list=tasks;
+  $('requestDue').min=todayStr();
+ }else return;
+ applyBranding(c);
+ $('portalOpen').textContent=list.filter(t=>!isDone(t)).length;
+ $('portalNeeds').textContent=list.filter(t=>t.status==='Waiting on client').length;
+ $('portalDone').textContent=list.filter(isDone).length;
+ const board=$('clientBoard');
+ if(role==='admin'&&!c){board.className='board';board.innerHTML='<p class="muted empty">Select a client above to preview their portal.</p>';return;}
+ renderBoard(board,list,{admin:false,client:role==='client',clientSide:true,view:clientView(),layout:clientLayout()});
+ updateCountdowns();
+}
+function portalJump(groupKey){
+ setPref('client','view','status');setChip('clientViews','status');
+ renderPortal();
+ const el=groupKey?$(`grp-clientBoard-${groupKey}`):null;
+ (el||$('clientBoard')).scrollIntoView({behavior:'smooth',block:'start',inline:'start'});
+ if(el){el.classList.add('flash');setTimeout(()=>el.classList.remove('flash'),1800);}
+}
+$('portalOpenStat').onclick=()=>portalJump(null);
+$('portalNeedsStat').onclick=()=>portalJump('st-waiting-on-client');
+$('portalDoneStat').onclick=()=>portalJump('st-completed');
+
+/* ---------- Popover menu (status / priority / due date) ---------- */
+function closeMenu(){
+ const m=$('menu');
+ m.classList.add('hidden');
+ m.innerHTML='';
+ menuCtx=null;
+}
+function openMenu(anchor,html,ctx){
+ const m=$('menu');
+ m.innerHTML=html;
+ m.classList.remove('hidden');
+ const r=anchor.getBoundingClientRect();
+ const w=m.offsetWidth,h=m.offsetHeight;
+ const left=Math.min(Math.max(8,r.left),window.innerWidth-w-8);
+ let top=r.bottom+6;
+ if(top+h>window.innerHeight-8)top=Math.max(8,r.top-h-6);
+ m.style.left=left+'px';
+ m.style.top=top+'px';
+ menuCtx={anchor,...ctx};
+ (m.querySelector('.current')||m.querySelector('button,input'))?.focus();
+}
+function statusMenu(t){
+ return `<div class="menu-title">Change status</div>${STATUSES.map(s=>`<button type="button" role="menuitem" class="menu-item${s===normStatus(t)?' current':''}" data-pick="status" data-value="${esc(s)}"><span class="badge ${statusClass(s)}">${esc(s)}</span></button>`).join('')}`;
+}
+function priorityMenu(t){
+ return `<div class="menu-title">Change priority</div>${PRIORITIES.map(p=>`<button type="button" role="menuitem" class="menu-item${p===normPriority(t)?' current':''}" data-pick="priority" data-value="${esc(p)}"><span class="badge ${priorityClass(p)}">${esc(p)} priority</span></button>`).join('')}`;
+}
+function dueMenu(t){
+ return `<form class="menu-due" data-pick-form="due"><div class="menu-title">Due date</div><input type="date" name="due" value="${esc(t.due_date||'')}" aria-label="Due date"><div class="row"><button class="primary" type="submit">Save</button>${t.due_date?'<button type="button" data-pick="due" data-value="">Clear date</button>':''}</div></form>`;
+}
+
+$('menu').addEventListener('click',e=>{
+ const b=e.target.closest('[data-pick]');
+ if(!b||!menuCtx)return;
+ const id=menuCtx.taskId,field=b.dataset.pick,value=b.dataset.value;
+ closeMenu();
+ applyChange(id,field,value||null);
+});
+$('menu').addEventListener('submit',e=>{
+ e.preventDefault();
+ if(!menuCtx)return;
+ const value=String(new FormData(e.target).get('due')||'');
+ const id=menuCtx.taskId;
+ closeMenu();
+ applyChange(id,'due',/^\d{4}-\d{2}-\d{2}$/.test(value)?value:null);
+});
+document.addEventListener('click',e=>{if(menuCtx&&!e.target.closest('#menu'))closeMenu();});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&menuCtx){const a=menuCtx.anchor;closeMenu();a?.focus();}});
+window.addEventListener('resize',()=>{closeMenu();updateBoardTop($('adminBoard'));});
+window.addEventListener('scroll',e=>{if(menuCtx&&!(e.target instanceof Element&&e.target.closest('#menu')))closeMenu();},true);
+
+async function applyChange(id,field,value){
+ if(!isAdmin())return;
+ const t=tasks.find(x=>String(x.id)===String(id));
+ if(!t)return;
+ const col={status:'status',priority:'priority',due:'due_date'}[field];
+ if(!col)return;
+ if(field==='status'&&!STATUSES.includes(value))return;
+ if(field==='priority'&&!PRIORITIES.includes(value))return;
+ if((t[col]??null)===(value??null))return;
+ notice('Saving…');
+ try{
+  const {data,error}=await sb.from('tasks').update({[col]:value}).eq('id',t.id).select(taskFields);
+  if(error){displayError('Change was not saved',error);return;}
+  if(!data?.length){notice('Change not saved: no row returned. Check UPDATE and SELECT permissions.');return;}
+  Object.assign(t,data[0]);
+  render();
+  notice(field==='status'?`"${t.title}" moved to ${t.status}.`:field==='priority'?`"${t.title}" set to ${t.priority} priority.`:t.due_date?`"${t.title}" is now due ${fmtDay(t.due_date)}.`:`Due date cleared for "${t.title}".`);
+ }catch(err){displayError('Change was not saved',err);}
+}
+
+function onBoardClick(e){
+ const b=e.target.closest('[data-act]');
+ if(!b)return;
+ const act=b.dataset.act,id=b.dataset.id;
+ const t=tasks.find(x=>String(x.id)===String(id));
+ if(act==='edit'){
+  if(t&&canEdit(t)){editingId=t.id;renderPortal();}
+  else{notice('The 3-minute edit window has closed.');renderPortal();}
+  return;
+ }
+ if(act==='cancel-edit'){editingId=null;renderPortal();return;}
+ if(act==='media'){
+  const key=String(id);
+  if(expandedMedia.has(key))expandedMedia.delete(key);else expandedMedia.add(key);
+  if(e.currentTarget===$('adminBoard'))renderAdmin();else renderPortal();
+  return;
+ }
+ if(!isAdmin()||!t)return;
+ e.stopPropagation();
+ if(menuCtx&&menuCtx.anchor===b){closeMenu();return;}
+ if(act==='status')openMenu(b,statusMenu(t),{taskId:t.id});
+ else if(act==='priority')openMenu(b,priorityMenu(t),{taskId:t.id});
+ else if(act==='due')openMenu(b,dueMenu(t),{taskId:t.id});
+}
+$('adminBoard').addEventListener('click',onBoardClick);
+$('clientBoard').addEventListener('click',onBoardClick);
+
+$('clientBoard').addEventListener('submit',async e=>{
+ const form=e.target.closest('form[data-edit-id]');
+ if(!form)return;
+ e.preventDefault();
+ const t=tasks.find(x=>String(x.id)===form.dataset.editId);
+ if(!t||!canEdit(t)){editingId=null;renderPortal();notice('The 3-minute edit window has closed, so the change was not saved.');return;}
+ const fd=new FormData(form);
+ const title=String(fd.get('title')||'').trim().replace(/\s+/g,' ');
+ const description=String(fd.get('description')||'').trim()||null;
+ const priority=String(fd.get('priority')||'Medium');
+ const due=String(fd.get('due')||'');
+ if(!title){notice('Please enter a task name.');return;}
+ if(!PRIORITIES.includes(priority)){notice('Pick a valid priority.');return;}
+ const button=form.querySelector('button[type="submit"]');button.disabled=true;
+ try{
+  const {data,error}=await sb.from('tasks').update({title,description,priority,due_date:due||null}).eq('id',t.id).select(taskFields);
+  if(error){displayError('Request was not updated',error);return;}
+  if(!data?.length){editingId=null;renderPortal();notice('The edit window has closed (or Signix Digital already picked up this request), so the change was not saved.');return;}
+  Object.assign(t,data[0]);
+  editingId=null;
+  renderPortal();
+  notice('Request updated.');
+ }catch(err){displayError('Request was not updated',err);}
+ finally{button.disabled=false;}
+});
+
+/* ---------- Toolbars ---------- */
+buildChips('adminViews',ADMIN_VIEWS,adminView(),v=>{setPref('admin','view',v);renderAdmin();});
+buildChips('adminLayouts',LAYOUTS,adminLayout(),v=>{setPref('admin','layout',v);renderAdmin();});
+buildChips('clientViews',CLIENT_VIEWS,clientView(),v=>{setPref('client','view',v);renderPortal();});
+$('bizFilter').addEventListener('change',()=>{setPref('admin','biz',$('bizFilter').value);renderAdmin();});
+$('popOutBtn').onclick=()=>{
+ const w=window.open(location.pathname+'?mode=tasks','signix-all-tasks','popup=yes,width=1400,height=900');
+ if(!w)notice('Your browser blocked the new window. Allow pop-ups for this site and try again.');
+};
+$('previewClient').addEventListener('change',renderPortal);
+
+/* ---------- Data loading ---------- */
+function fillClientSelect(select,placeholder){
+ const prior=select.value;
+ select.replaceChildren(new Option(placeholder||'Select a client',''),...clients.map(c=>new Option(c.Name||`Client ${c.id}`,String(c.id))));
+ if(clients.some(c=>String(c.id)===prior))select.value=prior;
+}
+
+async function loadTasks(){
+ const {data,error}=await sb.from('tasks').select(taskFields).order('id',{ascending:false});
+ if(error&&taskFields!==TASK_FIELDS&&/created_by/.test(error.message||'')){taskFields=TASK_FIELDS;return loadTasks();}
+ if(error){displayError('Unable to load tasks',error);return false;}
+ tasks=data||[];
+ lastLoad=Date.now();
+ const attachmentsOk=await loadAttachments();
+ render();
+ return attachmentsOk;
+}
+
+async function loadAttachments(){
+ const {data,error}=await sb.from('task_attachments')
+  .select('id,task_id,client_id,path,kind,mime_type,size_bytes')
+  .order('id',{ascending:true});
+ if(error){attachments=[];displayError('Unable to load attachments',error);return false;}
+ attachments=data||[];
+ const soon=Date.now()+5*60000;
+ const need=attachments.map(a=>a.path).filter(p=>!(signedUrls[p]&&signedUrls[p].exp>soon));
+ for(let i=0;i<need.length;i+=100){
+  const {data:urls,error:urlError}=await sb.storage.from(BUCKET).createSignedUrls(need.slice(i,i+100),3600);
+  if(urlError){displayError('Unable to open attachments',urlError);return false;}
+  const exp=Date.now()+3540*1000;
+  for(const u of urls||[])if(u.signedUrl&&u.path)signedUrls[u.path]={url:u.signedUrl,exp};
+ }
+ return true;
+}
+
+async function loadBranding(){
+ brandUrls={};
+ brandLoadedAt=Date.now();
+ const paths=clients.flatMap(c=>[c.logo_path,c.backdrop_path]).filter(Boolean);
+ if(!paths.length)return true;
+ const {data,error}=await sb.storage.from(BRAND_BUCKET).createSignedUrls(paths,3600);
+ if(error){displayError('Unable to load client branding',error);return false;}
+ for(const u of data||[])if(u.signedUrl&&u.path)brandUrls[u.path]=u.signedUrl;
+ return true;
+}
+
+async function loadClients(){
+ const {data,error}=await sb.from('Clients').select(CLIENT_FIELDS).order('Name');
+ if(error){displayError('Unable to load clients',error);return false;}
+ clients=data||[];
+ const brandingOk=await loadBranding();
+ fillClientSelect(document.querySelector('#taskForm select[name="client"]'));
+ fillClientSelect($('linkClient'));
+ fillClientSelect($('previewClient'));
+ const bf=$('bizFilter');
+ fillClientSelect(bf,'All businesses');
+ const savedBiz=getPref('admin','biz','');
+ if(!bf.value&&savedBiz&&clients.some(c=>String(c.id)===savedBiz))bf.value=savedBiz;
+ renderClients();
+ render();
+ return brandingOk;
+}
+
+async function loadOwnClient(){
+ const {data:own}=await sb.from('Clients').select(CLIENT_FIELDS).eq('id',myClientId).maybeSingle();
+ clients=own?[own]:[];
+ myClientName=own?.Name||'';
+ await loadBranding();
+}
+
+async function loadMemberNames(){
+ const {data,error}=await sb.rpc('client_member_names');
+ if(error){memberNames={};return false;}
+ memberNames=Object.fromEntries((data||[]).filter(r=>r.display_name).map(r=>[r.user_id,r.display_name]));
+ return true;
+}
+
+async function loadLogins(){
+ const {data,error}=await sb.rpc('admin_list_client_logins');
+ if(error){displayError('Unable to load client logins',error);return false;}
+ logins=data||[];renderLogins();return true;
+}
+
+/* ---------- Animation settings (admin controls, applied everywhere) ---------- */
+const ANIM_KEYS=[['high_pulse','no-anim-high'],['work_bar','no-anim-bar'],['ip_column','no-anim-col'],['media_pulse','no-anim-media'],['request_pulse','no-anim-req']];
+const SPEEDS={slow:1.5,normal:1,fast:0.7};
+const ANIM_DEFAULTS={high_pulse:true,work_bar:true,ip_column:true,media_pulse:true,request_pulse:true,speed:'normal'};
+let animSettings={...ANIM_DEFAULTS},animReady=false;
+function cleanAnim(row){
+ const out={...ANIM_DEFAULTS};
+ if(row){
+  for(const [k] of ANIM_KEYS)if(typeof row[k]==='boolean')out[k]=row[k];
+  if(SPEEDS[row.speed])out.speed=row.speed;
+ }
+ return out;
+}
+function applyAnimations(a){
+ for(const [k,cls] of ANIM_KEYS)document.body.classList.toggle(cls,!a[k]);
+ document.body.style.setProperty('--spd',String(SPEEDS[a.speed]||1));
+}
+function fillAnimForm(){
+ const f=$('animForm');
+ for(const [k] of ANIM_KEYS)f.elements[k].checked=!!animSettings[k];
+ f.elements.speed.value=animSettings.speed;
+}
+async function loadAnimations(){
+ const {data,error}=await sb.from('app_settings').select('high_pulse,work_bar,ip_column,media_pulse,request_pulse,speed').eq('id',1).maybeSingle();
+ animReady=!error;
+ animSettings=cleanAnim(error?null:data);
+ applyAnimations(animSettings);
+ if(role==='admin'){
+  fillAnimForm();
+  $('animStatus').textContent=error?'Animation settings table not found. Run the latest SQL step in Supabase, then refresh.':'';
+ }
+}
+$('animForm').addEventListener('change',async()=>{
+ if(!isAdmin())return;
+ const f=$('animForm');
+ const next={speed:SPEEDS[f.elements.speed.value]?f.elements.speed.value:'normal'};
+ for(const [k] of ANIM_KEYS)next[k]=f.elements[k].checked;
+ applyAnimations(next);
+ if(!animReady){$('animStatus').textContent='Previewing only. Run the latest SQL step in Supabase to save these settings.';return;}
+ $('animStatus').textContent='Saving…';
+ try{
+  const {data,error}=await sb.from('app_settings').update(next).eq('id',1).select('id');
+  if(error||!data?.length){
+   applyAnimations(animSettings);fillAnimForm();
+   $('animStatus').textContent='Not saved: '+(error?.message||'no row returned. Run the latest SQL step.');
+   return;
+  }
+  animSettings=next;
+  $('animStatus').textContent='Saved. Client portals update within a minute.';
+ }catch(err){
+  applyAnimations(animSettings);fillAnimForm();
+  $('animStatus').textContent='Not saved: '+(err.message||'unknown error');
+ }
+});
+
+/* ---------- Auto refresh ---------- */
+function stopTimers(){
+ clearInterval(pollTimer);pollTimer=null;
+ clearInterval(tickTimer);tickTimer=null;
+}
+function startTimers(){
+ stopTimers();
+ pollTimer=setInterval(poll,POLL_MS);
+ if(role==='client')tickTimer=setInterval(tick,1000);
+}
+async function poll(force){
+ if(!role||document.hidden)return;
+ if(!force&&(menuCtx||editingId!=null))return;
+ if(Date.now()-brandLoadedAt>50*60000){
+  if(role==='admin')await loadClients();
+  else await loadOwnClient();
+ }
+ await loadAnimations();
+ await loadMemberNames();
+ await loadTasks();
+}
+document.addEventListener('visibilitychange',()=>{
+ if(!document.hidden&&role&&Date.now()-lastLoad>30000)poll();
+});
+
+async function refresh(){
+ if(recoveryActive)return;
+ const {data:{user},error}=await sb.auth.getUser();
+ if(error){clearState();authMode('login');displayError('Authentication',error);return;}
+ currentUser=user;
+ if(!user){clearState();authMode('login');return;}
+
+ if(isAdmin()){
+  role='admin';
+  document.body.classList.toggle('tasks-only',TASKS_ONLY);
+  if(TASKS_ONLY){document.title='Signix Digital | All tasks';$('fullLink').href=location.pathname;show('fullLink',true);}
+  show('auth',false);show('app',true);show('logout',true);show('mainNav',true);
+  view('admin');
+  await loadAnimations();
+  await loadMemberNames();
+  const clientsOk=await loadClients();
+  const tasksOk=await loadTasks();
+  const loginsOk=await loadLogins();
+  if(clientsOk&&tasksOk&&loginsOk)notice('');
+  startTimers();
+  return;
+ }
+
+ const {data:membership,error:mErr}=await sb.from('client_memberships').select('client_id').maybeSingle();
+ if(mErr||!membership){
+  await sb.auth.signOut();
+  clearState();
+  authMode('login');
+  if(mErr)displayError('Unable to check client access',mErr);
+  else notice('This account is not linked to a client yet. Please contact Signix Digital.');
+  return;
+ }
+ role='client';
+ myClientId=membership.client_id;
+ document.body.classList.remove('tasks-only');
+ await loadOwnClient();
+ await loadAnimations();
+ await loadMemberNames();
+ show('auth',false);show('app',true);show('logout',true);show('mainNav',false);
+ view('client');
+ if(await loadTasks())notice('');
+ startTimers();
+}
+
+/* ---------- Admin: add task ---------- */
+$('taskForm').onsubmit=async e=>{
+ e.preventDefault();
+ if(!isAdmin()){notice('Administrator sign-in required.');return;}
+ const form=e.currentTarget,fd=new FormData(form),button=form.querySelector('button[type="submit"]');
+ const title=String(fd.get('title')||'').trim();
+ const description=String(fd.get('description')||'').trim()||null;
+ const client_id=String(fd.get('client')||'');
+ if(!title||!clients.some(c=>String(c.id)===client_id)){
+  notice('Enter a task and select a valid client.');return;
+ }
+ const realId=clients.find(c=>String(c.id)===client_id).id;
+ button.disabled=true;
+ try{
+  const payload={title,description,client_id:realId,priority:String(fd.get('priority')||'Medium'),status:'To do',due_date:fd.get('due')||null};
+  const {error}=await sb.from('tasks').insert(payload);
+  if(error){displayError('Task was not saved',error);return;}
+  form.reset();
+  if(await loadTasks())notice('Task saved successfully.');
+ }catch(err){displayError('Task was not saved',err);}
+ finally{button.disabled=false;}
+};
+
+/* ---------- Admin: manage clients ---------- */
+function brandFileHtml(c,col,label,field,removeName){
+ const url=c[col]&&brandUrls[c[col]];
+ const preview=url?(field==='logo'
+  ?`<span class="logo-circle sm" aria-hidden="true"><img src="${esc(url)}" alt=""></span>`
+  :`<img class="backdrop" src="${esc(url)}" alt="">`):'';
+ return `<label>${label} (optional, image up to 5 MB)
+ ${url?`<span class="brand-preview">${preview}<span class="muted">Current ${field}</span></span>`:''}
+ <input type="file" name="${field}" accept="image/*">
+ </label>
+ ${c[col]?`<label class="check"><input type="checkbox" name="${removeName}"> Remove current ${field}</label>`:''}`;
+}
+function renderClients(){
+ const root=$('clientsList');
+ if(!clients.length){root.textContent='No clients found. Add your first client above.';return;}
+ root.innerHTML=clients.map(c=>{
+  const hasColors=validHex(c.brand_color);
+  return `<details class="client-card" data-card="${esc(c.id)}"${String(openClientId)===String(c.id)?' open':''}>
+ <summary>${logoHtml(c,'sm')}<strong>${esc(c.Name||'Client '+c.id)}</strong><span class="edit-hint">Edit</span></summary>
+ <form data-client-id="${esc(c.id)}">
+ <label>Client name<input name="name" maxlength="120" required value="${esc(c.Name||'')}"></label>
+ <label>Email<input type="email" name="email" maxlength="200" value="${esc(c.Email||'')}"></label>
+ <label>Company<input name="company" maxlength="200" value="${esc(c.Company||'')}"></label>
+ <fieldset>
+ <legend>Client portal branding (optional)</legend>
+ <label class="check"><input type="checkbox" name="useColors"${hasColors?' checked':''}> Use custom brand colors</label>
+ <div class="colors">
+ <label>Main color<input type="color" name="brand_color" value="${esc(hasColors?c.brand_color:'#3975db')}"></label>
+ <label>Background color<input type="color" name="brand_color_2" value="${esc(validHex(c.brand_color_2)?c.brand_color_2:'#121e30')}"></label>
+ </div>
+ ${brandFileHtml(c,'logo_path','Logo','logo','removeLogo')}
+ ${brandFileHtml(c,'backdrop_path','Backdrop image','backdrop','removeBackdrop')}
+ <button type="button" class="preview-btn" data-preview="${esc(c.id)}" aria-expanded="false">View preview</button>
+ <div class="brand-live hidden" aria-live="polite"></div>
+ </fieldset>
+ <button class="primary" type="submit">Save changes</button>
+ </form>
+ </details>`;
+ }).join('');
+}
+
+function renderLogins(){
+ const root=$('loginsList');
+ if(!logins.length){root.innerHTML='<p class="muted">No client logins linked yet.</p>';return;}
+ root.innerHTML=logins.map(l=>`<div class="login-row">
+ <div class="row"><div><strong>${esc(l.display_name||'No name yet')}</strong><br><small class="muted">${esc(l.email)} · Sees: ${esc(clientName(l.client_id))}</small></div>
+ <button type="button" data-unlink="${esc(l.user_id)}" data-email="${esc(l.email)}">Remove access</button></div>
+ <form class="name-form" data-name-for="${esc(l.user_id)}"><input name="name" maxlength="80" value="${esc(l.display_name||'')}" placeholder="Add this person's name" aria-label="Name for ${esc(l.email)}"><button type="submit">Save name</button></form>
+ </div>`).join('');
+}
+
+$('addClientForm').onsubmit=async e=>{
+ e.preventDefault();
+ if(!isAdmin()){notice('Administrator sign-in required.');return;}
+ const form=e.currentTarget,name=String(new FormData(form).get('name')||'').trim().replace(/\s+/g,' ');
+ if(!name||duplicateName(name)){notice(name?'A client with that name already exists.':'Enter a client name.');return;}
+ const button=form.querySelector('button[type="submit"]');button.disabled=true;
+ try{
+  const {data,error}=await sb.from('Clients').insert({Name:name}).select('id,Name');
+  if(error){displayError('Client was not added',error);return;}
+  if(!data?.length){notice('Client insertion was not confirmed. Check INSERT and SELECT permissions.');return;}
+  form.reset();
+  if(await loadClients())notice('Client added successfully.');
+ }catch(err){displayError('Client was not added',err);}
+ finally{button.disabled=false;}
+};
+
+const previewUrls=new WeakMap();
+function pickedFileUrl(form,field){
+ const file=form.querySelector(`input[name="${field}"]`)?.files?.[0];
+ if(!file||!fileType(file).startsWith('image/'))return null;
+ if(!previewUrls.has(file))previewUrls.set(file,URL.createObjectURL(file));
+ return previewUrls.get(file);
+}
+function readBrandForm(form,c){
+ const fd=new FormData(form);
+ const use=!!fd.get('useColors');
+ return {
+  id:c.id,
+  name:String(fd.get('name')||'').trim()||c.Name||'Client',
+  brand:use&&validHex(fd.get('brand_color'))?String(fd.get('brand_color')):null,
+  brand2:use&&validHex(fd.get('brand_color_2'))?String(fd.get('brand_color_2')):null,
+  logo:pickedFileUrl(form,'logo')||(fd.get('removeLogo')?null:(c.logo_path&&brandUrls[c.logo_path])||null),
+  backdrop:pickedFileUrl(form,'backdrop')||(fd.get('removeBackdrop')?null:(c.backdrop_path&&brandUrls[c.backdrop_path])||null)
+ };
+}
+function brandPreviewHtml(v){
+ const bizCol=v.brand||bizColor({id:v.id});
+ const brand=v.brand||'#3975db',brand2=v.brand2||'#121e30';
+ const cardLogo=v.logo
+  ?`<span class="logo-circle card" aria-hidden="true"><img src="${esc(v.logo)}" alt=""></span>`
+  :`<span class="logo-circle card" style="background:${bizCol};color:${textOn(bizCol)}" aria-hidden="true">${esc(initials(v.name))}</span>`;
+ const heroLogo=v.logo
+  ?`<span class="logo-circle" aria-hidden="true"><img src="${esc(v.logo)}" alt=""></span>`
+  :`<span class="logo-circle" aria-hidden="true">${esc(initials(v.name))}</span>`;
+ const heroBg=v.backdrop?` style="background-image:linear-gradient(180deg,rgba(11,18,32,.2),rgba(11,18,32,.88)),url(&quot;${esc(v.backdrop.replace(/"/g,'%22'))}&quot;)"`:'';
+ return `<div><div class="pv-label">Your dashboard card</div>
+<article class="tcard pr-high st-in-progress pv-card">
+<div class="tc-biz" style="--biz:${bizCol};--biz-bg:linear-gradient(90deg,${hexToRgba(bizCol,.38)},${hexToRgba(bizCol,.12)})">${cardLogo}<span class="biz-name">${esc(v.name)}</span></div>
+<h4 class="tc-title">Sample task</h4>
+<div class="tc-meta"><span class="badge st-in-progress">In progress</span><span class="badge pr-high">High priority</span></div>
+<div class="work-bar" aria-hidden="true"></div>
+</article></div>
+<div><div class="pv-label">Their portal</div>
+<div class="pv-portal" style="--brand:${brand};--brand-text:${textOn(brand)};--brand2:${brand2};--brand-soft:${hexToRgba(brand,.22)};--brand-glow:${hexToRgba(brand,.5)}">
+<div class="portal-hero${v.backdrop?' has-backdrop':''}"${heroBg}><div class="hero-inner">${heroLogo}<div><h2>${esc(v.name)}</h2><p class="muted">Track the status of your work with Signix Digital.</p></div></div></div>
+<div class="pv-request"><span class="req-icon" aria-hidden="true">+</span>Need something? Start a request here</div>
+</div></div>`;
+}
+function refreshPreview(form){
+ const box=form.querySelector('.brand-live');
+ if(!box||box.classList.contains('hidden'))return;
+ const c=clients.find(x=>String(x.id)===form.dataset.clientId);
+ if(c)box.innerHTML=brandPreviewHtml(readBrandForm(form,c));
+}
+$('clientsList').addEventListener('click',e=>{
+ const b=e.target.closest('button[data-preview]');
+ if(!b)return;
+ const form=b.closest('form[data-client-id]'),box=form?.querySelector('.brand-live');
+ if(!box)return;
+ const open=box.classList.contains('hidden');
+ box.classList.toggle('hidden',!open);
+ b.setAttribute('aria-expanded',String(open));
+ b.textContent=open?'Hide preview':'View preview';
+ if(open)refreshPreview(form);
+});
+['input','change'].forEach(evt=>$('clientsList').addEventListener(evt,e=>{
+ const form=e.target.closest?.('form[data-client-id]');
+ if(form)refreshPreview(form);
+}));
+
+$('clientsList').addEventListener('toggle',e=>{
+ const d=e.target.closest?.('details[data-card]');
+ if(d&&d.open)openClientId=d.dataset.card;
+},true);
+
+$('clientsList').addEventListener('submit',async e=>{
+ const form=e.target.closest('form[data-client-id]');
+ if(!form)return;
+ e.preventDefault();
+ if(!isAdmin()){notice('Administrator sign-in required.');return;}
+ const id=form.dataset.clientId;
+ const client=clients.find(c=>String(c.id)===id);
+ if(!client)return;
+ const fd=new FormData(form);
+ const name=String(fd.get('name')||'').trim().replace(/\s+/g,' ');
+ const email=String(fd.get('email')||'').trim();
+ const company=String(fd.get('company')||'').trim().replace(/\s+/g,' ');
+ if(!name){notice('Client name cannot be empty.');return;}
+ if(duplicateName(name,id)){notice('Another client already has that name.');return;}
+ const update={Name:name,Email:email||null,Company:company||null};
+ if(fd.get('useColors')){
+  const c1=String(fd.get('brand_color')||''),c2=String(fd.get('brand_color_2')||'');
+  if(!validHex(c1)||!validHex(c2)){notice('Pick valid brand colors.');return;}
+  update.brand_color=c1;update.brand_color_2=c2;
+ }else{update.brand_color=null;update.brand_color_2=null;}
+ const files=[['logo','logo_path','removeLogo'],['backdrop','backdrop_path','removeBackdrop']];
+ for(const [field] of files){
+  const file=fd.get(field);
+  if(file&&file.size){
+   const type=fileType(file);
+   if(!type.startsWith('image/')){notice(`The ${field} must be an image.`);return;}
+   if(file.size>MAX_BRAND_BYTES){notice(`The ${field} is ${formatSize(file.size)}. The limit is 5 MB.`);return;}
+  }
+ }
+ const button=form.querySelector('button[type="submit"]');button.disabled=true;
+ const oldPaths=[],newPaths=[];
+ try{
+  for(const [field,col,removeName] of files){
+   const file=fd.get(field);
+   if(file&&file.size){
+    notice(`Uploading ${field}…`);
+    const type=fileType(file);
+    const path=`${client.id}/${field}-${crypto.randomUUID()}.${extFor(file,type)}`;
+    const {error:upError}=await sb.storage.from(BRAND_BUCKET).upload(path,file,{contentType:type,upsert:false});
+    if(upError){displayError(`The ${field} was not uploaded`,upError);if(newPaths.length)await sb.storage.from(BRAND_BUCKET).remove(newPaths);return;}
+    newPaths.push(path);
+    update[col]=path;
+    if(client[col])oldPaths.push(client[col]);
+   }else if(fd.get(removeName)){
+    update[col]=null;
+    if(client[col])oldPaths.push(client[col]);
+   }
+  }
+  const {data,error}=await sb.from('Clients').update(update).eq('id',client.id).select('id');
+  if(error){displayError('Client was not updated',error);if(newPaths.length)await sb.storage.from(BRAND_BUCKET).remove(newPaths);return;}
+  if(!data?.length){notice('Client not updated: no row returned. Check UPDATE and SELECT permissions.');if(newPaths.length)await sb.storage.from(BRAND_BUCKET).remove(newPaths);return;}
+  if(oldPaths.length)await sb.storage.from(BRAND_BUCKET).remove(oldPaths);
+  openClientId=client.id;
+  if(await loadClients())notice(`${name} updated.`);
+ }catch(err){displayError('Client was not updated',err);}
+ finally{button.disabled=false;}
+});
+
+$('linkForm').onsubmit=async e=>{
+ e.preventDefault();
+ if(!isAdmin()){notice('Administrator sign-in required.');return;}
+ const form=e.currentTarget,fd=new FormData(form);
+ const email=String(fd.get('email')||'').trim().toLowerCase();
+ const name=String(fd.get('name')||'').trim().replace(/\s+/g,' ');
+ const client=clients.find(c=>String(c.id)===String(fd.get('client')||''));
+ if(!email||!client){notice("Enter the client's login email and select a business.");return;}
+ const button=form.querySelector('button[type="submit"]');button.disabled=true;
+ try{
+  const args={p_email:email,p_client_id:client.id};
+  if(name)args.p_name=name;
+  let {error}=await sb.rpc('admin_link_client',args);
+  let nameSkipped=false;
+  if(error&&name&&/p_name|function/i.test(error.message||'')){
+   ({error}=await sb.rpc('admin_link_client',{p_email:email,p_client_id:client.id}));
+   nameSkipped=!error;
+  }
+  if(error){displayError('Login was not linked',error);return;}
+  form.reset();
+  await loadMemberNames();
+  if(await loadLogins())notice(`${name||email} can now sign in and see ${client.Name} tasks only.`+(nameSkipped?' The name was not saved: run the latest SQL step in Supabase first.':''));
+ }catch(err){displayError('Login was not linked',err);}
+ finally{button.disabled=false;}
+};
+
+$('loginsList').addEventListener('submit',async e=>{
+ const form=e.target.closest('form[data-name-for]');
+ if(!form)return;
+ e.preventDefault();
+ if(!isAdmin())return;
+ const name=String(new FormData(form).get('name')||'').trim().replace(/\s+/g,' ');
+ const button=form.querySelector('button');button.disabled=true;
+ try{
+  const {data,error}=await sb.from('client_memberships').update({display_name:name||null}).eq('user_id',form.dataset.nameFor).select('user_id');
+  if(error){displayError('Name was not saved',error);return;}
+  if(!data?.length){notice('Name was not saved: no row returned.');return;}
+  await loadMemberNames();
+  if(await loadLogins()){render();notice(name?`Name saved: ${name}.`:'Name removed.');}
+ }catch(err){displayError('Name was not saved',err);}
+ finally{button.disabled=false;}
+});
+
+$('loginsList').addEventListener('click',async e=>{
+ const b=e.target.closest('button[data-unlink]');
+ if(!b||!isAdmin())return;
+ if(!confirm(`Remove portal access for ${b.dataset.email}?`))return;
+ b.disabled=true;
+ try{
+  const {data,error}=await sb.from('client_memberships').delete().eq('user_id',b.dataset.unlink).select('user_id');
+  if(error){displayError('Access was not removed',error);return;}
+  if(!data?.length){notice('Access was not removed: no row returned.');return;}
+  if(await loadLogins())notice('Portal access removed.');
+ }catch(err){displayError('Access was not removed',err);}
+ finally{b.disabled=false;}
+});
+
+/* ---------- Client: request form with attachments + voice ---------- */
+function formatSize(bytes){
+ if(bytes>=1048576)return (bytes/1048576).toFixed(1)+' MB';
+ return Math.max(1,Math.round(bytes/1024))+' KB';
+}
+const EXT_TYPES={jpg:'image/jpeg',jpeg:'image/jpeg',png:'image/png',gif:'image/gif',webp:'image/webp',heic:'image/heic',heif:'image/heif',mp4:'video/mp4',mov:'video/quicktime',webm:'video/webm',m4v:'video/x-m4v','3gp':'video/3gpp'};
+function fileType(file){
+ if(file.type)return file.type;
+ const ext=(file.name.split('.').pop()||'').toLowerCase();
+ return EXT_TYPES[ext]||'';
+}
+function kindOf(type){
+ if(type.startsWith('image/'))return 'image';
+ if(type.startsWith('video/'))return 'video';
+ if(type.startsWith('audio/'))return 'audio';
+ return null;
+}
+function extFor(file,type){
+ const fromName=(file.name.split('.').pop()||'').toLowerCase();
+ if(/^[a-z0-9]{2,5}$/.test(fromName)&&file.name.includes('.'))return fromName;
+ const sub=(type.split('/')[1]||'bin').split(';')[0];
+ return sub==='quicktime'?'mov':sub==='mpeg'?'mp3':sub==='mp4'&&type.startsWith('audio/')?'m4a':sub;
+}
+
+function renderPending(){
+ const root=$('pendingList');
+ root.replaceChildren();
+ pending.forEach((p,i)=>{
+  const li=document.createElement('li');
+  if(p.kind==='image'){
+   const img=document.createElement('img');img.src=p.url;img.alt='';li.append(img);
+  }else if(p.kind==='audio'){
+   const audio=document.createElement('audio');audio.src=p.url;audio.controls=true;li.append(audio);
+  }
+  const name=document.createElement('span');
+  name.className='name';
+  name.textContent=(p.kind==='video'?'Video: ':p.kind==='audio'?'Voice note: ':'Photo: ')+p.file.name+' ('+formatSize(p.file.size)+')';
+  const remove=document.createElement('button');
+  remove.type='button';remove.textContent='Remove';remove.dataset.remove=String(i);
+  li.append(name,remove);root.append(li);
+ });
+}
+function clearPending(){
+ pending.forEach(p=>URL.revokeObjectURL(p.url));
+ pending=[];
+ if($('pendingList'))renderPending();
+}
+function addPending(file,type){
+ const kind=kindOf(type);
+ if(!kind){notice(`${file.name} is not a photo, video or audio file.`);return false;}
+ if(file.size>MAX_FILE_BYTES){notice(`${file.name} is ${formatSize(file.size)}. The limit is 50 MB per file.`);return false;}
+ if(pending.length>=MAX_FILES){notice('You can attach up to 10 files per request.');return false;}
+ pending.push({file,type,kind,url:URL.createObjectURL(file)});
+ renderPending();
+ return true;
+}
+
+$('mediaInput').addEventListener('change',e=>{
+ for(const file of e.target.files)addPending(file,fileType(file));
+ e.target.value='';
+});
+
+$('pendingList').addEventListener('click',e=>{
+ const b=e.target.closest('button[data-remove]');
+ if(!b)return;
+ const [p]=pending.splice(Number(b.dataset.remove),1);
+ if(p)URL.revokeObjectURL(p.url);
+ renderPending();
+});
+
+function pickAudioType(){
+ const types=['audio/webm;codecs=opus','audio/webm','audio/mp4','audio/ogg;codecs=opus'];
+ return types.find(t=>MediaRecorder.isTypeSupported&&MediaRecorder.isTypeSupported(t))||'';
+}
+function updateRecordUi(on){
+ const b=$('recordBtn');
+ b.classList.toggle('recording',on);
+ b.setAttribute('aria-pressed',String(on));
+ if(!on){b.textContent='Record voice note';return;}
+ const secs=Math.floor((Date.now()-recStart)/1000);
+ b.textContent=`Stop recording (${Math.floor(secs/60)}:${String(secs%60).padStart(2,'0')})`;
+}
+function stopRecording(discard){
+ clearInterval(recTimer);recTimer=null;
+ if(recorder&&recorder.state!=='inactive'){
+  if(discard)recorder.onstop=null;
+  recorder.stop();
+ }
+ if(discard){
+  if(recStream)recStream.getTracks().forEach(t=>t.stop());
+  recorder=null;recStream=null;recChunks=[];
+  if($('recordBtn'))updateRecordUi(false);
+ }
+}
+
+$('recordBtn').onclick=async()=>{
+ if(recorder&&recorder.state==='recording'){stopRecording(false);return;}
+ if(!navigator.mediaDevices?.getUserMedia||!window.MediaRecorder){
+  notice('Voice recording is not supported in this browser. Try the latest Chrome or Safari.');return;
+ }
+ if(pending.length>=MAX_FILES){notice('You can attach up to 10 files per request.');return;}
+ try{
+  recStream=await navigator.mediaDevices.getUserMedia({audio:true});
+ }catch(err){
+  notice('Microphone access was blocked. Allow microphone access for this site and try again.');return;
+ }
+ const type=pickAudioType();
+ try{recorder=type?new MediaRecorder(recStream,{mimeType:type}):new MediaRecorder(recStream);}
+ catch(err){recStream.getTracks().forEach(t=>t.stop());recStream=null;notice('Unable to start recording on this device.');return;}
+ recChunks=[];
+ recorder.ondataavailable=e=>{if(e.data&&e.data.size)recChunks.push(e.data);};
+ recorder.onstop=()=>{
+  const mime=(recorder.mimeType||type||'audio/webm').split(';')[0];
+  if(recStream)recStream.getTracks().forEach(t=>t.stop());
+  recStream=null;
+  const blob=new Blob(recChunks,{type:mime});
+  recChunks=[];recorder=null;
+  updateRecordUi(false);
+  if(!blob.size){notice('The recording was empty. Please try again.');return;}
+  const ext=mime.includes('mp4')?'m4a':mime.includes('ogg')?'ogg':'webm';
+  const file=new File([blob],`voice-note-${new Date().toISOString().slice(0,19).replace(/[:T]/g,'-')}.${ext}`,{type:mime});
+  if(addPending(file,mime))notice('Voice note added. Press play to check it before sending.');
+ };
+ recStart=Date.now();
+ recorder.start();
+ updateRecordUi(true);
+ notice('Recording… press the button again to stop.');
+ recTimer=setInterval(()=>{
+  updateRecordUi(true);
+  if(Date.now()-recStart>=MAX_RECORD_SECONDS*1000)stopRecording(false);
+ },500);
+};
+
+$('requestTaskForm').onsubmit=async e=>{
+ e.preventDefault();
+ if(role!=='client'||myClientId==null){notice('Client sign-in required.');return;}
+ if(recorder&&recorder.state==='recording'){notice('Stop the voice recording before sending.');return;}
+ const form=e.currentTarget,fd=new FormData(form),button=$('sendRequestBtn');
+ const title=String(fd.get('title')||'').trim().replace(/\s+/g,' ');
+ const description=String(fd.get('description')||'').trim()||null;
+ const priority=String(fd.get('priority')||'Medium');
+ const due=String(fd.get('due')||'');
+ if(!title){notice('Please enter a task name.');return;}
+ if(!PRIORITIES.includes(priority)){notice('Pick a valid priority.');return;}
+ if(due&&due<todayStr()){notice('The deadline cannot be in the past.');return;}
+ button.disabled=true;
+ try{
+  notice('Sending request…');
+  const {data:created,error}=await sb.from('tasks')
+   .insert({title,description,client_id:myClientId,status:'Incoming',priority,due_date:due||null})
+   .select('id').single();
+  if(error){displayError('Request was not sent',error);return;}
+  const taskId=created.id,failed=[];
+  for(let i=0;i<pending.length;i++){
+   const p=pending[i];
+   notice(`Request created. Uploading file ${i+1} of ${pending.length}…`);
+   const path=`${myClientId}/${taskId}/${crypto.randomUUID()}.${extFor(p.file,p.type)}`;
+   const {error:upError}=await sb.storage.from(BUCKET).upload(path,p.file,{contentType:p.type,upsert:false});
+   if(upError){failed.push(`${p.file.name}: ${upError.message}`);continue;}
+   const {error:rowError}=await sb.from('task_attachments').insert({task_id:taskId,client_id:myClientId,path,kind:p.kind,mime_type:p.type,size_bytes:p.file.size});
+   if(rowError)failed.push(`${p.file.name}: ${rowError.message}`);
+  }
+  form.reset();
+  clearPending();
+  $('requestPanel').open=false;
+  await loadTasks();
+  notice(failed.length
+   ?`Request sent, but ${failed.length} file(s) did not upload:\n${failed.join('\n')}`
+   :'Request sent. You can edit it for the next 3 minutes.');
+ }catch(err){displayError('Request was not sent',err);}
+ finally{button.disabled=false;}
+};
+
+/* ---------- Startup ---------- */
+sb.auth.onAuthStateChange(event=>{
+ if(event==='PASSWORD_RECOVERY')resetMode('recovery');
+ else if(event==='SIGNED_OUT'&&!recoveryActive){
+  stopTimers();
+  show('app',false);
+  show('auth',true);
+  show('logout',false);
+ }
+});
+
+(async()=>{
+ const params=new URLSearchParams(location.search);
+ if(params.has('error')){
+  authMode('login');
+  notice(params.get('error_description')||'Authentication link failed. Request another email.');
+  return;
+ }
+ const hash=new URLSearchParams(location.hash.slice(1));
+ const type=hash.get('type');
+ if((type==='recovery'||type==='invite')&&hash.get('access_token')&&hash.get('refresh_token')){
+  recoveryActive=true;
+  const {error}=await sb.auth.setSession({
+   access_token:hash.get('access_token'),
+   refresh_token:hash.get('refresh_token')
+  });
+  if(error){
+   recoveryActive=false;
+   authMode('login');
+   notice(error.message);
+  }else resetMode(type);
+ }else await refresh();
+})();
+</script>
+</body>
+</html>
