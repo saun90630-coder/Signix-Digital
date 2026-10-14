@@ -40,7 +40,7 @@ button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-vis
 /* Badges */
 .badge{display:inline-flex;align-items:center;gap:6px;border-radius:20px;background:#26364d;border:1px solid transparent;padding:4px 10px;font-size:12px;font-weight:600;white-space:nowrap;color:#e2e8f0}
 .badge::before{content:"";width:8px;height:8px;border-radius:50%;background:currentColor;flex:0 0 8px}
-.badge.pr-high{color:#fca5a5;background:rgba(239,68,68,.16);border-color:rgba(239,68,68,.5)}
+.badge.pr-high{color:#ff8a8a;background:rgba(255,40,40,.2);border-color:rgba(255,40,40,.75)}
 .badge.pr-medium{color:#fde047;background:rgba(234,179,8,.14);border-color:rgba(234,179,8,.5)}
 .badge.pr-low{color:#7dd3fc;background:rgba(14,165,233,.14);border-color:rgba(14,165,233,.5)}
 .badge.st-incoming{color:#d8b4fe;background:rgba(168,85,247,.16);border-color:rgba(168,85,247,.5)}
@@ -89,12 +89,17 @@ button.tap:hover{filter:brightness(1.2)}
 .group.st-in-progress .gdot{background:#6366f1}
 .group.st-waiting-on-client .gdot{background:#f97316}
 .group.st-completed .gdot{background:#22c55e}
-.group.pr-high .gdot,.group.bucket-overdue .gdot{background:#ef4444}
+.group.pr-high .gdot,.group.bucket-overdue .gdot{background:#ff2828}
 .group.bucket-today .gdot{background:#eab308}
 .group.bucket-tomorrow .gdot{background:#0ea5e9}
 .group.bucket-week .gdot{background:#6366f1}
 .group.bucket-later .gdot{background:#94a3b8}
 .group.bucket-overdue .group-head h3{color:#fca5a5}
+.group.st-in-progress{background:linear-gradient(180deg,rgba(99,102,241,.2),#0e1828 55%);border:1px solid rgba(129,140,248,.7);box-shadow:0 0 0 1px rgba(99,102,241,.25),0 0 26px rgba(99,102,241,.22)}
+.group.st-in-progress .group-head h3{color:#c7d2fe;text-shadow:0 0 12px rgba(129,140,248,.6)}
+.group.st-in-progress .gdot{animation:ip-dot 1.6s ease-in-out infinite}
+.group.st-in-progress .count{background:#3730a3;color:#e0e7ff}
+@keyframes ip-dot{0%,100%{box-shadow:0 0 0 0 rgba(99,102,241,.7)}50%{box-shadow:0 0 0 6px rgba(99,102,241,0)}}
 .group-body{display:grid;gap:10px;grid-template-columns:repeat(auto-fill,minmax(290px,1fr))}
 .empty-col{margin:4px;font-size:14px}
 .empty{padding:16px 4px}
@@ -109,8 +114,10 @@ button.tap:hover{filter:brightness(1.2)}
 }
 
 /* Task cards */
-.tcard{background:#121e30;border:1px solid #2c3c54;border-left:7px solid #64748b;border-radius:12px;padding:12px 12px 12px 13px;display:flex;flex-direction:column;gap:8px;min-width:0;overflow:hidden}
-.tcard.pr-high{border-left-color:#ef4444}
+.tcard{background:#121e30;border:1px solid #2c3c54;border-left:11px solid #64748b;border-radius:12px;padding:12px 12px 12px 13px;display:flex;flex-direction:column;gap:8px;min-width:0;overflow:hidden}
+.tcard.pr-high{border-left-color:#ff2828}
+.tcard.pr-high:not(.st-completed){animation:high-pulse 1.8s ease-in-out infinite}
+@keyframes high-pulse{0%,100%{border-left-color:#ff2828;box-shadow:-2px 0 0 rgba(255,40,40,0)}50%{border-left-color:#ff6b6b;box-shadow:-6px 0 16px rgba(255,40,40,.6)}}
 .tcard.pr-medium{border-left-color:#eab308}
 .tcard.pr-low{border-left-color:#0ea5e9}
 .tcard.st-completed{opacity:.8}
@@ -118,20 +125,31 @@ button.tap:hover{filter:brightness(1.2)}
 .tc-biz .biz-name{font-size:12px;color:#e2e8f0;font-weight:600;opacity:.9;overflow-wrap:anywhere;min-width:0}
 .logo-circle.card{flex:0 0 38px;width:38px;height:38px;font-size:14px;border-width:2px}
 .layout-compact .tc-biz{padding:6px 10px;margin:-9px -10px 0 -12px}
+.layout-compact .tcard,.layout-list .tcard{border-left-width:9px}
 .layout-compact .logo-circle.card{flex-basis:30px;width:30px;height:30px;font-size:12px}
 .layout-list .tc-biz{margin:0;padding:4px 10px 4px 4px;border-radius:20px;border-bottom:0;flex:0 1 220px}
 .layout-list .logo-circle.card{flex-basis:28px;width:28px;height:28px;font-size:11px}
 .tc-title{margin:0;font-size:16px;line-height:1.3;overflow-wrap:anywhere}
 .tc-meta{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
 .tc-desc{margin:0;color:#d5deea;white-space:pre-wrap;overflow-wrap:anywhere;font-size:14px}
-.tc-attach{display:none;font-size:12px;color:#9fb0c7}
+.media-toggle{align-self:flex-start;display:inline-flex;align-items:center;gap:8px;font-size:13px;padding:6px 12px;border-radius:20px;background:rgba(56,189,248,.12);border:1px solid rgba(56,189,248,.5);color:#bae6fd;min-height:34px}
+.media-toggle svg{width:16px;height:16px;flex:0 0 16px}
+.media-toggle .hint{opacity:.75;font-size:12px}
+.media-toggle[aria-expanded="false"]{animation:media-pulse 2.4s ease-in-out infinite}
+.media-toggle[aria-expanded="true"]{background:#1c2b42;border-color:#40516b;color:#cbd5e1}
+@keyframes media-pulse{0%,100%{box-shadow:0 0 0 0 rgba(56,189,248,.45)}50%{box-shadow:0 0 0 6px rgba(56,189,248,0)}}
+.tc-media{flex-basis:100%;min-width:0}
+.work-bar{position:relative;height:6px;border-radius:6px;background:rgba(99,102,241,.18);overflow:hidden}
+.work-bar::before{content:"";position:absolute;top:0;bottom:0;left:-40%;width:40%;border-radius:6px;background:linear-gradient(90deg,rgba(99,102,241,0),#6366f1 45%,#a5b4fc 55%,rgba(99,102,241,0));animation:work-slide 1.6s ease-in-out infinite}
+@keyframes work-slide{0%{left:-40%}100%{left:100%}}
+@media (prefers-reduced-motion:reduce){.tcard.pr-high:not(.st-completed),.group.st-in-progress .gdot{animation:none}.work-bar::before{animation:none;left:0;width:100%;background:#6366f1;opacity:.7}.media-toggle[aria-expanded="false"],.request-zone:not([open]) .req-icon{animation:none}}
+.layout-list .work-bar{display:none}
 .tc-edit{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
 .bdot{width:10px;height:10px;border-radius:3px;flex:0 0 10px;box-shadow:0 0 0 1px rgba(255,255,255,.25)}
 .layout-compact .tcard{padding:9px 10px 9px 12px;gap:6px}
 .layout-compact .tc-title{font-size:14px}
-.layout-compact .tc-body,.layout-list .tc-body{display:none}
-.layout-compact .tc-attach,.layout-list .tc-attach,.layout-board .tc-attach{display:inline-block}
-.layout-board .tc-body .media{display:none}
+.layout-compact .tc-desc,.layout-list .tc-desc{display:none}
+.layout-compact .media-toggle .hint,.layout-list .media-toggle .hint{display:none}
 .layout-board .tc-desc{display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
 .layout-list .tcard{flex-direction:row;flex-wrap:wrap;align-items:center;gap:6px 12px;padding:8px 10px 8px 10px;border-radius:10px}
 .layout-list .tc-title{flex:1 1 200px;font-size:14px}
@@ -139,9 +157,7 @@ button.tap:hover{filter:brightness(1.2)}
 .edit-form .row{justify-content:flex-start}
 
 #client .layout-board .tc-title{font-size:17px}
-#client .layout-board .tc-body .media{display:flex}
 #client .layout-board .tc-desc{display:block;-webkit-line-clamp:unset;overflow:visible}
-#client .layout-board .tc-attach{display:none}
 @media (orientation:landscape) and (min-width:900px){#client .layout-board .group{min-width:300px}}
 
 /* Media */
@@ -170,7 +186,17 @@ details.fold[open]>summary{margin-bottom:12px}
 .admin-tools{display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:0 12px;align-items:start}
 
 /* Client portal + branding */
-#client{--brand:#3975db;--brand-text:#ffffff;--brand2:#121e30}
+#client{--brand:#3975db;--brand-text:#ffffff;--brand2:#121e30;--brand-soft:rgba(57,117,219,.22);--brand-glow:rgba(57,117,219,.45)}
+.request-zone{background:linear-gradient(135deg,var(--brand-soft),#0a1220 75%);border:2px solid var(--brand);box-shadow:0 0 0 4px var(--brand-soft),0 10px 28px rgba(0,0,0,.35);margin:16px 0 20px}
+.request-zone>summary{font-size:19px}
+.request-zone>summary::after{display:none}
+.req-head{display:flex;align-items:center;gap:12px}
+.req-icon{flex:0 0 38px;width:38px;height:38px;border-radius:50%;background:var(--brand);color:var(--brand-text);display:grid;place-items:center;font-size:24px;font-weight:700;line-height:1;transition:transform .2s}
+.request-zone[open] .req-icon{transform:rotate(45deg)}
+.request-zone:not([open]) .req-icon{animation:req-pulse 2s ease-in-out infinite}
+@keyframes req-pulse{0%,100%{box-shadow:0 0 0 0 var(--brand-glow)}50%{box-shadow:0 0 0 10px rgba(0,0,0,0)}}
+.req-sub{display:block;font-size:13px;font-weight:400;color:#cbd5e1;margin-top:2px}
+.request-zone[open] .req-sub{display:none}
 #client .primary{background:var(--brand);color:var(--brand-text);border-color:var(--brand)}
 #client .chip[aria-pressed="true"]{background:var(--brand);color:var(--brand-text);border-color:var(--brand)}
 .portal-hero{border-radius:14px;padding:22px 18px;margin:0 0 12px;background-color:#0b1525;background-image:linear-gradient(135deg,var(--brand2),#0b1525);background-size:cover;background-position:center;border:1px solid #2c3c54;border-top:4px solid var(--brand)}
@@ -198,6 +224,17 @@ details.fold[open]>summary{margin-bottom:12px}
 .colors input[type=color]{height:46px;padding:4px;cursor:pointer}
 .brand-preview{display:flex;align-items:center;gap:10px;margin:4px 0 8px}
 .brand-preview img.backdrop{width:120px;height:56px;object-fit:cover;border-radius:8px;border:1px solid #2c3c54}
+.preview-btn{margin:2px 0 12px}
+.brand-live{border:1px dashed #40516b;border-radius:12px;padding:12px;margin:0 0 12px;display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(250px,1fr))}
+.pv-label{font-size:11px;text-transform:uppercase;color:#9fb0c7;letter-spacing:.05em;margin-bottom:6px}
+.pv-card{max-width:360px}
+.pv-portal{background:#121e30;border:1px solid #2c3c54;border-radius:14px;padding:10px}
+.pv-portal .portal-hero{padding:14px;margin-bottom:10px}
+.pv-portal .portal-hero.has-backdrop{min-height:120px}
+.pv-portal .hero-inner h2{font-size:17px}
+.pv-portal .logo-circle{flex-basis:48px;width:48px;height:48px;font-size:16px}
+.pv-request{display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:12px;border:2px solid var(--brand);background:linear-gradient(135deg,var(--brand-soft),#0a1220 75%);box-shadow:0 0 0 3px var(--brand-soft);font-weight:700;font-size:14px}
+.pv-request .req-icon{flex-basis:28px;width:28px;height:28px;font-size:18px}
 
 /* Request form attachments */
 .attach-row{display:flex;gap:8px;flex-wrap:wrap;margin:4px 0 12px}
@@ -393,8 +430,8 @@ details.fold[open]>summary{margin-bottom:12px}
 </select>
 </label>
 
-<details id="requestPanel" class="panel fold hidden" open>
-<summary>Add request</summary>
+<details id="requestPanel" class="panel fold request-zone hidden">
+<summary><span class="req-head"><span class="req-icon" aria-hidden="true">+</span><span>Need something? Start a request here<span class="req-sub">Tap to add a new request</span></span></span></summary>
 <p class="muted">Tell us what you need. Add photos, videos or a voice note if it helps. You can edit a request for 3 minutes after sending it.</p>
 <form id="requestTaskForm">
 <label>Task name
@@ -481,6 +518,7 @@ let currentUser=null,role=null,myClientName='',myClientId=null,tasks=[],clients=
 let attachments=[],signedUrls={},pending=[],recorder=null,recStream=null,recChunks=[],recTimer=null,recStart=0;
 let brandUrls={},brandLoadedAt=0,openClientId=null,editingId=null,menuCtx=null,pollTimer=null,tickTimer=null,lastLoad=0;
 let prefs=loadPrefs();
+const expandedMedia=new Set();
 
 const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({
 '&':'&amp;',
@@ -563,6 +601,7 @@ $('clientBtn').onclick=()=>view('client');
 function clearState(){
  currentUser=null;role=null;myClientName='';myClientId=null;
  tasks=[];clients=[];logins=[];attachments=[];signedUrls={};brandUrls={};brandLoadedAt=0;openClientId=null;editingId=null;
+ expandedMedia.clear();
  stopTimers();
  closeMenu();
  stopRecording(true);
@@ -840,10 +879,23 @@ function mediaHtml(taskId){
  }).join('')}</div>`;
 }
 
+const CLIP_ICON='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21.4 11.1l-9.2 9.2a6 6 0 0 1-8.5-8.5l9.2-9.2a4 4 0 0 1 5.7 5.7l-9.2 9.2a2 2 0 0 1-2.8-2.8l8.5-8.5"/></svg>';
+function plural(n,word){return `${n} ${word}${n===1?'':'s'}`;}
+function mediaSummary(list){
+ const c={image:0,video:0,audio:0};
+ list.forEach(a=>{if(c[a.kind]!==undefined)c[a.kind]++;});
+ return [c.image&&plural(c.image,'photo'),c.video&&plural(c.video,'video'),c.audio&&plural(c.audio,'voice note')].filter(Boolean).join(' · ');
+}
+function mediaToggle(t,list){
+ const open=expandedMedia.has(String(t.id));
+ return `<button type="button" class="media-toggle" data-act="media" data-id="${esc(t.id)}" aria-expanded="${open}">${CLIP_ICON}<span>${esc(mediaSummary(list))}</span><span class="hint">${open?'Hide':'Tap to view'}</span></button>`;
+}
+
 function taskCard(t,o){
  const st=normStatus(t),pr=normPriority(t),due=dueInfo(t);
  if(o.client&&String(editingId)===String(t.id)&&canEdit(t))return editCard(t);
- const n=attachments.filter(a=>String(a.task_id)===String(t.id)).length;
+ const files=attachments.filter(a=>String(a.task_id)===String(t.id));
+ const n=files.length;
  const id=esc(t.id);
  const statusEl=o.admin
   ?`<button type="button" class="badge ${statusClass(st)} tap" data-act="status" data-id="${id}" aria-haspopup="menu" title="Change status">${esc(st)}</button>`
@@ -859,8 +911,10 @@ function taskCard(t,o){
  ${o.admin?bizHeader(t.client_id):''}
  <h4 class="tc-title">${esc(t.title||'Untitled')}</h4>
  <div class="tc-meta">${statusEl}${prEl}${dueEl}</div>
- ${(t.description||n)?`<div class="tc-body">${t.description?`<p class="tc-desc">${esc(t.description)}</p>`:''}${mediaHtml(t.id)}</div>`:''}
- ${n?`<span class="tc-attach">${n} attachment${n>1?'s':''}</span>`:''}
+ ${st==='In progress'?'<div class="work-bar" role="img" aria-label="Being worked on"></div>':''}
+ ${t.description?`<p class="tc-desc">${esc(t.description)}</p>`:''}
+ ${n?mediaToggle(t,files):''}
+ ${n&&expandedMedia.has(String(t.id))?`<div class="tc-media">${mediaHtml(t.id)}</div>`:''}
  ${editable?`<div class="tc-edit"><button type="button" class="link-button" data-act="edit" data-id="${id}">Edit request</button><small class="muted" data-until="${editUntil(t)}"></small></div>`:''}
 </article>`;
 }
@@ -962,6 +1016,8 @@ function applyBranding(c){
  sec.style.setProperty('--brand',brand||'#3975db');
  sec.style.setProperty('--brand-text',brand?textOn(brand):'#ffffff');
  sec.style.setProperty('--brand2',brand2||'#121e30');
+ sec.style.setProperty('--brand-soft',hexToRgba(brand||'#3975db',.22));
+ sec.style.setProperty('--brand-glow',hexToRgba(brand||'#3975db',.5));
  const bg=c?.backdrop_path&&brandUrls[c.backdrop_path];
  hero.style.backgroundImage=bg?`linear-gradient(180deg,rgba(11,18,32,.2),rgba(11,18,32,.88)),url("${bg.replace(/"/g,'%22')}")`:'';
  hero.classList.toggle('has-backdrop',!!bg);
@@ -1093,6 +1149,12 @@ function onBoardClick(e){
   return;
  }
  if(act==='cancel-edit'){editingId=null;renderPortal();return;}
+ if(act==='media'){
+  const key=String(id);
+  if(expandedMedia.has(key))expandedMedia.delete(key);else expandedMedia.add(key);
+  if(e.currentTarget===$('adminBoard'))renderAdmin();else renderPortal();
+  return;
+ }
  if(!isAdmin()||!t)return;
  e.stopPropagation();
  if(menuCtx&&menuCtx.anchor===b){closeMenu();return;}
@@ -1333,6 +1395,8 @@ function renderClients(){
  </div>
  ${brandFileHtml(c,'logo_path','Logo','logo','removeLogo')}
  ${brandFileHtml(c,'backdrop_path','Backdrop image','backdrop','removeBackdrop')}
+ <button type="button" class="preview-btn" data-preview="${esc(c.id)}" aria-expanded="false">View preview</button>
+ <div class="brand-live hidden" aria-live="polite"></div>
  </fieldset>
  <button class="primary" type="submit">Save changes</button>
  </form>
@@ -1363,6 +1427,70 @@ $('addClientForm').onsubmit=async e=>{
  }catch(err){displayError('Client was not added',err);}
  finally{button.disabled=false;}
 };
+
+const previewUrls=new WeakMap();
+function pickedFileUrl(form,field){
+ const file=form.querySelector(`input[name="${field}"]`)?.files?.[0];
+ if(!file||!fileType(file).startsWith('image/'))return null;
+ if(!previewUrls.has(file))previewUrls.set(file,URL.createObjectURL(file));
+ return previewUrls.get(file);
+}
+function readBrandForm(form,c){
+ const fd=new FormData(form);
+ const use=!!fd.get('useColors');
+ return {
+  id:c.id,
+  name:String(fd.get('name')||'').trim()||c.Name||'Client',
+  brand:use&&validHex(fd.get('brand_color'))?String(fd.get('brand_color')):null,
+  brand2:use&&validHex(fd.get('brand_color_2'))?String(fd.get('brand_color_2')):null,
+  logo:pickedFileUrl(form,'logo')||(fd.get('removeLogo')?null:(c.logo_path&&brandUrls[c.logo_path])||null),
+  backdrop:pickedFileUrl(form,'backdrop')||(fd.get('removeBackdrop')?null:(c.backdrop_path&&brandUrls[c.backdrop_path])||null)
+ };
+}
+function brandPreviewHtml(v){
+ const bizCol=v.brand||bizColor({id:v.id});
+ const brand=v.brand||'#3975db',brand2=v.brand2||'#121e30';
+ const cardLogo=v.logo
+  ?`<span class="logo-circle card" aria-hidden="true"><img src="${esc(v.logo)}" alt=""></span>`
+  :`<span class="logo-circle card" style="background:${bizCol};color:${textOn(bizCol)}" aria-hidden="true">${esc(initials(v.name))}</span>`;
+ const heroLogo=v.logo
+  ?`<span class="logo-circle" aria-hidden="true"><img src="${esc(v.logo)}" alt=""></span>`
+  :`<span class="logo-circle" aria-hidden="true">${esc(initials(v.name))}</span>`;
+ const heroBg=v.backdrop?` style="background-image:linear-gradient(180deg,rgba(11,18,32,.2),rgba(11,18,32,.88)),url(&quot;${esc(v.backdrop.replace(/"/g,'%22'))}&quot;)"`:'';
+ return `<div><div class="pv-label">Your dashboard card</div>
+<article class="tcard pr-high st-in-progress pv-card">
+<div class="tc-biz" style="--biz:${bizCol};--biz-bg:linear-gradient(90deg,${hexToRgba(bizCol,.38)},${hexToRgba(bizCol,.12)})">${cardLogo}<span class="biz-name">${esc(v.name)}</span></div>
+<h4 class="tc-title">Sample task</h4>
+<div class="tc-meta"><span class="badge st-in-progress">In progress</span><span class="badge pr-high">High priority</span></div>
+<div class="work-bar" aria-hidden="true"></div>
+</article></div>
+<div><div class="pv-label">Their portal</div>
+<div class="pv-portal" style="--brand:${brand};--brand-text:${textOn(brand)};--brand2:${brand2};--brand-soft:${hexToRgba(brand,.22)};--brand-glow:${hexToRgba(brand,.5)}">
+<div class="portal-hero${v.backdrop?' has-backdrop':''}"${heroBg}><div class="hero-inner">${heroLogo}<div><h2>${esc(v.name)}</h2><p class="muted">Track the status of your work with Signix Digital.</p></div></div></div>
+<div class="pv-request"><span class="req-icon" aria-hidden="true">+</span>Need something? Start a request here</div>
+</div></div>`;
+}
+function refreshPreview(form){
+ const box=form.querySelector('.brand-live');
+ if(!box||box.classList.contains('hidden'))return;
+ const c=clients.find(x=>String(x.id)===form.dataset.clientId);
+ if(c)box.innerHTML=brandPreviewHtml(readBrandForm(form,c));
+}
+$('clientsList').addEventListener('click',e=>{
+ const b=e.target.closest('button[data-preview]');
+ if(!b)return;
+ const form=b.closest('form[data-client-id]'),box=form?.querySelector('.brand-live');
+ if(!box)return;
+ const open=box.classList.contains('hidden');
+ box.classList.toggle('hidden',!open);
+ b.setAttribute('aria-expanded',String(open));
+ b.textContent=open?'Hide preview':'View preview';
+ if(open)refreshPreview(form);
+});
+['input','change'].forEach(evt=>$('clientsList').addEventListener(evt,e=>{
+ const form=e.target.closest?.('form[data-client-id]');
+ if(form)refreshPreview(form);
+}));
 
 $('clientsList').addEventListener('toggle',e=>{
  const d=e.target.closest?.('details[data-card]');
@@ -1622,6 +1750,7 @@ $('requestTaskForm').onsubmit=async e=>{
   }
   form.reset();
   clearPending();
+  $('requestPanel').open=false;
   await loadTasks();
   notice(failed.length
    ?`Request sent, but ${failed.length} file(s) did not upload:\n${failed.join('\n')}`
