@@ -20,9 +20,9 @@
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
 <script>
 'use strict';
-const URL='https://mhpvdyfrtaazgabmcvtx.supabase.co';
+const SUPABASE_URL='https://mhpvdyfrtaazgabmcvtx.supabase.co';
 const KEY='sb_publishable_RljzO2G_ltUBbgnjWKF4gA_t-xHrkeI';
-const sb=window.supabase.createClient(URL,KEY);
+const sb=window.supabase.createClient(SUPABASE_URL,KEY);
 const $=id=>document.getElementById(id);
 const show=(id,on)=>$(id).classList.toggle('hidden',!on);
 const notice=s=>{$('message').textContent=s};
