@@ -138,8 +138,10 @@ button.tap:hover{filter:brightness(1.2)}
 .login-row .name-form{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
 .login-row .name-form input{flex:1 1 160px;margin:0;padding:9px 10px}
 .login-row .name-form button{padding:9px 12px}
-.tc-del{align-self:flex-end;background:transparent;border:1px solid rgba(248,113,113,.45);color:#fca5a5;font-size:12px;padding:5px 12px;border-radius:20px;min-height:30px}
-.tc-del:hover,.tc-del:focus-visible{background:rgba(239,68,68,.15)}
+.tc-trash{margin-left:auto;flex:0 0 auto;display:inline-grid;place-items:center;width:30px;height:30px;padding:0;border:0;border-radius:8px;background:transparent;color:#7d8aa0}
+.tc-trash svg{width:17px;height:17px}
+.tc-trash:hover,.tc-trash:focus-visible{color:#f87171;background:rgba(239,68,68,.14)}
+.del-link{color:#fca5a5}
 .tc-desc{margin:0;color:#d5deea;white-space:pre-wrap;overflow-wrap:anywhere;font-size:14px}
 .media-toggle{align-self:flex-start;display:inline-flex;align-items:center;gap:8px;font-size:13px;padding:6px 12px;border-radius:20px;background:rgba(56,189,248,.12);border:1px solid rgba(56,189,248,.5);color:#bae6fd;min-height:34px}
 .media-toggle svg{width:16px;height:16px;flex:0 0 16px}
@@ -162,9 +164,27 @@ body[data-ip="chevrons"] .work-bar::before{background-image:url("data:image/svg+
 body[data-ip="dots"] .work-bar{background:rgba(99,102,241,.12)}
 body[data-ip="dots"] .work-bar::before{background-image:radial-gradient(circle closest-side,#a5b4fc 96%,transparent),radial-gradient(circle closest-side,#a5b4fc 96%,transparent);background-repeat:no-repeat;background-position:calc(50% - 9px) 50%,calc(50% + 9px) 50%;background-size:8px 8px,8px 8px;animation:ip-dots calc(2.4s*var(--spd,1)) ease-in-out infinite}
 @keyframes ip-dots{0%,100%{background-size:8px 8px,2px 2px}50%{background-size:2px 2px,8px 8px}}
+/* Premium styles (also no sideways motion) */
+body[data-ip="gloss"] .work-bar{height:10px;background:rgba(99,102,241,.18);box-shadow:0 0 12px rgba(129,140,248,.35),inset 0 1px 0 rgba(255,255,255,.08)}
+body[data-ip="gloss"] .work-bar::before{background-image:linear-gradient(180deg,rgba(255,255,255,.55),rgba(255,255,255,.08) 45%,rgba(255,255,255,0) 60%),linear-gradient(90deg,#4f46e5,#7c3aed 50%,#a78bfa);background-size:100% 100%;animation:ip-gloss calc(3.6s*var(--spd,1)) ease-in-out infinite}
+@keyframes ip-gloss{0%,100%{filter:brightness(.85) saturate(.9)}50%{filter:brightness(1.25) saturate(1.2)}}
+body[data-ip="glass"] .work-bar{height:12px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.16);box-shadow:inset 0 1px 0 rgba(255,255,255,.12)}
+body[data-ip="glass"] .work-bar::before{background-image:radial-gradient(ellipse closest-side,rgba(199,210,254,.7),rgba(199,210,254,0)),radial-gradient(ellipse closest-side,rgba(167,139,250,.6),rgba(167,139,250,0));background-repeat:no-repeat;background-position:28% 50%,72% 50%;background-size:30% 260%,30% 260%;filter:blur(2px);animation:ip-glass calc(4.4s*var(--spd,1)) ease-in-out infinite}
+@keyframes ip-glass{0%,100%{background-size:22% 220%,40% 300%;opacity:.7}50%{background-size:40% 300%,22% 220%;opacity:1}}
+body[data-ip="orb"] .work-bar{height:4px;margin:4px 0;background:rgba(148,163,184,.18);overflow:visible}
+body[data-ip="orb"] .work-bar::before{inset:auto;left:50%;top:50%;width:10px;height:10px;margin:-5px 0 0 -5px;border-radius:50%;background:#e0e7ff;box-shadow:0 0 8px 2px rgba(165,180,252,.9),0 0 18px 6px rgba(99,102,241,.45);animation:ip-orb calc(3s*var(--spd,1)) ease-in-out infinite}
+@keyframes ip-orb{0%,100%{transform:scale(.7);opacity:.65}50%{transform:scale(1.15);opacity:1}}
+body[data-ip="segments"] .work-bar{height:8px;background:transparent}
+body[data-ip="segments"] .work-bar::before,body[data-ip="segments"] .work-bar::after{content:"";position:absolute;inset:0;border-radius:3px;animation:ip-seg calc(2.6s*var(--spd,1)) ease-in-out infinite}
+body[data-ip="segments"] .work-bar::before{background-image:repeating-linear-gradient(90deg,#818cf8 0 12px,transparent 12px 32px)}
+body[data-ip="segments"] .work-bar::after{background-image:repeating-linear-gradient(90deg,transparent 0 16px,#818cf8 16px 28px,transparent 28px 32px);animation-delay:calc(-1.3s*var(--spd,1))}
+@keyframes ip-seg{0%,100%{opacity:.25}50%{opacity:1}}
+body[data-ip="brand"] .work-bar{height:10px;background:rgba(255,255,255,.06)}
+body[data-ip="brand"] .work-bar::before{--c1:var(--bc,var(--brand,#6366f1));background-image:linear-gradient(180deg,var(--c1),color-mix(in srgb,var(--c1) 45%,#ffffff),var(--c1));background-size:100% 300%;box-shadow:inset 0 1px 0 rgba(255,255,255,.25);animation:ip-brand calc(4s*var(--spd,1)) ease-in-out infinite alternate}
+@keyframes ip-brand{from{background-position:0 0;opacity:.8}to{background-position:0 100%;opacity:1}}
 /* Animation switches (set from the admin Animations panel) */
 body.no-anim-high .tcard.pr-high{animation:none}
-body.no-anim-bar .work-bar::before{animation:none!important}
+body.no-anim-bar .work-bar::before,body.no-anim-bar .work-bar::after{animation:none!important}
 body.no-anim-col .group.st-in-progress{box-shadow:none}
 body.no-anim-col .group.st-in-progress .group-head h3{text-shadow:none}
 body.no-anim-col .group.st-in-progress .gdot{animation:none}
@@ -175,7 +195,7 @@ body.no-anim-req .request-zone:not([open]) .req-icon,body.no-anim-req .pv-reques
 .anim-list .check{margin:0;padding:10px 0;border-top:1px solid #29384f}
 .anim-list .check input{width:22px;height:22px}
 #animStatus{font-size:13px;margin:8px 0 0}
-@media (prefers-reduced-motion:reduce){.tcard.pr-high:not(.st-completed),.group.st-in-progress .gdot{animation:none}.work-bar::before{animation:none!important}.media-toggle[aria-expanded="false"],.request-zone:not([open]) .req-icon,.pv-request .req-icon{animation:none}}
+@media (prefers-reduced-motion:reduce){.tcard.pr-high:not(.st-completed),.group.st-in-progress .gdot{animation:none}.work-bar::before,.work-bar::after{animation:none!important}.media-toggle[aria-expanded="false"],.request-zone:not([open]) .req-icon,.pv-request .req-icon{animation:none}}
 .layout-list .work-bar{display:none}
 .tc-edit{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
 .bdot{width:10px;height:10px;border-radius:3px;flex:0 0 10px;box-shadow:0 0 0 1px rgba(255,255,255,.25)}
@@ -465,6 +485,11 @@ details.fold[open]>summary{margin-bottom:12px}
 <option value="shimmer">Shimmer</option>
 <option value="chevrons">Chevrons (pointing up)</option>
 <option value="dots">Blinking dots</option>
+<option value="gloss">Premium: Glossy glow</option>
+<option value="glass">Premium: Frosted glass</option>
+<option value="orb">Premium: Glowing orb</option>
+<option value="segments">Premium: Segmented</option>
+<option value="brand">Premium: Brand color</option>
 </select>
 </label>
 <label>Speed
@@ -952,6 +977,7 @@ function mediaHtml(taskId){
 
 const CLIP_ICON='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21.4 11.1l-9.2 9.2a6 6 0 0 1-8.5-8.5l9.2-9.2a4 4 0 0 1 5.7 5.7l-9.2 9.2a2 2 0 0 1-2.8-2.8l8.5-8.5"/></svg>';
 const PERSON_ICON='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg>';
+const TRASH_ICON='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 6h18"/><path d="M8 6V4h8v2"/><path d="M19 6l-1 14H6L5 6"/><path d="M10 11v6M14 11v6"/></svg>';
 function plural(n,word){return `${n} ${word}${n===1?'':'s'}`;}
 function mediaSummary(list){
  const c={image:0,video:0,audio:0};
@@ -982,14 +1008,13 @@ function taskCard(t,o){
  return `<article class="tcard ${priorityClass(pr)} ${statusClass(st)}" data-id="${id}">
  ${o.admin?bizHeader(t.client_id):''}
  <h4 class="tc-title">${esc(t.title||'Untitled')}</h4>
- <div class="tc-meta">${statusEl}${prEl}${dueEl}</div>
+ <div class="tc-meta">${statusEl}${prEl}${dueEl}${o.admin?`<button type="button" class="tc-trash" data-act="delete" data-id="${id}" title="Delete task" aria-label="Delete task: ${esc(t.title||'Untitled')}">${TRASH_ICON}</button>`:''}</div>
  ${t.created_by&&memberNames[t.created_by]?`<div class="tc-by">${PERSON_ICON}<span>Submitted by <strong>${esc(memberNames[t.created_by])}</strong></span></div>`:''}
- ${st==='In progress'?'<div class="work-bar" role="img" aria-label="Being worked on"></div>':''}
+ ${st==='In progress'?`<div class="work-bar" role="img" aria-label="Being worked on"${o.admin?` style="--bc:${bizColor(clients.find(c=>String(c.id)===String(t.client_id)))}"`:''}></div>`:''}
  ${t.description?`<p class="tc-desc">${esc(t.description)}</p>`:''}
  ${n?mediaToggle(t,files):''}
  ${n&&expandedMedia.has(String(t.id))?`<div class="tc-media">${mediaHtml(t.id)}</div>`:''}
- ${o.admin?`<button type="button" class="tc-del" data-act="delete" data-id="${id}" aria-label="Delete task: ${esc(t.title||'Untitled')}">Delete</button>`:''}
- ${editable?`<div class="tc-edit"><button type="button" class="link-button" data-act="edit" data-id="${id}">Edit request</button><small class="muted" data-until="${editUntil(t)}"></small></div>`:''}
+ ${editable?`<div class="tc-edit"><button type="button" class="link-button" data-act="edit" data-id="${id}">Edit request</button><button type="button" class="link-button del-link" data-act="delete-own" data-id="${id}">Delete request</button><small class="muted" data-until="${editUntil(t)}"></small></div>`:''}
 </article>`;
 }
 
@@ -1237,6 +1262,33 @@ async function deleteTask(t,button){
  }catch(err){displayError('Task was not deleted',err);if(button)button.disabled=false;}
 }
 
+async function deleteOwnRequest(id,button){
+ const t=tasks.find(x=>String(x.id)===String(id));
+ if(!t||!canEdit(t)){notice('The 3-minute window has closed, so this request can no longer be deleted.');renderPortal();return;}
+ const title=t.title||'Untitled';
+ if(!confirm(`Delete your request "${title}"?\n\nIt will be removed for you and for Signix Digital. This can't be undone.`))return;
+ if(!canEdit(t)){notice('The 3-minute window has closed, so this request can no longer be deleted.');renderPortal();return;}
+ const paths=attachments.filter(a=>String(a.task_id)===String(t.id)).map(a=>a.path);
+ if(button)button.disabled=true;
+ notice('Deleting…');
+ try{
+  const {data,error}=await sb.from('tasks').delete().eq('id',t.id).select('id');
+  if(error){displayError('Request was not deleted',error);if(button)button.disabled=false;return;}
+  if(!data?.length){notice('The 3-minute window has closed (or Signix Digital already picked up this request), so it was not deleted.');await loadTasks();return;}
+  tasks=tasks.filter(x=>String(x.id)!==String(t.id));
+  attachments=attachments.filter(a=>String(a.task_id)!==String(t.id));
+  expandedMedia.delete(String(t.id));
+  if(String(editingId)===String(t.id))editingId=null;
+  renderPortal();
+  let msg=`Your request "${title}" was deleted.`;
+  if(paths.length){
+   const {error:fileError}=await sb.storage.from(BUCKET).remove(paths);
+   if(fileError)msg+=` ${paths.length} attached file(s) could not be removed: ${fileError.message}`;
+  }
+  notice(msg);
+ }catch(err){displayError('Request was not deleted',err);if(button)button.disabled=false;}
+}
+
 function onBoardClick(e){
  const b=e.target.closest('[data-act]');
  if(!b)return;
@@ -1252,6 +1304,10 @@ function onBoardClick(e){
   const key=String(id);
   if(expandedMedia.has(key))expandedMedia.delete(key);else expandedMedia.add(key);
   if(e.currentTarget===$('adminBoard'))renderAdmin();else renderPortal();
+  return;
+ }
+ if(act==='delete-own'){
+  if(role==='client')deleteOwnRequest(id,b);
   return;
  }
  if(act==='delete'){
@@ -1391,7 +1447,7 @@ async function loadLogins(){
 /* ---------- Animation settings (admin controls, applied everywhere) ---------- */
 const ANIM_KEYS=[['high_pulse','no-anim-high'],['work_bar','no-anim-bar'],['ip_column','no-anim-col'],['media_pulse','no-anim-media'],['request_pulse','no-anim-req']];
 const SPEEDS={slow:1.5,normal:1,fast:0.7};
-const IP_STYLES=['drift','pulse','shimmer','chevrons','dots'];
+const IP_STYLES=['drift','pulse','shimmer','chevrons','dots','gloss','glass','orb','segments','brand'];
 const ANIM_DEFAULTS={high_pulse:true,work_bar:true,ip_column:true,media_pulse:true,request_pulse:true,speed:'normal',ip_style:'drift'};
 const ANIM_COLS='high_pulse,work_bar,ip_column,media_pulse,request_pulse,speed';
 let animSettings={...ANIM_DEFAULTS},animReady=false,animHasStyle=true;
