@@ -339,6 +339,7 @@ details.fold[open]>summary{margin-bottom:12px}
 /* ===== END OF PART 1 of 10 ===== */
 
  
+
  #client .chip[aria-pressed="true"]{background:var(--brand);color:var(--brand-text);border-color:var(--brand)}
 .portal-hero{border-radius:14px;padding:22px 18px;margin:0 0 12px;background-color:#0b1525;background-image:linear-gradient(135deg,var(--brand2),#0b1525);background-size:cover;background-position:center;border:1px solid #2c3c54;border-top:4px solid var(--brand)}
 .portal-hero.has-backdrop{min-height:180px;display:flex;align-items:flex-end}
@@ -661,6 +662,7 @@ body.is-mobile #popOutBtn{display:none}
 .tasks-only main{max-width:none;padding:10px 14px}
 /* ===== END OF PART 2 of 10 ===== */
 
+ 
  
  .tasks-only header{padding:10px 14px}
 .tasks-only #mainNav,.tasks-only #addTaskPanel,.tasks-only .admin-tools,.tasks-only #popOutBtn,.tasks-only #ipOutBtn{display:none!important}
@@ -1007,6 +1009,9 @@ body.is-mobile .tc-title{cursor:pointer}
 <input type="date" name="due" id="requestDue">
 </label>
 </div>
+<label id="reqAssignWrap" class="hidden">Who is this for
+<select name="assign" id="reqAssign"></select>
+</label>
 <span class="muted" style="font-size:14px">Attachments (optional, up to 10 files, 50 MB each)</span>
 <div class="attach-row">
 <label class="file-button">Add photos or videos
@@ -1022,6 +1027,7 @@ body.is-mobile .tc-title{cursor:pointer}
 <!-- ===== END OF PART 3 of 10 ===== -->
 
  
+ 
  <div class="stats">
 <button type="button" class="stat" id="portalOpenStat">Open tasks<strong id="portalOpen">0</strong></button>
 <button type="button" class="stat today" id="portalNeedsStat">Needs your input<strong id="portalNeeds">0</strong></button>
@@ -1030,6 +1036,7 @@ body.is-mobile .tc-title{cursor:pointer}
 <div class="toolbar">
 <div class="tool"><span class="tool-label">View</span><div class="chips" id="clientViews"></div></div>
 <div class="tool" id="clientLayoutTool"><span class="tool-label">Layout</span><div class="chips" id="clientLayouts"></div></div>
+<div class="tool hidden" id="personTool"><span class="tool-label">For</span><div class="chips" id="personChips"></div></div>
 </div>
 <div id="clientBoard" class="board"></div>
 </div>
@@ -1131,7 +1138,7 @@ const IP_ONLY=MODE==='inprogress';
 const TASKS_ONLY=MODE==='tasks'||IP_ONLY;
 const PREF_KEY='signix-prefs-'+(IP_ONLY?'ip':TASKS_ONLY?'popup':'main');
 
-let currentUser=null,role=null,myClientName='',myClientId=null,tasks=[],clients=[],logins=[],recoveryActive=false,linkEmail='';
+let currentUser=null,role=null,myClientName='',myClientId=null,tasks=[],clients=[],logins=[],recoveryActive=false,linkEmail='',personFilter='';
 let attachments=[],signedUrls={};
 let brandUrls={},brandLoadedAt=0,openClientId=null,editingId=null,menuCtx=null,pollTimer=null,tickTimer=null,lastLoad=0;
 let prefs=loadPrefs();
@@ -1244,7 +1251,7 @@ function clearState(){
  tasks=[];clients=[];logins=[];attachments=[];signedUrls={};brandUrls={};brandLoadedAt=0;openClientId=null;editingId=null;
  expandedMedia.clear();
  memberNames={};
- notes=[];notesReady=false;search='';selectMode=false;addPick=null;addBiz=null;
+ notes=[];notesReady=false;search='';selectMode=false;addPick=null;addBiz=null;personFilter='';
  for(const k in CAL)CAL[k]={focus:null,day:null,anchor:null};
  [selected,expandedDone,mOpen].forEach(s=>s.clear());
  closeNotes(true);closeWelcome();
@@ -1464,6 +1471,7 @@ $('changePwForm').onsubmit=async e=>{
 
 // ===== END OF PART 4 of 10 =====
 
+ 
  
 function resetMode(kind){
  authMode('reset');
@@ -1772,12 +1780,14 @@ function editCard(t){
 <label>Priority<select name="priority">${['Low','Medium','High'].map(p=>`<option${p===pr?' selected':''}>${p}</option>`).join('')}</select></label>
 <label>Deadline (optional)<input type="date" name="due" min="${todayStr()}" value="${esc(t.due_date||'')}"></label>
 </div>
+${(()=>{const pp=portalPeople(null);return pp.length>=2?`<label>Who is this for<select name="assign"><option value="">Everyone</option>${pp.map(p=>`<option value="${esc(p.id)}"${t.assigned_to===p.id?' selected':''}>${esc(p.name)}</option>`).join('')}</select></label>`:'';})()}
 <div class="row"><button class="primary" type="submit">Save changes</button><button type="button" data-act="cancel-edit" data-id="${esc(t.id)}">Cancel</button><small class="muted" data-until="${editUntil(t)}"></small></div>
 </form>
 </article>`;
 }
 // ===== END OF PART 5 of 10 =====
 
+ 
  
  
 /* ---------- Board rendering ---------- */
@@ -1957,7 +1967,7 @@ function renderCalendar(root,list,o){
   if(later.length)rows+=`<div class="tl-day has wk"><span class="tl-label">Later</span><div class="tl-items">${later.map(t=>pillHtml(t,sb2,st)).join('')}</div></div>`;
   body=odStrip(open,st,sb2)+`<div class="cal-timeline">${rows}</div>`;
  }
- const detail=calDetail(list,o,st);
+  const detail=calDetail(list,o,st);
  root.innerHTML=`<div class="cal${detail&&!mobile?' has-detail':''}">${calBar(mode,title,nav)}<div class="cal-main" style="display:grid;gap:10px;min-width:0">${body}</div>${detail}</div>`;
 }
 
@@ -1983,6 +1993,11 @@ $('overdueStat').onclick=()=>jumpTo('deadline','due-overdue');
 $('todayStat').onclick=()=>jumpTo('deadline','due-today');
 
 /* ---------- Client portal ---------- */
+function portalPeople(c){
+ if(!taskOptional.includes('assigned_to'))return [];
+ if(role==='admin')return c?logins.filter(l=>String(l.client_id)===String(c.id)).map(l=>({id:l.user_id,name:l.display_name||l.email})):[];
+ return Object.entries(memberNames).map(([id,name])=>({id,name}));
+}
 function logoHtml(c,extra){
  const url=c?.logo_path&&brandUrls[c.logo_path];
  const style=validHex(c?.brand_color)?` style="background:${c.brand_color};color:${textOn(c.brand_color)}"`:'';
@@ -2029,6 +2044,22 @@ function renderPortal(){
   $('requestDue').min=todayStr();
  }else return;
  applyBranding(c);
+ const people=portalPeople(c);
+ const showPeople=people.length>=2;
+ show('personTool',showPeople);
+ if(showPeople){
+  if(personFilter&&personFilter!=='none'&&!people.some(p=>p.id===personFilter))personFilter='';
+  buildChips('personChips',[['','All'],...people.map(p=>[p.id,p.name]),['none','For everyone']],personFilter,v=>{personFilter=v;renderPortal();});
+  if(personFilter==='none')list=list.filter(t=>!t.assigned_to);
+  else if(personFilter)list=list.filter(t=>t.assigned_to===personFilter);
+ }else personFilter='';
+ const showReq=role==='client'&&people.length>=2;
+ $('reqAssignWrap').classList.toggle('hidden',!showReq);
+ if(showReq){
+  const sel=$('reqAssign'),prior=sel.value;
+  sel.replaceChildren(new Option(`Everyone at ${myClientName||'your business'}`,''),...people.map(p=>new Option(p.name,p.id)));
+  if(people.some(p=>p.id===prior))sel.value=prior;
+ }
  $('portalOpen').textContent=list.filter(t=>!isDone(t)).length;
  $('portalNeeds').textContent=list.filter(t=>t.status==='Waiting on client').length;
  $('portalDone').textContent=list.filter(isDone).length;
@@ -2088,6 +2119,7 @@ function dueMenu(t){
 
 // ===== END OF PART 6 of 10 =====
 
+ 
  
  $('menu').addEventListener('click',e=>{
  const b=e.target.closest('[data-pick]');
@@ -2410,6 +2442,7 @@ async function loadNotes(){
 
  
  
+ 
 /* ---------- Client welcome-back pop-up ---------- */
 function lastVisitKey(){return 'signix-lastvisit-'+(currentUser?.id||'x');}
 function saveLastVisit(){try{localStorage.setItem(lastVisitKey(),new Date().toISOString());}catch(e){}}
@@ -2479,13 +2512,22 @@ $('clientBoard').addEventListener('submit',async e=>{
  if(!PRIORITIES.includes(priority)){notice('Pick a valid priority.');return;}
  const button=form.querySelector('button[type="submit"]');button.disabled=true;
  try{
-  const {data,error}=await sb.from('tasks').update({title,description,priority,due_date:due||null}).eq('id',t.id).select(taskFields());
+  const update={title,description,priority,due_date:due||null};
+  const hasAssign=fd.has('assign')&&taskOptional.includes('assigned_to');
+  if(hasAssign)update.assigned_to=String(fd.get('assign')||'')||null;
+  let {data,error}=await sb.from('tasks').update(update).eq('id',t.id).select(taskFields());
+  let tagSkipped=false;
+  if(error&&hasAssign){
+   delete update.assigned_to;
+   ({data,error}=await sb.from('tasks').update(update).eq('id',t.id).select(taskFields()));
+   tagSkipped=!error;
+  }
   if(error){displayError('Request was not updated',error);return;}
   if(!data?.length){editingId=null;renderPortal();notice('The edit window has closed (or Signix Digital already picked up this request), so the change was not saved.');return;}
   Object.assign(t,data[0]);
   editingId=null;
   renderPortal();
-  notice('Request updated.');
+  notice('Request updated.'+(tagSkipped?' The "who is this for" choice was not saved.':''));
  }catch(err){displayError('Request was not updated',err);}
  finally{button.disabled=false;}
 });
@@ -2525,7 +2567,7 @@ $('popOutBtn').onclick=()=>{
  const w=window.open(location.pathname+'?mode=tasks','signix-all-tasks','popup=yes,width=1400,height=900');
  if(!w)notice('Your browser blocked the new window. Allow pop-ups for this site and try again.');
 };
-$('previewClient').addEventListener('change',renderPortal);
+$('previewClient').addEventListener('change',()=>{personFilter='';renderPortal();});
 
 /* ---------- Data loading ---------- */
 function fillClientSelect(select,placeholder){
@@ -2746,6 +2788,7 @@ $('animForm').addEventListener('change',async()=>{
 
 // ===== END OF PART 8 of 10 =====
 
+ 
  
  
 /* ---------- Auto refresh ---------- */
@@ -3052,6 +3095,7 @@ $('clientsList').addEventListener('toggle',e=>{
 // ===== END OF PART 9 of 10 =====
 
  
+ 
  $('clientsList').addEventListener('submit',async e=>{
  const form=e.target.closest('form[data-client-id]');
  if(!form)return;
@@ -3314,9 +3358,16 @@ $('requestTaskForm').onsubmit=async e=>{
  button.disabled=true;
  try{
   notice('Sending request…');
-  const {data:created,error}=await sb.from('tasks')
-   .insert({title,description,client_id:myClientId,status:'Incoming',priority,due_date:due||null})
-   .select('id').single();
+  const payload={title,description,client_id:myClientId,status:'Incoming',priority,due_date:due||null};
+  const assign=String(fd.get('assign')||'');
+  if(assign&&taskOptional.includes('assigned_to'))payload.assigned_to=assign;
+  let {data:created,error}=await sb.from('tasks').insert(payload).select('id').single();
+  let tagSkipped=false;
+  if(error&&payload.assigned_to){
+   delete payload.assigned_to;
+   ({data:created,error}=await sb.from('tasks').insert(payload).select('id').single());
+   tagSkipped=!error;
+  }
   if(error){displayError('Request was not sent',error);return;}
   const failed=await uploadPending(clientFiles,myClientId,created.id,'Request created.');
   form.reset();
@@ -3325,7 +3376,7 @@ $('requestTaskForm').onsubmit=async e=>{
   await loadTasks();
   notice(failed.length
    ?`Request sent, but ${failed.length} file(s) did not upload:\n${failed.join('\n')}`
-   :'Request sent. You can edit it for the next 3 minutes, and add notes to it any time.');
+   :'Request sent. You can edit it for the next 3 minutes, and add notes to it any time.'+(tagSkipped?' The "who is this for" choice was not saved.':''));
  }catch(err){displayError('Request was not sent',err);}
  finally{button.disabled=false;}
 };
