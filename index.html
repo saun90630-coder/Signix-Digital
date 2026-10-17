@@ -5,9 +5,9 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Signix Digital | Tasks</title>
 <style>
-:root{font-family:system-ui,sans-serif;color-scheme:dark;background:#0b1220;color:#eaf0f8}
+:root{font-family:system-ui,sans-serif;color-scheme:dark;background:#060b14;color:#eaf0f8}
 *{box-sizing:border-box}
-body{margin:0}
+body{margin:0;background:#060b14}
 header{padding:16px 20px;border-bottom:1px solid #29354a;display:flex;justify-content:space-between;align-items:center;gap:12px}
 .header-actions{display:flex;align-items:center;gap:10px}
 h1{font-size:21px;margin:0}
@@ -346,8 +346,7 @@ details.fold[open]>summary{margin-bottom:12px}
 .request-zone[open] .req-sub{display:none}
 #client .primary{background:var(--brand);color:var(--brand-text);border-color:var(--brand)}
 /* ===== END OF PART 1 of 10 ===== */
-
-  
+ 
  
  #client .chip[aria-pressed="true"]{background:var(--brand);color:var(--brand-text);border-color:var(--brand)}
 .portal-hero{border-radius:14px;padding:22px 18px;margin:0 0 12px;background-color:#0b1525;background-image:linear-gradient(135deg,var(--brand2),#0b1525);background-size:cover;background-position:center;border:1px solid #2c3c54;border-top:4px solid var(--brand)}
@@ -670,8 +669,7 @@ body.is-mobile #popOutBtn{display:none}
 /* Pop-out (all tasks only) mode */
 .tasks-only main{max-width:none;padding:10px 14px}
 /* ===== END OF PART 2 of 10 ===== */
-
-.tasks-only header{padding:10px 14px}
+ .tasks-only header{padding:10px 14px}
 .tasks-only #mainNav,.tasks-only #addTaskPanel,.tasks-only .admin-tools,.tasks-only #popOutBtn,.tasks-only #ipOutBtn{display:none!important}
 .ip-only #admin>.stats,.ip-only #snapshot,.ip-only #viewTool{display:none!important}
 .ip-only #tasksPanel{border-color:color-mix(in srgb,var(--ip) 70%,transparent);box-shadow:0 0 0 1px color-mix(in srgb,var(--ip) 25%,transparent),0 0 30px color-mix(in srgb,var(--ip) 18%,transparent)}
@@ -712,6 +710,39 @@ body.is-mobile .modal-back{align-items:flex-end;padding:0}
 body.is-mobile .modal{width:100%;max-height:92vh;border-radius:16px 16px 0 0}
 body.is-mobile .tc-title{cursor:pointer}
 .tasks-only #tasksPanel{margin-top:6px}
+
+/* ===== Independent status sections (admin board + client portal) ===== */
+#tasksPanel,#client>.panel{background:#0a1322;border-color:#1f2c42}
+.board .groups{gap:18px}
+.board .group{--gc:#64748b;background:#111d31;border:1px solid color-mix(in srgb,var(--gc) 38%,#22324b);border-top:4px solid var(--gc);border-radius:14px;box-shadow:0 10px 26px rgba(0,0,0,.45),inset 0 1px 0 rgba(255,255,255,.03)}
+.board .group.st-incoming{--gc:var(--inc)}
+.board .group.st-to-do{--gc:var(--todo)}
+.board .group.st-in-progress{--gc:var(--ip)}
+.board .group.st-waiting-on-client{--gc:var(--wait)}
+.board .group.st-completed{--gc:var(--dn)}
+.board .group.pr-high,.board .group.overdue-pin,.board .group.bucket-overdue{--gc:#ff2828}
+.board .group.bucket-today{--gc:#eab308}
+.board .group.bucket-tomorrow{--gc:#0ea5e9}
+.board .group.bucket-week{--gc:#6366f1}
+.board .group.bucket-later{--gc:#94a3b8}
+.board .group.st-in-progress{background:linear-gradient(180deg,color-mix(in srgb,var(--ip) 14%,#111d31),#111d31 50%);box-shadow:0 10px 26px rgba(0,0,0,.45),0 0 26px color-mix(in srgb,var(--ip) 18%,transparent)}
+.board .group.overdue-pin{background:linear-gradient(180deg,rgba(255,40,40,.16),#111d31 55%)}
+.board .group-head{margin:-10px -10px 10px;padding:10px 12px;border-radius:10px 10px 0 0;background:color-mix(in srgb,var(--gc) 13%,#0d1729);border-bottom:1px solid color-mix(in srgb,var(--gc) 30%,transparent)}
+.board .group-head h3{color:color-mix(in srgb,var(--gc) 30%,#fff)}
+.board .group .gdot{background:var(--gc)}
+.board[class*="layout-m-"] .groups{gap:14px}
+.board[class*="layout-m-"] .group-head{margin:-8px -8px 8px;padding:8px 10px}
+.layout-stack .group-head{margin:-12px -14px 10px;padding:12px 16px 10px}
+@media (orientation:landscape) and (min-width:900px){.layout-board .group-body{padding:6px 4px}}
+
+/* ===== Focus glow (admin only: the task you are working on right now) ===== */
+.tc-focus{flex:0 0 auto;display:inline-grid;place-items:center;width:30px;height:30px;padding:0;border-radius:8px;background:transparent;border:1px solid #2c3c54;color:#7d8aa0}
+.tc-focus svg{width:17px;height:17px}
+.tc-focus:hover,.tc-focus:focus-visible{color:#86efac;border-color:rgba(34,197,94,.6)}
+.tc-focus[aria-pressed="true"]{background:#16a34a;border-color:#22c55e;color:#fff;box-shadow:0 0 10px rgba(34,197,94,.6)}
+.tcard.is-focus{border-top-color:#22c55e;border-right-color:#22c55e;border-bottom-color:#22c55e;transform:translateY(-3px);z-index:2;background:linear-gradient(180deg,rgba(34,197,94,.14),#121e30 60%);animation:focus-glow calc(2.8s*var(--spd,1)) ease-in-out infinite!important;transition:transform .2s}
+@keyframes focus-glow{0%,100%{box-shadow:0 0 0 2px #22c55e,0 6px 22px rgba(34,197,94,.45)}50%{box-shadow:0 0 0 2px #4ade80,0 8px 34px rgba(34,197,94,.75)}}
+@media (prefers-reduced-motion:reduce){.tcard.is-focus{animation:none!important;box-shadow:0 0 0 2px #22c55e,0 6px 22px rgba(34,197,94,.5);transform:none}}
 
 @media (max-width:600px){
  main{padding:12px}
@@ -1154,6 +1185,7 @@ const PREF_KEY='signix-prefs-'+(IP_ONLY?'ip':TASKS_ONLY?'popup':'main');
 
 let currentUser=null,role=null,myClientName='',myClientId=null,tasks=[],clients=[],logins=[],recoveryActive=false,linkEmail='',personFilter='';
 let loginLog=[],loginLogReady=false,logClient='',signedInNow=false;
+let focusId=null,focusReady=false;
 let attachments=[],signedUrls={};
 let brandUrls={},brandLoadedAt=0,openClientId=null,editingId=null,menuCtx=null,pollTimer=null,tickTimer=null,lastLoad=0;
 let prefs=loadPrefs();
@@ -1265,6 +1297,7 @@ function clearState(){
  currentUser=null;role=null;myClientName='';myClientId=null;
  tasks=[];clients=[];logins=[];attachments=[];signedUrls={};brandUrls={};brandLoadedAt=0;openClientId=null;editingId=null;
  loginLog=[];loginLogReady=false;logClient='';signedInNow=false;
+ focusId=null;focusReady=false;
  expandedMedia.clear();
  memberNames={};
  notes=[];notesReady=false;search='';selectMode=false;addPick=null;addBiz=null;personFilter='';
@@ -1703,6 +1736,7 @@ function mediaToggle(t,list){
  return `<button type="button" class="media-toggle" data-act="media" data-id="${esc(t.id)}" aria-expanded="${open}">${CLIP_ICON}<span>${esc(mediaSummary(list))}</span><span class="hint">${open?'Hide':'Tap to view'}</span></button>`;
 }
 
+const FOCUS_ICON='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="3" fill="currentColor"/><path d="M12 1v3M12 20v3M1 12h3M20 12h3"/></svg>';
 const ARCHIVE_ICON='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="5" rx="1"/><path d="M5 9v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V9"/><path d="M10 13h4"/></svg>';
 const NOTE_ICON='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>';
 function notesFor(id){
@@ -1763,17 +1797,19 @@ function taskCard(t,o){
    ?`<button type="button" class="tc-arch" data-act="archive" data-id="${id}" title="Archive task" aria-label="Archive task: ${esc(t.title||'Untitled')}">${ARCHIVE_ICON}</button>`
    :`<button type="button" class="tc-trash" data-act="delete" data-id="${id}" title="Delete task" aria-label="Delete task: ${esc(t.title||'Untitled')}">${TRASH_ICON}</button>`;
  }
+ const focused=o.admin&&isFocused(t);
+ const focusBtn=o.admin&&focusReady&&!t.archived_at&&!isDone(t)?`<button type="button" class="tc-focus" data-act="focus" data-id="${id}" aria-pressed="${focused}" title="${focused?'Stop highlighting this task':'Highlight: I am working on this now'}" aria-label="${focused?'Stop highlighting':'Highlight'} ${esc(t.title||'Untitled')}">${FOCUS_ICON}</button>`:'';
  const editable=o.client&&canEdit(t);
  const nCount=notesFor(t.id).length;
  const notesBtn=notesReady?`<button type="button" class="notes-toggle${nCount?' has':''}" data-act="notes" data-id="${id}" aria-haspopup="dialog">${NOTE_ICON}<span class="nt-label">Notes</span>${nCount?`<b>${nCount}</b>`:''}</button>`:'';
  const foot=(n||notesBtn)?`<div class="tc-foot">${n?mediaToggle(t,files):''}${notesBtn}</div>`:'';
  const sel=o.admin&&selectMode&&!o.detail?`<label class="sel" title="Select"><input type="checkbox" data-sel="${id}"${selected.has(key)?' checked':''} aria-label="Select ${esc(t.title||'Untitled')}"></label>`:'';
- const cls=['tcard',priorityClass(pr),statusClass(st),od?'is-overdue':'',selected.has(key)&&selectMode?'selected':'',mOpen.has(key)?'m-open':''].filter(Boolean).join(' ');
+ const cls=['tcard',priorityClass(pr),statusClass(st),od?'is-overdue':'',focused?'is-focus':'',selected.has(key)&&selectMode?'selected':'',mOpen.has(key)?'m-open':''].filter(Boolean).join(' ');
  return `<article class="${cls}" data-id="${id}">
  ${sel}
  ${o.admin?bizHeader(t.client_id):''}
  <h4 class="tc-title" data-act="mopen" data-id="${id}">${esc(t.title||'Untitled')}</h4>
- <div class="tc-meta">${od?'<span class="od-flag">Overdue</span>':''}${statusEl}${prEl}${dueEl}${tagChip(t,o)}${corner}</div>
+ <div class="tc-meta">${od?'<span class="od-flag">Overdue</span>':''}${statusEl}${prEl}${dueEl}${tagChip(t,o)}${focusBtn}${corner}</div>
  ${t.created_by&&memberNames[t.created_by]?`<div class="tc-by">${PERSON_ICON}<span>Submitted by <strong>${esc(memberNames[t.created_by])}</strong></span></div>`:''}
  ${st==='In progress'?`<div class="work-bar" role="img" aria-label="Being worked on"${o.admin?` style="--bc:${bizColor(clientById(t.client_id))}"`:''}></div>`:''}
  ${t.description?`<p class="tc-desc">${esc(t.description)}</p>`:''}
@@ -1831,7 +1867,7 @@ function renderBoard(root,list,o){
   root.innerHTML=`<p class="muted empty">${esc(search&&o.admin?'No tasks match your search.':emptyText(o.view))}</p>`;
   return;
  }
- root.innerHTML=`<div class="groups">${groups.map(gr=>`<section class="group ${gr.cls||''}" data-group="${esc(gr.key)}" id="grp-${root.id}-${esc(gr.key)}">
+ root.innerHTML=`<div class="groups">${groups.map(gr=>`<section class="group ${gr.cls||''}" data-group="${esc(gr.key)}" id="grp-${root.id}-${esc(gr.key)}"${gr.biz?` style="--gc:${bizColor(gr.biz)}"`:''}>
 <header class="group-head">${gr.biz?logoHtml({...gr.biz,brand_color:bizColor(gr.biz)},'sm'):'<span class="gdot"></span>'}<h3>${esc(gr.label)}</h3><span class="count">${gr.items.length}</span></header>
 <div class="group-body">${gr.items.length?gr.items.map(t=>taskCard(t,o)).join(''):'<p class="muted empty-col">Nothing here</p>'}</div>
 </section>`).join('')}</div>`;
@@ -2169,6 +2205,7 @@ async function applyChange(id,field,value){
   if(error){displayError('Change was not saved',error);return;}
   if(!data?.length){notice('Change not saved: no row returned. Check UPDATE and SELECT permissions.');return;}
   Object.assign(t,data[0]);
+  clearFocusIfDone();
   render();
   notice(field==='tag'?(t.assigned_to?`"${t.title}" is now tagged for ${personName(t.assigned_to)}.`:`"${t.title}" is now for everyone at ${clientName(t.client_id)}.`):field==='status'?`"${t.title}" moved to ${t.status}.`:field==='priority'?`"${t.title}" set to ${t.priority} priority.`:t.due_date?`"${t.title}" is now due ${fmtDay(t.due_date)}.`:`Due date cleared for "${t.title}".`);
  }catch(err){displayError('Change was not saved',err);}
@@ -2222,6 +2259,7 @@ async function bulkApply(field,value){
   if(error){displayError('Tasks were not updated',error);return;}
   for(const row of data||[]){const t=tasks.find(x=>String(x.id)===String(row.id));if(t)Object.assign(t,row);}
   const n=(data||[]).length;
+  clearFocusIfDone();
   if(field==='archive')selected.clear();
   render();
   notice(n<ids.length?`${n} of ${ids.length} tasks updated. Refresh to check the rest.`
@@ -2357,6 +2395,7 @@ function onBoardClick(e){
  if(act==='delete'){deleteTask(t,b);return;}
  if(act==='archive'){setArchived(t,true,b);return;}
  if(act==='restore'){setArchived(t,false,b);return;}
+ if(act==='focus'){e.stopPropagation();setFocus(t);return;}
  e.stopPropagation();
  if(menuCtx&&menuCtx.anchor===b){closeMenu();return;}
  if(act==='status')openMenu(b,statusMenu(t),{taskId:t.id});
@@ -2732,6 +2771,32 @@ $('logClear').onclick=async()=>{
  await loadLoginLog();
 };
 
+/* ---------- Focus glow (admin only, synced through admin_prefs) ---------- */
+function isFocused(t){return focusId!=null&&String(focusId)===String(t.id)&&!isDone(t)&&!t.archived_at;}
+async function loadFocus(){
+ if(!isAdmin()){focusReady=false;focusId=null;return false;}
+ const {data,error}=await sb.from('admin_prefs').select('focus_task_id').eq('id',1).maybeSingle();
+ focusReady=!error&&!!data;
+ focusId=focusReady?data.focus_task_id??null:null;
+ return focusReady;
+}
+async function setFocus(t){
+ if(!isAdmin()||!focusReady||!t)return;
+ const prev=focusId;
+ const next=isFocused(t)?null:t.id;
+ focusId=next;renderAdmin();
+ try{
+  const {data,error}=await sb.from('admin_prefs').update({focus_task_id:next,updated_at:new Date().toISOString()}).eq('id',1).select('focus_task_id');
+  if(error||!data?.length){focusId=prev;renderAdmin();displayError('Highlight was not saved',error||{message:'no row returned. Run the latest SQL step.'});return;}
+  notice(next?`Highlighting "${t.title}". It stays on until you tap the button again or complete the task.`:'Highlight removed.');
+ }catch(err){focusId=prev;renderAdmin();displayError('Highlight was not saved',err);}
+}
+function clearFocusIfDone(){
+ if(focusId==null)return;
+ const t=tasks.find(x=>String(x.id)===String(focusId));
+ if(t&&isDone(t))focusId=null;
+}
+
 /* ---------- Animation settings (admin controls, applied everywhere) ---------- */
 const ANIM_KEYS=[['high_pulse','no-anim-high'],['work_bar','no-bar'],['ip_column','no-anim-col'],['media_pulse','no-anim-media'],['request_pulse','no-anim-req']];
 const SPEEDS={slow:1.5,normal:1,fast:0.7};
@@ -2880,6 +2945,7 @@ async function poll(force){
  }
  await loadAnimations();
  await loadMemberNames();
+ if(role==='admin')await loadFocus();
  await loadTasks();
  if(role==='admin'&&$('loginLogPanel').open)await loadLoginLog();
 }
@@ -2906,8 +2972,10 @@ async function refresh(){
   await loadMemberNames();
   const clientsOk=await loadClients();
   const tasksOk=await loadTasks();
+  await loadFocus();
   const loginsOk=await loadLogins();
   await loadLoginLog();
+  renderAdmin();
   if(clientsOk&&tasksOk&&loginsOk)notice('');
   startTimers();
   return;
@@ -3166,8 +3234,7 @@ $('clientsList').addEventListener('toggle',e=>{
 },true);
 
 // ===== END OF PART 9 of 10 =====
-
- $('clientsList').addEventListener('submit',async e=>{
+$('clientsList').addEventListener('submit',async e=>{
  const form=e.target.closest('form[data-client-id]');
  if(!form)return;
  e.preventDefault();
@@ -3505,3 +3572,8 @@ sb.auth.onAuthStateChange(event=>{
 </body>
 </html>
 <!-- ===== END OF PART 10 of 10 ===== -->
+ 
+ 
+ 
+ 
+ 
