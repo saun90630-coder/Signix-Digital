@@ -347,7 +347,6 @@ details.fold[open]>summary{margin-bottom:12px}
 #client .primary{background:var(--brand);color:var(--brand-text);border-color:var(--brand)}
 /* ===== END OF PART 1 of 10 ===== */
 
-  
  
  #client .chip[aria-pressed="true"]{background:var(--brand);color:var(--brand-text);border-color:var(--brand)}
 .portal-hero{border-radius:14px;padding:22px 18px;margin:0 0 12px;background-color:#0b1525;background-image:linear-gradient(135deg,var(--brand2),#0b1525);background-size:cover;background-position:center;border:1px solid #2c3c54;border-top:4px solid var(--brand)}
@@ -671,7 +670,8 @@ body.is-mobile #popOutBtn{display:none}
 .tasks-only main{max-width:none;padding:10px 14px}
 /* ===== END OF PART 2 of 10 ===== */
 
-  .tasks-only header{padding:10px 14px}
+ 
+ .tasks-only header{padding:10px 14px}
 .tasks-only #mainNav,.tasks-only #addTaskPanel,.tasks-only .admin-tools,.tasks-only #popOutBtn,.tasks-only #ipOutBtn{display:none!important}
 .ip-only #admin>.stats,.ip-only #snapshot,.ip-only #viewTool{display:none!important}
 .ip-only #tasksPanel{border-color:color-mix(in srgb,var(--ip) 70%,transparent);box-shadow:0 0 0 1px color-mix(in srgb,var(--ip) 25%,transparent),0 0 30px color-mix(in srgb,var(--ip) 18%,transparent)}
@@ -737,35 +737,36 @@ body.is-mobile .tc-title{cursor:pointer}
 .layout-stack .group-head{margin:-12px -14px 10px;padding:12px 16px 10px}
 @media (orientation:landscape) and (min-width:900px){.layout-board .group-body{padding:6px 4px}}
 
-/* ===== Focus glow (admin only: the task you are working on right now) ===== */
+/* ===== Up next lineup (admin only). Colors per spot come from --qc (picked in Animations) ===== */
+:root{--mk:#f59e0b;--mk-t:#1a1204}
 .tc-focus{flex:0 0 auto;display:inline-grid;place-items:center;width:30px;height:30px;padding:0;border-radius:8px;background:transparent;border:1px solid #2c3c54;color:#7d8aa0}
 .tc-focus svg{width:17px;height:17px}
 .tc-focus:hover,.tc-focus:focus-visible{color:#86efac;border-color:rgba(34,197,94,.6)}
-.tc-focus[aria-pressed="true"]{background:#16a34a;border-color:#22c55e;color:#fff;box-shadow:0 0 10px rgba(34,197,94,.6)}
-.tcard.is-focus{border-top-color:#22c55e;border-right-color:#22c55e;border-bottom-color:#22c55e;transform:translateY(-3px);z-index:2;background:linear-gradient(180deg,rgba(34,197,94,.14),#121e30 60%);animation:focus-glow calc(2.8s*var(--spd,1)) ease-in-out infinite!important;transition:transform .2s}
-@keyframes focus-glow{0%,100%{box-shadow:0 0 0 2px #22c55e,0 6px 22px rgba(34,197,94,.45)}50%{box-shadow:0 0 0 2px #4ade80,0 8px 34px rgba(34,197,94,.75)}}
-@media (prefers-reduced-motion:reduce){.tcard.is-focus{animation:none!important;box-shadow:0 0 0 2px #22c55e,0 6px 22px rgba(34,197,94,.5);transform:none}}
-
-/* ===== Up next lineup (admin only) ===== */
-.upnext{background:#0a1322;border:1px solid #1f2c42;border-radius:14px;padding:10px 12px;margin:10px 0 12px}
-.un-head{display:flex;gap:10px;align-items:baseline;flex-wrap:wrap;margin-bottom:8px}
-.un-head strong{color:#86efac;font-size:13px;letter-spacing:.06em;text-transform:uppercase}
-.un-head span{font-size:12px}
-.un-list{list-style:none;margin:0;padding:0;display:grid;gap:6px;max-height:360px;overflow-y:auto}
-.un-item{display:flex;align-items:center;gap:10px;padding:6px 8px;border-radius:10px;background:#111d31;border:1px solid rgba(59,130,246,var(--qa,.5));border-left:4px solid var(--biz,#64748b);min-width:0}
-.un-item.first{border-color:#22c55e;border-left-color:var(--biz,#22c55e);box-shadow:0 0 12px rgba(34,197,94,.3);background:linear-gradient(90deg,rgba(34,197,94,.14),#111d31 60%)}
-.un-num{flex:0 0 26px;height:26px;border-radius:50%;display:grid;place-items:center;font-weight:800;font-size:13px;background:rgba(59,130,246,var(--qa,.5));color:#fff}
-.un-item.first .un-num{background:#16a34a}
+.tc-focus[aria-pressed="true"]{background:var(--qc,#16a34a);border-color:var(--qc,#22c55e);color:var(--qt,#fff);box-shadow:0 0 10px color-mix(in srgb,var(--qc,#22c55e) 60%,transparent)}
+.tcard.is-focus,.tcard.in-queue{--qc0:var(--qc,#22c55e);border-top-color:var(--qc0);border-right-color:var(--qc0);border-bottom-color:var(--qc0);transform:translateY(-3px);z-index:2;background:linear-gradient(180deg,color-mix(in srgb,var(--qc0) 15%,#121e30),#121e30 60%);animation:queue-glow calc(2.8s*var(--spd,1)) ease-in-out infinite!important;transition:transform .2s}
+@keyframes queue-glow{0%,100%{box-shadow:0 0 0 2px var(--qc0),0 6px 22px color-mix(in srgb,var(--qc0) 45%,transparent)}50%{box-shadow:0 0 0 2px color-mix(in srgb,var(--qc0) 70%,#fff),0 8px 34px color-mix(in srgb,var(--qc0) 75%,transparent)}}
+@media (prefers-reduced-motion:reduce){.tcard.is-focus,.tcard.in-queue{animation:none!important;box-shadow:0 0 0 2px var(--qc0),0 6px 22px color-mix(in srgb,var(--qc0) 50%,transparent);transform:none}}
+.q-badge{display:inline-flex;align-items:center;font-size:14px;font-weight:900;line-height:1;padding:5px 11px;border-radius:999px;background:var(--qc,#3b82f6);color:var(--qt,#fff);white-space:nowrap;box-shadow:0 0 10px color-mix(in srgb,var(--qc,#3b82f6) 60%,transparent)}
+.q-badge small{font-size:11px;font-weight:800;margin-left:5px;opacity:.9}
+.board[class*="layout-m-"] .q-badge{font-size:13px;padding:4px 9px}
+.board .group.upnext-grp{--gc:var(--qc1,#22c55e)}
+.board .group.upnext-grp .group-head h3{color:color-mix(in srgb,var(--qc1,#22c55e) 40%,#fff)}
+.upnext-grp .group-body.un-body{display:block}
+.un-hint{font-size:12px;margin:0 0 8px}
+.un-list{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.un-item{display:flex;align-items:center;gap:10px;padding:7px 8px;border-radius:10px;background:linear-gradient(90deg,color-mix(in srgb,var(--qc) 16%,#111d31),#111d31 65%);border:2px solid var(--qc);border-left:6px solid var(--biz,#64748b);box-shadow:0 0 12px color-mix(in srgb,var(--qc) 35%,transparent);min-width:0}
+.un-num{flex:0 0 32px;height:32px;border-radius:50%;display:grid;place-items:center;font-weight:900;font-size:16px;background:var(--qc);color:var(--qt,#fff);box-shadow:0 0 10px color-mix(in srgb,var(--qc) 60%,transparent)}
 .un-title{flex:1;min-width:0;background:transparent;border:0;padding:2px 0;text-align:left;display:flex;flex-direction:column;color:#e2e8f0}
 .un-title span{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-weight:600;font-size:14px}
 .un-title small{color:#94a3b8;font-size:12px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .un-ctl{display:flex;gap:4px;flex:0 0 auto}
 .un-ctl button{padding:4px 8px;font-size:12px;border-radius:8px;min-width:30px;line-height:1.2}
 .un-ctl button:disabled{opacity:.3;cursor:default}
-.tcard.in-queue{border-top-color:rgba(59,130,246,var(--qa));border-right-color:rgba(59,130,246,var(--qa));border-bottom-color:rgba(59,130,246,var(--qa));box-shadow:0 0 0 1px rgba(59,130,246,var(--qa))}
-.q-badge{display:inline-flex;align-items:center;font-size:11px;font-weight:800;padding:3px 8px;border-radius:999px;background:rgba(59,130,246,var(--qa,.8));color:#fff;white-space:nowrap}
-.q-badge.now{background:#16a34a}
-.tc-focus.q-later[aria-pressed="true"]{background:#2563eb;border-color:#3b82f6;box-shadow:0 0 8px rgba(59,130,246,.5)}
+.qc-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:6px 12px;margin:4px 0 8px}
+.qc-grid label{display:flex;align-items:center;gap:8px;margin:0}
+.qc-grid input[type=color]{width:46px;height:36px;padding:3px;margin:0;cursor:pointer;flex:0 0 46px}
+.qc-row{display:flex;gap:8px;flex-wrap:wrap;margin:4px 0 8px}
+.qc-row button{padding:7px 11px;font-size:13px}
 
 /* ===== Added date + days-in-section tag (admin only) ===== */
 .tc-added{font-size:11.5px;color:#8a9ab3;display:flex;align-items:center;gap:5px}
@@ -773,21 +774,21 @@ body.is-mobile .tc-title{cursor:pointer}
 .age-chip{display:inline-flex;align-items:center;font-size:11px;font-weight:700;padding:3px 8px;border-radius:999px;color:#fde68a;background:rgba(245,158,11,.14);border:1px solid rgba(245,158,11,.55);white-space:nowrap}
 .layout-m-grid3 .tcard:not(.m-open) .tc-added,.layout-m-slim .tcard:not(.m-open) .tc-added,.layout-m-grid2 .tcard:not(.m-open) .tc-added{display:none}
 
-/* ===== New activity markers (styles picked in Animations) ===== */
+/* ===== New activity markers (styles + color picked in Animations) ===== */
 .act-badge,.act-ribbon{display:none}
-body.mk-badge .act-badge{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:800;letter-spacing:.06em;padding:3px 9px 3px 7px;border-radius:999px;border:0;background:#f59e0b;color:#1a1204;min-height:0;cursor:pointer}
+body.mk-badge .act-badge{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:800;letter-spacing:.06em;padding:3px 9px 3px 7px;border-radius:999px;border:0;background:var(--mk);color:var(--mk-t);min-height:0;cursor:pointer}
 body.mk-badge .act-badge::before{content:"";width:8px;height:8px;border-radius:50%;background:#fff;animation:act-dot calc(1.6s*var(--spd,1)) ease-in-out infinite}
 @keyframes act-dot{0%,100%{box-shadow:0 0 0 0 rgba(255,255,255,.9)}50%{box-shadow:0 0 0 5px rgba(255,255,255,0)}}
-body.mk-ribbon .act-ribbon{display:block;position:absolute;top:0;right:14px;z-index:4;padding:4px 10px 5px;border:0;border-radius:0 0 9px 9px;background:linear-gradient(180deg,#fbbf24,#f59e0b);color:#1a1204;font-size:11px;font-weight:800;letter-spacing:.03em;box-shadow:0 4px 10px rgba(0,0,0,.35);cursor:pointer;min-height:0}
+body.mk-ribbon .act-ribbon{display:block;position:absolute;top:0;right:14px;z-index:4;padding:4px 10px 5px;border:0;border-radius:0 0 9px 9px;background:linear-gradient(180deg,color-mix(in srgb,var(--mk) 75%,#fff),var(--mk));color:var(--mk-t);font-size:11px;font-weight:800;letter-spacing:.03em;box-shadow:0 4px 10px rgba(0,0,0,.35);cursor:pointer;min-height:0}
 .board[class*="layout-m-"] .act-ribbon{right:36px;font-size:10px;padding:3px 8px 4px}
-body.mk-outline .tcard.has-new{border-top-color:#f59e0b;border-right-color:#f59e0b;border-bottom-color:#f59e0b;animation:new-glow calc(2.6s*var(--spd,1)) ease-in-out infinite}
-@keyframes new-glow{0%,100%{box-shadow:0 0 0 1px rgba(245,158,11,.7),0 0 10px rgba(245,158,11,.25)}50%{box-shadow:0 0 0 2px rgba(251,191,36,.95),0 0 26px rgba(245,158,11,.55)}}
+body.mk-outline .tcard.has-new{border-top-color:var(--mk);border-right-color:var(--mk);border-bottom-color:var(--mk);animation:new-glow calc(2.6s*var(--spd,1)) ease-in-out infinite}
+@keyframes new-glow{0%,100%{box-shadow:0 0 0 1px color-mix(in srgb,var(--mk) 70%,transparent),0 0 10px color-mix(in srgb,var(--mk) 25%,transparent)}50%{box-shadow:0 0 0 2px color-mix(in srgb,var(--mk) 70%,#fff),0 0 26px color-mix(in srgb,var(--mk) 55%,transparent)}}
 body.mk-shake .tcard.has-new.shake-now{animation:card-shake .75s ease-in-out 1}
 body.mk-shake.mk-outline .tcard.has-new.shake-now{animation:card-shake .75s ease-in-out 1,new-glow calc(2.6s*var(--spd,1)) ease-in-out .75s infinite}
 @keyframes card-shake{0%,100%{transform:translateX(0) rotate(0)}15%{transform:translateX(-6px) rotate(-1.2deg)}30%{transform:translateX(5px) rotate(1deg)}45%{transform:translateX(-4px) rotate(-.6deg)}60%{transform:translateX(3px) rotate(.4deg)}75%{transform:translateX(-1px)}}
-.note.is-new{border-color:#f59e0b;border-left-color:#f59e0b;box-shadow:0 0 0 1px rgba(245,158,11,.45);background:linear-gradient(90deg,rgba(245,158,11,.1),#0b1525 70%)}
-.note.is-new .note-head strong::after{content:"NEW";margin-left:8px;font-size:10px;font-weight:800;letter-spacing:.06em;padding:1px 6px;border-radius:999px;background:#f59e0b;color:#1a1204}
-@media (prefers-reduced-motion:reduce){body.mk-outline .tcard.has-new,body.mk-shake .tcard.has-new.shake-now{animation:none!important;box-shadow:0 0 0 2px #f59e0b}body.mk-badge .act-badge::before{animation:none}}
+.note.is-new{border-color:var(--mk);border-left-color:var(--mk);box-shadow:0 0 0 1px color-mix(in srgb,var(--mk) 45%,transparent);background:linear-gradient(90deg,color-mix(in srgb,var(--mk) 10%,transparent),#0b1525 70%)}
+.note.is-new .note-head strong::after{content:"NEW";margin-left:8px;font-size:10px;font-weight:800;letter-spacing:.06em;padding:1px 6px;border-radius:999px;background:var(--mk);color:var(--mk-t)}
+@media (prefers-reduced-motion:reduce){body.mk-outline .tcard.has-new,body.mk-shake .tcard.has-new.shake-now{animation:none!important;box-shadow:0 0 0 2px var(--mk)}body.mk-badge .act-badge::before{animation:none}}
 
 @media (max-width:600px){
  main{padding:12px}
@@ -905,7 +906,6 @@ body.mk-shake.mk-outline .tcard.has-new.shake-now{animation:card-shake .75s ease
 <button type="button" class="stat" id="overdueStat">Overdue<strong id="overdueCount">0</strong></button>
 <button type="button" class="stat today" id="todayStat">Due today<strong id="todayCount">0</strong></button>
 </div>
-<div id="upNext" class="upnext hidden" aria-label="Up next"></div>
 <div id="snapshot" class="snapshot" aria-label="Business snapshot"></div>
 
 <details id="addTaskPanel" class="panel fold add-zone">
@@ -1064,12 +1064,21 @@ body.mk-shake.mk-outline .tcard.has-new.shake-now{animation:card-shake .75s ease
 <p class="muted" style="font-size:13px;margin:0 0 6px">A card lights up when there is something new for that person. You see new client requests, notes and files. Clients see your notes and files, and tasks moved to "Needs your input". Tapping the marker opens the notes, and it clears once opened. Pick any combination.</p>
 <div class="anim-list">
 <label class="check"><input type="checkbox" name="act_badge"> "NEW" badge with a pulsing dot</label>
-<label class="check"><input type="checkbox" name="act_outline"> Glowing gold outline</label>
+<label class="check"><input type="checkbox" name="act_outline"> Glowing outline</label>
 <label class="check"><input type="checkbox" name="act_ribbon"> Corner ribbon ("New note", "New photo")</label>
 <label class="check"><input type="checkbox" name="act_shake"> Shake once when it arrives</label>
 </div>
+<div class="color-row"><input type="color" name="act_color" value="#f59e0b" aria-label="Marker color"><code id="actColorCode">#f59e0b</code><span class="muted" style="font-size:12px">Marker color (badge, outline, ribbon)</span></div>
 <div class="anim-preview" id="actPreview" aria-label="Preview"></div>
-<p id="actStatus" class="muted"></p>
+<p id="actStatus" class="muted" role="status"></p>
+</form>
+<form id="qcForm" class="anim-sec">
+<h4>Up next lineup colors (only you see these)</h4>
+<p class="muted" style="font-size:13px;margin:0 0 6px">The color each spot in your lineup glows. #1 is the task you are working on now.</p>
+<div class="qc-grid" id="qcGrid"></div>
+<div class="qc-row"><button type="button" id="qcSame">Make #3–#10 match #2</button><button type="button" id="qcReset">Reset to green and blue</button></div>
+<div class="anim-preview" id="qcPreview" aria-label="Preview"></div>
+<p id="qcStatus" class="muted" role="status"></p>
 </form>
 </details>
 </div>
@@ -1131,6 +1140,7 @@ body.mk-shake.mk-outline .tcard.has-new.shake-now{animation:card-shake .75s ease
 
 <!-- ===== END OF PART 3 of 10 ===== -->
 
+ 
  <div class="stats">
 <button type="button" class="stat" id="portalOpenStat">Open tasks<strong id="portalOpen">0</strong></button>
 <button type="button" class="stat today" id="portalNeedsStat">Needs your input<strong id="portalNeeds">0</strong></button>
@@ -1581,7 +1591,8 @@ $('changePwForm').onsubmit=async e=>{
 
 // ===== END OF PART 4 of 10 =====
 
- function resetMode(kind){
+ 
+function resetMode(kind){
  authMode('reset');
  clearAuthMsgs();
  notice('');
@@ -1879,7 +1890,7 @@ function taskCard(t,o){
  const qp=o.admin&&focusReady?queuePos(t):0;
  const focused=qp===1;
  const focusBtn=o.admin&&focusReady&&!t.archived_at&&!isDone(t)?`<button type="button" class="tc-focus${qp>1?' q-later':''}" data-act="focus" data-id="${id}" aria-pressed="${qp>0}" title="${qp?`#${qp} in your Up next lineup. Tap to remove it.`:'Add to your Up next lineup'}" aria-label="${qp?'Remove from lineup':'Add to lineup'}: ${esc(t.title||'Untitled')}">${FOCUS_ICON}</button>`:'';
- const qBadge=qp===1?'<span class="q-badge now" title="#1 in your lineup: working on it now">#1 · Now</span>':qp>1?`<span class="q-badge" title="#${qp} in your Up next lineup">#${qp}</span>`:'';
+ const qBadge=qp===1?'<span class="q-badge now" title="#1 in your lineup: working on it now">#1<small>Now</small></span>':qp>1?`<span class="q-badge" title="#${qp} in your Up next lineup">#${qp}</span>`:'';
  const ageEl=o.admin&&isAged(t)?`<span class="age-chip" title="In ${esc(st)} since ${esc(fmtStamp(t.status_changed_at))}">${Math.floor(ageMs(t)/864e5)} days here</span>`:'';
  const act=(o.admin||o.client)?newActivity(t):null;
  let actCls='';
@@ -1896,7 +1907,7 @@ function taskCard(t,o){
  const foot=(n||notesBtn)?`<div class="tc-foot">${n?mediaToggle(t,files):''}${notesBtn}</div>`:'';
  const sel=o.admin&&selectMode&&!o.detail?`<label class="sel" title="Select"><input type="checkbox" data-sel="${id}"${selected.has(key)?' checked':''} aria-label="Select ${esc(t.title||'Untitled')}"></label>`:'';
  const cls=['tcard',priorityClass(pr),statusClass(st),od?'is-overdue':'',focused?'is-focus':qp>1?'in-queue':'',actCls,selected.has(key)&&selectMode?'selected':'',mOpen.has(key)?'m-open':''].filter(Boolean).join(' ');
- return `<article class="${cls}" data-id="${id}"${qp>1?` style="--qa:${qAlpha(qp)}"`:''}>
+ return `<article class="${cls}" data-id="${id}"${qp?` style="${qStyle(qp)}"`:''}>
  ${sel}${actRibbon}
  ${o.admin?bizHeader(t.client_id):''}
  <h4 class="tc-title" data-act="mopen" data-id="${id}">${esc(t.title||'Untitled')}</h4>
@@ -1929,7 +1940,9 @@ ${(()=>{const pp=portalPeople(null);return pp.length>=2?`<label>Who is this for<
 }
 // ===== END OF PART 5 of 10 =====
 
- /* ---------- Board rendering ---------- */
+ 
+ 
+/* ---------- Board rendering ---------- */
 function captureScroll(root){
  const groupsEl=root.querySelector('.groups');
  const bodies={};
@@ -1955,14 +1968,18 @@ function renderBoard(root,list,o){
   if(od.length)groups.unshift({key:'overdue',label:'Overdue',items:od.sort(byDue),cls:'overdue-pin'});
  }else groups=groupTasks(list,o.view,o.clientSide);
  const total=groups.reduce((n,gr)=>n+gr.items.length,0);
- if(!total&&!groups.some(gr=>gr.keep)){
+ if(!total&&!groups.some(gr=>gr.keep)&&!(o.admin&&!o.detail&&focusReady&&liveQueue().length)){
   root.innerHTML=`<p class="muted empty">${esc(search&&o.admin?'No tasks match your search.':emptyText(o.view))}</p>`;
   return;
  }
- root.innerHTML=`<div class="groups">${groups.map(gr=>`<section class="group ${gr.cls||''}" data-group="${esc(gr.key)}" id="grp-${root.id}-${esc(gr.key)}"${gr.biz?` style="--gc:${bizColor(gr.biz)}"`:''}>
+ let un=o.admin&&!o.detail?upNextGroupHtml():'';
+ if(un&&!total&&!groups.some(gr=>gr.keep))groups=[];
+ const ipAt=groups.findIndex(gr=>gr.key===statusClass('In progress'));
+ const unAt=ipAt>=0?ipAt:0;
+ root.innerHTML=`<div class="groups">${groups.map((gr,gi)=>(gi===unAt?un:'')+`<section class="group ${gr.cls||''}" data-group="${esc(gr.key)}" id="grp-${root.id}-${esc(gr.key)}"${gr.biz?` style="--gc:${bizColor(gr.biz)}"`:''}>
 <header class="group-head">${gr.biz?logoHtml({...gr.biz,brand_color:bizColor(gr.biz)},'sm'):'<span class="gdot"></span>'}<h3>${esc(gr.label)}</h3><span class="count">${gr.items.length}</span></header>
 <div class="group-body">${gr.items.length?gr.items.map(t=>taskCard(t,o)).join(''):'<p class="muted empty-col">Nothing here</p>'}</div>
-</section>`).join('')}</div>`;
+</section>`).join('')}${groups.length?'':un}</div>`;
  restoreScroll(root,saved);
  updateBoardTop(root);
 }
@@ -2003,7 +2020,6 @@ function renderAdmin(){
  $('overdueStat').classList.toggle('alert',overdue>0);
  $('todayCount').textContent=open.filter(t=>t.due_date&&daysUntil(t.due_date)===0).length;
  renderSnapshot(live);
- renderUpNext();
  const v=IP_ONLY?'inprogress':adminView();
  let list=adminList(v);
  if(IP_ONLY)list=list.filter(t=>normStatus(t)==='In progress');
@@ -2259,6 +2275,7 @@ function dueMenu(t){
 
 // ===== END OF PART 6 of 10 =====
 
+ 
  $('menu').addEventListener('click',e=>{
  const b=e.target.closest('[data-pick]');
  if(!b||!menuCtx)return;
@@ -2586,7 +2603,9 @@ async function loadNotes(){
 }
 // ===== END OF PART 7 of 10 =====
 
- /* ---------- Client welcome-back pop-up ---------- */
+ 
+ 
+/* ---------- Client welcome-back pop-up ---------- */
 function lastVisitKey(){return 'signix-lastvisit-'+(currentUser?.id||'x');}
 function saveLastVisit(){try{localStorage.setItem(lastVisitKey(),new Date().toISOString());}catch(e){}}
 function closeWelcome(){
@@ -2871,24 +2890,32 @@ $('logClear').onclick=async()=>{
 
 /* ---------- Up next lineup (admin only, synced through admin_prefs) ---------- */
 const QUEUE_MAX=10;
+const Q_DEFAULTS=['#22c55e','#3b82f6','#3b82f6','#3b82f6','#3b82f6','#3b82f6','#3b82f6','#3b82f6','#3b82f6','#3b82f6'];
+let qColors=[...Q_DEFAULTS],qColorsCol=false,qColorsDirty=false;
 function liveQueue(){
  return queue.filter(id=>{const t=tasks.find(x=>String(x.id)===String(id));return t&&!isDone(t)&&!t.archived_at;});
 }
 function queuePos(t){const i=liveQueue().findIndex(id=>String(id)===String(t.id));return i+1;}
 function isFocused(t){return queuePos(t)===1;}
-function qAlpha(n){return Math.max(.28,.92-(n-2)*.08).toFixed(2);}
+function qColor(n){return validHex(qColors[n-1])?qColors[n-1]:(Q_DEFAULTS[n-1]||'#3b82f6');}
+function qStyle(n){const c=qColor(n);return `--qc:${c};--qt:${textOn(c)}`;}
+function cleanQColors(arr){return Q_DEFAULTS.map((d,i)=>Array.isArray(arr)&&validHex(arr[i])?String(arr[i]).toLowerCase():d);}
 async function loadFocus(){
  try{return await loadFocusInner();}catch(e){focusReady=false;queue=[];return false;}
 }
 async function loadFocusInner(){
  if(!isAdmin()){focusReady=false;queue=[];return false;}
- let {data,error}=await sb.from('admin_prefs').select('queue,focus_task_id').eq('id',1).maybeSingle();
+ let {data,error}=await sb.from('admin_prefs').select('queue,focus_task_id,queue_colors').eq('id',1).maybeSingle();
+ qColorsCol=!error;
+ if(error)({data,error}=await sb.from('admin_prefs').select('queue,focus_task_id').eq('id',1).maybeSingle());
  queueCol=!error;
  if(error)({data,error}=await sb.from('admin_prefs').select('focus_task_id').eq('id',1).maybeSingle());
  focusReady=!error&&!!data;
- if(!focusReady){queue=[];return false;}
+ if(!focusReady){queue=[];renderQcForm();return false;}
  queue=queueCol&&Array.isArray(data.queue)?data.queue.filter(x=>x!=null):(data.focus_task_id!=null?[data.focus_task_id]:[]);
  if(queueCol&&!queue.length&&data.focus_task_id!=null)queue=[data.focus_task_id];
+ if(qColorsCol&&!qColorsDirty)qColors=cleanQColors(data.queue_colors);
+ renderQcForm();
  return true;
 }
 async function saveQueue(next,msg){
@@ -2921,18 +2948,19 @@ function clearFocusIfDone(){
  const q=liveQueue();
  if(q.length!==queue.length)queue=q;
 }
-function renderUpNext(){
- const root=$('upNext');
+/* The Up next list sits on the board, right above the In progress section */
+function upNextGroupHtml(){
  const q=focusReady&&role==='admin'?liveQueue():[];
- root.classList.toggle('hidden',!q.length);
- if(!q.length){root.innerHTML='';return;}
- root.innerHTML=`<div class="un-head"><strong>Up next</strong><span class="muted">${q.length===1?'1 task':q.length+' tasks'} in your lineup · tap a title to jump to it</span></div><ol class="un-list">${q.map((id,i)=>{
+ if(!q.length)return '';
+ return `<section class="group upnext-grp" data-group="upnext" id="grp-adminBoard-upnext" style="--qc1:${qColor(1)}" aria-label="Up next">
+<header class="group-head"><span class="gdot"></span><h3>Up next</h3><span class="count">${q.length}</span></header>
+<div class="group-body un-body"><p class="muted un-hint">Tap a title to jump to the task.</p><ol class="un-list">${q.map((id,i)=>{
   const t=tasks.find(x=>String(x.id)===String(id)),c=clientById(t.client_id),tid=esc(t.id);
-  return `<li class="un-item${i===0?' first':''}" style="--biz:${bizColor(c)};--qa:${i?qAlpha(i+1):1}"><span class="un-num">${i+1}</span><button type="button" class="un-title" data-un="jump" data-id="${tid}"><span>${esc(t.title||'Untitled')}</span><small>${esc(c?.Name||'')} · ${esc(normStatus(t))}${t.due_date?' · '+esc(dueInfo(t)?.label||''):''}</small></button><span class="un-ctl">${queueCol?`<button type="button" data-un="up" data-id="${tid}" aria-label="Move up"${i===0?' disabled':''}>▲</button><button type="button" data-un="down" data-id="${tid}" aria-label="Move down"${i===q.length-1?' disabled':''}>▼</button>`:''}<button type="button" data-un="remove" data-id="${tid}" aria-label="Remove from lineup">✕</button></span></li>`;
- }).join('')}</ol>`;
+  return `<li class="un-item" style="--biz:${bizColor(c)};${qStyle(i+1)}"><span class="un-num">${i+1}</span><button type="button" class="un-title" data-un="jump" data-id="${tid}"><span>${esc(t.title||'Untitled')}</span><small>${esc(c?.Name||'')} · ${esc(normStatus(t))}${t.due_date?' · '+esc(dueInfo(t)?.label||''):''}</small></button><span class="un-ctl">${queueCol?`<button type="button" data-un="up" data-id="${tid}" aria-label="Move up"${i===0?' disabled':''}>▲</button><button type="button" data-un="down" data-id="${tid}" aria-label="Move down"${i===q.length-1?' disabled':''}>▼</button>`:''}<button type="button" data-un="remove" data-id="${tid}" aria-label="Remove from lineup">✕</button></span></li>`;
+ }).join('')}</ol></div></section>`;
 }
 function jumpToCard(t){
- const find=()=>$('adminBoard').querySelector(`.tcard[data-id="${CSS.escape(String(t.id))}"]`);
+ const find=()=>$('adminBoard').querySelector(`.group:not(.upnext-grp) .tcard[data-id="${CSS.escape(String(t.id))}"]`);
  let card=find();
  if(!card){
   setPref('admin','view','status');setChip('adminViews','status');
@@ -2944,7 +2972,7 @@ function jumpToCard(t){
  card.scrollIntoView({behavior:'smooth',block:'center'});
  card.classList.add('flash');setTimeout(()=>card.classList.remove('flash'),2000);
 }
-$('upNext').addEventListener('click',e=>{
+$('adminBoard').addEventListener('click',e=>{
  const b=e.target.closest('[data-un]');
  if(!b||!isAdmin())return;
  const t=tasks.find(x=>String(x.id)===b.dataset.id);
@@ -2955,38 +2983,100 @@ $('upNext').addEventListener('click',e=>{
  else if(a==='down')moveInQueue(t.id,1);
  else if(a==='remove')setFocus(t);
 });
+/* Lineup colors (Animations panel) */
+function renderQcForm(){
+ if(role!=='admin')return;
+ const grid=$('qcGrid');
+ if(!grid.children.length)grid.innerHTML=Q_DEFAULTS.map((d,i)=>`<label><input type="color" name="qc${i+1}" value="${d}" aria-label="Color for #${i+1}"><span class="q-badge" data-qcb="${i+1}">#${i+1}${i===0?'<small>Now</small>':''}</span></label>`).join('');
+ qColors.forEach((c,i)=>{const inp=grid.querySelector(`[name="qc${i+1}"]`);if(inp&&document.activeElement!==inp)inp.value=qColor(i+1);const b=grid.querySelector(`[data-qcb="${i+1}"]`);if(b)b.setAttribute('style',qStyle(i+1));});
+ const c=clients[0]||{id:0,Name:'Your business'};
+ $('qcPreview').innerHTML=[1,2].map(n=>`<article class="tcard pr-medium st-to-do ${n===1?'is-focus':'in-queue'}" style="${qStyle(n)}">${bizHeaderFor(c,c.id)}<h4 class="tc-title">Sample task #${n}</h4><div class="tc-meta"><span class="q-badge${n===1?' now':''}">#${n}${n===1?'<small>Now</small>':''}</span><span class="badge st-to-do">To do</span></div></article>`).join('');
+ if(!focusReady)$('qcStatus').textContent='Run the latest SQL step in Supabase to use the lineup.';
+ else if(!qColorsCol&&!$('qcStatus').textContent)$('qcStatus').textContent='Previewing only. Run the latest SQL step in Supabase to save these colors.';
+}
+function readQcForm(){const f=$('qcForm').elements;return Q_DEFAULTS.map((d,i)=>{const v=String(f['qc'+(i+1)]?.value||'').toLowerCase();return validHex(v)?v:d;});}
+let qcSaveTimer=null;
+async function saveQColors(){
+ if(!qColorsCol){$('qcStatus').textContent='Previewing only. Run the latest SQL step in Supabase to save these colors.';return;}
+ $('qcStatus').textContent='Saving…';
+ try{
+  const {data,error}=await sb.from('admin_prefs').update({queue_colors:qColors,updated_at:new Date().toISOString()}).eq('id',1).select('id');
+  if(error||!data?.length){qColorsDirty=true;$('qcStatus').textContent='Not saved: '+(error?.message||'no row returned. Run the latest SQL step.');return;}
+  qColorsDirty=false;$('qcStatus').textContent='Saved. Your other devices pick it up within a minute.';
+ }catch(err){qColorsDirty=true;$('qcStatus').textContent='Not saved: '+(err.message||'unknown error');}
+}
+function applyQColors(next,saveNow){
+ qColors=next;qColorsDirty=true;
+ renderQcForm();renderAdmin();
+ clearTimeout(qcSaveTimer);
+ if(saveNow)saveQColors();else qcSaveTimer=setTimeout(saveQColors,600);
+}
+$('qcForm').addEventListener('input',()=>{if(isAdmin())applyQColors(readQcForm(),false);});
+$('qcForm').addEventListener('change',()=>{if(isAdmin())applyQColors(readQcForm(),true);});
+$('qcSame').onclick=()=>{if(!isAdmin())return;const c=readQcForm();applyQColors(c.map((x,i)=>i>=2?c[1]:x),true);};
+$('qcReset').onclick=()=>{if(isAdmin())applyQColors([...Q_DEFAULTS],true);};
 
 /* ---------- New activity markers (per person, synced through task_reads) ---------- */
 const ACT_STYLES=['badge','outline','ribbon','shake'];
+const ACT_DEFAULT_COLOR='#f59e0b';
 const ACT_LABEL={request:'New request',note:'New note',photo:'New photo',video:'New video',voice:'New voice note',file:'New file',input:'Needs your input'};
-function applyActStyles(){for(const k of ACT_STYLES)document.body.classList.toggle('mk-'+k,actStyles.includes(k));}
-function fillActForm(){const f=$('actForm').elements;for(const k of ACT_STYLES)f['act_'+k].checked=actStyles.includes(k);}
+let actColor=ACT_DEFAULT_COLOR,actColorCol=false,actDirty=false;
+function applyActStyles(){
+ for(const k of ACT_STYLES)document.body.classList.toggle('mk-'+k,actStyles.includes(k));
+ const c=validHex(actColor)?actColor:ACT_DEFAULT_COLOR;
+ document.documentElement.style.setProperty('--mk',c);
+ document.documentElement.style.setProperty('--mk-t',textOn(c));
+}
+function fillActForm(){
+ const f=$('actForm').elements;
+ for(const k of ACT_STYLES)f['act_'+k].checked=actStyles.includes(k);
+ if(document.activeElement!==f.act_color)f.act_color.value=validHex(actColor)?actColor:ACT_DEFAULT_COLOR;
+ $('actColorCode').textContent=f.act_color.value;
+}
 async function loadActStyles(){
  try{await loadActStylesInner();}catch(e){actReady=false;applyActStyles();}
 }
 async function loadActStylesInner(){
- const {data,error}=await sb.from('app_settings').select('activity_styles').eq('id',1).maybeSingle();
+ let {data,error}=await sb.from('app_settings').select('activity_styles,activity_color').eq('id',1).maybeSingle();
+ actColorCol=!error;
+ if(error)({data,error}=await sb.from('app_settings').select('activity_styles').eq('id',1).maybeSingle());
  actReady=!error&&!!data;
- if(actReady)actStyles=String(data.activity_styles??'').split(',').map(x=>x.trim()).filter(x=>ACT_STYLES.includes(x));
+ if(actReady&&!actDirty){
+  actStyles=String(data.activity_styles??'').split(',').map(x=>x.trim()).filter(x=>ACT_STYLES.includes(x));
+  actColor=actColorCol&&validHex(data.activity_color)?String(data.activity_color).toLowerCase():ACT_DEFAULT_COLOR;
+ }
  applyActStyles();
- if(role==='admin'){fillActForm();renderActPreview();if(!actReady)$('actStatus').textContent='Run the latest SQL step in Supabase to save this choice for everyone.';}
+ if(role==='admin'){fillActForm();renderActPreview();if(!actReady)$('actStatus').textContent='Previewing only. Run the latest SQL step in Supabase to save this for everyone.';}
 }
 function renderActPreview(){
  $('actPreview').innerHTML=`<article class="tcard pr-medium st-to-do has-new shake-now"><button type="button" class="act-ribbon" tabindex="-1">New note</button><h4 class="tc-title">Sample task with new activity</h4><div class="tc-meta"><span class="act-badge">NEW</span><span class="badge st-to-do">To do</span><span class="badge pr-medium">Medium priority</span></div></article>${actStyles.length?'':'<p class="muted" style="margin:0;font-size:13px">No marker selected: cards will not show new activity.</p>'}`;
 }
+function readActForm(){
+ const f=$('actForm').elements;
+ const v=String(f.act_color.value||'').toLowerCase();
+ return {styles:ACT_STYLES.filter(k=>f['act_'+k].checked),color:validHex(v)?v:ACT_DEFAULT_COLOR};
+}
+$('actForm').addEventListener('input',e=>{
+ if(!isAdmin()||e.target.name!=='act_color')return;
+ actColor=readActForm().color;applyActStyles();$('actColorCode').textContent=actColor;
+});
 $('actForm').addEventListener('change',async()=>{
  if(!isAdmin())return;
- const f=$('actForm').elements;
- const next=ACT_STYLES.filter(k=>f['act_'+k].checked);
- const prev=actStyles;
- actStyles=next;applyActStyles();renderActPreview();shaken.clear();render();
- if(!actReady){$('actStatus').textContent='Previewing only. Run the latest SQL step in Supabase to save this.';return;}
+ const next=readActForm();
+ /* Your choice stays on screen even if saving fails; the reason is shown below the preview. */
+ actStyles=next.styles;actColor=next.color;actDirty=true;
+ applyActStyles();fillActForm();renderActPreview();shaken.clear();
+ try{render();}catch(e){}
+ if(!actReady){$('actStatus').textContent='Previewing only. Run the latest SQL step in Supabase to save this for everyone.';return;}
  $('actStatus').textContent='Saving…';
+ const payload={activity_styles:next.styles.join(',')};
+ if(actColorCol)payload.activity_color=next.color===ACT_DEFAULT_COLOR?null:next.color;
  try{
-  const {data,error}=await sb.from('app_settings').update({activity_styles:next.join(',')}).eq('id',1).select('id');
-  if(error||!data?.length){actStyles=prev;applyActStyles();fillActForm();renderActPreview();$('actStatus').textContent='Not saved: '+(error?.message||'no row returned.');return;}
-  $('actStatus').textContent='Saved. Client portals update within a minute.';
- }catch(err){actStyles=prev;applyActStyles();fillActForm();renderActPreview();$('actStatus').textContent='Not saved: '+(err.message||'unknown error');}
+  const {data,error}=await sb.from('app_settings').update(payload).eq('id',1).select('id');
+  if(error||!data?.length){$('actStatus').textContent='Not saved (showing on this screen only): '+(error?.message||'no row returned. Run the latest SQL step in Supabase.');return;}
+  actDirty=false;
+  $('actStatus').textContent=actColorCol?'Saved. Client portals update within a minute.':'Saved. Run the latest SQL step to also save the marker color.';
+ }catch(err){$('actStatus').textContent='Not saved (showing on this screen only): '+(err.message||'unknown error');}
 });
 async function loadReads(){
  try{return await loadReadsInner();}catch(e){readsReady=false;return false;}
@@ -3163,7 +3253,9 @@ $('animForm').addEventListener('change',async()=>{
 
 // ===== END OF PART 8 of 10 =====
 
- /* ---------- Auto refresh ---------- */
+ 
+ 
+/* ---------- Auto refresh ---------- */
 function stopTimers(){
  clearInterval(pollTimer);pollTimer=null;
  clearInterval(tickTimer);tickTimer=null;
@@ -3478,6 +3570,7 @@ $('clientsList').addEventListener('toggle',e=>{
 
 // ===== END OF PART 9 of 10 =====
 
+ 
  $('clientsList').addEventListener('submit',async e=>{
  const form=e.target.closest('form[data-client-id]');
  if(!form)return;
