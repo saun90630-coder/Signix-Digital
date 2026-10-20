@@ -346,7 +346,8 @@ details.fold[open]>summary{margin-bottom:12px}
 .request-zone[open] .req-sub{display:none}
 #client .primary{background:var(--brand);color:var(--brand-text);border-color:var(--brand)}
 /* ===== END OF PART 1 of 10 ===== */
- 
+
+  
  
  #client .chip[aria-pressed="true"]{background:var(--brand);color:var(--brand-text);border-color:var(--brand)}
 .portal-hero{border-radius:14px;padding:22px 18px;margin:0 0 12px;background-color:#0b1525;background-image:linear-gradient(135deg,var(--brand2),#0b1525);background-size:cover;background-position:center;border:1px solid #2c3c54;border-top:4px solid var(--brand)}
@@ -669,7 +670,8 @@ body.is-mobile #popOutBtn{display:none}
 /* Pop-out (all tasks only) mode */
 .tasks-only main{max-width:none;padding:10px 14px}
 /* ===== END OF PART 2 of 10 ===== */
- .tasks-only header{padding:10px 14px}
+
+  .tasks-only header{padding:10px 14px}
 .tasks-only #mainNav,.tasks-only #addTaskPanel,.tasks-only .admin-tools,.tasks-only #popOutBtn,.tasks-only #ipOutBtn{display:none!important}
 .ip-only #admin>.stats,.ip-only #snapshot,.ip-only #viewTool{display:none!important}
 .ip-only #tasksPanel{border-color:color-mix(in srgb,var(--ip) 70%,transparent);box-shadow:0 0 0 1px color-mix(in srgb,var(--ip) 25%,transparent),0 0 30px color-mix(in srgb,var(--ip) 18%,transparent)}
@@ -743,6 +745,49 @@ body.is-mobile .tc-title{cursor:pointer}
 .tcard.is-focus{border-top-color:#22c55e;border-right-color:#22c55e;border-bottom-color:#22c55e;transform:translateY(-3px);z-index:2;background:linear-gradient(180deg,rgba(34,197,94,.14),#121e30 60%);animation:focus-glow calc(2.8s*var(--spd,1)) ease-in-out infinite!important;transition:transform .2s}
 @keyframes focus-glow{0%,100%{box-shadow:0 0 0 2px #22c55e,0 6px 22px rgba(34,197,94,.45)}50%{box-shadow:0 0 0 2px #4ade80,0 8px 34px rgba(34,197,94,.75)}}
 @media (prefers-reduced-motion:reduce){.tcard.is-focus{animation:none!important;box-shadow:0 0 0 2px #22c55e,0 6px 22px rgba(34,197,94,.5);transform:none}}
+
+/* ===== Up next lineup (admin only) ===== */
+.upnext{background:#0a1322;border:1px solid #1f2c42;border-radius:14px;padding:10px 12px;margin:10px 0 12px}
+.un-head{display:flex;gap:10px;align-items:baseline;flex-wrap:wrap;margin-bottom:8px}
+.un-head strong{color:#86efac;font-size:13px;letter-spacing:.06em;text-transform:uppercase}
+.un-head span{font-size:12px}
+.un-list{list-style:none;margin:0;padding:0;display:grid;gap:6px;max-height:360px;overflow-y:auto}
+.un-item{display:flex;align-items:center;gap:10px;padding:6px 8px;border-radius:10px;background:#111d31;border:1px solid rgba(59,130,246,var(--qa,.5));border-left:4px solid var(--biz,#64748b);min-width:0}
+.un-item.first{border-color:#22c55e;border-left-color:var(--biz,#22c55e);box-shadow:0 0 12px rgba(34,197,94,.3);background:linear-gradient(90deg,rgba(34,197,94,.14),#111d31 60%)}
+.un-num{flex:0 0 26px;height:26px;border-radius:50%;display:grid;place-items:center;font-weight:800;font-size:13px;background:rgba(59,130,246,var(--qa,.5));color:#fff}
+.un-item.first .un-num{background:#16a34a}
+.un-title{flex:1;min-width:0;background:transparent;border:0;padding:2px 0;text-align:left;display:flex;flex-direction:column;color:#e2e8f0}
+.un-title span{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-weight:600;font-size:14px}
+.un-title small{color:#94a3b8;font-size:12px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.un-ctl{display:flex;gap:4px;flex:0 0 auto}
+.un-ctl button{padding:4px 8px;font-size:12px;border-radius:8px;min-width:30px;line-height:1.2}
+.un-ctl button:disabled{opacity:.3;cursor:default}
+.tcard.in-queue{border-top-color:rgba(59,130,246,var(--qa));border-right-color:rgba(59,130,246,var(--qa));border-bottom-color:rgba(59,130,246,var(--qa));box-shadow:0 0 0 1px rgba(59,130,246,var(--qa))}
+.q-badge{display:inline-flex;align-items:center;font-size:11px;font-weight:800;padding:3px 8px;border-radius:999px;background:rgba(59,130,246,var(--qa,.8));color:#fff;white-space:nowrap}
+.q-badge.now{background:#16a34a}
+.tc-focus.q-later[aria-pressed="true"]{background:#2563eb;border-color:#3b82f6;box-shadow:0 0 8px rgba(59,130,246,.5)}
+
+/* ===== Added date + days-in-section tag (admin only) ===== */
+.tc-added{font-size:11.5px;color:#8a9ab3;display:flex;align-items:center;gap:5px}
+.tc-added svg{width:12px;height:12px;opacity:.8}
+.age-chip{display:inline-flex;align-items:center;font-size:11px;font-weight:700;padding:3px 8px;border-radius:999px;color:#fde68a;background:rgba(245,158,11,.14);border:1px solid rgba(245,158,11,.55);white-space:nowrap}
+.layout-m-grid3 .tcard:not(.m-open) .tc-added,.layout-m-slim .tcard:not(.m-open) .tc-added,.layout-m-grid2 .tcard:not(.m-open) .tc-added{display:none}
+
+/* ===== New activity markers (styles picked in Animations) ===== */
+.act-badge,.act-ribbon{display:none}
+body.mk-badge .act-badge{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:800;letter-spacing:.06em;padding:3px 9px 3px 7px;border-radius:999px;border:0;background:#f59e0b;color:#1a1204;min-height:0;cursor:pointer}
+body.mk-badge .act-badge::before{content:"";width:8px;height:8px;border-radius:50%;background:#fff;animation:act-dot calc(1.6s*var(--spd,1)) ease-in-out infinite}
+@keyframes act-dot{0%,100%{box-shadow:0 0 0 0 rgba(255,255,255,.9)}50%{box-shadow:0 0 0 5px rgba(255,255,255,0)}}
+body.mk-ribbon .act-ribbon{display:block;position:absolute;top:0;right:14px;z-index:4;padding:4px 10px 5px;border:0;border-radius:0 0 9px 9px;background:linear-gradient(180deg,#fbbf24,#f59e0b);color:#1a1204;font-size:11px;font-weight:800;letter-spacing:.03em;box-shadow:0 4px 10px rgba(0,0,0,.35);cursor:pointer;min-height:0}
+.board[class*="layout-m-"] .act-ribbon{right:36px;font-size:10px;padding:3px 8px 4px}
+body.mk-outline .tcard.has-new{border-top-color:#f59e0b;border-right-color:#f59e0b;border-bottom-color:#f59e0b;animation:new-glow calc(2.6s*var(--spd,1)) ease-in-out infinite}
+@keyframes new-glow{0%,100%{box-shadow:0 0 0 1px rgba(245,158,11,.7),0 0 10px rgba(245,158,11,.25)}50%{box-shadow:0 0 0 2px rgba(251,191,36,.95),0 0 26px rgba(245,158,11,.55)}}
+body.mk-shake .tcard.has-new.shake-now{animation:card-shake .75s ease-in-out 1}
+body.mk-shake.mk-outline .tcard.has-new.shake-now{animation:card-shake .75s ease-in-out 1,new-glow calc(2.6s*var(--spd,1)) ease-in-out .75s infinite}
+@keyframes card-shake{0%,100%{transform:translateX(0) rotate(0)}15%{transform:translateX(-6px) rotate(-1.2deg)}30%{transform:translateX(5px) rotate(1deg)}45%{transform:translateX(-4px) rotate(-.6deg)}60%{transform:translateX(3px) rotate(.4deg)}75%{transform:translateX(-1px)}}
+.note.is-new{border-color:#f59e0b;border-left-color:#f59e0b;box-shadow:0 0 0 1px rgba(245,158,11,.45);background:linear-gradient(90deg,rgba(245,158,11,.1),#0b1525 70%)}
+.note.is-new .note-head strong::after{content:"NEW";margin-left:8px;font-size:10px;font-weight:800;letter-spacing:.06em;padding:1px 6px;border-radius:999px;background:#f59e0b;color:#1a1204}
+@media (prefers-reduced-motion:reduce){body.mk-outline .tcard.has-new,body.mk-shake .tcard.has-new.shake-now{animation:none!important;box-shadow:0 0 0 2px #f59e0b}body.mk-badge .act-badge::before{animation:none}}
 
 @media (max-width:600px){
  main{padding:12px}
@@ -860,6 +905,7 @@ body.is-mobile .tc-title{cursor:pointer}
 <button type="button" class="stat" id="overdueStat">Overdue<strong id="overdueCount">0</strong></button>
 <button type="button" class="stat today" id="todayStat">Due today<strong id="todayCount">0</strong></button>
 </div>
+<div id="upNext" class="upnext hidden" aria-label="Up next"></div>
 <div id="snapshot" class="snapshot" aria-label="Business snapshot"></div>
 
 <details id="addTaskPanel" class="panel fold add-zone">
@@ -1013,6 +1059,18 @@ body.is-mobile .tc-title{cursor:pointer}
 </div>
 </form>
 <p id="animStatus" class="muted"></p>
+<form id="actForm" class="anim-sec">
+<h4>New activity markers (your dashboard and every client portal)</h4>
+<p class="muted" style="font-size:13px;margin:0 0 6px">A card lights up when there is something new for that person. You see new client requests, notes and files. Clients see your notes and files, and tasks moved to "Needs your input". Tapping the marker opens the notes, and it clears once opened. Pick any combination.</p>
+<div class="anim-list">
+<label class="check"><input type="checkbox" name="act_badge"> "NEW" badge with a pulsing dot</label>
+<label class="check"><input type="checkbox" name="act_outline"> Glowing gold outline</label>
+<label class="check"><input type="checkbox" name="act_ribbon"> Corner ribbon ("New note", "New photo")</label>
+<label class="check"><input type="checkbox" name="act_shake"> Shake once when it arrives</label>
+</div>
+<div class="anim-preview" id="actPreview" aria-label="Preview"></div>
+<p id="actStatus" class="muted"></p>
+</form>
 </details>
 </div>
 </section>
@@ -1172,7 +1230,7 @@ const MAX_FILES=10;
 const MAX_RECORD_SECONDS=300;
 const CLIENT_FIELDS='id,Name,Email,Company,logo_path,backdrop_path,brand_color,brand_color_2';
 const TASK_FIELDS='id,title,description,status,priority,due_date,client_id,created_at,completed_at';
-let taskOptional=['created_by','archived_at','assigned_to'];
+let taskOptional=['created_by','archived_at','assigned_to','status_changed_at'];
 const taskFields=()=>[TASK_FIELDS,...taskOptional].join(',');
 const NOTE_FIELDS='id,task_id,client_id,author_id,author_name,is_admin,body,created_at';
 let noteFilesReady=true;
@@ -1185,7 +1243,9 @@ const PREF_KEY='signix-prefs-'+(IP_ONLY?'ip':TASKS_ONLY?'popup':'main');
 
 let currentUser=null,role=null,myClientName='',myClientId=null,tasks=[],clients=[],logins=[],recoveryActive=false,linkEmail='',personFilter='';
 let loginLog=[],loginLogReady=false,logClient='',signedInNow=false;
-let focusId=null,focusReady=false;
+let queue=[],focusReady=false,queueCol=false;
+let reads={},readBase=null,readsReady=false,actStyles=['badge','outline'],actReady=false,notesSince=null;
+const shaken=new Set();
 let attachments=[],signedUrls={};
 let brandUrls={},brandLoadedAt=0,openClientId=null,editingId=null,menuCtx=null,pollTimer=null,tickTimer=null,lastLoad=0;
 let prefs=loadPrefs();
@@ -1297,7 +1357,8 @@ function clearState(){
  currentUser=null;role=null;myClientName='';myClientId=null;
  tasks=[];clients=[];logins=[];attachments=[];signedUrls={};brandUrls={};brandLoadedAt=0;openClientId=null;editingId=null;
  loginLog=[];loginLogReady=false;logClient='';signedInNow=false;
- focusId=null;focusReady=false;
+ queue=[];focusReady=false;queueCol=false;
+ reads={};readBase=null;readsReady=false;notesSince=null;shaken.clear();
  expandedMedia.clear();
  memberNames={};
  notes=[];notesReady=false;search='';selectMode=false;addPick=null;addBiz=null;personFilter='';
@@ -1638,6 +1699,22 @@ function byNewest(a,b){return String(b.created_at||'').localeCompare(String(a.cr
 function byCompleted(a,b){return String(b.completed_at||'').localeCompare(String(a.completed_at||''))||byNewest(a,b);}
 function byStatusThenDue(a,b){return (ST_RANK[normStatus(a)]-ST_RANK[normStatus(b)])||byDue(a,b);}
 
+/* Tasks sitting in Incoming / To do / Waiting on client for more than 4 days go to the top (admin only) */
+const AGE_DAYS=4,AGE_STATUSES=['Incoming','To do','Waiting on client'];
+function ageMs(t){
+ if(!taskOptional.includes('status_changed_at')||!t.status_changed_at||t.archived_at||!AGE_STATUSES.includes(normStatus(t)))return 0;
+ const ms=Date.now()-Date.parse(t.status_changed_at);
+ return isNaN(ms)?0:ms;
+}
+function isAged(t){return ageMs(t)>AGE_DAYS*864e5;}
+function agedFirst(cmp){
+ return (a,b)=>{
+  const A=isAged(a),B=isAged(b);
+  if(A!==B)return A?-1:1;
+  if(A&&B)return Date.parse(a.status_changed_at)-Date.parse(b.status_changed_at);
+  return cmp(a,b);
+ };
+}
 function groupTasks(list,v,clientSide){
  const g=(key,label,items,extra)=>({key,label,items,...(extra||{})});
  switch(v){
@@ -1657,7 +1734,7 @@ function groupTasks(list,v,clientSide){
    return [g('archive','Archived',list.slice().sort((a,b)=>String(b.archived_at||'').localeCompare(String(a.archived_at||''))),{cls:'st-completed'})];
   case 'waiting':
   case 'needs':
-   return [g('waiting',clientSide?'Waiting on your input':'Waiting on client',list.filter(t=>t.status==='Waiting on client').sort(byDue),{cls:'st-waiting-on-client'})];
+   return [g('waiting',clientSide?'Waiting on your input':'Waiting on client',list.filter(t=>t.status==='Waiting on client').sort(clientSide?byDue:agedFirst(byDue)),{cls:'st-waiting-on-client'})];
   case 'high':
    return [g('high','High priority (open)',list.filter(t=>t.priority==='High'&&!isDone(t)).sort(byDue),{cls:'pr-high'})];
   case 'recent':{
@@ -1667,7 +1744,7 @@ function groupTasks(list,v,clientSide){
   case 'done':
    return [g('done','Completed',list.filter(isDone).sort(byCompleted),{cls:'st-completed'})];
   default:
-   return STATUSES.map(s=>g(statusClass(s),statusLabel(s,clientSide),list.filter(t=>normStatus(t)===s).sort(s==='Completed'?byCompleted:byDue),{cls:statusClass(s),keep:true}));
+   return STATUSES.map(s=>g(statusClass(s),statusLabel(s,clientSide),list.filter(t=>normStatus(t)===s).sort(s==='Completed'?byCompleted:!clientSide&&AGE_STATUSES.includes(s)?agedFirst(byDue):byDue),{cls:statusClass(s),keep:true}));
  }
 }
 function emptyText(v){
@@ -1736,6 +1813,7 @@ function mediaToggle(t,list){
  return `<button type="button" class="media-toggle" data-act="media" data-id="${esc(t.id)}" aria-expanded="${open}">${CLIP_ICON}<span>${esc(mediaSummary(list))}</span><span class="hint">${open?'Hide':'Tap to view'}</span></button>`;
 }
 
+const CLOCK_ICON='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>';
 const FOCUS_ICON='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="3" fill="currentColor"/><path d="M12 1v3M12 20v3M1 12h3M20 12h3"/></svg>';
 const ARCHIVE_ICON='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="5" rx="1"/><path d="M5 9v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V9"/><path d="M10 13h4"/></svg>';
 const NOTE_ICON='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>';
@@ -1743,12 +1821,13 @@ function notesFor(id){
  return notes.filter(n=>String(n.task_id)===String(id))
   .sort((a,b)=>String(b.created_at||'').localeCompare(String(a.created_at||''))||Number(b.id)-Number(a.id));
 }
-function notesListHtml(t){
+function notesListHtml(t,since){
  const list=notesFor(t.id);
  if(!list.length)return '<p class="muted" style="font-size:13px;margin:0">No notes yet. Be the first to add one.</p>';
  return `<ul class="note-list">${list.map(n=>{
   const files=attachments.filter(a=>String(a.note_id)===String(n.id));
-  return `<li class="note${n.is_admin?' by-admin':''}"><div class="note-head"><strong>${esc(n.author_name||'')}</strong><time datetime="${esc(n.created_at)}">${esc(fmtStamp(n.created_at))}</time></div>${n.body?`<div class="note-body">${esc(n.body)}</div>`:''}${files.length?mediaListHtml(files):''}</li>`;
+  const fresh=since!=null&&fromOtherSide(n)&&Date.parse(n.created_at)>since;
+  return `<li class="note${n.is_admin?' by-admin':''}${fresh?' is-new':''}"><div class="note-head"><strong>${esc(n.author_name||'')}</strong><time datetime="${esc(n.created_at)}">${esc(fmtStamp(n.created_at))}</time></div>${n.body?`<div class="note-body">${esc(n.body)}</div>`:''}${files.length?mediaListHtml(files):''}</li>`;
  }).join('')}</ul>`;
 }
 function taskFiles(id){return attachments.filter(a=>String(a.task_id)===String(id)&&a.note_id==null);}
@@ -1797,20 +1876,33 @@ function taskCard(t,o){
    ?`<button type="button" class="tc-arch" data-act="archive" data-id="${id}" title="Archive task" aria-label="Archive task: ${esc(t.title||'Untitled')}">${ARCHIVE_ICON}</button>`
    :`<button type="button" class="tc-trash" data-act="delete" data-id="${id}" title="Delete task" aria-label="Delete task: ${esc(t.title||'Untitled')}">${TRASH_ICON}</button>`;
  }
- const focused=o.admin&&isFocused(t);
- const focusBtn=o.admin&&focusReady&&!t.archived_at&&!isDone(t)?`<button type="button" class="tc-focus" data-act="focus" data-id="${id}" aria-pressed="${focused}" title="${focused?'Stop highlighting this task':'Highlight: I am working on this now'}" aria-label="${focused?'Stop highlighting':'Highlight'} ${esc(t.title||'Untitled')}">${FOCUS_ICON}</button>`:'';
+ const qp=o.admin&&focusReady?queuePos(t):0;
+ const focused=qp===1;
+ const focusBtn=o.admin&&focusReady&&!t.archived_at&&!isDone(t)?`<button type="button" class="tc-focus${qp>1?' q-later':''}" data-act="focus" data-id="${id}" aria-pressed="${qp>0}" title="${qp?`#${qp} in your Up next lineup. Tap to remove it.`:'Add to your Up next lineup'}" aria-label="${qp?'Remove from lineup':'Add to lineup'}: ${esc(t.title||'Untitled')}">${FOCUS_ICON}</button>`:'';
+ const qBadge=qp===1?'<span class="q-badge now" title="#1 in your lineup: working on it now">#1 · Now</span>':qp>1?`<span class="q-badge" title="#${qp} in your Up next lineup">#${qp}</span>`:'';
+ const ageEl=o.admin&&isAged(t)?`<span class="age-chip" title="In ${esc(st)} since ${esc(fmtStamp(t.status_changed_at))}">${Math.floor(ageMs(t)/864e5)} days here</span>`:'';
+ const act=(o.admin||o.client)?newActivity(t):null;
+ let actCls='';
+ if(act){
+  actCls='has-new';
+  const sk=key+':'+act.at;
+  if(!shaken.has(sk)){shaken.add(sk);actCls+=' shake-now';}
+ }
+ const actBadge=act?`<button type="button" class="act-badge" data-act="notes" data-id="${id}" title="${esc(ACT_LABEL[act.kind]||'New activity')}: tap to open">NEW</button>`:'';
+ const actRibbon=act?`<button type="button" class="act-ribbon" data-act="notes" data-id="${id}">${esc(ACT_LABEL[act.kind]||'New')}</button>`:'';
  const editable=o.client&&canEdit(t);
  const nCount=notesFor(t.id).length;
  const notesBtn=notesReady?`<button type="button" class="notes-toggle${nCount?' has':''}" data-act="notes" data-id="${id}" aria-haspopup="dialog">${NOTE_ICON}<span class="nt-label">Notes</span>${nCount?`<b>${nCount}</b>`:''}</button>`:'';
  const foot=(n||notesBtn)?`<div class="tc-foot">${n?mediaToggle(t,files):''}${notesBtn}</div>`:'';
  const sel=o.admin&&selectMode&&!o.detail?`<label class="sel" title="Select"><input type="checkbox" data-sel="${id}"${selected.has(key)?' checked':''} aria-label="Select ${esc(t.title||'Untitled')}"></label>`:'';
- const cls=['tcard',priorityClass(pr),statusClass(st),od?'is-overdue':'',focused?'is-focus':'',selected.has(key)&&selectMode?'selected':'',mOpen.has(key)?'m-open':''].filter(Boolean).join(' ');
- return `<article class="${cls}" data-id="${id}">
- ${sel}
+ const cls=['tcard',priorityClass(pr),statusClass(st),od?'is-overdue':'',focused?'is-focus':qp>1?'in-queue':'',actCls,selected.has(key)&&selectMode?'selected':'',mOpen.has(key)?'m-open':''].filter(Boolean).join(' ');
+ return `<article class="${cls}" data-id="${id}"${qp>1?` style="--qa:${qAlpha(qp)}"`:''}>
+ ${sel}${actRibbon}
  ${o.admin?bizHeader(t.client_id):''}
  <h4 class="tc-title" data-act="mopen" data-id="${id}">${esc(t.title||'Untitled')}</h4>
- <div class="tc-meta">${od?'<span class="od-flag">Overdue</span>':''}${statusEl}${prEl}${dueEl}${tagChip(t,o)}${focusBtn}${corner}</div>
+ <div class="tc-meta">${actBadge}${qBadge}${od?'<span class="od-flag">Overdue</span>':''}${ageEl}${statusEl}${prEl}${dueEl}${tagChip(t,o)}${focusBtn}${corner}</div>
  ${t.created_by&&memberNames[t.created_by]?`<div class="tc-by">${PERSON_ICON}<span>Submitted by <strong>${esc(memberNames[t.created_by])}</strong></span></div>`:''}
+ ${o.admin&&t.created_at?`<div class="tc-added">${CLOCK_ICON}<span>Added ${esc(fmtStamp(t.created_at))}</span></div>`:''}
  ${st==='In progress'?`<div class="work-bar" role="img" aria-label="Being worked on"${o.admin?` style="--bc:${bizColor(clientById(t.client_id))}"`:''}></div>`:''}
  ${t.description?`<p class="tc-desc">${esc(t.description)}</p>`:''}
  ${foot}
@@ -1911,6 +2003,7 @@ function renderAdmin(){
  $('overdueStat').classList.toggle('alert',overdue>0);
  $('todayCount').textContent=open.filter(t=>t.due_date&&daysUntil(t.due_date)===0).length;
  renderSnapshot(live);
+ renderUpNext();
  const v=IP_ONLY?'inprogress':adminView();
  let list=adminList(v);
  if(IP_ONLY)list=list.filter(t=>normStatus(t)==='In progress');
@@ -2427,10 +2520,13 @@ function openNotes(id){
  if(notesTaskId!=null&&String(notesTaskId)!==String(t.id)&&!closeNotes())return;
  closeMenu();
  notesTaskId=t.id;
+ notesSince=readsReady?seenAt(t.id):null;
+ markSeen(t.id);
  $('noteText').value=noteDrafts[String(t.id)]||'';
  noteSay('');
  $('noteFiles').classList.toggle('hidden',!noteFilesReady);
  renderNotesModal();
+ renderAdmin();renderPortal();
  show('notesModal',true);
  document.body.style.overflow='hidden';
  if(!mobile)$('noteText').focus();
@@ -2441,13 +2537,15 @@ function renderNotesModal(){
  if(!t||(role==='client'&&t.archived_at)){closeNotes(true);return;}
  $('notesTitle').textContent=`Notes · ${t.title||'Untitled'}`;
  $('notesLogo').innerHTML=role==='admin'?bizLogo(clientById(t.client_id)):'';
- $('notesList').innerHTML=notesListHtml(t);
+ $('notesList').innerHTML=notesListHtml(t,notesSince);
 }
 function closeNotes(force){
  if(notesTaskId==null)return true;
  if(!force&&(noteFiles.pending.length||noteFiles.recorder)&&!confirm('Discard the files you attached to this note?'))return false;
  noteFiles.stop(true);noteFiles.clear();
- notesTaskId=null;
+ const closedId=notesTaskId;
+ notesTaskId=null;notesSince=null;
+ if(readsReady&&closedId!=null){const a=newActivityRaw(tasks.find(x=>String(x.id)===String(closedId)));if(a){markSeen(closedId);render();}}
  show('notesModal',false);
  if($('welcomeModal').classList.contains('hidden'))document.body.style.overflow='';
  return true;
@@ -2771,30 +2869,169 @@ $('logClear').onclick=async()=>{
  await loadLoginLog();
 };
 
-/* ---------- Focus glow (admin only, synced through admin_prefs) ---------- */
-function isFocused(t){return focusId!=null&&String(focusId)===String(t.id)&&!isDone(t)&&!t.archived_at;}
-async function loadFocus(){
- if(!isAdmin()){focusReady=false;focusId=null;return false;}
- const {data,error}=await sb.from('admin_prefs').select('focus_task_id').eq('id',1).maybeSingle();
- focusReady=!error&&!!data;
- focusId=focusReady?data.focus_task_id??null:null;
- return focusReady;
+/* ---------- Up next lineup (admin only, synced through admin_prefs) ---------- */
+const QUEUE_MAX=10;
+function liveQueue(){
+ return queue.filter(id=>{const t=tasks.find(x=>String(x.id)===String(id));return t&&!isDone(t)&&!t.archived_at;});
 }
-async function setFocus(t){
- if(!isAdmin()||!focusReady||!t)return;
- const prev=focusId;
- const next=isFocused(t)?null:t.id;
- focusId=next;renderAdmin();
+function queuePos(t){const i=liveQueue().findIndex(id=>String(id)===String(t.id));return i+1;}
+function isFocused(t){return queuePos(t)===1;}
+function qAlpha(n){return Math.max(.28,.92-(n-2)*.08).toFixed(2);}
+async function loadFocus(){
+ try{return await loadFocusInner();}catch(e){focusReady=false;queue=[];return false;}
+}
+async function loadFocusInner(){
+ if(!isAdmin()){focusReady=false;queue=[];return false;}
+ let {data,error}=await sb.from('admin_prefs').select('queue,focus_task_id').eq('id',1).maybeSingle();
+ queueCol=!error;
+ if(error)({data,error}=await sb.from('admin_prefs').select('focus_task_id').eq('id',1).maybeSingle());
+ focusReady=!error&&!!data;
+ if(!focusReady){queue=[];return false;}
+ queue=queueCol&&Array.isArray(data.queue)?data.queue.filter(x=>x!=null):(data.focus_task_id!=null?[data.focus_task_id]:[]);
+ if(queueCol&&!queue.length&&data.focus_task_id!=null)queue=[data.focus_task_id];
+ return true;
+}
+async function saveQueue(next,msg){
+ const prev=queue;
+ queue=next;renderAdmin();
+ const payload={focus_task_id:next[0]??null,updated_at:new Date().toISOString()};
+ if(queueCol)payload.queue=next;
  try{
-  const {data,error}=await sb.from('admin_prefs').update({focus_task_id:next,updated_at:new Date().toISOString()}).eq('id',1).select('focus_task_id');
-  if(error||!data?.length){focusId=prev;renderAdmin();displayError('Highlight was not saved',error||{message:'no row returned. Run the latest SQL step.'});return;}
-  notice(next?`Highlighting "${t.title}". It stays on until you tap the button again or complete the task.`:'Highlight removed.');
- }catch(err){focusId=prev;renderAdmin();displayError('Highlight was not saved',err);}
+  const {data,error}=await sb.from('admin_prefs').update(payload).eq('id',1).select('focus_task_id');
+  if(error||!data?.length){queue=prev;renderAdmin();displayError('Lineup was not saved',error||{message:'no row returned. Run the latest SQL step.'});return;}
+  if(msg)notice(msg);
+ }catch(err){queue=prev;renderAdmin();displayError('Lineup was not saved',err);}
+}
+function setFocus(t){
+ if(!isAdmin()||!focusReady||!t)return;
+ const q=liveQueue(),k=String(t.id);
+ if(q.some(id=>String(id)===k)){saveQueue(q.filter(id=>String(id)!==k),`"${t.title}" removed from your lineup.`);return;}
+ if(!queueCol){saveQueue([t.id],`Working on "${t.title}" now. Run the latest SQL step to line up more than one task.`);return;}
+ if(q.length>=QUEUE_MAX){notice(`Your lineup is full (${QUEUE_MAX}). Remove one first.`);return;}
+ const next=[...q,t.id];
+ saveQueue(next,next.length===1?`Working on "${t.title}" now.`:`"${t.title}" is #${next.length} in your lineup.`);
+}
+function moveInQueue(id,dir){
+ const q=liveQueue(),i=q.findIndex(x=>String(x)===String(id)),j=i+dir;
+ if(i<0||j<0||j>=q.length)return;
+ [q[i],q[j]]=[q[j],q[i]];
+ saveQueue(q);
 }
 function clearFocusIfDone(){
- if(focusId==null)return;
- const t=tasks.find(x=>String(x.id)===String(focusId));
- if(t&&isDone(t))focusId=null;
+ const q=liveQueue();
+ if(q.length!==queue.length)queue=q;
+}
+function renderUpNext(){
+ const root=$('upNext');
+ const q=focusReady&&role==='admin'?liveQueue():[];
+ root.classList.toggle('hidden',!q.length);
+ if(!q.length){root.innerHTML='';return;}
+ root.innerHTML=`<div class="un-head"><strong>Up next</strong><span class="muted">${q.length===1?'1 task':q.length+' tasks'} in your lineup · tap a title to jump to it</span></div><ol class="un-list">${q.map((id,i)=>{
+  const t=tasks.find(x=>String(x.id)===String(id)),c=clientById(t.client_id),tid=esc(t.id);
+  return `<li class="un-item${i===0?' first':''}" style="--biz:${bizColor(c)};--qa:${i?qAlpha(i+1):1}"><span class="un-num">${i+1}</span><button type="button" class="un-title" data-un="jump" data-id="${tid}"><span>${esc(t.title||'Untitled')}</span><small>${esc(c?.Name||'')} · ${esc(normStatus(t))}${t.due_date?' · '+esc(dueInfo(t)?.label||''):''}</small></button><span class="un-ctl">${queueCol?`<button type="button" data-un="up" data-id="${tid}" aria-label="Move up"${i===0?' disabled':''}>▲</button><button type="button" data-un="down" data-id="${tid}" aria-label="Move down"${i===q.length-1?' disabled':''}>▼</button>`:''}<button type="button" data-un="remove" data-id="${tid}" aria-label="Remove from lineup">✕</button></span></li>`;
+ }).join('')}</ol>`;
+}
+function jumpToCard(t){
+ const find=()=>$('adminBoard').querySelector(`.tcard[data-id="${CSS.escape(String(t.id))}"]`);
+ let card=find();
+ if(!card){
+  setPref('admin','view','status');setChip('adminViews','status');
+  $('bizFilter').value='';setPref('admin','biz','');
+  search='';$('taskSearch').value='';$('searchClear').classList.add('hidden');
+  renderAdmin();card=find();
+ }
+ if(!card)return;
+ card.scrollIntoView({behavior:'smooth',block:'center'});
+ card.classList.add('flash');setTimeout(()=>card.classList.remove('flash'),2000);
+}
+$('upNext').addEventListener('click',e=>{
+ const b=e.target.closest('[data-un]');
+ if(!b||!isAdmin())return;
+ const t=tasks.find(x=>String(x.id)===b.dataset.id);
+ if(!t)return;
+ const a=b.dataset.un;
+ if(a==='jump')jumpToCard(t);
+ else if(a==='up')moveInQueue(t.id,-1);
+ else if(a==='down')moveInQueue(t.id,1);
+ else if(a==='remove')setFocus(t);
+});
+
+/* ---------- New activity markers (per person, synced through task_reads) ---------- */
+const ACT_STYLES=['badge','outline','ribbon','shake'];
+const ACT_LABEL={request:'New request',note:'New note',photo:'New photo',video:'New video',voice:'New voice note',file:'New file',input:'Needs your input'};
+function applyActStyles(){for(const k of ACT_STYLES)document.body.classList.toggle('mk-'+k,actStyles.includes(k));}
+function fillActForm(){const f=$('actForm').elements;for(const k of ACT_STYLES)f['act_'+k].checked=actStyles.includes(k);}
+async function loadActStyles(){
+ try{await loadActStylesInner();}catch(e){actReady=false;applyActStyles();}
+}
+async function loadActStylesInner(){
+ const {data,error}=await sb.from('app_settings').select('activity_styles').eq('id',1).maybeSingle();
+ actReady=!error&&!!data;
+ if(actReady)actStyles=String(data.activity_styles??'').split(',').map(x=>x.trim()).filter(x=>ACT_STYLES.includes(x));
+ applyActStyles();
+ if(role==='admin'){fillActForm();renderActPreview();if(!actReady)$('actStatus').textContent='Run the latest SQL step in Supabase to save this choice for everyone.';}
+}
+function renderActPreview(){
+ $('actPreview').innerHTML=`<article class="tcard pr-medium st-to-do has-new shake-now"><button type="button" class="act-ribbon" tabindex="-1">New note</button><h4 class="tc-title">Sample task with new activity</h4><div class="tc-meta"><span class="act-badge">NEW</span><span class="badge st-to-do">To do</span><span class="badge pr-medium">Medium priority</span></div></article>${actStyles.length?'':'<p class="muted" style="margin:0;font-size:13px">No marker selected: cards will not show new activity.</p>'}`;
+}
+$('actForm').addEventListener('change',async()=>{
+ if(!isAdmin())return;
+ const f=$('actForm').elements;
+ const next=ACT_STYLES.filter(k=>f['act_'+k].checked);
+ const prev=actStyles;
+ actStyles=next;applyActStyles();renderActPreview();shaken.clear();render();
+ if(!actReady){$('actStatus').textContent='Previewing only. Run the latest SQL step in Supabase to save this.';return;}
+ $('actStatus').textContent='Saving…';
+ try{
+  const {data,error}=await sb.from('app_settings').update({activity_styles:next.join(',')}).eq('id',1).select('id');
+  if(error||!data?.length){actStyles=prev;applyActStyles();fillActForm();renderActPreview();$('actStatus').textContent='Not saved: '+(error?.message||'no row returned.');return;}
+  $('actStatus').textContent='Saved. Client portals update within a minute.';
+ }catch(err){actStyles=prev;applyActStyles();fillActForm();renderActPreview();$('actStatus').textContent='Not saved: '+(err.message||'unknown error');}
+});
+async function loadReads(){
+ try{return await loadReadsInner();}catch(e){readsReady=false;return false;}
+}
+async function loadReadsInner(){
+ if(!currentUser){readsReady=false;return false;}
+ const {data,error}=await sb.from('task_reads').select('task_id,seen_at');
+ if(error){readsReady=false;return false;}
+ reads={};
+ for(const r of data||[])reads[String(r.task_id)]=Date.parse(r.seen_at);
+ if(reads['0']==null){
+  const now=new Date().toISOString();
+  const {error:e2}=await sb.from('task_reads').upsert({user_id:currentUser.id,task_id:0,seen_at:now},{onConflict:'user_id,task_id'});
+  if(e2){readsReady=false;return false;}
+  reads['0']=Date.parse(now);
+ }
+ readBase=reads['0'];readsReady=true;
+ return true;
+}
+function seenAt(id){return reads[String(id)]??readBase;}
+function markSeen(id){
+ if(!readsReady||!currentUser||id==null)return;
+ const now=new Date();
+ reads[String(id)]=now.getTime();
+ sb.from('task_reads').upsert({user_id:currentUser.id,task_id:Number(id),seen_at:now.toISOString()},{onConflict:'user_id,task_id'}).then(()=>{},()=>{});
+}
+function fromOtherSide(n){return role==='admin'?!n.is_admin:!!n.is_admin;}
+function newActivityRaw(t){
+ if(!t||!readsReady||!currentUser)return null;
+ let best=null;
+ const bump=(at,kind)=>{const ms=Date.parse(at);if(!isNaN(ms)&&(!best||ms>best.at))best={at:ms,kind};};
+ for(const n of notes){
+  if(String(n.task_id)!==String(t.id)||!fromOtherSide(n))continue;
+  const files=attachments.filter(a=>String(a.note_id)===String(n.id));
+  const kind=!files.length?'note':files.some(a=>a.kind==='image')?'photo':files.some(a=>a.kind==='video')?'video':files.some(a=>a.kind==='audio')?'voice':'file';
+  bump(n.created_at,kind);
+ }
+ if(role==='admin'){if(t.created_by&&t.created_by!==currentUser.id&&t.created_at)bump(t.created_at,'request');}
+ else if(t.status==='Waiting on client'&&t.status_changed_at)bump(t.status_changed_at,'input');
+ return best&&best.at>seenAt(t.id)?best:null;
+}
+function newActivity(t){
+ if(!actStyles.length)return null;
+ if(String(notesTaskId)===String(t.id))return null;
+ return newActivityRaw(t);
 }
 
 /* ---------- Animation settings (admin controls, applied everywhere) ---------- */
@@ -2944,8 +3181,10 @@ async function poll(force){
   else await loadOwnClient();
  }
  await loadAnimations();
+ await loadActStyles();
  await loadMemberNames();
  if(role==='admin')await loadFocus();
+ await loadReads();
  await loadTasks();
  if(role==='admin'&&$('loginLogPanel').open)await loadLoginLog();
 }
@@ -2969,13 +3208,15 @@ async function refresh(){
   show('auth',false);show('app',true);show('logout',true);show('changePwBtn',true);show('mainNav',true);
   view('admin');
   await loadAnimations();
+  await loadActStyles();
   await loadMemberNames();
+  await loadFocus();
+  await loadReads();
   const clientsOk=await loadClients();
   const tasksOk=await loadTasks();
-  await loadFocus();
   const loginsOk=await loadLogins();
   await loadLoginLog();
-  renderAdmin();
+  render();
   if(clientsOk&&tasksOk&&loginsOk)notice('');
   startTimers();
   return;
@@ -2996,7 +3237,9 @@ async function refresh(){
  document.body.classList.remove('tasks-only');
  await loadOwnClient();
  await loadAnimations();
+ await loadActStyles();
  await loadMemberNames();
+ await loadReads();
  show('auth',false);show('app',true);show('logout',true);show('changePwBtn',true);show('mainNav',false);
  view('client');
  if(await loadTasks())notice('');
@@ -3234,7 +3477,8 @@ $('clientsList').addEventListener('toggle',e=>{
 },true);
 
 // ===== END OF PART 9 of 10 =====
-$('clientsList').addEventListener('submit',async e=>{
+
+ $('clientsList').addEventListener('submit',async e=>{
  const form=e.target.closest('form[data-client-id]');
  if(!form)return;
  e.preventDefault();
@@ -3572,8 +3816,3 @@ sb.auth.onAuthStateChange(event=>{
 </body>
 </html>
 <!-- ===== END OF PART 10 of 10 ===== -->
- 
- 
- 
- 
- 
