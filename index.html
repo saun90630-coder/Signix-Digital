@@ -955,6 +955,20 @@ body.has-shell #gearBtn{display:none}
 .layout-board .un-title span{white-space:normal;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
 .layout-board .un-ctl{margin-left:auto}
 #viewOptsBtn{display:none}
+.brief-card{position:relative;overflow:hidden;border-radius:16px;padding:16px 18px;margin:10px 0 6px;background:radial-gradient(120% 140% at 0% 0%,rgba(56,189,248,.22),rgba(57,117,219,.12) 40%,#0f1a2b 75%);border:1px solid rgba(56,189,248,.45);box-shadow:0 0 0 1px rgba(56,189,248,.12),0 10px 30px rgba(14,116,144,.18);display:flex;flex-direction:column;gap:10px}
+.brief-head{display:flex;align-items:center;gap:10px}
+.brief-head h2{margin:0;flex:1;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:#7dd3fc}
+.brief-orb{width:14px;height:14px;border-radius:50%;flex:0 0 14px;background:radial-gradient(circle at 35% 35%,#e0f2fe,#38bdf8 45%,#0369a1);box-shadow:0 0 10px rgba(56,189,248,.8)}
+.brief-card.speaking .brief-orb{animation:brief-pulse 1.1s ease-in-out infinite}
+.brief-card.speaking{border-color:#38bdf8;box-shadow:0 0 0 1px rgba(56,189,248,.4),0 0 28px rgba(56,189,248,.35)}
+@keyframes brief-pulse{0%,100%{transform:scale(1);box-shadow:0 0 8px rgba(56,189,248,.7)}50%{transform:scale(1.35);box-shadow:0 0 22px rgba(56,189,248,1)}}
+.brief-play{min-height:40px;padding:8px 16px;border-radius:999px;border:1px solid #38bdf8;background:rgba(56,189,248,.16);color:#e0f2fe;font-weight:700}
+.brief-play[aria-pressed="true"]{background:#38bdf8;color:#04131f}
+.brief-text{margin:0;font-size:16px;line-height:1.6;color:#e2e8f0}
+@media (prefers-reduced-motion:reduce){.brief-card.speaking .brief-orb{animation:none}}
+.day-row{display:flex;gap:6px;flex-wrap:wrap;margin:4px 0 12px}
+.day-chip{display:inline-flex;align-items:center;gap:6px;padding:8px 12px;border:1px solid #2c3c54;border-radius:999px;background:#0f1a2b;margin:0;min-height:40px}
+.day-chip input{width:auto;margin:0}
 .logo-circle.biz-logo{flex:0 0 30px;width:30px;height:30px;font-size:11px;border-width:1px}
 .logo-circle.biz-logo.sm2{flex-basis:26px;width:26px;height:26px;font-size:10px}
 .logo-circle.biz-logo.lg{flex-basis:34px;width:34px;height:34px;font-size:12px}
@@ -1097,6 +1111,10 @@ body.is-mobile .toolbar .search{flex:1 1 auto}
 <section id="admin">
 <section id="areaHome" class="area" data-area="home">
 <div class="home-head"><h1 id="homeHello">Welcome</h1><span id="homeDate"></span></div>
+<section id="briefCard" class="brief-card" aria-labelledby="briefTitle">
+<div class="brief-head"><span class="brief-orb" aria-hidden="true"></span><h2 id="briefTitle">Morning brief</h2><button type="button" id="briefPlay" class="brief-play" aria-pressed="false">▶ Play</button></div>
+<p id="briefText" class="brief-text" aria-live="polite"></p>
+</section>
 <div class="stats">
 <button type="button" class="stat" id="openStat">Open tasks<strong id="openCount">0</strong></button>
 <button type="button" class="stat incoming" id="incomingStat">Incoming requests<strong id="requestCount">0</strong></button>
@@ -1197,6 +1215,26 @@ body.is-mobile .toolbar .search{flex:1 1 auto}
 <h1 class="area-title">Settings</h1>
 <div class="settings-row"><button type="button" id="setPreviewBtn">Preview a client's portal</button><button type="button" id="setPwBtn">Change password</button><button type="button" id="setLogoutBtn">Log out</button></div>
 <div class="admin-tools">
+<details id="briefPanel" class="panel fold">
+<summary>Morning brief</summary>
+<p class="muted">A short rundown of your day, sent to your phone through Pushover. On Home, press ▶ Play any time to hear where things stand right now.</p>
+<form id="briefForm">
+<label class="check"><input type="checkbox" name="enabled"> Send me the brief</label>
+<label>Time (Chicago)<input type="time" name="send_time" value="07:30" step="300"></label>
+<div class="day-row" role="group" aria-label="Days to send">
+<label class="day-chip"><input type="checkbox" name="d0">Sun</label>
+<label class="day-chip"><input type="checkbox" name="d1">Mon</label>
+<label class="day-chip"><input type="checkbox" name="d2">Tue</label>
+<label class="day-chip"><input type="checkbox" name="d3">Wed</label>
+<label class="day-chip"><input type="checkbox" name="d4">Thu</label>
+<label class="day-chip"><input type="checkbox" name="d5">Fri</label>
+<label class="day-chip"><input type="checkbox" name="d6">Sat</label>
+</div>
+</form>
+<div class="settings-row"><button type="button" id="briefSendNow">Send me one now</button></div>
+<p id="briefStatus" class="muted" role="status"></p>
+</details>
+
 <details class="panel fold">
 <summary>Manage Clients</summary>
 <p class="muted">Add a client, or tap a client to edit their details and optional portal branding. Existing tasks stay connected to the same client.</p>
@@ -1598,7 +1636,7 @@ function clearState(){
  reads={};readBase=null;readsReady=false;notesSince=null;shaken.clear();
  expandedMedia.clear();
  memberNames={};
- quickF='';document.body.classList.remove('has-shell');show('needsBtn',false);show('gearBtn',false);
+ quickF='';try{stopBrief();}catch(e){}document.body.classList.remove('has-shell');show('needsBtn',false);show('gearBtn',false);
  notes=[];notesReady=false;search='';selectMode=false;addPick=null;addBiz=null;personFilter='';
  for(const k in CAL)CAL[k]={focus:null,day:null,anchor:null};
  [selected,expandedDone,mOpen].forEach(s=>s.clear());
@@ -3666,6 +3704,7 @@ function renderHome(needs){
   if(q.length>1)un+=`<div class="un-row">${q.slice(1).map((id,i)=>{const t=tasks.find(x=>String(x.id)===String(id)),c=clientById(t.client_id);return `<button type="button" class="un-chip" data-hgo="task" data-id="${esc(t.id)}" style="${qStyle(i+2)}"><span class="uc-num">${i+2}</span>${bizLogo(c,'biz-logo')}<span style="min-width:0"><span class="uc-t">${esc(t.title||'Untitled')}</span><small>${esc(c?.Name||'')}</small></span></button>`;}).join('')}</div>`;
  }
  $('homeUpNext').innerHTML=un;
+ renderBrief();
  $('needsTitle').textContent=`Needs me · ${needs.length}`;
  $('homeNeeds').innerHTML=needs.length
   ?`<div class="list-card">${needs.slice(0,15).map(needRow).join('')}</div>${needs.length>15?`<p class="muted more-note">and ${needs.length-15} more</p>`:''}`
@@ -3804,6 +3843,124 @@ $('waitStat').onclick=()=>jumpTo('status','st-waiting-on-client');
 $('agedStat').onclick=()=>{quickF='aged';setArea('tasks');};
 
 
+/* ---------- Morning brief (free: written from your live data, read out loud by your phone) ---------- */
+const BRIEF_OPEN=['Here’s your rundown.','Let’s line up the day.','Here’s where things stand.','Quick status check.','Here’s what’s on deck.'];
+const BRIEF_CLOSE=['Let’s make it a great one.','You’ve got this.','Let’s go.','One task at a time.','Let’s get it done.'];
+const DAY_NAMES=['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+let briefReady=false,briefSettings=null,speaking=false;
+function dayOfYear(d){return Math.floor((d-new Date(d.getFullYear(),0,0))/864e5);}
+function buildBrief(){
+ const now=new Date(),h=now.getHours(),seed=dayOfYear(now);
+ const out=[(h<12?'Good morning, Sam.':h<18?'Good afternoon, Sam.':'Good evening, Sam.')+' '+BRIEF_OPEN[seed%5]];
+ const live=tasks.filter(t=>!t.archived_at),open=live.filter(t=>!isDone(t));
+ const title=t=>t.title||'Untitled';
+ let urgent=false;
+ const doneToday=live.filter(t=>isDone(t)&&t.completed_at&&new Date(t.completed_at).toDateString()===now.toDateString()).length;
+ if(h>=12&&doneToday)out.push(`You’ve finished ${doneToday} today. Nice work.`);
+ const fresh=needsItems().filter(n=>n.type==='act'||n.type==='req').slice(0,3).map(n=>{
+  if(n.type==='req')return `new request from ${clientName(n.t.client_id)}: ${title(n.t)}`;
+  const note=latestOtherNote(n.t),who=note?.author_name||'A client';
+  if(n.kind==='note')return `${who} left a note on ${title(n.t)}`;
+  if(n.kind==='input')return `${who} needs your input on ${title(n.t)}`;
+  return `${who} sent ${(ACT_LABEL[n.kind]||'New file').replace('New','a new').toLowerCase()} on ${title(n.t)}`;
+ });
+ if(fresh.length){urgent=true;out.push('New from clients: '+fresh.join('; ')+'.');}
+ const od=open.filter(isOverdue).sort(byDue);
+ if(od.length){urgent=true;out.push(`${od.length} overdue: ${od.slice(0,3).map(title).join(', ')}.`);}
+ const today=open.filter(t=>t.due_date&&daysUntil(t.due_date)===0);
+ if(today.length){urgent=true;out.push(`Due today: ${today.slice(0,4).map(title).join(', ')}.`);}
+ const aged=open.filter(isAged).sort((a,b)=>Date.parse(a.status_changed_at)-Date.parse(b.status_changed_at));
+ if(aged.length){urgent=true;out.push(`${aged.length} ${aged.length===1?'has':'have'} been sitting over 4 days. Oldest is ${title(aged[0])} at ${Math.floor(ageMs(aged[0])/864e5)} days.`);}
+ const wait=open.filter(t=>t.status==='Waiting on client').length;
+ if(wait)out.push(`${wait} waiting on clients.`);
+ const q=focusReady?liveQueue().map(id=>tasks.find(x=>String(x.id)===String(id))).filter(Boolean):[];
+ if(q.length)out.push('Up next: '+q.slice(0,3).map((t,i)=>i?title(t):`${title(t)} for ${clientName(t.client_id)}`).join(', ')+'.');
+ else{const ip=open.filter(t=>normStatus(t)==='In progress').length;if(ip)out.push(`${ip} in progress.`);}
+ if(!urgent)out.push('Nothing urgent. Great time to get ahead.');
+ out.push(BRIEF_CLOSE[(seed+h)%5]);
+ return out.join(' ');
+}
+function renderBrief(){
+ const h=new Date().getHours();
+ $('briefTitle').textContent=h<12?'Morning brief':'Your brief right now';
+ if(!speaking)$('briefText').textContent=buildBrief();
+}
+function setPlay(){
+ const b=$('briefPlay');
+ b.textContent=speaking?'■ Stop':'▶ Play';
+ b.setAttribute('aria-pressed',String(speaking));
+ $('briefCard').classList.toggle('speaking',speaking);
+}
+function briefVoice(){
+ const vs=speechSynthesis.getVoices();
+ return vs.find(v=>/^en[-_]US/i.test(v.lang)&&/Samantha|Google US English|Aria|Jenny|Natural|Ava/i.test(v.name))||vs.find(v=>/^en[-_]US/i.test(v.lang))||vs.find(v=>/^en/i.test(v.lang))||null;
+}
+function stopBrief(){try{speechSynthesis.cancel();}catch(e){}speaking=false;if($('briefPlay'))setPlay();}
+$('briefPlay').onclick=()=>{
+ if(!('speechSynthesis' in window)){notice('This browser can’t read out loud. The brief is written below the Play button.');return;}
+ if(speaking){stopBrief();return;}
+ const text=buildBrief();
+ $('briefText').textContent=text;
+ const u=new SpeechSynthesisUtterance(text);
+ u.lang='en-US';u.rate=1.03;
+ const v=briefVoice();if(v)u.voice=v;
+ u.onend=u.onerror=()=>{speaking=false;setPlay();};
+ speechSynthesis.cancel();
+ speaking=true;setPlay();
+ speechSynthesis.speak(u);
+};
+/* Settings: time, days, on/off, send now (saved in brief_settings) */
+function fmtClock(t){const d=new Date('2000-01-01T'+t+':00');return isNaN(d)?t:d.toLocaleTimeString([],{hour:'numeric',minute:'2-digit'});}
+function briefSummary(s){
+ if(!s.enabled)return 'The daily brief is off.';
+ const days=(s.days||[]).slice().sort();
+ const when=days.length===7?'every day':days.length?days.map(i=>DAY_NAMES[i]).join(', '):'no days picked';
+ return `Daily brief: ${fmtClock(String(s.send_time).slice(0,5))} Chicago time, ${when}. It can arrive up to 5 minutes after that.`;
+}
+async function loadBriefSettings(){
+ if(!isAdmin())return;
+ try{
+  const {data,error}=await sb.from('brief_settings').select('enabled,send_time,days,tz').eq('id',1).maybeSingle();
+  briefReady=!error&&!!data;briefSettings=briefReady?data:null;
+ }catch(e){briefReady=false;briefSettings=null;}
+ fillBriefForm();
+}
+function fillBriefForm(){
+ const f=$('briefForm').elements;
+ $('briefSendNow').disabled=!briefReady;
+ if(!briefReady){$('briefStatus').textContent='Run the Morning brief SQL step in Supabase to turn on the daily alert. ▶ Play on Home already works.';return;}
+ f.enabled.checked=!!briefSettings.enabled;
+ if(document.activeElement!==f.send_time)f.send_time.value=String(briefSettings.send_time||'07:30').slice(0,5);
+ for(let i=0;i<7;i++)f['d'+i].checked=(briefSettings.days||[]).includes(i);
+ $('briefStatus').textContent=briefSummary(briefSettings);
+}
+$('briefForm').addEventListener('submit',e=>e.preventDefault());
+$('briefForm').addEventListener('change',async()=>{
+ if(!isAdmin())return;
+ if(!briefReady){fillBriefForm();return;}
+ const f=$('briefForm').elements;
+ const days=[0,1,2,3,4,5,6].filter(i=>f['d'+i].checked);
+ const t=/^\d{2}:\d{2}/.test(f.send_time.value)?f.send_time.value.slice(0,5):'07:30';
+ $('briefStatus').textContent='Saving…';
+ try{
+  const {data,error}=await sb.from('brief_settings').update({enabled:f.enabled.checked,send_time:t,days,updated_at:new Date().toISOString()}).eq('id',1).select('enabled,send_time,days,tz');
+  if(error||!data?.length){$('briefStatus').textContent='Not saved: '+(error?.message||'no row returned. Run the Morning brief SQL step.');return;}
+  briefSettings=data[0];
+  $('briefStatus').textContent='Saved. '+briefSummary(briefSettings);
+ }catch(err){$('briefStatus').textContent='Not saved: '+(err.message||'unknown error');}
+});
+$('briefSendNow').onclick=async()=>{
+ if(!isAdmin()||!briefReady)return;
+ const b=$('briefSendNow');b.disabled=true;
+ $('briefStatus').textContent='Sending…';
+ try{
+  const {error}=await sb.rpc('signix_send_brief',{p_force:true});
+  $('briefStatus').textContent=error?'Not sent: '+errText(error):'Sent. Check your phone in a few seconds.';
+ }catch(err){$('briefStatus').textContent='Not sent: '+(err.message||'unknown error');}
+ finally{b.disabled=false;}
+};
+$('briefPanel').addEventListener('toggle',()=>{if($('briefPanel').open)loadBriefSettings();});
+
 /* ---------- Auto refresh ---------- */
 function stopTimers(){
  clearInterval(pollTimer);pollTimer=null;
@@ -3859,6 +4016,7 @@ async function refresh(){
   const tasksOk=await loadTasks();
   const loginsOk=await loadLogins();
   await loadLoginLog();
+  await loadBriefSettings();
   render();
   if(clientsOk&&tasksOk&&loginsOk)notice('');
   startTimers();
