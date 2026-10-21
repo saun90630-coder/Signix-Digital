@@ -951,10 +951,15 @@ body.has-shell #gearBtn{display:none}
 
 .layout-m-tabs .group-body{grid-template-columns:1fr;gap:6px}
 .layout-board .un-item{flex-wrap:wrap}
-.layout-board .un-title{flex:1 1 140px}
+.layout-board .un-title{flex:1 1 80px}
 .layout-board .un-title span{white-space:normal;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
 .layout-board .un-ctl{margin-left:auto}
 #viewOptsBtn{display:none}
+.logo-circle.biz-logo{flex:0 0 30px;width:30px;height:30px;font-size:11px;border-width:1px}
+.logo-circle.biz-logo.sm2{flex-basis:26px;width:26px;height:26px;font-size:10px}
+.logo-circle.biz-logo.lg{flex-basis:34px;width:34px;height:34px;font-size:12px}
+.logo-circle.biz-logo.xl{flex-basis:48px;width:48px;height:48px;font-size:16px;border-width:2px}
+@media (max-width:600px){.logo-circle.biz-logo.xl{flex-basis:40px;width:40px;height:40px;font-size:14px}.un-big{gap:12px;padding:14px}.un-big .ub-num{flex-basis:44px;width:44px;height:44px;font-size:19px}}
 body.is-mobile #viewOptsBtn{display:inline-flex}
 body.is-mobile #ipOutBtn{display:none}
 body.is-mobile .toolbar.folded>:not(.search){display:none!important}
@@ -3200,7 +3205,7 @@ function upNextGroupHtml(){
 <header class="group-head"><span class="gdot"></span><h3>Up next</h3><span class="count">${q.length}</span></header>
 <div class="group-body un-body"><p class="muted un-hint">Tap a title to jump to the task.</p><ol class="un-list">${q.map((id,i)=>{
   const t=tasks.find(x=>String(x.id)===String(id)),c=clientById(t.client_id),tid=esc(t.id);
-  return `<li class="un-item" style="--biz:${bizColor(c)};${qStyle(i+1)}"><span class="un-num">${i+1}</span><button type="button" class="un-title" data-un="jump" data-id="${tid}"><span>${esc(t.title||'Untitled')}</span><small>${esc(c?.Name||'')} · ${esc(normStatus(t))}${t.due_date?' · '+esc(dueInfo(t)?.label||''):''}</small></button><span class="un-ctl">${queueCol?`<button type="button" data-un="up" data-id="${tid}" aria-label="Move up"${i===0?' disabled':''}>▲</button><button type="button" data-un="down" data-id="${tid}" aria-label="Move down"${i===q.length-1?' disabled':''}>▼</button>`:''}<button type="button" data-un="remove" data-id="${tid}" aria-label="Remove from lineup">✕</button></span></li>`;
+  return `<li class="un-item" style="--biz:${bizColor(c)};${qStyle(i+1)}"><span class="un-num">${i+1}</span>${bizLogo(c,'biz-logo lg')}<button type="button" class="un-title" data-un="jump" data-id="${tid}"><span>${esc(t.title||'Untitled')}</span><small>${esc(c?.Name||'')} · ${esc(normStatus(t))}${t.due_date?' · '+esc(dueInfo(t)?.label||''):''}</small></button><span class="un-ctl">${queueCol?`<button type="button" data-un="up" data-id="${tid}" aria-label="Move up"${i===0?' disabled':''}>▲</button><button type="button" data-un="down" data-id="${tid}" aria-label="Move down"${i===q.length-1?' disabled':''}>▼</button>`:''}<button type="button" data-un="remove" data-id="${tid}" aria-label="Remove from lineup">✕</button></span></li>`;
  }).join('')}</ol></div></section>`;
 }
 function jumpToCard(t){
@@ -3600,11 +3605,11 @@ function needRow(n){
  }else{
   tag=`<span class="need-tag age">${Math.floor(ageMs(t)/864e5)} days</span>`;sub=`Sitting in ${normStatus(t)}`;
  }
- return `<button type="button" class="need-row" data-hgo="${n.type==='act'||n.type==='req'?'notes':'task'}" data-id="${id}">${tag}<span class="nr-main"><strong>${esc(t.title||'Untitled')}</strong><small>${esc((c?.Name||'')+(sub?' · '+sub:''))}</small></span><span class="nr-time">${esc(time)}</span></button>`;
+ return `<button type="button" class="need-row" data-hgo="${n.type==='act'||n.type==='req'?'notes':'task'}" data-id="${id}">${bizLogo(c,'biz-logo')}${tag}<span class="nr-main"><strong>${esc(t.title||'Untitled')}</strong><small>${esc((c?.Name||'')+(sub?' · '+sub:''))}</small></span><span class="nr-time">${esc(time)}</span></button>`;
 }
 function miniRow(t,right){
  const c=clientById(t.client_id);
- return `<button type="button" class="mini-row" data-hgo="task" data-id="${esc(t.id)}" style="--biz:${bizColor(c)}"><span class="biz-dot"></span><span class="mr-t">${esc(t.title||'Untitled')}</span><small>${esc(right??(t.due_date?fmtShort(t.due_date+'T12:00:00'):(c?.Name||'')))}</small></button>`;
+ return `<button type="button" class="mini-row" data-hgo="task" data-id="${esc(t.id)}" style="--biz:${bizColor(c)}">${bizLogo(c,'biz-logo sm2')}<span class="mr-t">${esc(t.title||'Untitled')}</span><small>${esc(right??(t.due_date?fmtShort(t.due_date+'T12:00:00'):(c?.Name||'')))}</small></button>`;
 }
 /* One feed of what happened: notes, new tasks, completions, portal visits */
 function activityEvents(clientId){
@@ -3657,8 +3662,8 @@ function renderHome(needs){
  else if(!q.length)un='<p class="muted home-empty">Nothing lined up. Tap the target on any task card to add it here.</p>';
  else{
   const t1=tasks.find(x=>String(x.id)===String(q[0])),c1=clientById(t1.client_id);
-  un=`<button type="button" class="un-big" data-hgo="task" data-id="${esc(t1.id)}" style="${qStyle(1)};--biz:${bizColor(c1)}"><span class="ub-num">1</span><span class="ub-main"><span class="ub-kicker">Working on now</span><span class="ub-title">${esc(t1.title||'Untitled')}</span><span class="ub-sub"><span class="biz-dot"></span><span>${esc(c1?.Name||'')} · ${esc(normStatus(t1))}${t1.due_date?' · '+esc(dueInfo(t1)?.label||''):''}</span></span></span></button>`;
-  if(q.length>1)un+=`<div class="un-row">${q.slice(1).map((id,i)=>{const t=tasks.find(x=>String(x.id)===String(id)),c=clientById(t.client_id);return `<button type="button" class="un-chip" data-hgo="task" data-id="${esc(t.id)}" style="${qStyle(i+2)}"><span class="uc-num">${i+2}</span><span style="min-width:0"><span class="uc-t">${esc(t.title||'Untitled')}</span><small>${esc(c?.Name||'')}</small></span></button>`;}).join('')}</div>`;
+  un=`<button type="button" class="un-big" data-hgo="task" data-id="${esc(t1.id)}" style="${qStyle(1)};--biz:${bizColor(c1)}"><span class="ub-num">1</span>${bizLogo(c1,'biz-logo xl')}<span class="ub-main"><span class="ub-kicker">Working on now</span><span class="ub-title">${esc(t1.title||'Untitled')}</span><span class="ub-sub"><span>${esc(c1?.Name||'')} · ${esc(normStatus(t1))}${t1.due_date?' · '+esc(dueInfo(t1)?.label||''):''}</span></span></span></button>`;
+  if(q.length>1)un+=`<div class="un-row">${q.slice(1).map((id,i)=>{const t=tasks.find(x=>String(x.id)===String(id)),c=clientById(t.client_id);return `<button type="button" class="un-chip" data-hgo="task" data-id="${esc(t.id)}" style="${qStyle(i+2)}"><span class="uc-num">${i+2}</span>${bizLogo(c,'biz-logo')}<span style="min-width:0"><span class="uc-t">${esc(t.title||'Untitled')}</span><small>${esc(c?.Name||'')}</small></span></button>`;}).join('')}</div>`;
  }
  $('homeUpNext').innerHTML=un;
  $('needsTitle').textContent=`Needs me · ${needs.length}`;
