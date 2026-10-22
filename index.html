@@ -1513,6 +1513,32 @@ body.is-mobile .quick-layouts{display:flex}
  .wk-pill{right:12px;bottom:calc(92px + env(safe-area-inset-bottom))}
 }
 @media (prefers-reduced-motion:reduce){.un-big.cw .cw-ring::before,.un-big.cw .cw-ring::after,.ws-dot,.wk-modal,.wk-pill,.wk-done{animation:none!important}}
+/* ===== Timer screen layout (title left, big timer center, details right; stacks on smaller screens) ===== */
+.wk-modal{width:min(1360px,calc(100vw - 48px));max-height:calc(100vh - 48px);overflow-y:auto;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);gap:clamp(24px,3.5vw,64px);padding:clamp(40px,4vw,64px) clamp(28px,3.5vw,60px)}
+.wk-left{min-width:0;align-self:center}
+.wk-left .wk-head{gap:12px;margin-bottom:14px}
+.wk-left .biz-logo{width:44px;height:44px;flex:0 0 44px;font-size:15px}
+.wk-left .wk-kick{font-size:12px}
+.wk-modal .wk-title{font-size:clamp(28px,2.9vw,48px);font-weight:800;line-height:1.12;letter-spacing:-.015em;overflow-wrap:anywhere}
+.wk-client{margin-top:10px;color:#9fb0c7;font-size:clamp(15px,1.2vw,19px);font-weight:500}
+.wk-modal .wk-ring{width:clamp(260px,min(32vw,60vh),500px);max-width:none;margin:0}
+.wk-modal .wk-big{font-size:clamp(52px,min(5.4vw,10vh),92px)}
+.wk-right{min-width:0;align-self:center}
+.wk-right .wk-stats{margin-top:0}
+.wk-g{color:#86efac}
+@media (max-width:1000px){
+ .wk-modal{grid-template-columns:1fr;justify-items:center;text-align:center;width:min(640px,calc(100vw - 32px));gap:26px}
+ .wk-left,.wk-right{width:100%}
+ .wk-left .wk-head{justify-content:center}
+ .wk-modal .wk-ring{width:clamp(220px,min(60vw,42vh),380px)}
+ .wk-right .wk-stats{text-align:left}
+}
+@media (max-width:700px){
+ .wk-modal{width:100%;height:100%;max-height:none;padding:max(58px,env(safe-area-inset-top)) 20px max(24px,env(safe-area-inset-bottom));gap:clamp(16px,3vh,28px);align-content:center}
+ .wk-modal .wk-title{font-size:clamp(26px,7.5vw,34px)}
+ .wk-modal .wk-ring{width:min(78vw,40vh,320px)}
+ .wk-modal .wk-big{font-size:clamp(44px,12vw,58px)}
+}
 </style>
 </head>
 <body>
@@ -1526,6 +1552,7 @@ body.is-mobile .quick-layouts{display:flex}
 <a id="fullLink" class="hidden" href="./">Full dashboard</a>
 <button type="button" id="needsBtn" class="needs-pill hidden">Needs me</button>
 <button type="button" id="gearBtn" class="icon-btn hidden" aria-label="Settings"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg></button>
+<!-- ===== END OF PART 4 of 13 ===== -->
 <button id="changePwBtn" class="hidden" type="button" aria-expanded="false" aria-controls="changePwPanel" data-i18n="Change password">Change password</button>
 <button id="logout" class="hidden" data-i18n="Log out">Log out</button>
 </div>
@@ -1550,7 +1577,6 @@ body.is-mobile .quick-layouts{display:flex}
 </div>
 </label>
 <div id="cpRules" class="pw-rules" aria-live="polite"><span data-rule="len">• At least 8 characters</span><span data-rule="match">• Type the same password in both boxes</span></div>
-<!-- ===== END OF PART 4 of 13 ===== -->
 <div class="row" style="justify-content:flex-start">
 <button id="cpSave" class="primary" type="submit" data-i18n="Save new password">Save new password</button>
 <button id="cpCancel" type="button" data-i18n="Cancel">Cancel</button>
@@ -2008,6 +2034,7 @@ body.is-mobile .quick-layouts{display:flex}
 <div class="call-confirm" data-i18n="Are you sure you need a call from Signix Digital?">Are you sure you need a call from Signix Digital?</div>
 <div class="call-btns">
 <button class="primary" type="submit" id="callSendBtn" data-i18n="Yes, I need a call">Yes, I need a call</button>
+<!-- ===== END OF PART 5 of 13 ===== -->
 <button type="button" id="callCancel" data-i18n="Cancel">Cancel</button>
 </div>
 <p id="callMsg" class="form-msg" role="alert" aria-live="assertive"></p>
@@ -2042,7 +2069,6 @@ body.is-mobile .quick-layouts{display:flex}
 'use strict';
 
 const SUPABASE_URL='https://mhpvdyfrtaazgabmcvtx.supabase.co';
-// ===== END OF PART 5 of 13 =====
 const KEY='sb_publishable_RljzO2G_ltUBbgnjWKF4gA_t-xHrkeI';
 const ADMIN_UID='21078b33-73fb-4a54-adfc-169a197102ec';
 
@@ -2517,6 +2543,7 @@ $('resetForm').onsubmit=async e=>{
  }
 };
 
+// ===== END OF PART 6 of 13 =====
 $('newLinkButton').onclick=async()=>{
  const email=linkEmail||$('resetEmail').value.trim()||$('email').value.trim();
  recoveryActive=false;
@@ -2552,7 +2579,6 @@ $('changePwBtn').onclick=()=>{
  $('changePwPanel').scrollIntoView({block:'start'});
  $('cpNew').focus();
 };
-// ===== END OF PART 6 of 13 =====
 $('cpCancel').onclick=closeChangePw;
 ['cpNew','cpConfirm'].forEach(id=>$(id).addEventListener('input',()=>setPwRules('cpRules',$('cpNew').value,$('cpConfirm').value)));
 $('changePwForm').onsubmit=async e=>{
@@ -3073,6 +3099,7 @@ function dayCell(ds,items,o2,st){
  const label=o2.label||String(parseDay(ds).getDate());
  return `<div class="${cls}" data-calday="${ds}" role="button" tabindex="0" aria-label="${esc(fmtDay(ds))}: ${items.length} task${items.length===1?'':'s'}"><span class="cal-num">${esc(label)}</span><div class="cal-pills">${shown.map(t=>pillHtml(t,false,st)).join('')}</div>${items.length>max?`<span class="cal-more">+${items.length-max} more</span>`:''}</div>`;
 }
+// ===== END OF PART 7 of 13 =====
 function calDetail(list,o,st){
  if(st.focus!=null){
   const t=tasks.find(x=>String(x.id)===String(st.focus));
@@ -3135,7 +3162,6 @@ function renderCalendar(root,list,o){
  root.innerHTML=`<div class="cal${detail&&!mobile?' has-detail':''}">${calBar(mode,title,nav)}<div class="cal-main" style="display:grid;gap:10px;min-width:0">${body}</div>${detail}</div>`;
 }
 
-// ===== END OF PART 7 of 13 =====
 function render(){
  renderAdmin();
  renderPortal();
@@ -3665,6 +3691,7 @@ function homeHtml(ctx){
  else if(!list.length)out+=`<p class="cp-empty">${esc(tr('Nothing here right now.'))}</p>`;
  return out;
 }
+// ===== END OF PART 8 of 13 =====
 function jobsHtml(ctx){
  const filters=[['all','All'],['active','In progress'],['needs','Needs your OK'],['done','Done']];
  let list=personFiltered(ctx.list,ctx);
@@ -3698,7 +3725,6 @@ function messagesHtml(ctx){
   return `<button type="button" class="cm-row${unseenNote(n,ctx)?' is-new':''}" data-job="${esc(n.task_id)}"><span class="av${n.is_admin?' sx':''}" aria-hidden="true">${esc(n.is_admin?'SD':initials(who))}</span><span class="nr-main"><strong>${esc(who)} <span class="cm-job">· ${esc(t?.title||'')}</span></strong><small>${esc(text)}</small></span><span class="nr-time">${esc(relTimeL(Date.parse(n.created_at)))}</span></button>`;
  }).join('')}</div>`;
 }
-// ===== END OF PART 8 of 13 =====
 function filesHtml(ctx){
  const ids=new Set(ctx.list.map(t=>String(t.id)));
  const list=attachments.filter(a=>ids.has(String(a.task_id))).sort((a,b)=>Number(b.id)-Number(a.id)).slice(0,150);
@@ -4293,6 +4319,7 @@ function renderLoginLog(){
  }
  root.innerHTML=out;
 }
+// ===== END OF PART 9 of 13 =====
 $('logRefresh').onclick=()=>loadLoginLog();
 $('loginLogPanel').addEventListener('toggle',()=>{if($('loginLogPanel').open&&isAdmin())loadLoginLog();});
 $('logClear').onclick=async()=>{
@@ -4314,7 +4341,6 @@ function isFocused(t){return queuePos(t)===1;}
 function qColor(n){return validHex(qColors[n-1])?qColors[n-1]:(Q_DEFAULTS[n-1]||'#3b82f6');}
 function qStyle(n){const c=qColor(n);return `--qc:${c};--qt:${textOn(c)}`;}
 function cleanQColors(arr){return Q_DEFAULTS.map((d,i)=>Array.isArray(arr)&&validHex(arr[i])?String(arr[i]).toLowerCase():d);}
-// ===== END OF PART 9 of 13 =====
 async function loadFocus(){
  try{return await loadFocusInner();}catch(e){focusReady=false;queue=[];return false;}
 }
@@ -5431,6 +5457,7 @@ async function markCalled(c){
  notice(`${c.requester_name||'Call'} marked as called.`);
  return true;
 }
+// ===== END OF PART 11 of 13 =====
 async function reopenCall(c){
  const ok=await askConfirm({title:`Mark ${c.requester_name||'this call'} as not called yet?`,body:'It goes back on your Call back list. The change is recorded in the log.',ok:'Not called yet',input:'Why (optional)'});
  if(!ok)return;
@@ -5475,7 +5502,6 @@ async function callToTask(c){
  await loadTasks();
  notice(`Task created for ${cl.Name}.`+(failed.length?` ${failed.length} file(s) were not copied: ${failed.join('; ')}`:''));
 }
-// ===== END OF PART 11 of 13 =====
 $('admin').addEventListener('click',async e=>{
  if(!isAdmin())return;
  const b=e.target.closest('[data-called],[data-calltask],[data-reopen]');
@@ -5662,9 +5688,8 @@ $('homeGraph').addEventListener('click',e=>{
 let graphResizeT=null;
 window.addEventListener('resize',()=>{clearTimeout(graphResizeT);graphResizeT=setTimeout(()=>renderGraph(),250);});
 
-/* ---------- Version 17: Start job timer, untouched time, away counter, confetti, Pushover nudge (admin only) ---------- */
+/* ---------- Version 17: Start job timer, untouched time, confetti, Pushover nudge (admin only) ---------- */
 const WORK_COLS='id,task_id,started_at,ended_at,state,run_from,away_from,work_seconds,away_seconds,updated_at';
-const AWAY_GRACE=15;      // seconds away that still count as working (a quick glance at another app)
 const WK_TICK='signix-work-tick',WK_AWAY='signix-work-away',WK_UT='signix-work-untouched';
 const RING_LEN=804.25;    // 2 × π × 128
 const PLAY_SVG='<svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 4.5v15l13-7.5z"/></svg>';
@@ -5675,7 +5700,7 @@ const wNow=()=>Date.now();
 const wIso=ms=>new Date(ms).toISOString();
 const wSecs=(a,b)=>Math.max(0,Math.round((b-a)/1000));
 const sameId=(a,b)=>a!=null&&b!=null&&String(a)===String(b);
-function workSecs(s,now=wNow()){let w=s.work_seconds||0;if(s.state==='running'&&s.run_from)w+=wSecs(Date.parse(s.run_from),now);return w;}
+function workSecs(s,now=wNow()){let w=s.work_seconds||0;if(s.state==='running'&&s.run_from)w+=wSecs(Date.parse(s.run_from),now);else if(s.state==='away'&&s.away_from)w+=wSecs(Date.parse(s.away_from),now);return w;}
 function awayPending(s,now=wNow()){return s&&s.state==='away'&&s.away_from?wSecs(Date.parse(s.away_from),now):0;}
 function fmtClock(sec){const h=Math.floor(sec/3600),m=Math.floor(sec%3600/60),s=sec%60;return h+':'+String(m).padStart(2,'0')+':'+String(s).padStart(2,'0');}
 function fmtAway(sec){return sec>=3600?fmtClock(sec):Math.floor(sec/60)+':'+String(sec%60).padStart(2,'0');}
@@ -5724,7 +5749,7 @@ function workStartBtn(t){
  if(!workReady)return workTried?'<p class="muted work-hint">Run SQL 8 in Supabase to turn on Start job.</p>':'';
  if(isLive(t)){
   const st=workOpen.state;
-  return `<button type="button" class="work-start live${st==='paused'?' paused':''}" data-work="open"><span class="ws-dot" aria-hidden="true"></span>${st==='paused'?'Paused':st==='away'?'Away':'Working'} · <span data-wclock>${fmtClock(jobSecs(workOpen))}</span> · Open timer</button>`;
+  return `<button type="button" class="work-start live${st==='paused'?' paused':''}" data-work="open"><span class="ws-dot" aria-hidden="true"></span>${st==='paused'?'Paused':'Working'} · <span data-wclock>${fmtClock(jobSecs(workOpen))}</span> · Open timer</button>`;
  }
  const so=taskWork(t.id).w;
  return `<button type="button" class="work-start" data-work="start" data-id="${esc(t.id)}">${PLAY_SVG}Start job${so?` <span class="ws-so">· ${fmtClock(so)} so far</span>`:''}</button>`;
@@ -5740,13 +5765,16 @@ async function loadWork(){
  workReady=true;
  const rows=res.data||[];
  const open=rows.find(r=>!r.ended_at)||null;
- if(workOpen&&open&&sameId(open.id,workOpen.id)&&(workBusy||workDirty||workAwayShown||workOpen.state==='away')){
+ const prevId=workOpen&&!workOpen.ended_at?workOpen.id:null;
+ if(workOpen&&open&&sameId(open.id,workOpen.id)&&(workBusy||workDirty)){
   const i=rows.indexOf(open);rows[i]=workOpen;
  }else{
-  if(workOpen&&!open)workUiOpen=false;
+  if(workOpen&&!open){workUiOpen=false;workConfirm=false;}
   workOpen=open;
-  if(!open)workAwayShown=false;
+  // a timer started on another device (or found when the portal opens) pops up
+  if(open&&!sameId(open.id,prevId))workUiOpen=true;
  }
+ workAwayShown=false;
  workRows=rows;
  if(!workChecked){workChecked=true;workCheckStale();}
  if(sig0!==workSig())workRefresh();else renderWorkUI();
@@ -5801,7 +5829,7 @@ async function workStart(t){
  finally{workBusy=false;}
  if(workOpen&&!workOpen.ended_at){workOpen.work_seconds=workSecs(workOpen);workOpen.state='stopped';workOpen.run_from=null;workOpen.ended_at=row.started_at;}
  workRows.unshift(row);workOpen=row;workUiOpen=true;workAwayShown=false;workDirty=false;
- lsDel(WK_AWAY);lsSet(WK_TICK,{id:row.id,at:wNow()});lsSet(WK_UT,{id:row.id,ms:utBefore});
+ lsSet(WK_UT,{id:row.id,ms:utBefore});
  if(['Incoming','To do'].includes(normStatus(t)))await applyChange(t.id,'status','In progress');
  workRefresh();
 }
@@ -5809,7 +5837,7 @@ function workPause(){const s=workOpen;if(!s||s.state!=='running')return;const no
 function workResume(){const s=workOpen;if(!s||s.state!=='paused')return;workSave({state:'running',run_from:wIso(wNow())});}
 async function workStop(){
  const s=workOpen;if(!s)return;const now=wNow();
- const w=s.state==='away'?s.work_seconds:workSecs(s,now);
+ const w=workSecs(s,now);
  await workSave({state:'stopped',ended_at:wIso(now),work_seconds:w,run_from:null,away_from:null});
  const total=jobSecs(s),t=tasks.find(x=>sameId(x.id,s.task_id));
  workOpen=null;workUiOpen=false;workAwayShown=false;workConfirm=false;lsDel(WK_AWAY);
@@ -5832,37 +5860,25 @@ function showStopped(t,total){
  document.body.appendChild(d);
  setTimeout(()=>{if(d.isConnected){d.classList.add('out');setTimeout(()=>d.remove(),400);}},6000);
 }
-function workAwayStart(at){
- const s=workOpen;if(!s||s.ended_at||s.state!=='running')return;
- at=at||wNow();
- lsSet(WK_AWAY,{id:s.id,at});
- workSave({state:'away',work_seconds:workSecs(s,at),run_from:null,away_from:wIso(at)});
-}
-function workAwayEnd(){
- const s=workOpen;if(!s||s.state!=='away'||document.hidden)return;
- if(awayPending(s)<AWAY_GRACE){workResolve(true);return;}
- if(!workAwayShown){workAwayShown=true;workUiOpen=true;workConfirm=false;renderWorkUI();}
-}
-function workResolve(asWork){
- const s=workOpen;if(!s||s.state!=='away')return;
- const now=wNow(),p=awayPending(s,now);
- const patch={state:'running',run_from:wIso(now),away_from:null};
- if(asWork)patch.work_seconds=(s.work_seconds||0)+p;else patch.away_seconds=(s.away_seconds||0)+p;
- workAwayShown=false;lsDel(WK_AWAY);lsSet(WK_TICK,{id:s.id,at:now});
- workSave(patch);
-}
-/* After a reload: if the page was closed while the timer ran, that gap counts as away */
 function workCheckStale(){
- const s=workOpen;if(!s)return;
- const tick=lsGet(WK_TICK),aw=lsGet(WK_AWAY);
- if(s.state==='running'&&aw&&sameId(aw.id,s.id))workAwayStart(aw.at);
- else if(s.state==='running'&&tick&&sameId(tick.id,s.id)&&wNow()-tick.at>30000)workAwayStart(tick.at);
- if(workOpen&&workOpen.state==='away')workAwayEnd();
+ lsDel(WK_TICK);lsDel(WK_AWAY);
+ const s=workOpen;if(!s||s.state!=='away')return;
+ const now=wNow();
+ workSave({state:'running',work_seconds:workSecs(s,now),run_from:wIso(now),away_from:null});
 }
-document.addEventListener('visibilitychange',()=>{if(document.hidden)workAwayStart();else workAwayEnd();});
-window.addEventListener('blur',()=>workAwayStart());
-window.addEventListener('focus',()=>workAwayEnd());
-window.addEventListener('pagehide',()=>workAwayStart());
+/* Same timer on every device: re-read it whenever you come back to the portal, and every 15 seconds */
+async function syncWork(){
+ if(!isAdmin()||!workReady||document.hidden||workBusy||workDirty)return;
+ let r;try{r=await sb.from('work_sessions').select(WORK_COLS).is('ended_at',null).limit(1);}catch(e){return;}
+ if(r.error)return;
+ const o=(r.data||[]).find(x=>!x.ended_at)||null;
+ if(!o&&!workOpen)return;
+ if(o&&workOpen&&sameId(o.id,workOpen.id)&&o.state===workOpen.state&&o.updated_at===workOpen.updated_at)return;
+ await loadWork();
+}
+document.addEventListener('visibilitychange',()=>{if(!document.hidden)syncWork();});
+window.addEventListener('focus',()=>syncWork());
+setInterval(syncWork,15000);
 document.addEventListener('keydown',e=>{if(e.key==='Escape'&&workConfirm){workConfirm=false;renderWorkUI();return;}if(e.key==='Escape'&&workUiOpen&&!workAwayShown){workUiOpen=false;renderWorkUI();}});
 document.addEventListener('click',e=>{
  const b=e.target.closest('[data-work]');if(!b||!isAdmin())return;
@@ -5876,17 +5892,15 @@ document.addEventListener('click',e=>{
  else if(a==='done-yes'){workConfirm=false;workDone();}
  else if(a==='done-no'){workConfirm=false;renderWorkUI();}
  else if(a==='stop')workStop();
- else if(a==='was-working')workResolve(true);
- else if(a==='back')workResolve(false);
  else if(a==='close-done')$('wkDone')?.remove();
 });
 
 /* ---------- Timer screen and the small timer in the corner ---------- */
+// ===== END OF PART 12 of 13 =====
 function workRoot(){let r=$('workRoot');if(!r){r=document.createElement('div');r.id='workRoot';document.body.appendChild(r);}return r;}
 function ringSvg(id,cls){
  return `<svg viewBox="0 0 300 300" aria-hidden="true"><defs><linearGradient id="${id}g" x1="0" x2="1" y1="0" y2="1"><stop class="wk-s1" offset="0"/><stop class="wk-s2" offset="1"/></linearGradient><filter id="${id}f" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="7"/></filter></defs><circle cx="150" cy="150" r="128" fill="none" stroke="rgba(255,255,255,.07)" stroke-width="13"/><circle class="${cls}" cx="150" cy="150" r="128" fill="none" stroke="url(#${id}g)" stroke-width="13" stroke-linecap="round" stroke-dasharray="${RING_LEN}" stroke-dashoffset="${RING_LEN}" filter="url(#${id}f)" opacity=".75"/><circle class="${cls}" cx="150" cy="150" r="128" fill="none" stroke="url(#${id}g)" stroke-width="13" stroke-linecap="round" stroke-dasharray="${RING_LEN}" stroke-dashoffset="${RING_LEN}"/></svg>`;
 }
-// ===== END OF PART 12 of 13 =====
 function sessionUntouchedBefore(s,t){
  if(!t)return 0;const saved=lsGet(WK_UT);if(saved&&sameId(saved.id,s.id))return saved.ms;
  const st=Date.parse(s.started_at)||wNow();
@@ -5897,38 +5911,33 @@ function renderWorkUI(){
  if(!isAdmin()||!workOpen||workOpen.ended_at){r.innerHTML='';workUiOpen=false;stopWorkTick();return;}
  const s=workOpen,t=tasks.find(x=>sameId(x.id,s.task_id)),c=t?clientById(t.client_id):null;
  const title=esc(t?.title||'Untitled job');
- const away=workAwayShown&&s.state==='away',paused=s.state==='paused';
- const mode=away?'away':paused?'paused':'run';
+ const paused=s.state==='paused';
+ const mode=paused?'paused':'run';
  if(!workUiOpen){
   r.innerHTML=`<button type="button" class="wk-pill wk-${mode}" data-work="open" aria-label="Open the job timer"><span class="wk-mini">${ringSvg('wkp','wk-bar')}</span><span class="wk-pt"><b>${title}</b><span data-wbig>${fmtClock(jobSecs(s))}</span></span></button>`;
  }else{
   const ut=sessionUntouchedBefore(s,t);
-  const info=away
-   ?`<div class="wk-btns"><button type="button" class="wk-btn wk-blue" data-work="was-working">I was working</button><button type="button" class="wk-btn" data-work="back">Back to job</button></div>
-     <p class="wk-hint"><b>I was working</b> adds this time to your working time. <b>Back to job</b> keeps it counted as away.</p>`
-   :`<div class="wk-stats"><div>Sat untouched<b class="wk-y">${ut>=6e4?esc(fmtSpanMs(ut)):'—'}</b></div><div>Away so far<b class="wk-r" data-waway>${esc(fmtDur(jobAway(s)))}</b></div></div>
-     <div class="wk-btns">${paused?'<button type="button" class="wk-btn" data-work="resume">Resume</button>':'<button type="button" class="wk-btn" data-work="pause">Pause</button>'}<button type="button" class="wk-btn wk-green" data-work="done">✓ Job done</button></div>
-     <button type="button" class="wk-link" data-work="stop">Stop for now (job stays open)</button>`;
-  r.innerHTML=`<div class="wk-dim"></div><div class="wk-modal wk-${mode}" role="dialog" aria-modal="true" aria-label="${away?'You left the job':'Job timer'}">
-   ${away?'':'<button type="button" class="wk-min" data-work="min">Minimize ↘</button>'}
-   <div class="wk-ring">${ringSvg('wkm','wk-bar')}<div class="wk-mid"><div><div class="wk-big" data-wbig>${away?fmtAway(awayPending(s)):fmtClock(jobSecs(s))}</div><div class="wk-lbl">${away?'Away':paused?'Paused':'Working time'}</div>${away?`<div class="wk-sub">Working time paused at ${esc(fmtClock(jobSecs(s)))}</div>`:''}</div></div></div>
-   <div class="wk-info"><div class="wk-head">${c?bizLogo(c,'biz-logo'):''}<div><div class="wk-kick">${away?'You left the job':'Focusing on'}</div><div class="wk-title">${title}</div></div></div>${info}</div>
-  </div>${workConfirm&&!away?`<div class="wk-cdim" data-work="done-no"></div><div class="wk-confirm" role="alertdialog" aria-modal="true" aria-labelledby="wkcT"><h3 id="wkcT">Mark this job done?</h3><p>${title}${c?' · '+esc(c.Name||''):''}</p><div class="wk-btns"><button type="button" class="wk-btn" data-work="done-no">Cancel</button><button type="button" class="wk-btn wk-green" data-work="done-yes">Yes, job done</button></div></div>`:''}`;
+  r.innerHTML=`<div class="wk-dim"></div><div class="wk-modal wk-${mode}" role="dialog" aria-modal="true" aria-label="Job timer">
+   <button type="button" class="wk-min" data-work="min">Minimize ↘</button>
+   <div class="wk-left"><div class="wk-head">${c?bizLogo(c,'biz-logo'):''}<div class="wk-kick">${paused?'Paused':'Focusing on'}</div></div><div class="wk-title">${title}</div>${c?`<div class="wk-client">${esc(c.Name||'')}</div>`:''}</div>
+   <div class="wk-ring">${ringSvg('wkm','wk-bar')}<div class="wk-mid"><div><div class="wk-big" data-wbig>${fmtClock(jobSecs(s))}</div><div class="wk-lbl">${paused?'Paused':'Working time'}</div></div></div></div>
+   <div class="wk-right"><div class="wk-stats"><div>Sat untouched<b class="wk-y">${ut>=6e4?esc(fmtSpanMs(ut)):'—'}</b></div><div>This session<b class="wk-g" data-wsess>${esc(fmtDur(workSecs(s)))}</b></div></div>
+    <div class="wk-btns">${paused?'<button type="button" class="wk-btn" data-work="resume">Resume</button>':'<button type="button" class="wk-btn" data-work="pause">Pause</button>'}<button type="button" class="wk-btn wk-green" data-work="done">✓ Job done</button></div>
+    <button type="button" class="wk-link" data-work="stop">Stop for now (job stays open)</button></div>
+  </div>${workConfirm?`<div class="wk-cdim" data-work="done-no"></div><div class="wk-confirm" role="alertdialog" aria-modal="true" aria-labelledby="wkcT"><h3 id="wkcT">Mark this job done?</h3><p>${title}${c?' · '+esc(c.Name||''):''}</p><div class="wk-btns"><button type="button" class="wk-btn" data-work="done-no">Cancel</button><button type="button" class="wk-btn wk-green" data-work="done-yes">Yes, job done</button></div></div>`:''}`;
  }
  workTickNow();startWorkTick();
 }
 function workTickNow(){
  const s=workOpen;if(!s||s.ended_at)return;
- const now=wNow(),away=workAwayShown&&s.state==='away';
- const w=jobSecs(s,now),p=awayPending(s,now);
- const big=away?fmtAway(p):fmtClock(w);
+ const now=wNow();
+ const w=jobSecs(s,now),big=fmtClock(w);
  document.querySelectorAll('[data-wbig]').forEach(el=>{if(el.textContent!==big)el.textContent=big;});
  document.querySelectorAll('[data-wclock]').forEach(el=>{el.textContent=fmtClock(w);});
- document.querySelectorAll('[data-waway]').forEach(el=>{el.textContent=fmtDur(jobAway(s));});
- const frac=((away?p:w)%3600)/3600;
+ document.querySelectorAll('[data-wsess]').forEach(el=>{el.textContent=fmtDur(workSecs(s,now));});
+ const frac=(w%3600)/3600;
  const off=String(RING_LEN*(1-Math.max(frac,.004)));
  document.querySelectorAll('#workRoot .wk-bar').forEach(el=>el.setAttribute('stroke-dashoffset',off));
- if(s.state==='running'&&!document.hidden)lsSet(WK_TICK,{id:s.id,at:now});
 }
 function startWorkTick(){if(!workIv)workIv=setInterval(workTickNow,1000);}
 function stopWorkTick(){if(workIv){clearInterval(workIv);workIv=null;}}
@@ -5936,11 +5945,11 @@ function stopWorkTick(){if(workIv){clearInterval(workIv);workIv=null;}}
 /* ---------- Job done: confetti and the result card ---------- */
 function celebrate(t){
  if(!isAdmin()||!t)return;
- if(isLive(t)){const s=workOpen,now=wNow();workSave({state:'done',ended_at:wIso(now),work_seconds:s.state==='away'?s.work_seconds:workSecs(s,now),run_from:null,away_from:null});workOpen=null;workUiOpen=false;workAwayShown=false;lsDel(WK_AWAY);renderWorkUI();}
- const {w,a}=taskWork(t.id),c=clientById(t.client_id);
+ if(isLive(t)){const s=workOpen,now=wNow();workSave({state:'done',ended_at:wIso(now),work_seconds:workSecs(s,now),run_from:null,away_from:null});workOpen=null;workUiOpen=false;workAwayShown=false;lsDel(WK_AWAY);renderWorkUI();}
+ const {w}=taskWork(t.id),c=clientById(t.client_id);
  $('wkDone')?.remove();
  const d=document.createElement('div');d.id='wkDone';d.dataset.work='close-done';
- d.innerHTML=`<div class="wk-dim"></div><div class="wk-done" role="status"><div class="wk-check"><svg width="58" height="58" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></div><h3>Job done!</h3><p>${esc(t.title||'Untitled')}${c?' · '+esc(c.Name||''):''}</p>${w?`<div class="wk-done-stats"><span>⏱ ${esc(fmtDur(w))} worked</span>${a?`<span class="wk-r">${esc(fmtDur(a))} away</span>`:''}</div>`:''}</div>`;
+ d.innerHTML=`<div class="wk-dim"></div><div class="wk-done" role="status"><div class="wk-check"><svg width="58" height="58" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></div><h3>Job done!</h3><p>${esc(t.title||'Untitled')}${c?' · '+esc(c.Name||''):''}</p>${w?`<div class="wk-done-stats"><span>⏱ ${esc(fmtDur(w))} worked</span></div>`:''}</div>`;
  document.body.appendChild(d);
  confetti();
  setTimeout(()=>{if(d.isConnected){d.classList.add('out');setTimeout(()=>d.remove(),400);}},3600);
