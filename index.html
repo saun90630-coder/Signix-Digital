@@ -328,8 +328,8 @@ body.no-anim-req .request-zone:not([open]) .req-icon,body.no-anim-req .pv-reques
 details.fold>summary{cursor:pointer;list-style:none;display:flex;align-items:center;justify-content:space-between;gap:10px;font-size:18px;font-weight:700}
 details.fold>summary::-webkit-details-marker{display:none}
 details.fold>summary::after{content:"+";font-size:22px;color:#9fc2ff}
-details.fold[open]>summary::after{content:"–"}
 /* ===== END OF PART 1 of 13 ===== */
+details.fold[open]>summary::after{content:"–"}
 details.fold[open]>summary{margin-bottom:12px}
 .admin-tools{display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:0 12px;align-items:start}
 
@@ -1324,8 +1324,7 @@ body.is-mobile .quick-layouts{display:flex}
 .cj-row small.cj-meta{display:flex;align-items:center;flex-wrap:wrap;gap:4px 6px;white-space:normal;overflow:visible}
 .cj-meta>span:not(.cj-prio-ph){white-space:nowrap}
 .badge.cj-prio{font-size:12px;font-weight:800;padding:3px 10px;flex:0 0 auto}
-.cj-high .badge.cj-prio{background:#ff2828;border-color:#ff2828;color:#fff;box-shadow:0 0 10px rgba(255,40,40,.55)}
-.cj-high .badge.cj-prio::before{background:#fff}
+.cj-high .badge.cj-prio{color:#f87171;background:rgba(220,38,38,.14);border-color:rgba(220,38,38,.6);box-shadow:none}
 .cj-who{display:inline-flex;align-items:center;font-weight:700;color:#e2e8f0}
 .cj-who .who-dot{margin-right:5px}
 .cj-sep{color:#64748b}
@@ -1797,12 +1796,12 @@ body.is-mobile .quick-layouts{display:flex}
 </div>
 <ul id="pendingList" class="pending" aria-live="polite"></ul>
 <button class="primary" type="submit" id="sendRequestBtn" data-i18n="Send request">Send request</button>
-<!-- ===== END OF PART 5 of 13 ===== -->
 <p id="taskMsg" class="form-msg" role="alert" aria-live="assertive"></p>
 </form>
 </div>
 </div>
 </div>
+<!-- ===== END OF PART 5 of 13 ===== -->
 <div id="callSheet" class="modal-back sheet-back hidden" role="dialog" aria-modal="true" aria-labelledby="callTitle">
 <div class="modal sheet">
 <div class="modal-head"><h3 id="callTitle" data-i18n="Request a call">Request a call</h3><button type="button" class="modal-x" id="callClose" data-i18n-aria="Close" aria-label="Close">×</button></div>
