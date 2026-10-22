@@ -326,10 +326,10 @@ body.no-anim-req .request-zone:not([open]) .req-icon,body.no-anim-req .pv-reques
 
 /* Collapsible panels */
 details.fold>summary{cursor:pointer;list-style:none;display:flex;align-items:center;justify-content:space-between;gap:10px;font-size:18px;font-weight:700}
-/* ===== END OF PART 1 of 13 ===== */
 details.fold>summary::-webkit-details-marker{display:none}
 details.fold>summary::after{content:"+";font-size:22px;color:#9fc2ff}
 details.fold[open]>summary::after{content:"–"}
+/* ===== END OF PART 1 of 13 ===== */
 details.fold[open]>summary{margin-bottom:12px}
 .admin-tools{display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:0 12px;align-items:start}
 
@@ -676,12 +676,12 @@ body.is-mobile #popOutBtn{display:none}
 .ip-only #tasksPanel{border-color:color-mix(in srgb,var(--ip) 70%,transparent);box-shadow:0 0 0 1px color-mix(in srgb,var(--ip) 25%,transparent),0 0 30px color-mix(in srgb,var(--ip) 18%,transparent)}
 .ip-only #tasksTitle{color:color-mix(in srgb,var(--ip) 35%,#fff)}
 .ip-btn{border-color:color-mix(in srgb,var(--ip) 70%,transparent);color:color-mix(in srgb,var(--ip) 35%,#fff);background:color-mix(in srgb,var(--ip) 12%,transparent)}
-/* ===== END OF PART 2 of 13 ===== */
 .panel-btns{display:flex;gap:8px;flex-wrap:wrap}
 body:not(.is-mobile) #clientLayoutTool{display:none}
 .tag-chip{font-size:12px;min-height:30px;padding:4px 10px;border-radius:20px;border:1px solid rgba(167,139,250,.55);background:rgba(167,139,250,.12);color:#ddd6fe;display:inline-flex;align-items:center;gap:4px;white-space:nowrap}
 .tag-chip.everyone{border-style:dashed;border-color:#40516b;background:transparent;color:#9fb0c7}
 .tag-chip.me{background:#7c3aed;border-color:#7c3aed;color:#fff;font-weight:700}
+/* ===== END OF PART 2 of 13 ===== */
 .board[class*="layout-m-"] .tag-chip{font-size:11px;padding:2px 7px;min-height:24px}
 .layout-m-grid3 .tcard:not(.m-open) .tag-chip,.layout-m-slim .tcard:not(.m-open) .tag-chip{display:none}
 /* Modal (notes + welcome) */
@@ -1024,12 +1024,12 @@ button.danger,.ask-btns .danger{background:#b91c1c;border-color:#ef4444;color:#f
  .cp-tabs .cpt-act .cpt-lbl{display:inline}
  .cpt-badge{position:static;margin-left:2px}
 }
-/* ===== END OF PART 3 of 13 ===== */
 @media (max-width:700px){
  body.portal-on:not(.has-shell) .cp-tabs{position:fixed;left:0;right:0;bottom:0;z-index:40;margin:0;border-radius:0;border-width:1px 0 0;padding:6px 8px calc(8px + env(safe-area-inset-bottom))}
  body.portal-on:not(.has-shell) main{padding-bottom:110px}
 }
 @media (min-width:701px){body.portal-on:not(.has-shell) .cp-tabs::after{display:none}}
+/* ===== END OF PART 3 of 13 ===== */
 @media (max-width:700px){
  body.portal-on:not(.has-shell) .cp-tabs>button[aria-current="page"]{background:transparent}
  .cp-hero{padding:12px 14px}
@@ -1331,6 +1331,27 @@ body.is-mobile .quick-layouts{display:flex}
 .cj-sep{color:#64748b}
 .cj-prio-dk{display:none}
 @media (min-width:701px){.cj-prio-ph{display:none}.cj-prio-dk{display:inline-flex;flex:0 0 auto}.cj-prio-dk .badge.cj-prio{font-size:13px;padding:5px 12px}}
+.since-card{padding:16px;border-radius:18px;background:linear-gradient(160deg,color-mix(in srgb,var(--brand,#3975db) 18%,#0f1a2b),#0f1a2b 70%)}
+.since-card h3{font-size:17px;display:flex;align-items:center;gap:8px;padding-right:34px}
+.since-sum{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 12px}
+.since-sum span{display:inline-flex;align-items:center;gap:6px;padding:6px 12px;border-radius:999px;background:#0b1525;border:1px solid #2c3c54;font-size:13px;font-weight:700;color:#fff}
+.since-sum b{font-size:15px}
+.since-row2{display:flex;align-items:center;gap:12px;width:100%;text-align:left;border:0;border-top:1px solid #1c2a40;border-radius:0;background:transparent;color:#eaf0f8;padding:12px 2px}
+.since-row2:hover{background:rgba(255,255,255,.03)}
+.since-row2 .sr-main{flex:1;min-width:0}
+.since-row2 strong{display:block;font-size:15.5px;line-height:1.3;margin-bottom:7px;overflow-wrap:anywhere}
+.since-tags{display:flex;gap:6px;flex-wrap:wrap}
+.stag{display:inline-flex;align-items:center;gap:5px;padding:4px 10px;border-radius:999px;font-size:12px;font-weight:700;white-space:nowrap;border:1px solid}
+.stag.st{color:color-mix(in srgb,var(--sc) 55%,#fff);background:color-mix(in srgb,var(--sc) 16%,transparent);border-color:color-mix(in srgb,var(--sc) 55%,transparent)}
+.stag.st::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--sc)}
+.stag.msg{color:#bfdbfe;background:rgba(59,130,246,.16);border-color:rgba(59,130,246,.55)}
+.stag.file{color:#e9d5ff;background:rgba(168,85,247,.16);border-color:rgba(168,85,247,.55)}
+.stag.done{color:#bbf7d0;background:rgba(34,197,94,.18);border-color:rgba(34,197,94,.6)}
+.since-row2 .cj-chev{color:#64748b;font-size:22px}
+.since-more{margin:6px 2px 0;color:#9fb0c7;font-size:13px}
+.cp-anim .since-row2{animation:slide-in .38s cubic-bezier(.2,.8,.2,1) both;animation-delay:calc(min(var(--i,0),12) * 45ms)}
+.since-card{border:2px solid transparent;background:linear-gradient(#0f1a2b,#0f1a2b) padding-box,linear-gradient(120deg,#f5c542,#f472b6,#a78bfa,#2dd4bf,#f5c542) border-box;box-shadow:0 0 18px rgba(244,114,182,.35),0 0 40px rgba(167,139,250,.25)}
+.since-new{flex:0 0 auto;font-size:11px;font-weight:900;letter-spacing:.08em;padding:4px 9px;border-radius:999px;background:#f5c542;color:#2a1d00;box-shadow:0 0 12px rgba(245,197,66,.8)}
 </style>
 </head>
 <body>
@@ -1352,6 +1373,7 @@ body.is-mobile .quick-layouts{display:flex}
 <main>
 <p id="message" role="status" aria-live="polite"></p>
 
+<!-- ===== END OF PART 4 of 13 ===== -->
 <section id="changePwPanel" class="panel hidden" aria-labelledby="changePwTitle">
 <h2 id="changePwTitle" data-i18n="Change your password">Change your password</h2>
 <form id="changePwForm" novalidate>
@@ -1372,7 +1394,6 @@ body.is-mobile .quick-layouts{display:flex}
 <button id="cpSave" class="primary" type="submit" data-i18n="Save new password">Save new password</button>
 <button id="cpCancel" type="button" data-i18n="Cancel">Cancel</button>
 </div>
-<!-- ===== END OF PART 4 of 13 ===== -->
 <p id="cpMsg" class="form-msg" role="alert" aria-live="assertive"></p>
 </form>
 </section>
@@ -1776,6 +1797,7 @@ body.is-mobile .quick-layouts{display:flex}
 </div>
 <ul id="pendingList" class="pending" aria-live="polite"></ul>
 <button class="primary" type="submit" id="sendRequestBtn" data-i18n="Send request">Send request</button>
+<!-- ===== END OF PART 5 of 13 ===== -->
 <p id="taskMsg" class="form-msg" role="alert" aria-live="assertive"></p>
 </form>
 </div>
@@ -1792,7 +1814,6 @@ body.is-mobile .quick-layouts{display:flex}
 <div class="rc-row">
 <label><input type="radio" name="reason" value="new_project"><span data-i18n="New project">New project</span></label>
 <label><input type="radio" name="reason" value="job_question"><span data-i18n="Question about a job">Question about a job</span></label>
-<!-- ===== END OF PART 5 of 13 ===== -->
 <label><input type="radio" name="reason" value="urgent"><span data-i18n="Urgent">Urgent</span></label>
 <label><input type="radio" name="reason" value="billing"><span data-i18n="Billing">Billing</span></label>
 <label><input type="radio" name="reason" value="other"><span data-i18n="Other">Other</span></label>
@@ -1926,7 +1947,7 @@ const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({
 
 /* Spanish text for the client portal (English is the key) */
 const ES={
-'Home':'Inicio','Call request':'Solicitud de llamada','Got it':'Entendido','Need anything else? You can ask again any time.':'¿Necesitas algo más? Puedes pedir otra llamada cuando quieras.',
+'Home':'Inicio','NEW':'NUEVO','job updated':'trabajo actualizado','jobs updated':'trabajos actualizados','new message':'mensaje nuevo','new messages':'mensajes nuevos','new file':'archivo nuevo','new files':'archivos nuevos','and {n} more':'y {n} más','Call request':'Solicitud de llamada','Got it':'Entendido','Need anything else? You can ask again any time.':'¿Necesitas algo más? Puedes pedir otra llamada cuando quieras.',
 'Request sent':'Solicitud enviada','Sam called you':'Sam te llamó','Sam saw your request':'Sam ya vio tu solicitud','Show jobs for':'Ver trabajos de',
 'You can edit it for the next 3 minutes.':'Puedes editarla durante los próximos 3 minutos.','Your request is in. You can follow it on Home: Sent, Seen, Called.':'Tu solicitud llegó. Puedes seguirla en Inicio: Enviada, Vista, Llamada.',
 'Sent':'Enviada','Seen':'Vista','Called':'Llamada','Task Management':'Portal de clientes','My jobs':'Mis trabajos','Messages':'Mensajes','Files':'Archivos',
@@ -2178,6 +2199,7 @@ function clearState(){
  show('fullLink',false);
 }
 
+// ===== END OF PART 6 of 13 =====
 $('logout').onclick=async()=>{
  const {error}=await sb.auth.signOut();
  if(error)notice(error.message);
@@ -2189,7 +2211,6 @@ $('logout').onclick=async()=>{
  }
 };
 
-// ===== END OF PART 6 of 13 =====
 /* ---------- Messages shown right under the button that was tapped ---------- */
 function formMsg(id,text,kind){
  const el=$(id);if(!el)return;
@@ -2715,6 +2736,7 @@ function taskCard(t,o){
 </article>`;
 }
 
+// ===== END OF PART 7 of 13 =====
 function editCard(t){
  const pr=normPriority(t);
  return `<article class="tcard ${priorityClass(pr)} ${statusClass(t.status)}" data-id="${esc(t.id)}">
@@ -2733,7 +2755,6 @@ ${(()=>{const pp=portalPeople(null);return pp.length>=2?`<label>Who is this for<
 
  
  
-// ===== END OF PART 7 of 13 =====
 /* ---------- Board rendering ---------- */
 function captureScroll(root){
  const groupsEl=root.querySelector('.groups');
@@ -3426,16 +3447,23 @@ function cpSection(cls,title,items,ctx,limit){
 }
 function sinceHtml(){
  if(!sinceInfo||role!=='client')return '';
- const parts=[];
- if(sinceInfo.nJobs)parts.push(sinceInfo.nJobs===1?tr('1 job updated'):tr('{n} jobs updated',{n:sinceInfo.nJobs}));
- if(sinceInfo.nMsg)parts.push(sinceInfo.nMsg===1?tr('1 new message'):tr('{n} new messages',{n:sinceInfo.nMsg}));
- if(sinceInfo.nFiles)parts.push(sinceInfo.nFiles===1?tr('1 new file'):tr('{n} new files',{n:sinceInfo.nFiles}));
- const rows=sinceInfo.rows.slice(0,4).map(r=>{
+ const SC={'Incoming':'var(--inc)','To do':'var(--todo)','In progress':'var(--ip)','Waiting on client':'var(--wait)','Completed':'var(--dn)'};
+ const sum=[];
+ if(sinceInfo.nJobs)sum.push(`<span><b>${sinceInfo.nJobs}</b> ${esc(tr(sinceInfo.nJobs===1?'job updated':'jobs updated'))}</span>`);
+ if(sinceInfo.nMsg)sum.push(`<span>💬 <b>${sinceInfo.nMsg}</b> ${esc(tr(sinceInfo.nMsg===1?'new message':'new messages'))}</span>`);
+ if(sinceInfo.nFiles)sum.push(`<span>📎 <b>${sinceInfo.nFiles}</b> ${esc(tr(sinceInfo.nFiles===1?'new file':'new files'))}</span>`);
+ const rows=sinceInfo.rows.slice(0,4).map((r,i)=>{
   const t=tasks.find(x=>String(x.id)===String(r.id));if(!t)return '';
-  const what=r.what.map(([k,v])=>tr(k,v&&v.s?{...v,s:tr(v.s)}:v)).join(' · ');
-  return `<button type="button" class="since-row" data-job="${esc(t.id)}"><span>${esc(t.title||tr('Untitled'))}</span><small>${esc(what)}</small></button>`;
+  const tags=r.what.map(([k,v])=>{
+   if(k==='Completed')return `<span class="stag done">✓ ${esc(tr('Completed'))}</span>`;
+   if(k==='Now: {s}')return `<span class="stag st" style="--sc:${SC[normStatus(t)]||'var(--todo)'}">${esc(tr(v.s))}</span>`;
+   if(/message/.test(k))return `<span class="stag msg">💬 ${esc(tr(k,v))}</span>`;
+   return `<span class="stag file">📎 ${esc(tr(k,v))}</span>`;
+  }).join('');
+  return `<button type="button" class="since-row2" data-job="${esc(t.id)}" style="--i:${i}"><span class="sr-main"><strong>${esc(t.title||tr('Untitled'))}</strong><span class="since-tags">${tags}</span></span><span class="cj-chev" aria-hidden="true">›</span></button>`;
  }).join('');
- return `<section class="since-card" aria-labelledby="sinceTitle"><button type="button" class="modal-x" data-cpact="since-close" aria-label="${esc(tr('Close'))}">×</button><h3 id="sinceTitle">${esc(tr('Since your last visit'))}</h3><p>${esc(parts.join(' · '))}</p>${rows}</section>`;
+ const more=sinceInfo.rows.length>4?`<p class="since-more">${esc(tr('and {n} more',{n:sinceInfo.rows.length-4}))}</p>`:'';
+ return `<section class="since-card" aria-labelledby="sinceTitle"><button type="button" class="modal-x" data-cpact="since-close" aria-label="${esc(tr('Close'))}">×</button><h3 id="sinceTitle"><span class="since-new">${esc(tr('NEW'))}</span>${esc(tr('Since your last visit'))}</h3><div class="since-sum">${sum.join('')}</div>${rows}${more}</section>`;
 }
 function actionsHtml(ctx){
  const call=myOpenCall(ctx);
@@ -3724,6 +3752,7 @@ $('client').addEventListener('submit',async e=>{
  finally{button.disabled=false;}
 });
 
+// ===== END OF PART 9 of 13 =====
 $('auth').addEventListener('click',e=>{const b=e.target.closest('[data-lang]');if(b)setLang(b.dataset.lang,false);});
 
 /* "Since your last visit" (only when something changed) and the 1-second welcome, once a day */
@@ -3753,7 +3782,6 @@ function computeSince(){
  rows.sort((a,b)=>b.at-a.at);
  return {rows,nJobs:rows.length,nMsg,nFiles};
 }
-// ===== END OF PART 9 of 13 =====
 function welcomeToast(){
  if(role!=='client'||!currentUser)return;
  const key='signix-welcome-'+currentUser.id,today=todayStr();
@@ -4267,6 +4295,7 @@ async function loadActStylesInner(){
 function renderActPreview(){
  $('actPreview').innerHTML=`<article class="tcard pr-medium st-to-do has-new shake-now"><button type="button" class="act-ribbon" tabindex="-1">New note</button><h4 class="tc-title">Sample task with new activity</h4><div class="tc-meta"><span class="act-badge">NEW</span><span class="badge st-to-do">To do</span><span class="badge pr-medium">Medium priority</span></div></article>${actStyles.length?'':'<p class="muted" style="margin:0;font-size:13px">No marker selected: cards will not show new activity.</p>'}`;
 }
+// ===== END OF PART 10 of 13 =====
 function readActForm(){
  const f=$('actForm').elements;
  const v=String(f.act_color.value||'').toLowerCase();
@@ -4294,7 +4323,6 @@ $('actForm').addEventListener('change',async()=>{
   $('actStatus').textContent=actColorCol?'Saved. Client portals update within a minute.':'Saved. Run the latest SQL step to also save the marker color.';
  }catch(err){$('actStatus').textContent='Not saved (showing on this screen only): '+(err.message||'unknown error');}
 });
-// ===== END OF PART 10 of 13 =====
 async function loadReads(){
  try{return await loadReadsInner();}catch(e){readsReady=false;return false;}
 }
@@ -4745,6 +4773,7 @@ function renderClientsArea(){
  }
  root.innerHTML=`<h1 class="area-title">Clients</h1><div class="cl-wrap${c?' has-pick':''}"><div class="cl-list">${list}</div><div class="cl-page" data-client="${c?esc(c.id):''}">${page}</div></div>`;
 }
+// ===== END OF PART 11 of 13 =====
 $('clientsArea').addEventListener('click',e=>{
  const rs=e.target.closest('[data-restore]');
  if(rs){restoreClient(rs.dataset.restore);return;}
@@ -4768,7 +4797,6 @@ $('clientsArea').addEventListener('click',e=>{
   requestAnimationFrame(()=>d.scrollIntoView({behavior:'smooth',block:'start'}));
  }
 });
-// ===== END OF PART 11 of 13 =====
 $('clientsArea').addEventListener('change',e=>{
  const r=e.target.closest('[data-retainer]');
  if(r)setRetainer(r.dataset.retainer,r.checked);
