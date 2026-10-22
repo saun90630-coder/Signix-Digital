@@ -324,9 +324,9 @@ body.no-anim-req .request-zone:not([open]) .req-icon,body.no-anim-req .pv-reques
 .menu-due{padding:4px 6px}
 .menu-due .row{justify-content:flex-start}
 
-/* ===== END OF PART 1 of 13 ===== */
 /* Collapsible panels */
 details.fold>summary{cursor:pointer;list-style:none;display:flex;align-items:center;justify-content:space-between;gap:10px;font-size:18px;font-weight:700}
+/* ===== END OF PART 1 of 13 ===== */
 details.fold>summary::-webkit-details-marker{display:none}
 details.fold>summary::after{content:"+";font-size:22px;color:#9fc2ff}
 details.fold[open]>summary::after{content:"–"}
@@ -675,8 +675,8 @@ body.is-mobile #popOutBtn{display:none}
 .ip-only #admin>.stats,.ip-only #snapshot,.ip-only #viewTool{display:none!important}
 .ip-only #tasksPanel{border-color:color-mix(in srgb,var(--ip) 70%,transparent);box-shadow:0 0 0 1px color-mix(in srgb,var(--ip) 25%,transparent),0 0 30px color-mix(in srgb,var(--ip) 18%,transparent)}
 .ip-only #tasksTitle{color:color-mix(in srgb,var(--ip) 35%,#fff)}
-/* ===== END OF PART 2 of 13 ===== */
 .ip-btn{border-color:color-mix(in srgb,var(--ip) 70%,transparent);color:color-mix(in srgb,var(--ip) 35%,#fff);background:color-mix(in srgb,var(--ip) 12%,transparent)}
+/* ===== END OF PART 2 of 13 ===== */
 .panel-btns{display:flex;gap:8px;flex-wrap:wrap}
 body:not(.is-mobile) #clientLayoutTool{display:none}
 .tag-chip{font-size:12px;min-height:30px;padding:4px 10px;border-radius:20px;border:1px solid rgba(167,139,250,.55);background:rgba(167,139,250,.12);color:#ddd6fe;display:inline-flex;align-items:center;gap:4px;white-space:nowrap}
@@ -807,7 +807,7 @@ body.has-shell .side-nav{display:flex;flex-direction:column;gap:3px;position:fix
 body.has-shell>header,body.has-shell main{margin-left:224px}
 body.has-shell main{max-width:none;padding:20px 28px 40px}
 body.has-shell>header h1,body.has-shell>header small{display:none}
-body.has-shell>header{justify-content:flex-end;background:#08101c;padding:12px 28px;position:sticky;top:0;z-index:30}
+body.has-shell>header{justify-content:flex-end;background:#08101c;padding:12px 28px;position:static}
 .sn-brand{display:flex;align-items:center;gap:10px;padding:4px 8px 18px}
 .sn-logo{width:34px;height:34px;border-radius:10px;background:#3975db;display:grid;place-items:center;font-weight:800;font-size:14px;color:#fff;flex:0 0 34px}
 .sn-brand strong{display:block;font-size:15px}
@@ -1013,7 +1013,6 @@ button.danger,.ask-btns .danger{background:#b91c1c;border-color:#ef4444;color:#f
 .cp-tabs .cpt-act{justify-self:center;width:56px;height:56px;min-height:0;border-radius:50%;background:var(--brand,#3975db);color:var(--brand-text,#fff);box-shadow:0 6px 18px var(--brand-glow,rgba(57,117,219,.5));padding:0}
 .cp-tabs .cpt-act svg{width:26px;height:26px}
 .cp-tabs .cpt-act .cpt-lbl{display:none}
-/* ===== END OF PART 3 of 13 ===== */
 .cpt-badge{position:absolute;top:4px;left:calc(50% + 8px);font-size:10px;font-weight:800;padding:1px 5px;border-radius:999px;background:var(--mk,#f59e0b);color:var(--mk-t,#1a1204);font-style:normal}
 .cpt-badge:empty{display:none}
 @media (min-width:701px){
@@ -1025,6 +1024,7 @@ button.danger,.ask-btns .danger{background:#b91c1c;border-color:#ef4444;color:#f
  .cp-tabs .cpt-act .cpt-lbl{display:inline}
  .cpt-badge{position:static;margin-left:2px}
 }
+/* ===== END OF PART 3 of 13 ===== */
 @media (max-width:700px){
  body.portal-on:not(.has-shell) .cp-tabs{position:fixed;left:0;right:0;bottom:0;z-index:40;margin:0;border-radius:0;border-width:1px 0 0;padding:6px 8px calc(8px + env(safe-area-inset-bottom))}
  body.portal-on:not(.has-shell) main{padding-bottom:110px}
@@ -1203,7 +1203,6 @@ button.danger,.ask-btns .danger{background:#b91c1c;border-color:#ef4444;color:#f
 /* ===== Version 11 ===== */
 /* Section titles scroll with the page (no more sticking over the top bar) */
 .layout-stack .group-head{position:static}
-body.has-shell>header{z-index:45}
 /* Buttons press in when tapped */
 button,.cj-row,.cm-row,.cp-act,.pchip span,.pp span,.snap{transition:transform .12s ease,filter .12s ease,background-color .15s,box-shadow .15s}
 button:not(:disabled):active,.cj-row:active,.cm-row:active,.cp-act:active,.snap:active{transform:scale(.96)}
@@ -1322,6 +1321,16 @@ button:not(:disabled):active,.cj-row:active,.cm-row:active,.cp-act:active,.snap:
 .quick-layouts{display:none;margin:4px 0 8px;width:max-content;max-width:100%}
 body.is-mobile .quick-layouts{display:flex}
 .cp-ipcard{border-color:color-mix(in srgb,var(--ip) 55%,#22324b);box-shadow:0 0 0 1px color-mix(in srgb,var(--ip) 25%,transparent),0 0 22px color-mix(in srgb,var(--ip) 18%,transparent);animation:ip-card 3s ease-in-out infinite}
+.cj-row small.cj-meta{display:flex;align-items:center;flex-wrap:wrap;gap:4px 6px;white-space:normal;overflow:visible}
+.cj-meta>span:not(.cj-prio-ph){white-space:nowrap}
+.badge.cj-prio{font-size:12px;font-weight:800;padding:3px 10px;flex:0 0 auto}
+.cj-high .badge.cj-prio{background:#ff2828;border-color:#ff2828;color:#fff;box-shadow:0 0 10px rgba(255,40,40,.55)}
+.cj-high .badge.cj-prio::before{background:#fff}
+.cj-who{display:inline-flex;align-items:center;font-weight:700;color:#e2e8f0}
+.cj-who .who-dot{margin-right:5px}
+.cj-sep{color:#64748b}
+.cj-prio-dk{display:none}
+@media (min-width:701px){.cj-prio-ph{display:none}.cj-prio-dk{display:inline-flex;flex:0 0 auto}.cj-prio-dk .badge.cj-prio{font-size:13px;padding:5px 12px}}
 </style>
 </head>
 <body>
@@ -1363,13 +1372,13 @@ body.is-mobile .quick-layouts{display:flex}
 <button id="cpSave" class="primary" type="submit" data-i18n="Save new password">Save new password</button>
 <button id="cpCancel" type="button" data-i18n="Cancel">Cancel</button>
 </div>
+<!-- ===== END OF PART 4 of 13 ===== -->
 <p id="cpMsg" class="form-msg" role="alert" aria-live="assertive"></p>
 </form>
 </section>
 
 <section id="auth" class="panel">
 <div class="auth-lang"><div class="lang-sw" role="group" aria-label="Language / Idioma"><button type="button" data-lang="en" aria-pressed="true">EN</button><button type="button" data-lang="es" aria-pressed="false">ES</button></div></div>
-<!-- ===== END OF PART 4 of 13 ===== -->
 <h2 id="authTitle" data-key="Sign in">Sign in</h2>
 
 <form id="loginForm" novalidate>
@@ -1783,9 +1792,9 @@ body.is-mobile .quick-layouts{display:flex}
 <div class="rc-row">
 <label><input type="radio" name="reason" value="new_project"><span data-i18n="New project">New project</span></label>
 <label><input type="radio" name="reason" value="job_question"><span data-i18n="Question about a job">Question about a job</span></label>
+<!-- ===== END OF PART 5 of 13 ===== -->
 <label><input type="radio" name="reason" value="urgent"><span data-i18n="Urgent">Urgent</span></label>
 <label><input type="radio" name="reason" value="billing"><span data-i18n="Billing">Billing</span></label>
-<!-- ===== END OF PART 5 of 13 ===== -->
 <label><input type="radio" name="reason" value="other"><span data-i18n="Other">Other</span></label>
 </div>
 </fieldset>
@@ -1956,7 +1965,7 @@ const ES={
 'Sent 1 file':'Envió 1 archivo','Sent {n} files':'Envió {n} archivos',
 'No files yet. Photos, videos and voice notes from you and Signix Digital show up here.':'Todavía no hay archivos. Aquí aparecen las fotos, videos y notas de voz tuyas y de Signix Digital.',
 'Job':'Trabajo','Photo':'Foto','Video':'Video',
-'Task name':'Nombre de la tarea','Details':'Detalles','Priority':'Prioridad','High':'Alta','Medium':'Media','Low':'Baja','High priority':'Prioridad alta',
+'Task name':'Nombre de la tarea','Details':'Detalles','Priority':'Prioridad','High':'Alta','Medium':'Media','Low':'Baja','Medium priority':'Prioridad media','Low priority':'Prioridad baja','High priority':'Prioridad alta',
 'Deadline (optional)':'Fecha límite (opcional)','Who is this for':'Para quién es','Everyone':'Todos','Everyone at {biz}':'Todos en {biz}','your business':'tu negocio',
 'Save changes':'Guardar cambios','Edit request':'Editar solicitud','Delete request':'Borrar solicitud',
 'Job started':'Trabajo iniciado','Job started {date}':'Trabajo iniciado el {date}','Files sent with this job':'Archivos enviados con este trabajo',
@@ -2180,6 +2189,7 @@ $('logout').onclick=async()=>{
  }
 };
 
+// ===== END OF PART 6 of 13 =====
 /* ---------- Messages shown right under the button that was tapped ---------- */
 function formMsg(id,text,kind){
  const el=$(id);if(!el)return;
@@ -2190,7 +2200,6 @@ function formMsg(id,text,kind){
   requestAnimationFrame(()=>{try{el.scrollIntoView({block:'center',behavior:'smooth'});}catch(_){el.scrollIntoView();}});
  }
 }
-// ===== END OF PART 6 of 13 =====
 function clearAuthMsgs(){['loginMsg','requestMsg','resetMsg'].forEach(id=>formMsg(id,''));}
 function errText(error){
  const parts=[error?.message,error?.details,error?.hint].filter(Boolean);
@@ -3404,9 +3413,12 @@ function unseenNote(n,ctx){return !ctx.preview&&readsReady&&fromOtherSide(n)&&Da
 function cjRow(t,ctx,i){
  const st=normStatus(t),a=ctx.preview?null:newActivityRaw(t);
  const people=portalPeople(ctx.c);
- const who=t.assigned_to&&people.length>=2?`<span class="who-dot" style="--pc:${personColor(t.assigned_to,people)}"></span>`:'';
- const sub=[cpStatus(t),cpDue(t),forText(t,ctx)].filter(Boolean).join(' · ');
- return `<button type="button" class="cj-row ${statusClass(st)}" data-job="${esc(t.id)}" style="--i:${i||0}"><span class="cj-dot" aria-hidden="true"></span><span class="nr-main"><strong>${esc(t.title||tr('Untitled'))}</strong><small>${who}${esc(sub)}</small></span>${a?`<span class="need-tag act">${esc(tr(ACT_LABEL[a.kind]||'New'))}</span>`:''}<span class="cj-chev" aria-hidden="true">›</span></button>`;
+ const pr=normPriority(t);
+ const prio=`<span class="badge cj-prio ${priorityClass(pr)}">${esc(tr(pr+' priority'))}</span>`;
+ const ft=forText(t,ctx);
+ const who=ft?`<span class="cj-who">${people.length>=2?`<span class="who-dot" style="--pc:${personColor(t.assigned_to,people)}"></span>`:''}${esc(ft)}</span>`:'';
+ const sub=[cpStatus(t),cpDue(t)].filter(Boolean).map(esc).join(' · ');
+ return `<button type="button" class="cj-row ${statusClass(st)} cj-${pr.toLowerCase()}" data-job="${esc(t.id)}" style="--i:${i||0}"><span class="cj-dot" aria-hidden="true"></span><span class="nr-main"><strong>${esc(t.title||tr('Untitled'))}</strong><small class="cj-meta"><span class="cj-prio-ph">${prio}</span><span>${sub}</span>${who?'<span class="cj-sep">·</span>'+who:''}</small></span><span class="cj-prio-dk">${prio}</span>${a?`<span class="need-tag act">${esc(tr(ACT_LABEL[a.kind]||'New'))}</span>`:''}<span class="cj-chev" aria-hidden="true">›</span></button>`;
 }
 function cpSection(cls,title,items,ctx,limit){
  if(!items.length)return '';
