@@ -348,7 +348,6 @@ details.fold[open]>summary{margin-bottom:12px}
 
  
  #client .chip[aria-pressed="true"]{background:var(--brand);color:var(--brand-text);border-color:var(--brand)}
-/* ===== END OF PART 1 of 13 ===== */
 .portal-hero{border-radius:14px;padding:22px 18px;margin:0 0 12px;background-color:#0b1525;background-image:linear-gradient(135deg,var(--brand2),#0b1525);background-size:cover;background-position:center;border:1px solid #2c3c54;border-top:4px solid var(--brand)}
 .portal-hero.has-backdrop{min-height:180px;display:flex;align-items:flex-end}
 .hero-inner{display:flex;align-items:center;gap:14px}
@@ -380,6 +379,7 @@ details.fold[open]>summary{margin-bottom:12px}
 .pv-card{max-width:360px}
 .pv-portal{background:#121e30;border:1px solid #2c3c54;border-radius:14px;padding:10px}
 .pv-portal .portal-hero{padding:14px;margin-bottom:10px}
+/* ===== END OF PART 1 of 13 ===== */
 .pv-portal .portal-hero.has-backdrop{min-height:120px}
 .pv-portal .hero-inner h2{font-size:17px}
 .pv-portal .logo-circle{flex-basis:48px;width:48px;height:48px;font-size:16px}
@@ -716,7 +716,6 @@ body.is-mobile .tc-title{cursor:pointer}
 #tasksPanel,#client>.panel{background:#0a1322;border-color:#1f2c42}
 .board .groups{gap:18px}
 .board .group{--gc:#64748b;background:#111d31;border:1px solid color-mix(in srgb,var(--gc) 38%,#22324b);border-top:4px solid var(--gc);border-radius:14px;box-shadow:0 10px 26px rgba(0,0,0,.45),inset 0 1px 0 rgba(255,255,255,.03)}
-/* ===== END OF PART 2 of 13 ===== */
 .board .group.st-incoming{--gc:var(--inc)}
 .board .group.st-to-do{--gc:var(--todo)}
 .board .group.st-in-progress{--gc:var(--ip)}
@@ -765,6 +764,7 @@ body.is-mobile .tc-title{cursor:pointer}
 .qc-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:6px 12px;margin:4px 0 8px}
 .qc-grid label{display:flex;align-items:center;gap:8px;margin:0}
 .qc-grid input[type=color]{width:46px;height:36px;padding:3px;margin:0;cursor:pointer;flex:0 0 46px}
+/* ===== END OF PART 2 of 13 ===== */
 .qc-row{display:flex;gap:8px;flex-wrap:wrap;margin:4px 0 8px}
 .qc-row button{padding:7px 11px;font-size:13px}
 
@@ -1077,7 +1077,6 @@ button.danger,.ask-btns .danger{background:#b91c1c;border-color:#ef4444;color:#f
 .since-card h3{margin:0 0 2px;font-size:16px}
 .since-card>p{margin:0 0 8px;color:#cbd5e1;font-size:14px}
 .since-card .modal-x{position:absolute;top:6px;right:4px}
-/* ===== END OF PART 3 of 13 ===== */
 .since-row{display:flex;justify-content:space-between;gap:10px;width:100%;text-align:left;border:0;border-top:1px solid #1c2a40;border-radius:0;background:transparent;color:#eaf0f8;padding:10px 2px}
 .since-row small{color:#9fb0c7;text-align:right}
 /* Job page */
@@ -1172,6 +1171,7 @@ button.danger,.ask-btns .danger{background:#b91c1c;border-color:#ef4444;color:#f
 .cl-name-row{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
 /* ----- Admin: compact Client Logins ----- */
 .lg-tools{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin:0 0 10px}
+/* ===== END OF PART 3 of 13 ===== */
 .lg-add{border:1px solid #2c3c54;border-radius:14px;padding:14px;margin:0 0 14px;background:#0b1525}
 .lg-add .muted{font-size:13px;margin-top:0}
 .lg-group{border:1px solid #22324b;border-radius:14px;overflow:hidden;margin:0 0 12px;background:#0f1a2b}
@@ -1408,6 +1408,100 @@ body.is-mobile .quick-layouts{display:flex}
 @keyframes g-float{0%,100%{transform:translateY(0)}50%{transform:translateY(-4px)}}
 @media (prefers-reduced-motion:reduce){.g-anim *,.gbub{animation:none!important}.g-anim .gline{stroke-dasharray:none;stroke-dashoffset:0}}
 @media (max-width:700px){.gcard{padding:16px}.gbig{font-size:28px}}
+/* ===== Version 17: Start job, untouched time, timer, away, confetti ===== */
+.ut-chip{display:inline-flex;align-items:center;gap:4px;padding:3px 9px;border-radius:99px;font-size:12px;font-weight:700;line-height:1.3;white-space:nowrap;background:rgba(251,191,36,.12);border:1px solid rgba(251,191,36,.45);color:#fde68a}
+.ut-chip.old{background:rgba(220,38,38,.14);border-color:rgba(248,113,113,.55);color:#fca5a5}
+.ut-chip.live{background:rgba(34,197,94,.13);border-color:rgba(34,197,94,.5);color:#86efac}
+.un-chip .ut-chip{margin-top:4px;padding:1px 7px;font-size:11px}
+.cw-tag{display:inline-flex;align-items:center;gap:7px;padding:3px 10px;border-radius:99px;background:rgba(220,38,38,.14);border:1px solid rgba(220,38,38,.6);color:#fca5a5;font-size:12px;font-weight:700;line-height:1.3;white-space:nowrap}
+.cw-tag i{width:8px;height:8px;border-radius:50%;background:#f87171;box-shadow:0 0 0 3px rgba(248,113,113,.25),0 0 10px #f87171}
+.un-big .ub-pills{display:flex;flex-wrap:wrap;gap:6px;margin-top:4px}
+.cw-ring{position:relative;display:inline-grid;flex:0 0 auto}
+.un-big.cw{border-color:rgba(248,113,113,.7);box-shadow:0 0 0 1px rgba(248,113,113,.2),0 0 30px rgba(239,68,68,.22)}
+.un-big.cw-3{box-shadow:0 0 0 1px rgba(248,113,113,.3),0 0 46px rgba(239,68,68,.38)}
+.un-big.cw .ub-kicker{color:#fca5a5}
+.un-big.cw .cw-ring::before,.un-big.cw .cw-ring::after{content:"";position:absolute;inset:-5px;border-radius:50%;border:2px solid rgba(248,113,113,.9);pointer-events:none;animation:cw-pulse 2.6s ease-out infinite}
+.un-big.cw .cw-ring::after{animation-delay:1.3s}
+.un-big.cw-1 .cw-ring::before,.un-big.cw-1 .cw-ring::after{border-color:rgba(248,113,113,.55);animation-duration:3.4s}
+.un-big.cw-3 .cw-ring::before,.un-big.cw-3 .cw-ring::after{border-width:3px;animation-duration:1.9s}
+@keyframes cw-pulse{0%{transform:scale(.92);opacity:1}100%{transform:scale(1.5);opacity:0}}
+.work-start{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;margin-top:10px;padding:15px 18px;border:0;border-radius:14px;font-size:17px;font-weight:800;color:#fff;background:linear-gradient(90deg,#3975db,#6d5df5);box-shadow:0 10px 28px rgba(57,117,219,.4),inset 0 1px 0 rgba(255,255,255,.22);cursor:pointer}
+.work-start:active{transform:scale(.99)}
+.work-start.live{background:linear-gradient(90deg,#16a34a,#22c55e);box-shadow:0 10px 28px rgba(34,197,94,.32)}
+.work-start.live.paused{background:linear-gradient(90deg,#475569,#64748b);box-shadow:none}
+.work-start [data-wclock]{font-variant-numeric:tabular-nums}
+.ws-dot{width:9px;height:9px;border-radius:50%;background:#fff;animation:ws-blink 1.4s ease-in-out infinite}
+.paused .ws-dot{animation:none;opacity:.7}
+@keyframes ws-blink{50%{opacity:.35}}
+.work-hint{margin:8px 0 0;font-size:12.5px}
+#workRoot{--wk1:#60a5fa;--wk2:#a78bfa}
+#workRoot .wk-s1{stop-color:var(--wk1)}#workRoot .wk-s2{stop-color:var(--wk2)}
+#workRoot:has(.wk-paused){--wk1:#94a3b8;--wk2:#cbd5e1}
+#workRoot:has(.wk-away){--wk1:#ef4444;--wk2:#f87171}
+.wk-paused{--wk1:#94a3b8;--wk2:#cbd5e1}.wk-away{--wk1:#ef4444;--wk2:#f87171}
+.wk-dim{position:fixed;inset:0;z-index:120;background:rgba(3,6,12,.72);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
+.wk-modal{position:fixed;z-index:121;left:50%;top:50%;transform:translate(-50%,-50%);width:min(880px,calc(100vw - 48px));box-sizing:border-box;padding:34px 40px;border-radius:28px;display:grid;grid-template-columns:minmax(0,340px) minmax(0,1fr);gap:40px;align-items:center;color:#eaf0f8;background:radial-gradient(90% 70% at 30% 40%,rgba(57,117,219,.2),#0a1120 70%);border:1px solid rgba(255,255,255,.09);box-shadow:0 40px 100px rgba(0,0,0,.6);animation:wk-in .3s cubic-bezier(.2,.8,.2,1)}
+.wk-modal.wk-away{background:radial-gradient(90% 70% at 30% 40%,rgba(220,38,38,.26),#140a0f 70%);border-color:rgba(248,113,113,.3)}
+.wk-modal.wk-paused{background:radial-gradient(90% 70% at 30% 40%,rgba(148,163,184,.14),#0a1120 70%)}
+@keyframes wk-in{from{opacity:0;transform:translate(-50%,-47%) scale(.98)}}
+.wk-min{position:absolute;top:16px;right:18px;border:0;background:transparent;color:#8b98ad;font-size:13px;font-weight:600;padding:8px 10px;border-radius:10px;cursor:pointer}
+.wk-min:hover{background:rgba(255,255,255,.06);color:#fff}
+.wk-ring{position:relative;width:100%;max-width:340px;aspect-ratio:1;margin:0 auto}
+.wk-ring svg{width:100%;height:100%;transform:rotate(-90deg);overflow:visible}
+.wk-bar{transition:stroke-dashoffset .9s linear}
+.wk-mid{position:absolute;inset:0;display:grid;place-items:center;text-align:center}
+.wk-big{font-size:60px;font-weight:200;letter-spacing:-.03em;line-height:1;font-variant-numeric:tabular-nums}
+.wk-away .wk-big{color:#fca5a5}
+.wk-lbl{color:#7c8aa3;font-size:13px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;margin-top:10px}
+.wk-away .wk-lbl{color:#fca5a5}
+.wk-sub{margin-top:10px;color:#8b98ad;font-size:13px}
+.wk-head{display:flex;gap:14px;align-items:center}
+.wk-kick{font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#7c8aa3}
+.wk-away .wk-kick{color:#fca5a5}
+.wk-title{font-size:22px;font-weight:700;line-height:1.2;overflow-wrap:anywhere}
+.wk-stats{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:22px}
+.wk-stats>div{border-radius:14px;padding:13px 14px;background:rgba(255,255,255,.04);font-size:12.5px;color:#9fb0c7}
+.wk-stats b{display:block;font-size:23px;font-weight:600;margin-top:3px}
+.wk-y{color:#fbbf24}.wk-r{color:#f87171}
+.wk-btns{display:flex;gap:12px;margin-top:22px}
+.wk-btn{flex:1;min-height:52px;border-radius:16px;padding:14px;font-size:16px;font-weight:700;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.05);color:#e8edf5;cursor:pointer}
+.wk-btn.wk-green{border:0;color:#fff;background:linear-gradient(90deg,#16a34a,#22c55e);box-shadow:0 10px 28px rgba(34,197,94,.35)}
+.wk-btn.wk-blue{border:0;color:#fff;background:linear-gradient(90deg,#3975db,#6d5df5);box-shadow:0 10px 28px rgba(57,117,219,.35)}
+.wk-link{display:block;margin:14px auto 0;border:0;background:transparent;color:#8b98ad;font-size:13px;text-decoration:underline;cursor:pointer;padding:6px}
+.wk-hint{margin:16px 0 0;color:#8b98ad;font-size:13px;line-height:1.5}.wk-hint b{color:#cbd5e1}
+.wk-pill{position:fixed;z-index:110;right:22px;bottom:22px;display:flex;align-items:center;gap:12px;max-width:min(340px,calc(100vw - 32px));padding:10px 16px 10px 10px;border-radius:16px;background:#0b1222;border:1px solid rgba(57,117,219,.55);box-shadow:0 12px 32px rgba(0,0,0,.5),0 0 22px rgba(57,117,219,.18);color:#eaf0f8;text-align:left;cursor:pointer;animation:wk-in2 .3s ease-out}
+.wk-pill.wk-paused{border-color:rgba(148,163,184,.5)}.wk-pill.wk-away{border-color:rgba(248,113,113,.6)}
+@keyframes wk-in2{from{opacity:0;transform:translateY(10px)}}
+.wk-mini{width:38px;height:38px;flex:0 0 38px}
+.wk-mini svg{width:100%;height:100%;transform:rotate(-90deg)}
+.wk-mini circle{stroke-width:26}
+.wk-pt{min-width:0;display:flex;flex-direction:column}
+.wk-pt b{font-size:13px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.wk-pt span{font-size:19px;font-weight:300;font-variant-numeric:tabular-nums}
+#wkDone{position:fixed;inset:0;z-index:130;transition:opacity .4s}
+#wkDone.out{opacity:0}
+.wk-done{position:fixed;z-index:131;left:50%;top:50%;transform:translate(-50%,-50%);width:min(560px,calc(100vw - 32px));box-sizing:border-box;text-align:center;padding:40px 28px;border-radius:28px;color:#eaf0f8;background:radial-gradient(70% 60% at 50% 35%,rgba(34,197,94,.28),#0a1120 75%);border:1px solid rgba(34,197,94,.3);box-shadow:0 40px 100px rgba(0,0,0,.6);animation:wk-pop .45s cubic-bezier(.2,1.3,.4,1)}
+@keyframes wk-pop{from{opacity:0;transform:translate(-50%,-50%) scale(.85)}}
+.wk-check{width:110px;height:110px;border-radius:50%;margin:0 auto;display:grid;place-items:center;background:linear-gradient(135deg,#22c55e,#16a34a);box-shadow:0 0 0 10px rgba(34,197,94,.15),0 0 0 22px rgba(34,197,94,.07),0 0 60px rgba(34,197,94,.6)}
+.wk-done h3{font-size:32px;margin:26px 0 6px}
+.wk-done p{margin:0;color:#9fb0c7}
+.wk-done-stats{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:20px}
+.wk-done-stats span{padding:8px 14px;border-radius:99px;background:rgba(255,255,255,.06);font-size:14px;font-weight:600}
+.wk-confetti{position:fixed;inset:0;width:100vw;height:100vh;z-index:132;pointer-events:none}
+#nudgeForm{display:flex;flex-direction:column;gap:12px}
+#nudgeForm .qc-row{display:flex;gap:10px;flex-wrap:wrap}
+#nudgeForm.off input,#nudgeForm.off button{opacity:.5}
+#nudgeForm .nudge-chk{display:flex;align-items:center;gap:10px;font-weight:600}
+#nudgeForm .nudge-chk input{width:20px;height:20px;margin:0}
+#nudgeForm .nudge-time{max-width:200px}
+@media (max-width:700px){
+ .wk-modal{inset:0;left:0;top:0;transform:none;width:100%;height:100%;border-radius:0;padding:max(56px,env(safe-area-inset-top)) 20px max(24px,env(safe-area-inset-bottom));grid-template-columns:1fr;align-content:center;gap:24px;overflow-y:auto;animation:none}
+ .wk-ring{max-width:min(290px,68vw)}
+ .wk-big{font-size:50px}
+ .wk-title{font-size:19px}
+ .wk-pill{right:12px;bottom:calc(92px + env(safe-area-inset-bottom))}
+}
+@media (prefers-reduced-motion:reduce){.un-big.cw .cw-ring::before,.un-big.cw .cw-ring::after,.ws-dot,.wk-modal,.wk-pill,.wk-done{animation:none!important}}
 </style>
 </head>
 <body>
@@ -1444,10 +1538,10 @@ body.is-mobile .quick-layouts{display:flex}
 <button class="toggle-password" type="button" data-toggle="cpConfirm" aria-label="Show confirmation password" aria-pressed="false">Show</button>
 </div>
 </label>
-<!-- ===== END OF PART 4 of 13 ===== -->
 <div id="cpRules" class="pw-rules" aria-live="polite"><span data-rule="len">• At least 8 characters</span><span data-rule="match">• Type the same password in both boxes</span></div>
 <div class="row" style="justify-content:flex-start">
 <button id="cpSave" class="primary" type="submit" data-i18n="Save new password">Save new password</button>
+<!-- ===== END OF PART 4 of 13 ===== -->
 <button id="cpCancel" type="button" data-i18n="Cancel">Cancel</button>
 </div>
 <p id="cpMsg" class="form-msg" role="alert" aria-live="assertive"></p>
@@ -1760,6 +1854,17 @@ body.is-mobile .quick-layouts{display:flex}
 <p id="qcStatus" class="muted" role="status"></p>
 </form>
 </details>
+<details class="panel fold" id="nudgePanel">
+<summary>Work timer &amp; Pushover nudge</summary>
+<form id="nudgeForm" class="off">
+<p class="muted" style="margin-top:0">If you haven't tapped Start job or finished a job by this time, your phone gets one Pushover ping that names your #1 job. One nudge a day at most.</p>
+<label class="nudge-chk"><input type="checkbox" name="on"> Send the nudge</label>
+<label class="nudge-time">Time<input type="time" name="time" value="10:30" step="300"></label>
+<label class="nudge-chk"><input type="checkbox" name="weekends"> Weekends too</label>
+<div class="qc-row"><button class="primary" type="submit">Save</button><button type="button" id="nudgeTest">Send a test nudge</button></div>
+<p id="nudgeStatus" class="muted" role="status"></p>
+</form>
+</details>
 </div>
 </section>
 </section>
@@ -1883,7 +1988,6 @@ body.is-mobile .quick-layouts{display:flex}
 </label>
 <span class="muted" style="font-size:14px" data-i18n="Photos, videos or a voice note (optional)">Photos, videos or a voice note (optional)</span>
 <div class="attach-row">
-<!-- ===== END OF PART 5 of 13 ===== -->
 <label class="file-button"><span data-i18n="Add photos or videos">Add photos or videos</span>
 <input type="file" id="callMediaInput" accept="image/*,video/*" multiple>
 </label>
@@ -1923,6 +2027,7 @@ body.is-mobile .quick-layouts{display:flex}
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.110.1/dist/umd/supabase.js"></script>
 <script>window.supabase||document.write('<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"><\/script>');</script>
+<!-- ===== END OF PART 5 of 13 ===== -->
 <script>
 'use strict';
 
@@ -2243,6 +2348,7 @@ function clearState(){
  [selected,expandedDone,mOpen].forEach(s=>s.clear());
  closeNotes(true);closeJob(true);show('taskSheet',false);show('callSheet',false);if(askResolve)askDone(false);
  jobHist=[];histReady=false;histLoadedAt=0;graphSig='';graphAnimKey='';
+ workReady=false;workTried=false;workRows=[];workOpen=null;workUiOpen=false;workAwayShown=false;workDirty=false;workChecked=false;nudgeReady=false;nudgeSched=null;nudgeDirty=false;stopWorkTick();if($('workRoot'))$('workRoot').innerHTML='';$('wkDone')?.remove();
  calls=[];callsReady=false;callFilesList=[];callUrls={};callEvents=[];logBiz='';logState='all';cpAnimKey='';closeCallScreen();archivedClients=[];cpTab='home';cpJobId=null;sinceInfo=null;myDisplayName='';cpJobsFilter='all';cpMine=false;
  callFiles.stop(true);callFiles.clear();document.body.classList.remove('portal-on');
  for(const k in noteDrafts)delete noteDrafts[k];
@@ -2312,7 +2418,6 @@ $('forgot').onclick=()=>{
  formMsg('requestMsg','Enter your email and we will send you a link to set a new password.','info');
 };
 
-// ===== END OF PART 6 of 13 =====
 $('back').onclick=()=>{
  if(recoveryActive){
   formMsg('resetMsg','Finish setting your password first, or tap "Email me a new link".','error');
@@ -2422,6 +2527,7 @@ function setPwRules(rootId,p,c){
  matchEl.textContent=(match?'✓ ':'• ')+tr(c&&!match?'The two boxes do not match yet':'Type the same password in both boxes');
  matchEl.classList.toggle('met',match);
 }
+// ===== END OF PART 6 of 13 =====
 function closeChangePw(){
  show('changePwPanel',false);
  $('changePwBtn').setAttribute('aria-expanded','false');
@@ -2782,7 +2888,7 @@ function taskCard(t,o){
  ${sel}${actRibbon}
  ${o.admin?bizHeader(t.client_id):''}
  <h4 class="tc-title" data-act="mopen" data-id="${id}">${esc(t.title||'Untitled')}</h4>
- <div class="tc-meta">${actBadge}${qBadge}${od?'<span class="od-flag">Overdue</span>':''}${ageEl}${statusEl}${prEl}${dueEl}${tagChip(t,o)}${focusBtn}${corner}</div>
+ <div class="tc-meta">${actBadge}${qBadge}${od?'<span class="od-flag">Overdue</span>':''}${ageEl}${o.admin?untouchedChip(t):''}${statusEl}${prEl}${dueEl}${tagChip(t,o)}${focusBtn}${corner}</div>
  ${t.created_by&&memberNames[t.created_by]?`<div class="tc-by">${PERSON_ICON}<span>Submitted by <strong>${esc(memberNames[t.created_by])}</strong></span></div>`:''}
  ${o.admin&&t.created_at?`<div class="tc-added">${CLOCK_ICON}<span>Added ${esc(fmtStamp(t.created_at))}</span></div>`:''}
  ${st==='In progress'?`<div class="work-bar" role="img" aria-label="Being worked on"${o.admin?` style="--bc:${bizColor(clientById(t.client_id))}"`:''}></div>`:''}
@@ -2864,7 +2970,6 @@ ${shut?'':`<div class="group-body">${gr.items.length?gr.items.map(t=>taskCard(t,
  updateBoardTop(root);
 }
 
-// ===== END OF PART 7 of 13 =====
 /* ---------- Search, snapshot, admin board ---------- */
 function matchSearch(t){
  const terms=search.toLocaleLowerCase().split(/\s+/).filter(Boolean);
@@ -2969,6 +3074,7 @@ function calDetail(list,o,st){
  }
  return '';
 }
+// ===== END OF PART 7 of 13 =====
 function renderCalendar(root,list,o){
  root.className='board';
  const st=CAL[root.id],sb2=!!o.admin;
@@ -3152,6 +3258,7 @@ async function applyChange(id,field,value){
   Object.assign(t,data[0]);
   clearFocusIfDone();
   render();
+  if(field==='status'&&value==='Completed')celebrate(t);
   notice(field==='tag'?(t.assigned_to?`"${t.title}" is now tagged for ${personName(t.assigned_to)}.`:`"${t.title}" is now for everyone at ${clientName(t.client_id)}.`):field==='status'?`"${t.title}" moved to ${t.status}.`:field==='priority'?`"${t.title}" set to ${t.priority} priority.`:t.due_date?`"${t.title}" is now due ${fmtDay(t.due_date)}.`:`Due date cleared for "${t.title}".`);
  }catch(err){displayError('Change was not saved',err);}
 }
@@ -3435,7 +3542,6 @@ $('noteForm').onsubmit=async e=>{
  }catch(err){noteSay('Note was not added: '+(err.message||'unknown error'));}
  finally{button.disabled=false;}
 };
-// ===== END OF PART 8 of 13 =====
 async function loadNotes(){
  const {data,error}=await sb.from('task_notes').select(NOTE_FIELDS).order('created_at',{ascending:false});
  if(error){notes=[];notesReady=false;return false;}
@@ -3564,6 +3670,7 @@ function jobsHtml(ctx){
  }
  return out;
 }
+// ===== END OF PART 8 of 13 =====
 function noteWho(n,ctx){
  if(n.is_admin)return 'Signix Digital';
  if(ctx.me&&n.author_id===ctx.me)return tr('You');
@@ -3952,7 +4059,6 @@ $('callForm').onsubmit=async e=>{
 };
 
 /* Call requests: loaded for both sides (each person only sees what the database allows) */
-// ===== END OF PART 9 of 13 =====
 async function loadCalls(){
  if(!role)return false;
  try{
@@ -4185,6 +4291,7 @@ $('logClear').onclick=async()=>{
  await loadLoginLog();
 };
 
+// ===== END OF PART 9 of 13 =====
 /* ---------- Up next lineup (admin only, synced through admin_prefs) ---------- */
 const QUEUE_MAX=10;
 const Q_DEFAULTS=['#22c55e','#3b82f6','#3b82f6','#3b82f6','#3b82f6','#3b82f6','#3b82f6','#3b82f6','#3b82f6','#3b82f6'];
@@ -4522,7 +4629,6 @@ async function loadAnimations(){
    :animV3?'':'Status colors need the latest SQL step. Until then they preview here but are not saved.';
  }
 }
-// ===== END OF PART 10 of 13 =====
 $('animForm').addEventListener('input',e=>{
  if(!isAdmin())return;
  syncColorRow();
@@ -4718,8 +4824,8 @@ function renderHome(needs){
  else if(!q.length)un='<p class="muted home-empty">Nothing lined up. Tap the target on any task card to add it here.</p>';
  else{
   const t1=tasks.find(x=>String(x.id)===String(q[0])),c1=clientById(t1.client_id);
-  un=`<button type="button" class="un-big" data-hgo="task" data-id="${esc(t1.id)}" style="${qStyle(1)};--biz:${bizColor(c1)}"><span class="ub-num">1</span>${bizLogo(c1,'biz-logo xl')}<span class="ub-main"><span class="ub-kicker">Working on now</span><span class="ub-title">${esc(t1.title||'Untitled')}</span><span class="ub-sub"><span>${esc(c1?.Name||'')} · ${esc(normStatus(t1))}${t1.due_date?' · '+esc(dueInfo(t1)?.label||''):''}</span></span></span></button>`;
-  if(q.length>1)un+=`<div class="un-row">${q.slice(1).map((id,i)=>{const t=tasks.find(x=>String(x.id)===String(id)),c=clientById(t.client_id);return `<button type="button" class="un-chip" data-hgo="task" data-id="${esc(t.id)}" style="${qStyle(i+2)}"><span class="uc-num">${i+2}</span>${bizLogo(c,'biz-logo')}<span style="min-width:0"><span class="uc-t">${esc(t.title||'Untitled')}</span><small>${esc(c?.Name||'')}</small></span></button>`;}).join('')}</div>`;
+  un=unBigHtml(t1,c1);
+  if(q.length>1)un+=`<div class="un-row">${q.slice(1).map((id,i)=>{const t=tasks.find(x=>String(x.id)===String(id)),c=clientById(t.client_id);return `<button type="button" class="un-chip" data-hgo="task" data-id="${esc(t.id)}" style="${qStyle(i+2)}"><span class="uc-num">${i+2}</span>${bizLogo(c,'biz-logo')}<span style="min-width:0"><span class="uc-t">${esc(t.title||'Untitled')}</span><small>${esc(c?.Name||'')}</small>${untouchedChip(t,true)}</span></button>`;}).join('')}</div>`;
  }
  $('homeUpNext').innerHTML=un;
  renderCalls();
@@ -4770,7 +4876,7 @@ const CL_TABS=[['overview','Overview'],['tasks','Tasks'],['notes','Notes & files
 function statusBadge(t){const st=normStatus(t);return `<span class="badge ${statusClass(st)}">${esc(st)}</span>`;}
 function taskRow(t){
  const a=newActivityRaw(t),qp=focusReady?queuePos(t):0;
- const chips=[qp?`<span class="q-badge" style="${qStyle(qp)}">#${qp}</span>`:'',a?`<span class="need-tag act">${esc(ACT_LABEL[a.kind]||'New')}</span>`:'',isOverdue(t)?'<span class="need-tag od">Overdue</span>':isAged(t)?`<span class="need-tag age">${Math.floor(ageMs(t)/864e5)} days</span>`:'',statusBadge(t)].join('');
+ const chips=[qp?`<span class="q-badge" style="${qStyle(qp)}">#${qp}</span>`:'',a?`<span class="need-tag act">${esc(ACT_LABEL[a.kind]||'New')}</span>`:'',isOverdue(t)?'<span class="need-tag od">Overdue</span>':isAged(t)?`<span class="need-tag age">${Math.floor(ageMs(t)/864e5)} days</span>`:'',untouchedChip(t,true),statusBadge(t)].join('');
  return `<button type="button" class="trow" data-hgo="task" data-id="${esc(t.id)}"><span class="tr-t">${esc(t.title||'Untitled')}</span><span class="tr-chips">${chips}</span></button>`;
 }
 function renderClientsArea(){
@@ -4832,6 +4938,7 @@ function renderClientsArea(){
  }
  root.innerHTML=`<h1 class="area-title">Clients</h1><div class="cl-wrap${c?' has-pick':''}"><div class="cl-list">${list}</div><div class="cl-page" data-client="${c?esc(c.id):''}">${page}</div></div>`;
 }
+// ===== END OF PART 10 of 13 =====
 $('clientsArea').addEventListener('click',e=>{
  const rs=e.target.closest('[data-restore]');
  if(rs){restoreClient(rs.dataset.restore);return;}
@@ -4906,6 +5013,7 @@ async function poll(force){
  await loadCalls();
  if(role==='admin')await loadJobCounts();
  await loadTasks();
+ if(role==='admin')await loadWork();
  if(role==='admin'&&$('loginLogPanel').open)await loadLoginLog();
 }
 document.addEventListener('visibilitychange',()=>{
@@ -4940,6 +5048,8 @@ async function refresh(){
   const clientsOk=await loadClients();
   const tasksOk=await loadTasks();
   const loginsOk=await loadLogins();
+  await loadWork();
+  await loadNudge();
   await loadLoginLog();
   render();
   if(clientsOk&&tasksOk&&loginsOk)notice('');
@@ -5045,7 +5155,6 @@ async function uploadPending(A,clientId,taskId,label,noteId,say){
  return failed;
 }
 
-// ===== END OF PART 11 of 13 =====
 $('taskForm').onsubmit=async e=>{
  e.preventDefault();
  if(!isAdmin()){notice('Administrator sign-in required.');return;}
@@ -5311,6 +5420,7 @@ async function markCalled(c){
  notice(`${c.requester_name||'Call'} marked as called.`);
  return true;
 }
+// ===== END OF PART 11 of 13 =====
 async function reopenCall(c){
  const ok=await askConfirm({title:`Mark ${c.requester_name||'this call'} as not called yet?`,body:'It goes back on your Call back list. The change is recorded in the log.',ok:'Not called yet',input:'Why (optional)'});
  if(!ok)return;
@@ -5495,7 +5605,6 @@ function graphBubbles(rows,W){
   s+=`<g class="gbub" data-hgo="client" data-id="${esc(r.id)}" style="--d:${k*80}ms"><title>${esc(r.c.Name||'')}: ${r.cur} pending</title><circle cx="${cx}" cy="${cy}" r="${rad*.8}" fill="${r.color}" opacity=".32" filter="url(#ggl${k})"/><circle cx="${cx}" cy="${cy}" r="${rad}" fill="#0a0f1a"/><circle cx="${cx}" cy="${cy}" r="${rad}" fill="url(#gbg${k})" stroke="url(#grim${k})" stroke-width="1.5"/><path d="M${cx-rad*.55} ${cy-rad*.55} A${rad*.78} ${rad*.78} 0 0 1 ${cx+rad*.2} ${cy-rad*.76}" stroke="#fff" stroke-opacity=".3" stroke-width="1.5" fill="none" stroke-linecap="round"/>${gLogo(r,cx,cy-rad*.5,lr,k)}<text x="${cx}" y="${cy+rad*.22}" text-anchor="middle" font-size="${Math.max(16,rad*.55)}" font-weight="300" fill="#fff">${r.cur}</text>${d?`<text x="${cx}" y="${cy+rad*.62}" text-anchor="middle" font-size="${Math.max(9,Math.min(12,rad*.17))}" font-weight="700" fill="${r.delta>0?'#ff8a8a':r.delta<0?'#4ade80':'#7c8aa3'}">${d}</text>`:''}</g>`;});
  return s+'</svg>';
 }
-// ===== END OF PART 12 of 13 =====
 function graphRings(rows,W){
  const list=rows.slice(0,6),cap=Math.max(15,...list.map(r=>r.cur)),phone=W<620;
  const S=Math.min(phone?W:W/2,340),c=S/2,sw=Math.max(9,Math.min(15,S/(list.length*2.6+3))),gap=4;
@@ -5541,6 +5650,328 @@ $('homeGraph').addEventListener('click',e=>{
 });
 let graphResizeT=null;
 window.addEventListener('resize',()=>{clearTimeout(graphResizeT);graphResizeT=setTimeout(()=>renderGraph(),250);});
+
+/* ---------- Version 17: Start job timer, untouched time, away counter, confetti, Pushover nudge (admin only) ---------- */
+const WORK_COLS='id,task_id,started_at,ended_at,state,run_from,away_from,work_seconds,away_seconds,updated_at';
+const AWAY_GRACE=15;      // seconds away that still count as working (a quick glance at another app)
+const WK_TICK='signix-work-tick',WK_AWAY='signix-work-away',WK_UT='signix-work-untouched';
+const RING_LEN=804.25;    // 2 × π × 128
+const PLAY_SVG='<svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 4.5v15l13-7.5z"/></svg>';
+let workReady=false,workTried=false,workRows=[],workOpen=null,workUiOpen=false,workAwayShown=false,workBusy=false,workDirty=false,workIv=null,workChecked=false;
+let nudgeReady=false,nudgeSched=null,nudgeDirty=false;
+
+const wNow=()=>Date.now();
+const wIso=ms=>new Date(ms).toISOString();
+const wSecs=(a,b)=>Math.max(0,Math.round((b-a)/1000));
+const sameId=(a,b)=>a!=null&&b!=null&&String(a)===String(b);
+function workSecs(s,now=wNow()){let w=s.work_seconds||0;if(s.state==='running'&&s.run_from)w+=wSecs(Date.parse(s.run_from),now);return w;}
+function awayPending(s,now=wNow()){return s&&s.state==='away'&&s.away_from?wSecs(Date.parse(s.away_from),now):0;}
+function fmtClock(sec){const h=Math.floor(sec/3600),m=Math.floor(sec%3600/60),s=sec%60;return h+':'+String(m).padStart(2,'0')+':'+String(s).padStart(2,'0');}
+function fmtAway(sec){return sec>=3600?fmtClock(sec):Math.floor(sec/60)+':'+String(sec%60).padStart(2,'0');}
+function fmtDur(sec){const h=Math.floor(sec/3600),m=Math.floor(sec%3600/60);return h?`${h}h ${m}m`:m?`${m}m`:`${sec}s`;}
+function fmtSpanMs(ms){const d=Math.floor(ms/864e5),h=Math.floor(ms%864e5/36e5),m=Math.floor(ms%36e5/6e4);if(d>=3)return d+'d';if(d>=1)return h?`${d}d ${h}h`:`${d}d`;if(h>=1)return h+'h';return Math.max(1,m)+'m';}
+function isLive(t){return !!(t&&workOpen&&!workOpen.ended_at&&sameId(workOpen.task_id,t.id));}
+function taskWork(tid){let w=0,a=0;for(const s of workRows)if(sameId(s.task_id,tid)){w+=workSecs(s);a+=s.away_seconds||0;}return {w,a};}
+
+/* Last time Signix touched a job: a status change, an admin note, or the timer */
+function adminTouch(t,before){
+ const lim=before??Infinity;let m=0;
+ const c=Date.parse(t.created_at)||0,sc=Date.parse(t.status_changed_at)||0;
+ if(sc>c+60000&&sc<lim)m=sc;
+ for(const n of notes)if(n.is_admin&&sameId(n.task_id,t.id)){const x=Date.parse(n.created_at)||0;if(x>m&&x<lim)m=x;}
+ for(const s of workRows)if(sameId(s.task_id,t.id)){const x=s.ended_at?Date.parse(s.ended_at):(before!=null?0:wNow());if(x>m&&x<lim)m=x;}
+ return m;
+}
+function untouchedMs(t){return wNow()-Math.max(Date.parse(t.created_at)||0,adminTouch(t));}
+/* How long the client has been waiting on you: they spoke last (a note, or they sent the job) */
+function clientWaitMs(t){
+ let c=0;
+ for(const n of notes)if(!n.is_admin&&sameId(n.task_id,t.id)){const x=Date.parse(n.created_at)||0;if(x>c)c=x;}
+ if(t.created_by&&t.created_by!==ADMIN_UID){const x=Date.parse(t.created_at)||0;if(x>c)c=x;}
+ if(!c||c<=adminTouch(t))return 0;
+ const ms=wNow()-c;return ms>=36e5?ms:0;
+}
+function untouchedChip(t,short){
+ if(!isAdmin()||!t||isDone(t)||t.archived_at)return '';
+ if(isLive(t))return `<span class="ut-chip live">● ${workOpen.state==='paused'?'Paused':'Working now'}</span>`;
+ const ms=untouchedMs(t);
+ if(ms<36e5)return '';
+ return `<span class="ut-chip${ms>=5*864e5?' old':''}" title="Nobody has worked on this job for ${esc(fmtSpanMs(ms))}">⏳ ${short?'':'Untouched '}${esc(fmtSpanMs(ms))}</span>`;
+}
+
+/* Your #1 card on Home */
+function unBigHtml(t1,c1){
+ const live=isLive(t1),cw=live?0:clientWaitMs(t1);
+ const lvl=cw?(cw<864e5?1:cw<3*864e5?2:3):0;
+ const pills=(cw?`<span class="cw-tag"><i></i>Client waiting ${esc(fmtSpanMs(cw))}</span>`:'')+untouchedChip(t1);
+ return `<button type="button" class="un-big${lvl?' cw cw-'+lvl:''}" data-hgo="task" data-id="${esc(t1.id)}" style="${qStyle(1)};--biz:${bizColor(c1)}"><span class="ub-num">1</span><span class="cw-ring">${bizLogo(c1,'biz-logo xl')}</span><span class="ub-main"><span class="ub-kicker">${cw?esc((c1?.Name||'Your client')+' is waiting'):'Working on now'}</span><span class="ub-title">${esc(t1.title||'Untitled')}</span><span class="ub-sub"><span>${esc(c1?.Name||'')} · ${esc(normStatus(t1))}${t1.due_date?' · '+esc(dueInfo(t1)?.label||''):''}</span></span>${pills?`<span class="ub-pills">${pills}</span>`:''}</span></button>${workStartBtn(t1)}`;
+}
+function workStartBtn(t){
+ if(!workReady)return workTried?'<p class="muted work-hint">Run SQL 8 in Supabase to turn on Start job.</p>':'';
+ if(isLive(t)){
+  const st=workOpen.state;
+  return `<button type="button" class="work-start live${st==='paused'?' paused':''}" data-work="open"><span class="ws-dot" aria-hidden="true"></span>${st==='paused'?'Paused':st==='away'?'Away':'Working'} · <span data-wclock>${fmtClock(workSecs(workOpen))}</span> · Open timer</button>`;
+ }
+ return `<button type="button" class="work-start" data-work="start" data-id="${esc(t.id)}">${PLAY_SVG}Start job</button>`;
+}
+
+/* ---------- Loading ---------- */
+async function loadWork(){
+ const sig0=workSig();workTried=true;
+ if(!isAdmin()){workReady=false;workRows=[];workOpen=null;renderWorkUI();return false;}
+ let res;
+ try{res=await sb.from('work_sessions').select(WORK_COLS).order('id',{ascending:false}).limit(3000);}catch(e){res={error:e};}
+ if(res.error){workReady=false;workRows=[];workOpen=null;if(sig0!==workSig())workRefresh();else renderWorkUI();return false;}
+ workReady=true;
+ const rows=res.data||[];
+ const open=rows.find(r=>!r.ended_at)||null;
+ if(workOpen&&open&&sameId(open.id,workOpen.id)&&(workBusy||workDirty||workAwayShown||workOpen.state==='away')){
+  const i=rows.indexOf(open);rows[i]=workOpen;
+ }else{
+  if(workOpen&&!open)workUiOpen=false;
+  workOpen=open;
+  if(!open)workAwayShown=false;
+ }
+ workRows=rows;
+ if(!workChecked){workChecked=true;workCheckStale();}
+ if(sig0!==workSig())workRefresh();else renderWorkUI();
+ return true;
+}
+async function loadNudge(){
+ if(!isAdmin())return;
+ let res;
+ try{res=await sb.from('admin_prefs').select('nudge_on,nudge_time,nudge_weekends,nudge_tz,nudge_last').eq('id',1).maybeSingle();}catch(e){res={error:e};}
+ nudgeReady=!res.error&&!!res.data;
+ if(nudgeReady){
+  try{const r=await sb.rpc('signix_nudge_status');nudgeSched=r.error?null:r.data;}catch(e){nudgeSched=null;}
+ }
+ fillNudgeForm(res.data);
+}
+
+/* ---------- Saving ---------- */
+async function workSave(patch){
+ const s=workOpen;if(!s)return false;
+ Object.assign(s,patch);workDirty=true;
+ workRefresh();
+ const payload={state:s.state,run_from:s.run_from??null,away_from:s.away_from??null,work_seconds:s.work_seconds||0,away_seconds:s.away_seconds||0};
+ if(s.ended_at)payload.ended_at=s.ended_at;
+ workBusy=true;
+ try{
+  const {data,error}=await sb.from('work_sessions').update(payload).eq('id',s.id).select(WORK_COLS);
+  if(error||!data?.length){if(!document.hidden)displayError('Timer was not saved',error||{message:'no row returned. Run SQL 8 in Supabase.'});return false;}
+  s.updated_at=data[0].updated_at;workDirty=false;return true;
+ }catch(err){if(!document.hidden)displayError('Timer was not saved',err);return false;}
+ finally{workBusy=false;}
+}
+function workSig(){return [workReady,workTried,workOpen?.id,workOpen?.state,workRows.length].join('|');}
+function workRefresh(){renderWorkUI();if(role==='admin'&&!TASKS_ONLY&&curArea()==='home')renderAdmin();}
+function lsSet(k,v){try{localStorage.setItem(k,JSON.stringify(v));}catch(_){}}
+function lsGet(k){try{return JSON.parse(localStorage.getItem(k)||'null');}catch(_){return null;}}
+function lsDel(k){try{localStorage.removeItem(k);}catch(_){}}
+
+/* ---------- Actions ---------- */
+async function workStart(t){
+ if(!t)return;
+ if(!workReady){notice('Run SQL 8 in Supabase first to use Start job.');return;}
+ if(isLive(t)){workUiOpen=true;renderWorkUI();return;}
+ if(workBusy)return;
+ const utBefore=untouchedMs(t);
+ workBusy=true;
+ let row=null;
+ try{
+  const {data,error}=await sb.rpc('signix_work_start',{p_task:t.id});
+  row=Array.isArray(data)?data[0]:data;
+  if(error||!row){displayError('Timer did not start',error||{message:'no row returned'});return;}
+ }catch(err){displayError('Timer did not start',err);return;}
+ finally{workBusy=false;}
+ if(workOpen&&!workOpen.ended_at){workOpen.work_seconds=workSecs(workOpen);workOpen.state='stopped';workOpen.run_from=null;workOpen.ended_at=row.started_at;}
+ workRows.unshift(row);workOpen=row;workUiOpen=true;workAwayShown=false;workDirty=false;
+ lsDel(WK_AWAY);lsSet(WK_TICK,{id:row.id,at:wNow()});lsSet(WK_UT,{id:row.id,ms:utBefore});
+ if(['Incoming','To do'].includes(normStatus(t)))await applyChange(t.id,'status','In progress');
+ workRefresh();
+}
+function workPause(){const s=workOpen;if(!s||s.state!=='running')return;const now=wNow();workSave({state:'paused',work_seconds:workSecs(s,now),run_from:null});}
+function workResume(){const s=workOpen;if(!s||s.state!=='paused')return;workSave({state:'running',run_from:wIso(wNow())});}
+async function workStop(){
+ const s=workOpen;if(!s)return;const now=wNow();
+ const w=s.state==='away'?s.work_seconds:workSecs(s,now);
+ await workSave({state:'stopped',ended_at:wIso(now),work_seconds:w,run_from:null,away_from:null});
+ workOpen=null;workUiOpen=false;workAwayShown=false;lsDel(WK_AWAY);
+ workRefresh();notice(`Timer stopped. ${fmtDur(w)} logged on this job.`);
+}
+async function workDone(){
+ const s=workOpen;if(!s)return;
+ const t=tasks.find(x=>sameId(x.id,s.task_id));const now=wNow();
+ await workSave({state:'done',ended_at:wIso(now),work_seconds:workSecs(s,now),run_from:null,away_from:null});
+ workOpen=null;workUiOpen=false;workAwayShown=false;lsDel(WK_AWAY);
+ renderWorkUI();
+ if(t&&!isDone(t))await applyChange(t.id,'status','Completed');
+ else celebrate(t);
+}
+function workAwayStart(at){
+ const s=workOpen;if(!s||s.ended_at||s.state!=='running')return;
+ at=at||wNow();
+ lsSet(WK_AWAY,{id:s.id,at});
+ workSave({state:'away',work_seconds:workSecs(s,at),run_from:null,away_from:wIso(at)});
+}
+function workAwayEnd(){
+ const s=workOpen;if(!s||s.state!=='away'||document.hidden)return;
+ if(awayPending(s)<AWAY_GRACE){workResolve(true);return;}
+ if(!workAwayShown){workAwayShown=true;workUiOpen=true;renderWorkUI();}
+}
+function workResolve(asWork){
+ const s=workOpen;if(!s||s.state!=='away')return;
+ const now=wNow(),p=awayPending(s,now);
+ const patch={state:'running',run_from:wIso(now),away_from:null};
+ if(asWork)patch.work_seconds=(s.work_seconds||0)+p;else patch.away_seconds=(s.away_seconds||0)+p;
+ workAwayShown=false;lsDel(WK_AWAY);lsSet(WK_TICK,{id:s.id,at:now});
+ workSave(patch);
+}
+/* After a reload: if the page was closed while the timer ran, that gap counts as away */
+function workCheckStale(){
+ const s=workOpen;if(!s)return;
+ const tick=lsGet(WK_TICK),aw=lsGet(WK_AWAY);
+ if(s.state==='running'&&aw&&sameId(aw.id,s.id))workAwayStart(aw.at);
+ else if(s.state==='running'&&tick&&sameId(tick.id,s.id)&&wNow()-tick.at>30000)workAwayStart(tick.at);
+ if(workOpen&&workOpen.state==='away')workAwayEnd();
+}
+document.addEventListener('visibilitychange',()=>{if(document.hidden)workAwayStart();else workAwayEnd();});
+window.addEventListener('blur',()=>workAwayStart());
+window.addEventListener('focus',()=>workAwayEnd());
+window.addEventListener('pagehide',()=>workAwayStart());
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&workUiOpen&&!workAwayShown){workUiOpen=false;renderWorkUI();}});
+document.addEventListener('click',e=>{
+ const b=e.target.closest('[data-work]');if(!b||!isAdmin())return;
+ const a=b.dataset.work;
+ if(a==='start'){e.preventDefault();workStart(tasks.find(x=>sameId(x.id,b.dataset.id)));}
+ else if(a==='open'){workUiOpen=true;renderWorkUI();}
+ else if(a==='min'){workUiOpen=false;renderWorkUI();}
+ else if(a==='pause')workPause();
+ else if(a==='resume')workResume();
+ else if(a==='done')workDone();
+ else if(a==='stop')workStop();
+ else if(a==='was-working')workResolve(true);
+ else if(a==='back')workResolve(false);
+ else if(a==='close-done')$('wkDone')?.remove();
+});
+
+/* ---------- Timer screen and the small timer in the corner ---------- */
+function workRoot(){let r=$('workRoot');if(!r){r=document.createElement('div');r.id='workRoot';document.body.appendChild(r);}return r;}
+function ringSvg(id,cls){
+ return `<svg viewBox="0 0 300 300" aria-hidden="true"><defs><linearGradient id="${id}g" x1="0" x2="1" y1="0" y2="1"><stop class="wk-s1" offset="0"/><stop class="wk-s2" offset="1"/></linearGradient><filter id="${id}f" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="7"/></filter></defs><circle cx="150" cy="150" r="128" fill="none" stroke="rgba(255,255,255,.07)" stroke-width="13"/><circle class="${cls}" cx="150" cy="150" r="128" fill="none" stroke="url(#${id}g)" stroke-width="13" stroke-linecap="round" stroke-dasharray="${RING_LEN}" stroke-dashoffset="${RING_LEN}" filter="url(#${id}f)" opacity=".75"/><circle class="${cls}" cx="150" cy="150" r="128" fill="none" stroke="url(#${id}g)" stroke-width="13" stroke-linecap="round" stroke-dasharray="${RING_LEN}" stroke-dashoffset="${RING_LEN}"/></svg>`;
+}
+// ===== END OF PART 12 of 13 =====
+function sessionUntouchedBefore(s,t){
+ if(!t)return 0;const saved=lsGet(WK_UT);if(saved&&sameId(saved.id,s.id))return saved.ms;
+ const st=Date.parse(s.started_at)||wNow();
+ return Math.max(0,st-Math.max(Date.parse(t.created_at)||0,adminTouch(t,st)));
+}
+function renderWorkUI(){
+ const r=workRoot();
+ if(!isAdmin()||!workOpen||workOpen.ended_at){r.innerHTML='';workUiOpen=false;stopWorkTick();return;}
+ const s=workOpen,t=tasks.find(x=>sameId(x.id,s.task_id)),c=t?clientById(t.client_id):null;
+ const title=esc(t?.title||'Untitled job');
+ const away=workAwayShown&&s.state==='away',paused=s.state==='paused';
+ const mode=away?'away':paused?'paused':'run';
+ if(!workUiOpen){
+  r.innerHTML=`<button type="button" class="wk-pill wk-${mode}" data-work="open" aria-label="Open the job timer"><span class="wk-mini">${ringSvg('wkp','wk-bar')}</span><span class="wk-pt"><b>${title}</b><span data-wbig>${fmtClock(workSecs(s))}</span></span></button>`;
+ }else{
+  const ut=sessionUntouchedBefore(s,t);
+  const info=away
+   ?`<div class="wk-btns"><button type="button" class="wk-btn wk-blue" data-work="was-working">I was working</button><button type="button" class="wk-btn" data-work="back">Back to job</button></div>
+     <p class="wk-hint"><b>I was working</b> adds this time to your working time. <b>Back to job</b> keeps it counted as away.</p>`
+   :`<div class="wk-stats"><div>Sat untouched<b class="wk-y">${ut>=6e4?esc(fmtSpanMs(ut)):'—'}</b></div><div>Away so far<b class="wk-r" data-waway>${esc(fmtDur(s.away_seconds||0))}</b></div></div>
+     <div class="wk-btns">${paused?'<button type="button" class="wk-btn" data-work="resume">Resume</button>':'<button type="button" class="wk-btn" data-work="pause">Pause</button>'}<button type="button" class="wk-btn wk-green" data-work="done">✓ Job done</button></div>
+     <button type="button" class="wk-link" data-work="stop">Stop for now (job stays open)</button>`;
+  r.innerHTML=`<div class="wk-dim"></div><div class="wk-modal wk-${mode}" role="dialog" aria-modal="true" aria-label="${away?'You left the job':'Job timer'}">
+   ${away?'':'<button type="button" class="wk-min" data-work="min">Minimize ↘</button>'}
+   <div class="wk-ring">${ringSvg('wkm','wk-bar')}<div class="wk-mid"><div><div class="wk-big" data-wbig>${away?fmtAway(awayPending(s)):fmtClock(workSecs(s))}</div><div class="wk-lbl">${away?'Away':paused?'Paused':'Working time'}</div>${away?`<div class="wk-sub">Working time paused at ${esc(fmtClock(s.work_seconds||0))}</div>`:''}</div></div></div>
+   <div class="wk-info"><div class="wk-head">${c?bizLogo(c,'biz-logo'):''}<div><div class="wk-kick">${away?'You left the job':'Focusing on'}</div><div class="wk-title">${title}</div></div></div>${info}</div>
+  </div>`;
+ }
+ workTickNow();startWorkTick();
+}
+function workTickNow(){
+ const s=workOpen;if(!s||s.ended_at)return;
+ const now=wNow(),away=workAwayShown&&s.state==='away';
+ const w=workSecs(s,now),p=awayPending(s,now);
+ const big=away?fmtAway(p):fmtClock(w);
+ document.querySelectorAll('[data-wbig]').forEach(el=>{if(el.textContent!==big)el.textContent=big;});
+ document.querySelectorAll('[data-wclock]').forEach(el=>{el.textContent=fmtClock(w);});
+ document.querySelectorAll('[data-waway]').forEach(el=>{el.textContent=fmtDur((s.away_seconds||0));});
+ const frac=((away?p:w)%3600)/3600;
+ const off=String(RING_LEN*(1-Math.max(frac,.004)));
+ document.querySelectorAll('#workRoot .wk-bar').forEach(el=>el.setAttribute('stroke-dashoffset',off));
+ if(s.state==='running'&&!document.hidden)lsSet(WK_TICK,{id:s.id,at:now});
+}
+function startWorkTick(){if(!workIv)workIv=setInterval(workTickNow,1000);}
+function stopWorkTick(){if(workIv){clearInterval(workIv);workIv=null;}}
+
+/* ---------- Job done: confetti and the result card ---------- */
+function celebrate(t){
+ if(!isAdmin()||!t)return;
+ if(isLive(t)){const s=workOpen,now=wNow();workSave({state:'done',ended_at:wIso(now),work_seconds:s.state==='away'?s.work_seconds:workSecs(s,now),run_from:null,away_from:null});workOpen=null;workUiOpen=false;workAwayShown=false;lsDel(WK_AWAY);renderWorkUI();}
+ const {w,a}=taskWork(t.id),c=clientById(t.client_id);
+ $('wkDone')?.remove();
+ const d=document.createElement('div');d.id='wkDone';d.dataset.work='close-done';
+ d.innerHTML=`<div class="wk-dim"></div><div class="wk-done" role="status"><div class="wk-check"><svg width="58" height="58" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></div><h3>Job done!</h3><p>${esc(t.title||'Untitled')}${c?' · '+esc(c.Name||''):''}</p>${w?`<div class="wk-done-stats"><span>⏱ ${esc(fmtDur(w))} worked</span>${a?`<span class="wk-r">${esc(fmtDur(a))} away</span>`:''}</div>`:''}</div>`;
+ document.body.appendChild(d);
+ confetti();
+ setTimeout(()=>{if(d.isConnected){d.classList.add('out');setTimeout(()=>d.remove(),400);}},3600);
+}
+function confetti(){
+ if(window.matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+ const cv=document.createElement('canvas');cv.className='wk-confetti';cv.setAttribute('aria-hidden','true');document.body.appendChild(cv);
+ const W=innerWidth,H=innerHeight,dpr=Math.min(2,window.devicePixelRatio||1);cv.width=W*dpr;cv.height=H*dpr;
+ const ctx=cv.getContext('2d');if(!ctx){cv.remove();return;}ctx.scale(dpr,dpr);
+ const cols=['#f472b6','#60a5fa','#fbbf24','#34d399','#a78bfa','#f87171','#ffffff'];
+ const P=Array.from({length:W<600?140:220},(_,i)=>({x:W/2+(Math.random()-.5)*W*.25,y:H*.42,vx:(Math.random()-.5)*(W<600?14:22),vy:-Math.random()*15-5,w:6+Math.random()*7,h:4+Math.random()*10,r:Math.random()*6.3,vr:(Math.random()-.5)*.4,c:cols[i%cols.length]}));
+ const t0=performance.now(),DUR=2600;
+ (function f(ts){
+  const el=ts-t0;ctx.clearRect(0,0,W,H);
+  const fade=el>DUR-700?Math.max(0,(DUR-el)/700):1;
+  for(const p of P){p.vy+=.35;p.vx*=.99;p.x+=p.vx;p.y+=p.vy;p.r+=p.vr;ctx.save();ctx.globalAlpha=fade;ctx.translate(p.x,p.y);ctx.rotate(p.r);ctx.fillStyle=p.c;ctx.fillRect(-p.w/2,-p.h/2,p.w,p.h);ctx.restore();}
+  if(el<DUR)requestAnimationFrame(f);else cv.remove();
+ })(t0);
+}
+
+/* ---------- Settings: Pushover nudge ---------- */
+function fillNudgeForm(d){
+ const f=$('nudgeForm');if(!f)return;
+ const st=$('nudgeStatus');
+ if(!nudgeReady){f.classList.add('off');st.textContent='Run SQL 8 in Supabase to turn on the nudge.';return;}
+ f.classList.remove('off');
+ if(!nudgeDirty&&d){f.on.checked=!!d.nudge_on;f.time.value=String(d.nudge_time||'10:30').slice(0,5);f.weekends.checked=!!d.nudge_weekends;}
+ st.textContent=nudgeSched===true?'✓ The 10-minute check is running in Supabase.':nudgeSched===false?'⚠ The check is not scheduled yet. Turn on pg_cron in Supabase → Database → Extensions, then run SQL 8 again.':'';
+}
+document.addEventListener('input',e=>{if(e.target.closest('#nudgeForm'))nudgeDirty=true;});
+document.addEventListener('submit',async e=>{
+ const f=e.target;if(f.id!=='nudgeForm')return;
+ e.preventDefault();if(!isAdmin())return;
+ const st=$('nudgeStatus');
+ if(!nudgeReady){st.textContent='Run SQL 8 in Supabase first.';return;}
+ const time=/^\d{2}:\d{2}$/.test(f.time.value)?f.time.value:'10:30';
+ let tz='America/Chicago';try{tz=Intl.DateTimeFormat().resolvedOptions().timeZone||tz;}catch(_){}
+ st.textContent='Saving…';
+ try{
+  const {data,error}=await sb.from('admin_prefs').update({nudge_on:f.on.checked,nudge_time:time,nudge_weekends:f.weekends.checked,nudge_tz:tz}).eq('id',1).select('nudge_on');
+  if(error||!data?.length){st.textContent='Not saved: '+(error?.message||'no row returned.');return;}
+  nudgeDirty=false;
+  st.textContent=f.on.checked?`Saved. If nothing is started by ${fmtTime12(time)}${f.weekends.checked?'':' on weekdays'}, your phone gets one nudge.`:'Saved. The nudge is off.';
+ }catch(err){st.textContent='Not saved: '+(err.message||'unknown error');}
+});
+function fmtTime12(hm){const [h,m]=hm.split(':').map(Number);return `${(h%12)||12}:${String(m).padStart(2,'0')} ${h<12?'AM':'PM'}`;}
+document.addEventListener('click',async e=>{
+ if(e.target.id!=='nudgeTest'||!isAdmin())return;
+ const st=$('nudgeStatus');
+ if(!nudgeReady){st.textContent='Run SQL 8 in Supabase first.';return;}
+ e.target.disabled=true;st.textContent='Sending…';
+ try{
+  const {data,error}=await sb.rpc('signix_test_nudge');
+  st.textContent=error?'Not sent: '+error.message:`Sent to your phone: "${data}"`;
+ }catch(err){st.textContent='Not sent: '+(err.message||'unknown error');}
+ finally{e.target.disabled=false;}
+});
 
 /* ---------- Admin: manage clients ---------- */
 function brandFileHtml(c,col,label,field,removeName){
