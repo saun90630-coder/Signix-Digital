@@ -321,10 +321,10 @@ body.no-anim-req .request-zone:not([open]) .req-icon,body.no-anim-req .pv-reques
 .menu-item:hover,.menu-item:focus-visible{background:#22324d}
 .menu-item.current{background:#1d2c45;box-shadow:inset 0 0 0 1px #3975db}
 .menu-title{font-size:11px;color:#9fb0c7;text-transform:uppercase;letter-spacing:.05em;padding:4px 8px}
-/* ===== END OF PART 1 of 12 ===== */
 .menu-due{padding:4px 6px}
 .menu-due .row{justify-content:flex-start}
 
+/* ===== END OF PART 1 of 13 ===== */
 /* Collapsible panels */
 details.fold>summary{cursor:pointer;list-style:none;display:flex;align-items:center;justify-content:space-between;gap:10px;font-size:18px;font-weight:700}
 details.fold>summary::-webkit-details-marker{display:none}
@@ -581,7 +581,7 @@ body.no-anim-req .add-zone .req-icon,body.no-anim-req .add-zone::before{animatio
    To add or tweak a layout, only touch its own block.
    ===================================================================== */
 body.is-mobile main{padding:10px}
-body.is-mobile header{padding:10px 12px}
+body.is-mobile>header{padding:10px 12px}
 body.is-mobile h1{font-size:18px}
 body.is-mobile .header-actions{gap:6px}
 body.is-mobile .header-actions button{padding:8px 10px;font-size:13px;white-space:nowrap}
@@ -673,9 +673,9 @@ body.is-mobile #popOutBtn{display:none}
  .tasks-only header{padding:10px 14px}
 .tasks-only #mainNav,.tasks-only #addTaskPanel,.tasks-only .admin-tools,.tasks-only #popOutBtn,.tasks-only #ipOutBtn{display:none!important}
 .ip-only #admin>.stats,.ip-only #snapshot,.ip-only #viewTool{display:none!important}
-/* ===== END OF PART 2 of 12 ===== */
 .ip-only #tasksPanel{border-color:color-mix(in srgb,var(--ip) 70%,transparent);box-shadow:0 0 0 1px color-mix(in srgb,var(--ip) 25%,transparent),0 0 30px color-mix(in srgb,var(--ip) 18%,transparent)}
 .ip-only #tasksTitle{color:color-mix(in srgb,var(--ip) 35%,#fff)}
+/* ===== END OF PART 2 of 13 ===== */
 .ip-btn{border-color:color-mix(in srgb,var(--ip) 70%,transparent);color:color-mix(in srgb,var(--ip) 35%,#fff);background:color-mix(in srgb,var(--ip) 12%,transparent)}
 .panel-btns{display:flex;gap:8px;flex-wrap:wrap}
 body:not(.is-mobile) #clientLayoutTool{display:none}
@@ -804,10 +804,10 @@ body.mk-shake.mk-outline .tcard.has-new.shake-now{animation:card-shake .75s ease
 body.has-shell #mainNav{display:none!important}
 body.has-shell #changePwBtn,body.has-shell #logout{display:none!important}
 body.has-shell .side-nav{display:flex;flex-direction:column;gap:3px;position:fixed;left:0;top:0;bottom:0;width:224px;box-sizing:border-box;padding:18px 12px;background:#0a1322;border-right:1px solid #1c2a40;z-index:40;overflow-y:auto}
-body.has-shell header,body.has-shell main{margin-left:224px}
+body.has-shell>header,body.has-shell main{margin-left:224px}
 body.has-shell main{max-width:none;padding:20px 28px 40px}
-body.has-shell header h1,body.has-shell header small{display:none}
-body.has-shell header{justify-content:flex-end;background:#08101c;padding:12px 28px;position:sticky;top:0;z-index:30}
+body.has-shell>header h1,body.has-shell>header small{display:none}
+body.has-shell>header{justify-content:flex-end;background:#08101c;padding:12px 28px;position:sticky;top:0;z-index:30}
 .sn-brand{display:flex;align-items:center;gap:10px;padding:4px 8px 18px}
 .sn-logo{width:34px;height:34px;border-radius:10px;background:#3975db;display:grid;place-items:center;font-weight:800;font-size:14px;color:#fff;flex:0 0 34px}
 .sn-brand strong{display:block;font-size:15px}
@@ -835,9 +835,9 @@ body.has-shell #gearBtn{display:none}
 @media (max-width:900px){
  body.has-shell .side-nav{display:none}
  body.has-shell .tab-bar{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));align-items:center;position:fixed;left:0;right:0;bottom:0;z-index:40;box-sizing:border-box;padding:6px 8px calc(8px + env(safe-area-inset-bottom));background:#0a1322;border-top:1px solid #1c2a40}
- body.has-shell header,body.has-shell main{margin-left:0}
+ body.has-shell>header,body.has-shell main{margin-left:0}
  body.has-shell main{padding:12px 12px 100px}
- body.has-shell header{padding:10px 12px}
+ body.has-shell>header{padding:10px 12px}
  body.has-shell #gearBtn{display:inline-grid}
  body.has-shell .bulk-bar{bottom:calc(88px + env(safe-area-inset-bottom))}
 }
@@ -1010,10 +1010,10 @@ button.danger,.ask-btns .danger{background:#b91c1c;border-color:#ef4444;color:#f
 .cp-tabs>button{position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;border:0;background:transparent;color:#9fb0c7;font-size:12px;padding:6px 0;min-height:52px;border-radius:12px}
 .cp-tabs>button svg{width:22px;height:22px}
 .cp-tabs>button[aria-current="page"]{color:#fff;font-weight:700;background:#16233a}
-/* ===== END OF PART 3 of 12 ===== */
 .cp-tabs .cpt-act{justify-self:center;width:56px;height:56px;min-height:0;border-radius:50%;background:var(--brand,#3975db);color:var(--brand-text,#fff);box-shadow:0 6px 18px var(--brand-glow,rgba(57,117,219,.5));padding:0}
 .cp-tabs .cpt-act svg{width:26px;height:26px}
 .cp-tabs .cpt-act .cpt-lbl{display:none}
+/* ===== END OF PART 3 of 13 ===== */
 .cpt-badge{position:absolute;top:4px;left:calc(50% + 8px);font-size:10px;font-weight:800;padding:1px 5px;border-radius:999px;background:var(--mk,#f59e0b);color:var(--mk-t,#1a1204);font-style:normal}
 .cpt-badge:empty{display:none}
 @media (min-width:701px){
@@ -1195,11 +1195,133 @@ button.danger,.ask-btns .danger{background:#b91c1c;border-color:#ef4444;color:#f
 .lg-msg:empty{display:none}
 .lg-msg.err{color:#fecaca}
 @media (max-width:700px){
- body.portal-on header .header-actions button{padding:8px 10px;font-size:13px}
- body.portal-on header{padding:10px 12px}
+ body.portal-on>header .header-actions button{padding:8px 10px;font-size:13px}
+ body.portal-on>header{padding:10px 12px}
  .cp-tabs>button span{white-space:nowrap;font-size:11.5px}
 }
 .sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+/* ===== Version 11 ===== */
+/* Section titles scroll with the page (no more sticking over the top bar) */
+.layout-stack .group-head{position:static}
+body.has-shell>header{z-index:45}
+/* Buttons press in when tapped */
+button,.cj-row,.cm-row,.cp-act,.pchip span,.pp span,.snap{transition:transform .12s ease,filter .12s ease,background-color .15s,box-shadow .15s}
+button:not(:disabled):active,.cj-row:active,.cm-row:active,.cp-act:active,.snap:active{transform:scale(.96)}
+.pchip:active span,.pp:active span{transform:scale(.94)}
+/* Colored people buttons */
+.pchips{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 14px}
+.pchip{position:relative;margin:0}
+.pchip input{position:absolute;opacity:0;width:1px;height:1px;pointer-events:none}
+.pchip span,button.pchip{display:inline-flex;align-items:center;gap:8px;min-height:42px;padding:8px 14px;border-radius:999px;border:2px solid color-mix(in srgb,var(--pc,#64748b) 70%,transparent);background:color-mix(in srgb,var(--pc,#64748b) 12%,#0b1525);color:#fff;font-weight:700;font-size:14px;cursor:pointer}
+.pchip span::before,button.pchip::before{content:"";width:10px;height:10px;border-radius:50%;background:var(--pc,#64748b);box-shadow:0 0 8px var(--pc,#64748b)}
+.pchip input:checked+span,button.pchip[aria-pressed="true"]{background:var(--pc,#64748b);color:var(--pc-t,#fff);box-shadow:0 0 16px color-mix(in srgb,var(--pc,#64748b) 60%,transparent)}
+.pchip input:checked+span::before,button.pchip[aria-pressed="true"]::before{background:var(--pc-t,#fff);box-shadow:none}
+.pchip input:focus-visible+span{outline:2px solid #90baff;outline-offset:2px}
+.pchips-lbl{display:block;color:#cbd5e1;font-size:14px;margin:4px 0 8px;font-weight:600}
+.pick-box{border:1px solid #33445e;border-radius:14px;padding:12px;margin:4px 0 14px;background:#0b1525}
+.pick-box .pchips{margin:0}
+.who-dot{display:inline-block;width:9px;height:9px;border-radius:50%;background:var(--pc);margin-right:5px;vertical-align:middle;box-shadow:0 0 6px var(--pc)}
+/* Client jobs: status colors, In progress glow, New badges, slide-in */
+.cj-row{position:relative;box-shadow:inset 4px 0 0 var(--sc,var(--todo))}
+.cj-row.st-incoming{--sc:var(--inc)}
+.cj-row.st-in-progress{--sc:var(--ip);background:linear-gradient(90deg,color-mix(in srgb,var(--ip) 16%,transparent),transparent 65%);overflow:hidden}
+.cj-row.st-waiting-on-client{--sc:var(--wait);background:linear-gradient(90deg,color-mix(in srgb,var(--wait) 12%,transparent),transparent 60%)}
+.cj-row.st-completed{--sc:var(--dn)}
+.cj-row.st-in-progress .cj-dot{animation:ip-dot 1.6s ease-in-out infinite}
+.cj-row.st-in-progress::after{content:"";position:absolute;top:0;bottom:0;left:-40%;width:35%;background:linear-gradient(90deg,transparent,color-mix(in srgb,var(--ip) 22%,transparent),transparent);animation:ip-sweep 3.2s ease-in-out infinite;pointer-events:none}
+.cp-sec.active .list-card{border-color:color-mix(in srgb,var(--ip) 55%,#22324b);box-shadow:0 0 0 1px color-mix(in srgb,var(--ip) 25%,transparent),0 0 22px color-mix(in srgb,var(--ip) 18%,transparent);animation:ip-card 3s ease-in-out infinite}
+.cp-sec.active>h3{color:color-mix(in srgb,var(--ip) 55%,#fff)}
+.cp-sec.active>h3::before{content:"";display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--ip);margin-right:8px;vertical-align:middle;animation:ip-dot 1.6s ease-in-out infinite}
+@keyframes ip-dot{0%,100%{box-shadow:0 0 0 0 color-mix(in srgb,var(--ip) 70%,transparent)}50%{box-shadow:0 0 0 7px transparent}}
+@keyframes ip-sweep{0%{left:-40%}60%,100%{left:110%}}
+@keyframes ip-card{0%,100%{box-shadow:0 0 0 1px color-mix(in srgb,var(--ip) 25%,transparent),0 0 14px color-mix(in srgb,var(--ip) 12%,transparent)}50%{box-shadow:0 0 0 1px color-mix(in srgb,var(--ip) 45%,transparent),0 0 26px color-mix(in srgb,var(--ip) 28%,transparent)}}
+.cj-row .need-tag.act,.cm-row.is-new strong::after{animation:new-pop 2.4s ease-in-out infinite}
+@keyframes new-pop{0%,100%{transform:scale(1)}8%{transform:scale(1.14)}16%{transform:scale(1)}}
+.cp-anim .cj-row,.cp-anim .cm-row,.cp-anim .cf-tile,.cp-anim .cp-act,.cp-anim .call-steps,.cp-anim .since-card,.cp-anim .pchips,.cp-anim .cp-sec>h3,.cp-anim .cth-msg,.cp-anim .cjob-head,.cl-anim .cb-row,.cl-anim .log-entry{animation:slide-in .38s cubic-bezier(.2,.8,.2,1) both;animation-delay:calc(min(var(--i,0),12) * 45ms)}
+@keyframes slide-in{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+/* Checkmark pop-up after sending */
+.done-pop{position:fixed;inset:0;z-index:96;display:grid;place-items:center;background:rgba(3,7,15,.45);pointer-events:none;animation:dp-fade 1.6s ease forwards}
+.done-pop .dp-card{display:flex;flex-direction:column;align-items:center;gap:12px;padding:26px 30px;border-radius:22px;background:#0f1a2b;border:1px solid #22c55e;box-shadow:0 20px 60px rgba(0,0,0,.6),0 0 40px rgba(34,197,94,.25);animation:dp-pop .45s cubic-bezier(.2,1.4,.4,1) both;max-width:80vw;text-align:center}
+.done-pop svg{width:76px;height:76px}
+.done-pop circle{stroke:#22c55e;stroke-width:4;fill:rgba(34,197,94,.12);stroke-dasharray:240;stroke-dashoffset:240;animation:dp-draw .5s ease forwards}
+.done-pop path{stroke:#22c55e;stroke-width:6;fill:none;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:60;stroke-dashoffset:60;animation:dp-draw .35s .35s ease forwards}
+.done-pop strong{font-size:19px;color:#fff}
+@keyframes dp-draw{to{stroke-dashoffset:0}}
+@keyframes dp-pop{from{transform:scale(.6);opacity:0}to{transform:none;opacity:1}}
+@keyframes dp-fade{0%,80%{opacity:1}100%{opacity:0}}
+/* Big "Sam will call you soon" screen */
+.call-screen{position:fixed;inset:0;z-index:92;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px;padding:24px;text-align:center;background:radial-gradient(circle at 50% 40%,#0f3a22,#060b14 65%);animation:cs-in .35s ease both}
+.call-screen h2{margin:0;font-size:28px}
+.call-screen p{margin:0;color:#cbd5e1;font-size:16px;max-width:420px;line-height:1.5}
+.cs-phone{position:relative;width:120px;height:120px;border-radius:50%;background:#22c55e;color:#04210f;display:grid;place-items:center;box-shadow:0 0 40px rgba(34,197,94,.6)}
+.cs-phone svg{width:54px;height:54px;animation:ring 1.6s ease-in-out infinite}
+.cs-phone::before,.cs-phone::after{content:"";position:absolute;inset:0;border-radius:50%;border:3px solid #22c55e;animation:cs-ring 2s ease-out infinite}
+.cs-phone::after{animation-delay:1s}
+.call-screen button{min-width:200px;min-height:50px;font-size:17px;font-weight:700;border-radius:999px;background:#22c55e;border-color:#22c55e;color:#04210f}
+@keyframes cs-ring{from{transform:scale(1);opacity:.9}to{transform:scale(1.9);opacity:0}}
+@keyframes cs-in{from{opacity:0}to{opacity:1}}
+@keyframes ring{0%,40%,100%{transform:rotate(0)}5%,15%,25%{transform:rotate(-14deg)}10%,20%,30%{transform:rotate(14deg)}}
+/* Client call status card: Sent / Seen / Called */
+.call-steps{padding:16px;border-radius:16px;margin:0 0 18px;border:2px solid #22c55e;background:linear-gradient(135deg,rgba(34,197,94,.2),#0a1220 80%);position:relative}
+.call-steps .cs-top{display:flex;align-items:center;gap:12px;margin-bottom:12px}
+.call-steps .cs-top strong{display:block;font-size:18px}
+.call-steps .cs-top small{display:block;color:#cbd5e1;font-size:13px;margin-top:2px}
+.call-steps .ca-ic{background:#22c55e;color:#04210f}
+.call-steps.open .ca-ic svg{animation:ring 2.4s ease-in-out infinite}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;list-style:none;margin:0;padding:0;counter-reset:s}
+.steps li{position:relative;text-align:center;font-size:13px;color:#9fb0c7;padding-top:30px}
+.steps li::before{content:"";position:absolute;top:0;left:50%;transform:translateX(-50%);width:22px;height:22px;border-radius:50%;border:2px solid #40516b;background:#0b1525;z-index:1}
+.steps li::after{content:"";position:absolute;top:10px;left:-50%;width:100%;height:3px;background:#2c3c54}
+.steps li:first-child::after{display:none}
+.steps li.on{color:#fff;font-weight:700}
+.steps li.on::before{background:#22c55e;border-color:#22c55e;box-shadow:0 0 12px rgba(34,197,94,.7)}
+.steps li.on::after{background:#22c55e}
+.steps li.on .tick{position:absolute;top:2px;left:50%;transform:translateX(-50%);z-index:2;color:#04210f;font-size:13px;font-weight:900}
+.steps li.now::before{animation:ip-dot 1.6s ease-in-out infinite;--ip:#22c55e;border-color:#22c55e}
+.steps small{display:block;font-weight:400;color:#9fb0c7;font-size:11px;margin-top:2px}
+.call-steps .modal-x{position:absolute;top:6px;right:4px}
+.cp-act.call .ca-ic svg{animation:ring 3.5s ease-in-out infinite}
+/* Admin: Call back list that pulses, with a timer */
+.cb-row{animation:cb-pulse 2.2s ease-in-out infinite}
+@keyframes cb-pulse{0%,100%{box-shadow:0 0 0 0 rgba(34,197,94,.0)}50%{box-shadow:0 0 0 1px rgba(34,197,94,.5),0 0 22px rgba(34,197,94,.3)}}
+.cb-row.w-1h{border-color:rgba(249,115,22,.75);background:linear-gradient(135deg,rgba(249,115,22,.16),#0f1a2b 60%);animation-name:cb-pulse-o}
+.cb-row.w-3h{border-color:rgba(239,68,68,.85);background:linear-gradient(135deg,rgba(239,68,68,.2),#0f1a2b 60%);animation-name:cb-pulse-r}
+@keyframes cb-pulse-o{0%,100%{box-shadow:none}50%{box-shadow:0 0 0 1px rgba(249,115,22,.6),0 0 22px rgba(249,115,22,.35)}}
+@keyframes cb-pulse-r{0%,100%{box-shadow:none}50%{box-shadow:0 0 0 1px rgba(239,68,68,.7),0 0 26px rgba(239,68,68,.45)}}
+.cb-wait{font-weight:800;padding:4px 10px;border-radius:999px;background:rgba(34,197,94,.18);color:#bbf7d0}
+.cb-row.w-1h .cb-wait{background:#f97316;color:#1a0b00}
+.cb-row.w-3h .cb-wait{background:#ef4444;color:#fff}
+.calls-head{display:flex;align-items:center;gap:8px}
+.calls-head svg{width:18px;height:18px;color:#fca5a5;animation:ring 2s ease-in-out infinite}
+.cb-task{background:#3975db;border:1px solid #3975db;color:#fff}
+.seen-tag{font-size:11px;color:#9fb0c7}
+@media (prefers-reduced-motion:reduce){.cb-row,.cj-row.st-in-progress .cj-dot,.cj-row.st-in-progress::after,.cp-sec.active .list-card,.cs-phone svg,.cs-phone::before,.cs-phone::after,.cp-act.call .ca-ic svg,.call-steps.open .ca-ic svg,.calls-head svg,.cj-row .need-tag.act{animation:none!important}}
+/* Call log */
+.log-tabs{display:flex;gap:6px;margin:0 0 14px;flex-wrap:wrap}
+.log-tabs button[aria-current="page"]{background:#3975db;border-color:#3975db}
+.log-filters{display:flex;gap:10px;flex-wrap:wrap;margin:0 0 14px;align-items:center}
+.log-entry{--biz:#64748b;padding:14px;border-radius:14px;background:#0f1a2b;border:1px solid #22324b;border-left:4px solid var(--biz);margin:0 0 10px;display:flex;flex-direction:column;gap:8px}
+.log-entry.open{border-color:rgba(34,197,94,.6);border-left-color:#22c55e}
+.le-top{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.le-top strong{font-size:15px}
+.le-state{margin-left:auto;font-size:11px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;padding:3px 9px;border-radius:999px;background:#22c55e;color:#04210f}
+.le-state.wait{background:#f97316;color:#1a0b00}
+.le-time{display:grid;gap:3px;font-size:13px;color:#cbd5e1;padding:8px 10px;border-radius:10px;background:#0b1525;border:1px solid #1c2a40}
+.le-time b{color:#fff;font-weight:600}
+.le-note{margin:0;font-size:14px;white-space:pre-wrap;overflow-wrap:anywhere}
+.le-actions{display:flex;gap:8px;flex-wrap:wrap}
+.le-actions button,.le-actions a{min-height:36px;padding:6px 12px;font-size:13px;border-radius:999px}
+.ask-input{width:100%;margin:10px 0 0;min-height:70px}
+/* Tasks: business row right above the task sections */
+#tasksPanel .snapshot{margin:6px 0 12px}
+.snap-all{border-color:#40516b}
+.snap[aria-pressed="true"]{outline:none;background:var(--biz,#3975db);border-color:var(--biz,#3975db);box-shadow:0 0 0 2px color-mix(in srgb,var(--biz,#3975db) 45%,transparent),0 0 18px color-mix(in srgb,var(--biz,#3975db) 45%,transparent)}
+.snap[aria-pressed="true"] strong,.snap[aria-pressed="true"]{color:#fff}
+.snap-all[aria-pressed="true"]{--biz:#3975db}
+@media (min-width:701px){#tasksPanel .snapshot{flex-wrap:wrap;overflow:visible}}
+.quick-layouts{display:none;margin:4px 0 8px;width:max-content;max-width:100%}
+body.is-mobile .quick-layouts{display:flex}
+.cp-ipcard{border-color:color-mix(in srgb,var(--ip) 55%,#22324b);box-shadow:0 0 0 1px color-mix(in srgb,var(--ip) 25%,transparent),0 0 22px color-mix(in srgb,var(--ip) 18%,transparent);animation:ip-card 3s ease-in-out infinite}
 </style>
 </head>
 <body>
@@ -1212,7 +1334,7 @@ button.danger,.ask-btns .danger{background:#b91c1c;border-color:#ef4444;color:#f
 <div class="header-actions">
 <a id="fullLink" class="hidden" href="./">Full dashboard</a>
 <button type="button" id="needsBtn" class="needs-pill hidden">Needs me</button>
-<button type="button" id="gearBtn" class="icon-btn hidden" aria-label="Settings"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M4.9 19.1L7 17M17 7l2.1-2.1"/></svg></button>
+<button type="button" id="gearBtn" class="icon-btn hidden" aria-label="Settings"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg></button>
 <button id="changePwBtn" class="hidden" type="button" aria-expanded="false" aria-controls="changePwPanel" data-i18n="Change password">Change password</button>
 <button id="logout" class="hidden" data-i18n="Log out">Log out</button>
 </div>
@@ -1247,6 +1369,7 @@ button.danger,.ask-btns .danger{background:#b91c1c;border-color:#ef4444;color:#f
 
 <section id="auth" class="panel">
 <div class="auth-lang"><div class="lang-sw" role="group" aria-label="Language / Idioma"><button type="button" data-lang="en" aria-pressed="true">EN</button><button type="button" data-lang="es" aria-pressed="false">ES</button></div></div>
+<!-- ===== END OF PART 4 of 13 ===== -->
 <h2 id="authTitle" data-key="Sign in">Sign in</h2>
 
 <form id="loginForm" novalidate>
@@ -1307,11 +1430,12 @@ button.danger,.ask-btns .danger{background:#b91c1c;border-color:#ef4444;color:#f
 <button type="button" class="sn-item" data-go="tasks"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M8 10l2 2 4-4"/><path d="M8 16h8"/></svg>Tasks<span class="sn-count" id="snTasks"></span></button>
 <button type="button" class="sn-item" data-go="clients"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0"/><path d="M16 4.5a3.5 3.5 0 0 1 0 7"/><path d="M18 14.5a6.5 6.5 0 0 1 3.5 5.5"/></svg>Clients<span class="sn-count" id="snClients"></span></button>
 <button type="button" class="sn-item" data-go="activity"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12h4l3-8 4 16 3-8h4"/></svg>Activity</button>
+<button type="button" class="sn-item" data-go="calls"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg>Call log<b class="sn-badge" id="snCalls"></b></button>
 <div class="sn-sep"></div>
 <button type="button" class="sn-item" data-go="portal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg>Client portal preview</button>
 <div class="sn-fill"></div>
 <button type="button" class="sn-new" data-go="new"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>New task</button>
-<button type="button" class="sn-item" data-go="settings"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M4.9 19.1L7 17M17 7l2.1-2.1"/></svg>Settings</button>
+<button type="button" class="sn-item" data-go="settings"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>Settings</button>
 </nav>
 <nav id="tabBar" class="tab-bar" aria-label="Main">
 <button type="button" class="tb-home" data-go="home"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 11l9-7 9 7"/><path d="M5 10v10h14V10"/></svg><b class="tb-badge" id="tbNeeds"></b>Home</button>
@@ -1350,7 +1474,6 @@ button.danger,.ask-btns .danger{background:#b91c1c;border-color:#ef4444;color:#f
 </section>
 
 <section id="areaTasks" class="area hidden" data-area="tasks">
-<div id="snapshot" class="snapshot" aria-label="Business snapshot"></div>
 <div id="quickFilters" class="quick-row" role="group" aria-label="Quick filters"></div>
 <details id="addTaskPanel" class="panel fold add-zone">
 <summary><span class="req-head"><span class="req-icon" aria-hidden="true">+</span><span>Add a task<span class="req-sub">Pick the business, describe the work, attach files</span></span></span></summary>
@@ -1380,9 +1503,7 @@ button.danger,.ask-btns .danger{background:#b91c1c;border-color:#ef4444;color:#f
 <label>Due date (optional)
 <input type="date" name="due">
 </label>
-<label id="addAssignWrap" class="hidden">Who should look at it
-<select name="assign" id="addAssign"></select>
-</label>
+<div id="addAssignWrap" class="pick-box hidden"><span class="pchips-lbl">Who should look at it</span><div id="addAssign" class="pchips" role="radiogroup" aria-label="Who should look at it"></div></div>
 <div class="az-step"><b>4</b>Attachments (optional)</div>
 <span class="muted" style="font-size:13px">Up to 10 files, 50 MB each. The client will see them.</span>
 <div class="attach-row">
@@ -1406,12 +1527,13 @@ button.danger,.ask-btns .danger{background:#b91c1c;border-color:#ef4444;color:#f
 <div class="search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg><input type="search" id="taskSearch" placeholder="Search tasks or businesses" aria-label="Search tasks" autocomplete="off"><button type="button" id="searchClear" class="hidden" aria-label="Clear search">×</button></div>
 <div class="tool" id="viewTool"><span class="tool-label">View</span><div class="chips" id="adminViews"></div></div>
 <div class="tool"><span class="tool-label">Layout</span><div class="chips" id="adminLayouts"></div></div>
-<select id="bizFilter" aria-label="Filter by business"><option value="">All businesses</option></select>
+<select id="bizFilter" class="hidden" aria-hidden="true" tabindex="-1"><option value="">All businesses</option></select>
 <button type="button" class="tbtn" id="densityBtn" aria-pressed="true" title="Collapse completed tasks into thin lines">Quiet done</button>
-<!-- ===== END OF PART 4 of 12 ===== -->
 <button type="button" class="tbtn" id="selectBtn" aria-pressed="false" title="Select several tasks to change at once">Select</button>
 </div>
+<div id="quickLayouts" class="chips quick-layouts" role="group" aria-label="Layout"></div>
 <p id="searchNote" class="search-note hidden"></p>
+<div id="snapshot" class="snapshot" role="group" aria-label="Show tasks for"></div>
 <div id="adminBoard" class="board"></div>
 </section>
 
@@ -1423,7 +1545,14 @@ button.danger,.ask-btns .danger{background:#b91c1c;border-color:#ef4444;color:#f
 
 <section id="areaActivity" class="area hidden" data-area="activity">
 <h1 class="area-title">Activity</h1>
+<div class="log-tabs"><button type="button" data-go="activity">Activity</button><button type="button" data-go="calls">Call log</button></div>
 <div id="activityFeed"></div>
+</section>
+<section id="areaCalls" class="area hidden" data-area="calls">
+<h1 class="area-title">Call log</h1>
+<div class="log-tabs"><button type="button" data-go="activity">Activity</button><button type="button" data-go="calls">Call log</button></div>
+<p class="muted" style="margin-top:0">Every call request, kept for good. Nothing here can be deleted.</p>
+<div id="callLog"></div>
 </section>
 
 <section id="areaSettings" class="area hidden" data-area="settings">
@@ -1619,20 +1748,15 @@ button.danger,.ask-btns .danger{background:#b91c1c;border-color:#ef4444;color:#f
 <label><span data-i18n="Details">Details</span>
 <textarea name="description" maxlength="2000" data-i18n-ph="Sizes, colors, location, anything we should know" placeholder="Sizes, colors, location, anything we should know"></textarea>
 </label>
-<div class="grid2">
-<label><span data-i18n="Priority">Priority</span>
-<select name="priority">
-<option value="Low" data-i18n="Low">Low</option>
-<option value="Medium" selected data-i18n="Medium">Medium</option>
-<option value="High" data-i18n="High">High</option>
-</select>
-</label>
+<div id="reqAssignWrap" class="pick-box hidden"><span class="pchips-lbl" data-i18n="Who is this for">Who is this for</span><div id="reqAssign" class="pchips" role="radiogroup" aria-label="Who is this for"></div></div>
+<span class="pchips-lbl" data-i18n="Priority">Priority</span>
+<div class="prio-pick" role="radiogroup" aria-label="Priority">
+<label class="pp pp-low"><input type="radio" name="priority" value="Low"><span data-i18n="Low">Low</span></label>
+<label class="pp pp-medium"><input type="radio" name="priority" value="Medium" checked><span data-i18n="Medium">Medium</span></label>
+<label class="pp pp-high"><input type="radio" name="priority" value="High"><span data-i18n="High">High</span></label>
+</div>
 <label><span data-i18n="Deadline (optional)">Deadline (optional)</span>
 <input type="date" name="due" id="requestDue">
-</label>
-</div>
-<label id="reqAssignWrap" class="hidden"><span data-i18n="Who is this for">Who is this for</span>
-<select name="assign" id="reqAssign"></select>
 </label>
 <span class="muted" style="font-size:14px" data-i18n="Attachments (optional, up to 10 files, 50 MB each)">Attachments (optional, up to 10 files, 50 MB each)</span>
 <div class="attach-row">
@@ -1661,6 +1785,7 @@ button.danger,.ask-btns .danger{background:#b91c1c;border-color:#ef4444;color:#f
 <label><input type="radio" name="reason" value="job_question"><span data-i18n="Question about a job">Question about a job</span></label>
 <label><input type="radio" name="reason" value="urgent"><span data-i18n="Urgent">Urgent</span></label>
 <label><input type="radio" name="reason" value="billing"><span data-i18n="Billing">Billing</span></label>
+<!-- ===== END OF PART 5 of 13 ===== -->
 <label><input type="radio" name="reason" value="other"><span data-i18n="Other">Other</span></label>
 </div>
 </fieldset>
@@ -1693,6 +1818,7 @@ button.danger,.ask-btns .danger{background:#b91c1c;border-color:#ef4444;color:#f
 <div class="modal-body">
 <h3 id="askTitle"></h3>
 <p id="askBody" class="muted"></p>
+<textarea id="askInput" class="ask-input hidden" maxlength="1000" aria-label="Note"></textarea>
 <div class="ask-btns"><button type="button" id="askNo">Cancel</button><button type="button" id="askYes" class="primary">Confirm</button></div>
 </div>
 </div>
@@ -1791,7 +1917,10 @@ const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({
 
 /* Spanish text for the client portal (English is the key) */
 const ES={
-'Home':'Inicio','Task Management':'Portal de clientes','My jobs':'Mis trabajos','Messages':'Mensajes','Files':'Archivos',
+'Home':'Inicio','Call request':'Solicitud de llamada','Got it':'Entendido','Need anything else? You can ask again any time.':'¿Necesitas algo más? Puedes pedir otra llamada cuando quieras.',
+'Request sent':'Solicitud enviada','Sam called you':'Sam te llamó','Sam saw your request':'Sam ya vio tu solicitud','Show jobs for':'Ver trabajos de',
+'You can edit it for the next 3 minutes.':'Puedes editarla durante los próximos 3 minutos.','Your request is in. You can follow it on Home: Sent, Seen, Called.':'Tu solicitud llegó. Puedes seguirla en Inicio: Enviada, Vista, Llamada.',
+'Sent':'Enviada','Seen':'Vista','Called':'Llamada','Task Management':'Portal de clientes','My jobs':'Mis trabajos','Messages':'Mensajes','Files':'Archivos',
 'Add a task':'Agregar tarea','Request a call':'Pedir una llamada',
 'Tell us what to do. Add photos, videos or a voice note.':'Dinos qué hacer. Agrega fotos, videos o una nota de voz.',
 'Rather talk? Sam calls you back.':'¿Prefieres hablar? Sam te devuelve la llamada.',
@@ -1889,7 +2018,6 @@ const ES={
 'This account is not linked to a business yet. Please contact Signix Digital.':'Esta cuenta todavía no está conectada a un negocio. Comunícate con Signix Digital.',
 'This portal is not active right now. Please contact Signix Digital.':'Este portal no está activo por ahora. Comunícate con Signix Digital.'
 };
-// ===== END OF PART 5 of 12 =====
 /* ---------- Language: the client portal in English or Spanish ---------- */
 let lang='en',clientLang='en';
 try{if(localStorage.getItem('signix-lang')==='es')clientLang='es';}catch(e){}
@@ -1953,7 +2081,12 @@ function buildChips(id,items,current,onPick){
  });
 }
 function buildLayoutChips(){
- if(mobile)buildChips('adminLayouts',MOBILE_LAYOUTS,adminMobileLayout(),v=>{setPref('admin','mlayout',v);mOpen.clear();renderAdmin();});
+ if(mobile){
+  const quick=['stack','grid2','grid3'];
+  const pick=v=>{setPref('admin','mlayout',v);mOpen.clear();buildLayoutChips();renderAdmin();};
+  buildChips('quickLayouts',MOBILE_LAYOUTS.filter(l=>quick.includes(l[0])),adminMobileLayout(),pick);
+  buildChips('adminLayouts',MOBILE_LAYOUTS.filter(l=>!quick.includes(l[0])),adminMobileLayout(),pick);
+ }
  else buildChips('adminLayouts',LAYOUTS,adminLayout(),v=>{setPref('admin','layout',v);renderAdmin();});
 }
 function applyMobile(){
@@ -2022,7 +2155,7 @@ function clearState(){
  for(const k in CAL)CAL[k]={focus:null,day:null,anchor:null};
  [selected,expandedDone,mOpen].forEach(s=>s.clear());
  closeNotes(true);closeJob(true);show('taskSheet',false);show('callSheet',false);if(askResolve)askDone(false);
- calls=[];callsReady=false;callFilesList=[];callUrls={};archivedClients=[];cpTab='home';cpJobId=null;sinceInfo=null;myDisplayName='';cpJobsFilter='all';cpMine=false;
+ calls=[];callsReady=false;callFilesList=[];callUrls={};callEvents=[];logBiz='';logState='all';cpAnimKey='';closeCallScreen();archivedClients=[];cpTab='home';cpJobId=null;sinceInfo=null;myDisplayName='';cpJobsFilter='all';cpMine=false;
  callFiles.stop(true);callFiles.clear();document.body.classList.remove('portal-on');
  for(const k in noteDrafts)delete noteDrafts[k];
  animSettings={...ANIM_DEFAULTS};animReady=false;applyAnimations(animSettings);
@@ -2057,6 +2190,7 @@ function formMsg(id,text,kind){
   requestAnimationFrame(()=>{try{el.scrollIntoView({block:'center',behavior:'smooth'});}catch(_){el.scrollIntoView();}});
  }
 }
+// ===== END OF PART 6 of 13 =====
 function clearAuthMsgs(){['loginMsg','requestMsg','resetMsg'].forEach(id=>formMsg(id,''));}
 function errText(error){
  const parts=[error?.message,error?.details,error?.hint].filter(Boolean);
@@ -2407,7 +2541,6 @@ function groupTasks(list,v,clientSide){
    return STATUSES.map(s=>g(statusClass(s),statusLabel(s,clientSide),list.filter(t=>normStatus(t)===s).sort(s==='Completed'?byCompleted:!clientSide&&AGE_STATUSES.includes(s)?agedFirst(byDue):byDue),{cls:statusClass(s),keep:true}));
  }
 }
-// ===== END OF PART 6 of 12 =====
 function emptyText(v){
  return ({
   business:'No tasks yet.',
@@ -2591,6 +2724,7 @@ ${(()=>{const pp=portalPeople(null);return pp.length>=2?`<label>Who is this for<
 
  
  
+// ===== END OF PART 7 of 13 =====
 /* ---------- Board rendering ---------- */
 function captureScroll(root){
  const groupsEl=root.querySelector('.groups');
@@ -2667,7 +2801,7 @@ function renderSnapshot(live){
  }).filter(r=>r.open).sort((a,b)=>b.od-a.od||b.open-a.open);
  if(!rows.length){root.innerHTML='';root.classList.add('hidden');return;}
  root.classList.remove('hidden');
- root.innerHTML=`<button type="button" class="snap snap-all" data-snap="" aria-pressed="${!biz}">All</button>`+rows.map(r=>`<button type="button" class="snap${r.od?' has-od':''}" data-snap="${esc(r.c.id)}" aria-pressed="${String(r.c.id)===biz}" style="--biz:${bizColor(r.c)}" title="Show only ${esc(r.c.Name||'')}">${bizLogo(r.c)}<span><strong>${esc(r.c.Name||'Client '+r.c.id)}</strong>${r.open} open${r.od?` · <span class="od">${r.od} overdue</span>`:''}${r.neu?` · ${r.neu} new`:''}</span></button>`).join('');
+ root.innerHTML=`<button type="button" class="snap snap-all" data-snap="" aria-pressed="${!biz}">All businesses</button>`+rows.map(r=>`<button type="button" class="snap${r.od?' has-od':''}" data-snap="${esc(r.c.id)}" aria-pressed="${String(r.c.id)===biz}" style="--biz:${bizColor(r.c)}" title="Show only ${esc(r.c.Name||'')}">${bizLogo(r.c)}<span><strong>${esc(r.c.Name||'Client '+r.c.id)}</strong>${r.open} open${r.od?` · <span class="od">${r.od} overdue</span>`:''}${r.neu?` · ${r.neu} new`:''}</span></button>`).join('');
 }
 function renderAdmin(){
  if(role!=='admin')return;
@@ -2702,6 +2836,7 @@ function renderAdmin(){
  if(ar==='home')renderHome(needs);
  else if(ar==='clients')renderClientsArea();
  else if(ar==='activity')renderActivity();
+ else if(ar==='calls'){const el=$('callLog');const first=!el.dataset.shown;el.dataset.shown='1';if(first){el.classList.add('cl-anim');setTimeout(()=>el.classList.remove('cl-anim'),900);}renderCallLog();}
 }
 
 /* ---------- Calendar (admin + client) ---------- */
@@ -2813,7 +2948,6 @@ function jumpTo(v,groupKey){
  if(el){el.classList.add('flash');setTimeout(()=>el.classList.remove('flash'),1800);}
  else if(groupKey)notice('Nothing in that list right now.');
 }
-// ===== END OF PART 7 of 12 =====
 $('openStat').onclick=()=>jumpTo('status',null);
 $('incomingStat').onclick=()=>jumpTo('status','st-incoming');
 $('overdueStat').onclick=()=>jumpTo('deadline','due-overdue');
@@ -3126,6 +3260,7 @@ function onBoardClick(e){
  else if(act==='due')openMenu(b,dueMenu(t),{taskId:t.id});
  else if(act==='tag')openMenu(b,tagMenu(t),{taskId:t.id});
 }
+// ===== END OF PART 8 of 13 =====
 function onBoardKey(e){
  if((e.key==='Enter'||e.key===' ')&&e.target.matches?.('[data-act="expand-done"],[data-calday]')){e.preventDefault();e.target.click();}
 }
@@ -3208,6 +3343,7 @@ $('noteForm').onsubmit=async e=>{
   noteFiles.clear();
   if(nFiles)await loadAttachments();
   render();
+  if(role==='client'&&!failed.length)doneCheck(tr('Message sent.'));
   noteSay(failed.length?(role==='client'?tr('Message sent, but {n} file(s) did not upload:',{n:failed.length}):`Note saved, but ${failed.length} file(s) did not upload:`)+'\n'+failed.join('\n'):(role==='client'?tr('Message sent.'):'Note added.'));
  }catch(err){noteSay('Note was not added: '+(err.message||'unknown error'));}
  finally{button.disabled=false;}
@@ -3226,6 +3362,7 @@ const PHONE_SVG='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stro
 const CP_TABS=['home','jobs','messages','files'];
 const REASONS={new_project:'New project',job_question:'Question about a job',urgent:'Urgent',billing:'Billing',other:'Other'};
 const CALL_BUCKET='call-files';
+let cpAnimKey='';
 let cpTab='home',cpJobId=null,cpJobFrom='home',cpJobsFilter='all',cpMine=false,sinceInfo=null,myDisplayName='';
 let calls=[],callsReady=false,callFilesList=[],callUrls={},archivedClients=[],clientFieldsV10=true;
 
@@ -3264,14 +3401,16 @@ function forText(t,ctx){
  return tr('For {name}',{name:personName(t.assigned_to)});
 }
 function unseenNote(n,ctx){return !ctx.preview&&readsReady&&fromOtherSide(n)&&Date.parse(n.created_at)>seenAt(n.task_id);}
-function cjRow(t,ctx){
+function cjRow(t,ctx,i){
  const st=normStatus(t),a=ctx.preview?null:newActivityRaw(t);
+ const people=portalPeople(ctx.c);
+ const who=t.assigned_to&&people.length>=2?`<span class="who-dot" style="--pc:${personColor(t.assigned_to,people)}"></span>`:'';
  const sub=[cpStatus(t),cpDue(t),forText(t,ctx)].filter(Boolean).join(' · ');
- return `<button type="button" class="cj-row ${statusClass(st)}" data-job="${esc(t.id)}"><span class="cj-dot" aria-hidden="true"></span><span class="nr-main"><strong>${esc(t.title||tr('Untitled'))}</strong><small>${esc(sub)}</small></span>${a?`<span class="need-tag act">${esc(tr(ACT_LABEL[a.kind]||'New'))}</span>`:''}<span class="cj-chev" aria-hidden="true">›</span></button>`;
+ return `<button type="button" class="cj-row ${statusClass(st)}" data-job="${esc(t.id)}" style="--i:${i||0}"><span class="cj-dot" aria-hidden="true"></span><span class="nr-main"><strong>${esc(t.title||tr('Untitled'))}</strong><small>${who}${esc(sub)}</small></span>${a?`<span class="need-tag act">${esc(tr(ACT_LABEL[a.kind]||'New'))}</span>`:''}<span class="cj-chev" aria-hidden="true">›</span></button>`;
 }
 function cpSection(cls,title,items,ctx,limit){
  if(!items.length)return '';
- return `<section class="cp-sec ${cls}"><h3>${esc(title)} · ${items.length}</h3><div class="list-card">${items.slice(0,limit||99).map(t=>cjRow(t,ctx)).join('')}</div></section>`;
+ return `<section class="cp-sec ${cls}"><h3>${esc(title)} · ${items.length}</h3><div class="list-card">${items.slice(0,limit||99).map((t,i)=>cjRow(t,ctx,i)).join('')}</div></section>`;
 }
 function sinceHtml(){
  if(!sinceInfo||role!=='client')return '';
@@ -3288,12 +3427,7 @@ function sinceHtml(){
 }
 function actionsHtml(ctx){
  const call=myOpenCall(ctx);
- let out='';
- if(call){
-  const at=new Date(call.created_at);
-  const when=isNaN(at)?'':at.toLocaleTimeString(locale(),{hour:'numeric',minute:'2-digit'});
-  out+=`<div class="call-banner" role="status"><span class="ca-ic">${PHONE_SVG}</span><span><strong>${esc(tr('Sam will call you soon'))}</strong><small>${esc(tr('You asked at {time}',{time:when})+(call.reason?' · '+tr(REASONS[call.reason]||''):''))}</small></span></div>`;
- }
+ let out=callStepsHtml(ctx);
  const btns=[];
  if(isRetainer(ctx.c))btns.push(`<button type="button" class="cp-act" data-cpact="task"><span class="ca-ic">${PLUS_SVG}</span><span><strong>${esc(tr('Add a task'))}</strong><small>${esc(tr('Tell us what to do. Add photos, videos or a voice note.'))}</small></span></button>`);
  if(callsReady&&!call)btns.push(`<button type="button" class="cp-act call" data-cpact="call"><span class="ca-ic">${PHONE_SVG}</span><span><strong>${esc(tr('Request a call'))}</strong><small>${esc(isRetainer(ctx.c)?tr('Rather talk? Sam calls you back.'):tr('Need something new or have a question? Sam calls you back.'))}</small></span></button>`);
@@ -3301,33 +3435,34 @@ function actionsHtml(ctx){
  return out;
 }
 function homeHtml(ctx){
- const open=ctx.list.filter(t=>!isDone(t));
+ const list=personFiltered(ctx.list,ctx);
+ const open=list.filter(t=>!isDone(t));
  const needs=open.filter(t=>t.status==='Waiting on client').sort(byDue);
  const order={'In progress':0,'To do':1,'Incoming':2};
  const active=open.filter(t=>t.status!=='Waiting on client').sort((a,b)=>(order[normStatus(a)]??3)-(order[normStatus(b)]??3)||byDue(a,b));
- const done=ctx.list.filter(isDone).sort(byCompleted).slice(0,5);
- let out=sinceHtml()+actionsHtml(ctx);
- out+=cpSection('needs',tr('Needs your OK'),needs,ctx);
+ const done=list.filter(isDone).sort(byCompleted).slice(0,5);
+ let out=sinceHtml()+actionsHtml(ctx)+peopleFilterHtml(ctx);
  out+=cpSection('active',tr('In progress'),active,ctx,8);
  if(active.length>8)out+=`<p class="muted" style="margin:-10px 0 18px"><button type="button" class="link-button" data-cptab="jobs">${esc(tr('See all {n} jobs',{n:open.length}))}</button></p>`;
+ out+=cpSection('needs',tr('Needs your OK'),needs,ctx);
  out+=cpSection('done',tr('Recently done'),done,ctx);
  if(!ctx.list.length)out+=`<p class="cp-empty">${esc(tr('No jobs yet. When Signix Digital starts work for you, it shows up here.'))}</p>`;
+ else if(!list.length)out+=`<p class="cp-empty">${esc(tr('Nothing here right now.'))}</p>`;
  return out;
 }
 function jobsHtml(ctx){
- const filters=[['all','All'],['needs','Needs your OK'],['active','In progress'],['done','Done']];
- let list=ctx.list.slice();
- const people=portalPeople(ctx.c);
- if(cpMine&&ctx.me)list=list.filter(t=>!t.assigned_to||t.assigned_to===ctx.me);
+ const filters=[['all','All'],['active','In progress'],['needs','Needs your OK'],['done','Done']];
+ let list=personFiltered(ctx.list,ctx);
  const pick={needs:t=>t.status==='Waiting on client',active:t=>!isDone(t)&&t.status!=='Waiting on client',done:isDone}[cpJobsFilter];
  if(pick)list=list.filter(pick);
- let out=`<div class="cp-filter" role="group" aria-label="${esc(tr('Show'))}">${filters.map(([k,l])=>`<button type="button" data-cpfilter="${k}" aria-pressed="${cpJobsFilter===k}">${esc(tr(l))}</button>`).join('')}${people.length>=2&&ctx.me?`<button type="button" data-cpmine="1" aria-pressed="${cpMine}">${esc(tr('Just mine'))}</button>`:''}</div>`;
+ let out=peopleFilterHtml(ctx)+`<div class="cp-filter" role="group" aria-label="${esc(tr('Show'))}">${filters.map(([k,l])=>`<button type="button" data-cpfilter="${k}" aria-pressed="${cpJobsFilter===k}">${esc(tr(l))}</button>`).join('')}</div>`;
  if(!list.length)return out+`<p class="cp-empty">${esc(tr('Nothing here right now.'))}</p>`;
- const groups=[['Waiting on client','needs'],['In progress',''],['To do',''],['Incoming',''],['Completed','done']];
+ const groups=[['In progress',''],['Waiting on client','needs'],['To do',''],['Incoming',''],['Completed','done']];
+ let i=0;
  for(const [st,cls] of groups){
   const items=list.filter(t=>normStatus(t)===st).sort(st==='Completed'?byCompleted:byDue);
   if(!items.length)continue;
-  out+=`<h3 class="cp-group">${esc(tr(statusLabel(st,true)))} · ${items.length}</h3><div class="list-card${cls?' '+cls:''}" style="margin-bottom:6px">${items.map(t=>cjRow(t,ctx)).join('')}</div>`;
+  out+=`<h3 class="cp-group">${esc(tr(statusLabel(st,true)))} · ${items.length}</h3><div class="list-card${cls?' '+cls:''}${st==='In progress'?' cp-ipcard':''}" style="margin-bottom:6px">${items.map(t=>cjRow(t,ctx,i++)).join('')}</div>`;
  }
  return out;
 }
@@ -3348,7 +3483,6 @@ function messagesHtml(ctx){
   return `<button type="button" class="cm-row${unseenNote(n,ctx)?' is-new':''}" data-job="${esc(n.task_id)}"><span class="av${n.is_admin?' sx':''}" aria-hidden="true">${esc(n.is_admin?'SD':initials(who))}</span><span class="nr-main"><strong>${esc(who)} <span class="cm-job">· ${esc(t?.title||'')}</span></strong><small>${esc(text)}</small></span><span class="nr-time">${esc(relTimeL(Date.parse(n.created_at)))}</span></button>`;
  }).join('')}</div>`;
 }
-// ===== END OF PART 8 of 12 =====
 function filesHtml(ctx){
  const ids=new Set(ctx.list.map(t=>String(t.id)));
  const list=attachments.filter(a=>ids.has(String(a.task_id))).sort((a,b)=>Number(b.id)-Number(a.id)).slice(0,150);
@@ -3369,11 +3503,9 @@ function editFormHtml(t){
  return `<form class="edit-form" data-edit-id="${esc(t.id)}" style="margin-top:12px">
 <label>${esc(tr('Task name'))}<input name="title" maxlength="200" required value="${esc(t.title||'')}"></label>
 <label>${esc(tr('Details'))}<textarea name="description" maxlength="2000">${esc(t.description||'')}</textarea></label>
-<div class="grid2">
-<label>${esc(tr('Priority'))}<select name="priority">${PRIORITIES.slice().reverse().map(p=>`<option value="${p}"${p===pr?' selected':''}>${esc(tr(p))}</option>`).join('')}</select></label>
+<span class="pchips-lbl">${esc(tr('Priority'))}</span>${prioPickHtml(pr)}
 <label>${esc(tr('Deadline (optional)'))}<input type="date" name="due" min="${todayStr()}" value="${esc(t.due_date||'')}"></label>
-</div>
-${pp.length>=2?`<label>${esc(tr('Who is this for'))}<select name="assign"><option value="">${esc(tr('Everyone'))}</option>${pp.map(p=>`<option value="${esc(p.id)}"${t.assigned_to===p.id?' selected':''}>${esc(p.name)}</option>`).join('')}</select></label>`:''}
+${pp.length>=2?`<div class="pick-box"><span class="pchips-lbl">${esc(tr('Who is this for'))}</span><div class="pchips" role="radiogroup">${assignChipsHtml(pp,t.assigned_to||'')}</div></div>`:''}
 <div class="row" style="justify-content:flex-start"><button class="primary" type="submit">${esc(tr('Save changes'))}</button><button type="button" data-jact="cancel-edit">${esc(tr('Cancel'))}</button><small class="muted" data-until="${editUntil(t)}"></small></div>
 </form>`;
 }
@@ -3431,6 +3563,8 @@ function openJob(id,from){
  cpJobFrom=from||cpTab;
  cpJobId=t.id;
  editingId=null;
+ cpAnimKey='';
+ $('cpJob').classList.add('cp-anim');setTimeout(()=>$('cpJob').classList.remove('cp-anim'),1000);
  $('cpJobHead').dataset.sig='';$('cpJobThread').dataset.sig='';
  if(!ctx.preview){
   notesTaskId=t.id;
@@ -3504,6 +3638,8 @@ function renderPortal(){
   else{show('cpMain',false);show('cpJob',true);renderJob(t,ctx);updateCountdowns();return;}
  }
  show('cpJob',false);show('cpMain',true);
+ const animKey=[cpTab,cpJobsFilter,personFilter,lang,ctx.c?.id].join('|');
+ if(animKey!==cpAnimKey){cpAnimKey=animKey;const m=$('cpMain');m.classList.add('cp-anim');clearTimeout(renderPortal.t);renderPortal.t=setTimeout(()=>m.classList.remove('cp-anim'),1000);}
  $('cpMain').innerHTML=cpTab==='jobs'?jobsHtml(ctx):cpTab==='messages'?messagesHtml(ctx):cpTab==='files'?filesHtml(ctx):homeHtml(ctx);
 }
 function cpToast(text){
@@ -3520,7 +3656,10 @@ $('client').addEventListener('click',e=>{
  if(tb){setCpTab(tb.dataset.cptab);return;}
  const fb=e.target.closest('[data-cpfilter]');
  if(fb){cpJobsFilter=fb.dataset.cpfilter;renderPortal();return;}
- if(e.target.closest('[data-cpmine]')){cpMine=!cpMine;renderPortal();return;}
+ const pb=e.target.closest('[data-person]');
+ if(pb){personFilter=pb.dataset.person;renderPortal();return;}
+ const cd=e.target.closest('[data-calldone]');
+ if(cd){try{localStorage.setItem(callDoneKey(cd.dataset.calldone),'1');}catch(_){}renderPortal();return;}
  if(e.target.closest('[data-cpback]')){if(closeJob())renderPortal();window.scrollTo(0,0);return;}
  const jb=e.target.closest('[data-job]');
  if(jb){openJob(jb.dataset.job);return;}
@@ -3568,7 +3707,7 @@ $('client').addEventListener('submit',async e=>{
   Object.assign(t,data[0]);
   editingId=null;
   renderPortal();
-  cpToast(tr('Request updated.'));
+  doneCheck(tr('Request updated.'));
  }catch(err){displayError(tr('Request was not updated'),err);}
  finally{button.disabled=false;}
 });
@@ -3602,6 +3741,7 @@ function computeSince(){
  rows.sort((a,b)=>b.at-a.at);
  return {rows,nJobs:rows.length,nMsg,nFiles};
 }
+// ===== END OF PART 9 of 13 =====
 function welcomeToast(){
  if(role!=='client'||!currentUser)return;
  const key='signix-welcome-'+currentUser.id,today=todayStr();
@@ -3618,6 +3758,7 @@ document.addEventListener('visibilitychange',()=>{if(document.hidden&&role==='cl
 document.addEventListener('keydown',e=>{
  if(e.key!=='Escape'||menuCtx)return;
  if(!$('askModal').classList.contains('hidden'))askDone(false);
+ else if($('callScreen'))closeCallScreen();
  else if(!$('callSheet').classList.contains('hidden'))closeCallSheet();
  else if(!$('taskSheet').classList.contains('hidden'))closeTaskSheet();
  else if(!$('notesModal').classList.contains('hidden'))closeNotes();
@@ -3635,11 +3776,7 @@ function openTaskSheet(){
  $('requestDue').min=todayStr();
  const people=portalPeople(ctx.c),showReq=people.length>=2;
  $('reqAssignWrap').classList.toggle('hidden',!showReq);
- if(showReq){
-  const sel=$('reqAssign'),prior=sel.value;
-  sel.replaceChildren(new Option(tr('Everyone at {biz}',{biz:myClientName||tr('your business')}),''),...people.map(p=>new Option(p.name,p.id)));
-  if(people.some(p=>p.id===prior))sel.value=prior;
- }
+ $('reqAssign').innerHTML=showReq?assignChipsHtml(people,personFilter&&personFilter!=='none'?personFilter:''):'';
  clientFiles.ui(false);
  show('taskSheet',true);lockScroll();
  if(!mobile)document.querySelector('#requestTaskForm input[name="title"]').focus();
@@ -3712,7 +3849,7 @@ $('callForm').onsubmit=async e=>{
   renderPortal();
   window.scrollTo(0,0);
   if(failed.length)notice(tr('Your call request was sent, but {n} file(s) did not upload:',{n:failed.length})+'\n'+failed.join('\n'));
-  cpToast(tr('Sent. Sam will call you soon.'));
+  showCallScreen();
  }catch(err){formMsg('callMsg',tr('Not sent: {msg}',{msg:err.message||''}),'error');}
  finally{button.disabled=false;}
 };
@@ -3721,24 +3858,32 @@ $('callForm').onsubmit=async e=>{
 async function loadCalls(){
  if(!role)return false;
  try{
-  const {data,error}=await sb.from('call_requests').select('id,client_id,user_id,requester_name,reason,note,phone,created_at,handled_at').order('created_at',{ascending:false}).limit(300);
+  const base='id,client_id,user_id,requester_name,reason,note,phone,created_at,handled_at';
+  let {data,error}=await sb.from('call_requests').select(base+(callsV11?',seen_at,task_id':'')).order('created_at',{ascending:false}).limit(300);
+  if(error&&callsV11&&/seen_at|task_id/.test(error.message||'')){callsV11=false;({data,error}=await sb.from('call_requests').select(base).order('created_at',{ascending:false}).limit(300));}
   if(error){callsReady=false;calls=[];return false;}
   calls=data||[];callsReady=true;
-  if(role==='admin')await loadCallFiles();
+  if(role==='admin'){
+   await loadCallFiles();
+   if(callsV11){
+    const {data:ev,error:evErr}=await sb.from('call_events').select('id,call_id,client_id,action,note,created_at').order('created_at',{ascending:true}).limit(2000);
+    callEvents=evErr?[]:(ev||[]);
+   }
+  }
   return true;
  }catch(e){callsReady=false;calls=[];return false;}
 }
 async function loadCallFiles(){
- const open=calls.filter(c=>!c.handled_at).map(c=>c.id);
- if(!open.length){callFilesList=[];return;}
+ const ids=calls.map(c=>c.id);
+ if(!ids.length){callFilesList=[];return;}
  try{
-  const {data,error}=await sb.from('call_files').select('id,call_id,client_id,path,kind,mime_type').in('call_id',open);
+  const {data,error}=await sb.from('call_files').select('id,call_id,client_id,path,kind,mime_type').in('call_id',ids);
   if(error){callFilesList=[];return;}
   callFilesList=data||[];
   const soon=Date.now()+5*60000;
   const need=callFilesList.map(f=>f.path).filter(p=>!(callUrls[p]&&callUrls[p].exp>soon));
-  if(need.length){
-   const {data:urls}=await sb.storage.from(CALL_BUCKET).createSignedUrls(need,3600);
+  for(let i=0;i<need.length;i+=100){
+   const {data:urls}=await sb.storage.from(CALL_BUCKET).createSignedUrls(need.slice(i,i+100),3600);
    const exp=Date.now()+3540*1000;
    for(const u of urls||[])if(u.signedUrl&&u.path)callUrls[u.path]={url:u.signedUrl,exp};
   }
@@ -3933,7 +4078,6 @@ function renderLoginLog(){
  }
  root.innerHTML=out;
 }
-// ===== END OF PART 9 of 12 =====
 $('logRefresh').onclick=()=>loadLoginLog();
 $('loginLogPanel').addEventListener('toggle',()=>{if($('loginLogPanel').open&&isAdmin())loadLoginLog();});
 $('logClear').onclick=async()=>{
@@ -4138,6 +4282,7 @@ $('actForm').addEventListener('change',async()=>{
   $('actStatus').textContent=actColorCol?'Saved. Client portals update within a minute.':'Saved. Run the latest SQL step to also save the marker color.';
  }catch(err){$('actStatus').textContent='Not saved (showing on this screen only): '+(err.message||'unknown error');}
 });
+// ===== END OF PART 10 of 13 =====
 async function loadReads(){
  try{return await loadReadsInner();}catch(e){readsReady=false;return false;}
 }
@@ -4315,7 +4460,7 @@ $('animForm').addEventListener('change',async()=>{
  
  
 /* ---------- Version 2 layout: areas (Home, Tasks, Clients, Activity, Settings) ---------- */
-const AREAS=['home','tasks','clients','activity','settings'];
+const AREAS=['home','tasks','clients','activity','calls','settings'];
 let quickF='';
 function curArea(){return TASKS_ONLY?'tasks':getPref('admin','area','home',AREAS);}
 function applyArea(){
@@ -4326,8 +4471,9 @@ function applyArea(){
 function markNav(){
  const portal=!$('client').classList.contains('hidden');
  const a=portal?'portal':curArea();
- document.querySelectorAll('#sideNav [data-go],#tabBar [data-go]').forEach(b=>{
-  if(b.dataset.go===a)b.setAttribute('aria-current','page');else b.removeAttribute('aria-current');
+ document.querySelectorAll('#sideNav [data-go],#tabBar [data-go],.log-tabs [data-go]').forEach(b=>{
+  const want=b.closest('#tabBar')&&a==='calls'?'activity':a;
+  if(b.dataset.go===want)b.setAttribute('aria-current','page');else b.removeAttribute('aria-current');
  });
 }
 function setArea(a,keepScroll){
@@ -4447,7 +4593,6 @@ function activityEvents(clientId){
  }
  return ev.filter(x=>!isNaN(x.at)).sort((a,b)=>b.at-a.at);
 }
-// ===== END OF PART 10 of 12 =====
 function feedRow(e){
  const tag=e.go?'button':'div';
  return `<${tag}${e.go?' type="button"':''} class="feed-row"${e.go?` data-hgo="${esc(e.go)}" data-id="${esc(e.id)}"`:''}><span class="feed-dot" style="background:${e.color}"></span><span class="nr-main"><strong>${esc(e.text)}</strong><small>${esc(e.sub||'')}</small></span><span class="nr-time">${esc(relTime(e.at))}</span></${tag}>`;
@@ -4456,6 +4601,7 @@ function renderShell(needs){
  const live=tasks.filter(t=>!t.archived_at);
  const n=needs.length+openCalls().length;
  $('snNeeds').textContent=n?String(n):'';
+ $('snCalls').textContent=openCalls().length?String(openCalls().length):'';
  $('tbNeeds').textContent=n?String(n):'';
  $('snTasks').textContent=String(live.filter(t=>!isDone(t)).length);
  $('snClients').textContent=String(clients.length);
@@ -4521,7 +4667,7 @@ function quickMatch(t){
  return true;
 }
 /* Clients area: a list on the left, one page per client on the right */
-const CL_TABS=[['overview','Overview'],['tasks','Tasks'],['notes','Notes & files'],['people','People']];
+const CL_TABS=[['overview','Overview'],['tasks','Tasks'],['notes','Notes & files'],['calls','Calls'],['people','People']];
 function statusBadge(t){const st=normStatus(t);return `<span class="badge ${statusClass(st)}">${esc(st)}</span>`;}
 function taskRow(t){
  const a=newActivityRaw(t),qp=focusReady?queuePos(t):0;
@@ -4574,6 +4720,9 @@ function renderClientsArea(){
    const ids=new Set(mine.map(t=>String(t.id)));
    const ns=notes.filter(n=>ids.has(String(n.task_id))).sort((a,b)=>String(b.created_at).localeCompare(String(a.created_at))).slice(0,60);
    body=ns.length?`<div class="list-card">${ns.map(n=>{const t=tasks.find(x=>String(x.id)===String(n.task_id));const files=attachments.filter(a=>String(a.note_id)===String(n.id)).length;return `<button type="button" class="feed-row" data-hgo="notes" data-id="${esc(n.task_id)}"><span class="feed-dot" style="background:${n.is_admin?'#3975db':'var(--mk)'}"></span><span class="nr-main"><strong>${esc(n.author_name||'')} · ${esc(t?.title||'')}</strong><small>${esc(n.body?n.body.slice(0,120):'')}${files?esc((n.body?' · ':'')+plural(files,'file')):''}</small></span><span class="nr-time">${esc(relTime(Date.parse(n.created_at)))}</span></button>`;}).join('')}</div>`:'<p class="muted home-empty">No notes yet.</p>';
+  }else if(tab==='calls'){
+   const cl=callsReady?callLogList(c.id):[];
+   body=cl.length?cl.map(logEntryHtml).join(''):'<p class="muted home-empty">No call requests from this client yet.</p>';
   }else{
    body=`<section class="side-card"><div class="side-head"><h2>Portal logins</h2><button type="button" class="link-button" data-cact="logins">Manage logins</button></div>${peopleHtml}</section>`;
   }
@@ -4607,6 +4756,7 @@ $('clientsArea').addEventListener('click',e=>{
   requestAnimationFrame(()=>d.scrollIntoView({behavior:'smooth',block:'start'}));
  }
 });
+// ===== END OF PART 11 of 13 =====
 $('clientsArea').addEventListener('change',e=>{
  const r=e.target.closest('[data-retainer]');
  if(r)setRetainer(r.dataset.retainer,r.checked);
@@ -4758,12 +4908,10 @@ function renderBizPicker(){
  }else chosen.innerHTML='';
  $('addClient').value=cc?String(cc.id):'';
  const as=$('addAssign');
- $('addAssignWrap').classList.toggle('hidden',!cc||!taskOptional.includes('assigned_to'));
- if(cc&&as.dataset.for!==String(cc.id)){
-  as.dataset.for=String(cc.id);
-  as.replaceChildren(new Option(`Everyone at ${cc.Name||'this business'}`,''),...logins.filter(l=>String(l.client_id)===String(cc.id)).map(l=>new Option(l.display_name||l.email,l.user_id)));
- }
- if(!cc)as.dataset.for='';
+ const ppl=cc?logins.filter(l=>String(l.client_id)===String(cc.id)).map(l=>({id:l.user_id,name:l.display_name||l.email})):[];
+ $('addAssignWrap').classList.toggle('hidden',!cc||!taskOptional.includes('assigned_to')||!ppl.length);
+ if(cc&&as.dataset.for!==String(cc.id)){as.dataset.for=String(cc.id);as.innerHTML=assignChipsHtml(ppl,'');}
+ if(!cc){as.dataset.for='';as.innerHTML='';}
  $('azBody').disabled=!cc;
 }
 function resetAddBiz(){addPick=null;addBiz=null;$('bizSearch').value='';renderBizPicker();}
@@ -4838,8 +4986,9 @@ function askConfirm(o){
   $('askYes').textContent=o.ok||tr('Confirm');
   $('askNo').textContent=o.cancel||tr('Cancel');
   $('askYes').className=o.danger?'danger':'primary';
+  const inp=$('askInput');inp.value='';inp.placeholder=o.input||'';show('askInput',!!o.input);
   show('askModal',true);lockScroll();
-  $('askYes').focus();
+  (o.input?inp:$('askYes')).focus();
  });
 }
 function askDone(v){
@@ -4864,37 +5013,6 @@ function callFileHtml(f){
  if(f.kind==='video')return `<a href="${u}" target="_blank" rel="noopener"><video src="${u}" preload="metadata" muted playsinline></video></a>`;
  return `<audio src="${u}" controls preload="metadata"></audio>`;
 }
-function callRow(c){
- const cl=clientById(c.client_id);
- const files=callFilesList.filter(f=>String(f.call_id)===String(c.id));
- const name=esc(c.requester_name||'A client');
- const who=c.phone?`<a href="${esc(telHref(c.phone))}" title="Call ${name}">${name}</a>`:name;
- const reason=c.reason?`<span class="need-tag call${c.reason==='urgent'?' urgent':''}">${esc(REASONS[c.reason]||c.reason)}</span>`:'';
- return `<div class="cb-row" style="--biz:${bizColor(cl)}">${bizLogo(cl,'biz-logo lg')}<div class="cb-main"><div class="cb-top"><strong>${who}</strong><span class="cb-biz">${esc(cl?.Name||'')}</span>${reason}</div>${c.note?`<p class="cb-note">${esc(c.note)}</p>`:''}${files.length?`<div class="cb-files">${files.map(callFileHtml).join('')}</div>`:''}<div class="cb-actions">${c.phone?`<a class="cb-dial" href="${esc(telHref(c.phone))}">${PHONE_SVG.replace('<svg ','<svg width="16" height="16" ')} ${esc(c.phone)}</a>`:''}<button type="button" class="cb-done" data-called="${esc(c.id)}">✓ Called</button></div></div><span class="cb-wait" title="Asked ${esc(fmtStamp(c.created_at))}">waiting ${esc(relTime(Date.parse(c.created_at)))}</span></div>`;
-}
-function renderCalls(){
- const list=openCalls();
- show('homeCallsSec',list.length>0);
- $('callsTitle').textContent=`Call back · ${list.length}`;
- $('homeCalls').innerHTML=list.length?`<div class="cb-list">${list.map(callRow).join('')}</div>`:'';
-}
-$('admin').addEventListener('click',async e=>{
- const b=e.target.closest('[data-called]');
- if(!b||!isAdmin())return;
- const c=calls.find(x=>String(x.id)===b.dataset.called);
- if(!c)return;
- const ok=await askConfirm({title:`Mark ${c.requester_name||'this client'} as called?`,body:`It comes off your Call back list, and their “Sam will call you soon” message goes away.`,ok:'Yes, called'});
- if(!ok)return;
- b.disabled=true;
- try{
-  const {data,error}=await sb.from('call_requests').update({handled_at:new Date().toISOString(),handled_by:currentUser.id}).eq('id',c.id).select('id,handled_at');
-  if(error){displayError('Not saved',error);b.disabled=false;return;}
-  if(!data?.length){notice('Not saved: no row returned. Run SQL 5 in Supabase.');b.disabled=false;return;}
-  c.handled_at=data[0].handled_at;
-  render();
-  notice(`${c.requester_name||'Call'} marked as called.`);
- }catch(err){displayError('Not saved',err);b.disabled=false;}
-});
 
 /* ---------- Clients: retainer / job-by-job, archive, last seen ---------- */
 function clientLastSeen(id){
@@ -4906,7 +5024,6 @@ function clientTag(c){
  if(c.archived_at)return '<span class="cl-tag arch">Archived</span>';
  return c.retainer?'<span class="cl-tag ret">Retainer</span>':'<span class="cl-tag job">Job by job</span>';
 }
-// ===== END OF PART 11 of 12 =====
 async function setRetainer(id,on){
  const c=clientById(id);
  if(!c||!isAdmin())return;
@@ -4973,6 +5090,237 @@ $('lgAddBtn').onclick=()=>{
  $('lgAddBtn').textContent=open?'Close':'+ Add a login';
  if(open)$('linkForm').querySelector('input[name="name"]').focus();
 };
+
+/* ---------- Version 11: people colors, call status, check pop-up ---------- */
+const PERSON_COLORS=['#38bdf8','#f472b6','#34d399','#fbbf24','#a78bfa','#fb923c','#2dd4bf','#f87171','#60a5fa','#c084fc'];
+let callsV11=true;
+function sortedPeople(people){return people.slice().sort((a,b)=>String(a.name).localeCompare(String(b.name)));}
+function personColor(id,people){
+ const list=sortedPeople(people);
+ const i=list.findIndex(p=>String(p.id)===String(id));
+ return i<0?'#64748b':PERSON_COLORS[i%PERSON_COLORS.length];
+}
+function pcStyle(c){return `--pc:${c};--pc-t:${textOn(c)}`;}
+function peopleFilterHtml(ctx){
+ const people=portalPeople(ctx.c);
+ if(people.length<2)return '';
+ const list=sortedPeople(people);
+ const b=(v,label,c)=>`<button type="button" class="pchip" data-person="${esc(v)}" aria-pressed="${personFilter===v}" style="${pcStyle(c)}">${esc(label)}</button>`;
+ return `<div class="pchips" role="group" aria-label="${esc(tr('Show jobs for'))}">${b('',tr('All'),'#3975db')}${list.map(p=>b(p.id,p.name,personColor(p.id,people))).join('')}${b('none',tr('Everyone'),'#64748b')}</div>`;
+}
+function personFiltered(list,ctx){
+ const people=portalPeople(ctx.c);
+ if(people.length<2||!personFilter)return list;
+ if(personFilter!=='none'&&!people.some(p=>String(p.id)===String(personFilter))){personFilter='';return list;}
+ return personFilter==='none'?list.filter(t=>!t.assigned_to):list.filter(t=>String(t.assigned_to)===String(personFilter));
+}
+function assignChipsHtml(people,current,name){
+ const list=sortedPeople(people);
+ const one=(v,label,c)=>`<label class="pchip" style="${pcStyle(c)}"><input type="radio" name="${name||'assign'}" value="${esc(v)}"${String(current||'')===String(v)?' checked':''}><span>${esc(label)}</span></label>`;
+ return one('',tr('Everyone'),'#64748b')+list.map(p=>one(p.id,p.name,personColor(p.id,people))).join('');
+}
+function prioPickHtml(current){
+ return `<div class="prio-pick" role="radiogroup" aria-label="${esc(tr('Priority'))}">${['Low','Medium','High'].map(p=>`<label class="pp pp-${p.toLowerCase()}"><input type="radio" name="priority" value="${p}"${p===current?' checked':''}><span>${esc(tr(p))}</span></label>`).join('')}</div>`;
+}
+function doneCheck(text){
+ const el=document.createElement('div');
+ el.className='done-pop';el.setAttribute('role','status');
+ el.innerHTML=`<div class="dp-card"><svg viewBox="0 0 80 80" aria-hidden="true"><circle cx="40" cy="40" r="36"/><path d="M24 41l11 11 21-23"/></svg><strong>${esc(text)}</strong></div>`;
+ document.body.append(el);
+ setTimeout(()=>el.remove(),1650);
+}
+function showCallScreen(){
+ closeCallScreen();
+ const el=document.createElement('div');
+ el.className='call-screen';el.id='callScreen';
+ el.setAttribute('role','dialog');el.setAttribute('aria-modal','true');el.setAttribute('aria-labelledby','csTitle');
+ el.innerHTML=`<div class="cs-phone">${PHONE_SVG}</div><h2 id="csTitle">${esc(tr('Sam will call you soon'))}</h2><p>${esc(tr('Your request is in. You can follow it on Home: Sent, Seen, Called.'))}</p><button type="button" id="csOk">${esc(tr('Got it'))}</button>`;
+ document.body.append(el);
+ el.querySelector('#csOk').onclick=closeCallScreen;
+ el.querySelector('#csOk').focus();
+}
+function closeCallScreen(){$('callScreen')?.remove();}
+function timeL(s){const d=new Date(s);return isNaN(d)?'':d.toLocaleTimeString(locale(),{hour:'numeric',minute:'2-digit'});}
+function callDoneKey(id){return 'signix-calldone-'+id;}
+function callStepsHtml(ctx){
+ if(!callsReady||!ctx.c)return '';
+ const mine=calls.filter(x=>String(x.client_id)===String(ctx.c.id)&&(ctx.preview||x.user_id===ctx.me));
+ let c=mine.find(x=>!x.handled_at),done=false;
+ if(!c){
+  c=mine.filter(x=>x.handled_at&&Date.now()-Date.parse(x.handled_at)<24*36e5).sort((a,b)=>Date.parse(b.handled_at)-Date.parse(a.handled_at))[0];
+  if(!c)return '';
+  let gone=false;try{gone=!!localStorage.getItem(callDoneKey(c.id));}catch(e){}
+  if(gone)return '';
+  done=true;
+ }
+ const seen=!!(c.seen_at||c.handled_at);
+ const title=done?tr('Sam called you'):seen?tr('Sam saw your request'):tr('Sam will call you soon');
+ const sub=done?tr('Need anything else? You can ask again any time.'):tr('You asked at {time}',{time:timeL(c.created_at)})+(c.reason?' · '+tr(REASONS[c.reason]||''):'');
+ const step=(on,now,label,at)=>`<li class="${on?'on':''}${now?' now':''}">${on?'<span class="tick">✓</span>':''}${esc(tr(label))}${at?`<small>${esc(timeL(at))}</small>`:''}</li>`;
+ return `<section class="call-steps${done?'':' open'}" role="status" aria-label="${esc(tr('Call request'))}">${done?`<button type="button" class="modal-x" data-calldone="${esc(c.id)}" aria-label="${esc(tr('Close'))}">×</button>`:''}<div class="cs-top"><span class="ca-ic">${PHONE_SVG}</span><span><strong>${esc(title)}</strong><small>${esc(sub)}</small></span></div><ol class="steps">${step(true,false,'Sent',c.created_at)}${step(seen,!seen,'Seen',c.seen_at)}${step(!!c.handled_at,seen&&!c.handled_at,'Called',c.handled_at)}</ol></section>`;
+}
+function callWaitClass(c){
+ const ms=Date.now()-Date.parse(c.created_at);
+ return ms>=3*36e5?' w-3h':ms>=36e5?' w-1h':'';
+}
+function callRow(c,i){
+ const cl=clientById(c.client_id);
+ const files=callFilesList.filter(f=>String(f.call_id)===String(c.id));
+ const name=esc(c.requester_name||'A client');
+ const who=c.phone?`<a href="${esc(telHref(c.phone))}" title="Call ${name}">${name}</a>`:name;
+ const reason=c.reason?`<span class="need-tag call${c.reason==='urgent'?' urgent':''}">${esc(REASONS[c.reason]||c.reason)}</span>`:'';
+ const task=c.task_id?`<button type="button" class="link-button" data-hgo="task" data-id="${esc(c.task_id)}">Task created ›</button>`:`<button type="button" class="cb-task" data-calltask="${esc(c.id)}">+ Turn into a task</button>`;
+ return `<div class="cb-row${callWaitClass(c)}" style="--biz:${bizColor(cl)};--i:${i||0}">${bizLogo(cl,'biz-logo lg')}<div class="cb-main"><div class="cb-top"><strong>${who}</strong><span class="cb-biz">${esc(cl?.Name||'')}</span>${reason}${c.seen_at?'<span class="seen-tag">seen</span>':''}</div>${c.note?`<p class="cb-note">${esc(c.note)}</p>`:''}${files.length?`<div class="cb-files">${files.map(callFileHtml).join('')}</div>`:''}<div class="cb-actions">${c.phone?`<a class="cb-dial" href="${esc(telHref(c.phone))}">${PHONE_SVG.replace('<svg ','<svg width="16" height="16" ')} ${esc(c.phone)}</a>`:''}<button type="button" class="cb-done" data-called="${esc(c.id)}">✓ Called</button>${task}</div></div><span class="cb-wait" title="Asked ${esc(fmtStamp(c.created_at))}">⏱ ${esc(relTime(Date.parse(c.created_at)))}</span></div>`;
+}
+let seenBusy=false;
+function markCallsSeen(){
+ if(!callsV11||seenBusy||document.hidden||curArea()!=='home'||!$('client').classList.contains('hidden'))return;
+ const unseen=openCalls().filter(c=>!c.seen_at);
+ if(!unseen.length)return;
+ seenBusy=true;
+ sb.rpc('signix_calls_seen').then(({error})=>{
+  seenBusy=false;
+  if(error)return;
+  const now=new Date().toISOString();
+  unseen.forEach(c=>{c.seen_at=now;});
+ },()=>{seenBusy=false;});
+}
+function renderCalls(){
+ const list=openCalls();
+ show('homeCallsSec',list.length>0);
+ $('callsTitle').innerHTML=`<span class="calls-head">${PHONE_SVG}Call back · ${list.length}</span>`;
+ $('homeCalls').innerHTML=list.length?`<div class="cb-list">${list.map(callRow).join('')}</div>`:'';
+ markCallsSeen();
+}
+async function markCalled(c){
+ const ok=await askConfirm({title:`Mark ${c.requester_name||'this client'} as called?`,body:'It comes off your Call back list and stays in your Call log. Their screen shows “Called”.',ok:'Yes, called',input:'Note for your log (optional): Left voicemail, Quoted $450…'});
+ if(!ok)return false;
+ const note=$('askInput').value.trim();
+ let {data,error}=await sb.rpc('signix_call_done',{p_id:c.id,p_note:note||null});
+ if(error&&/signix_call_done|function|schema cache/i.test(error.message||'')){
+  callsV11=false;
+  const r=await sb.from('call_requests').update({handled_at:new Date().toISOString(),handled_by:currentUser.id}).eq('id',c.id).select('id,handled_at');
+  error=r.error;data=r.data?.[0]?.handled_at;
+  if(!error&&!r.data?.length)error={message:'no row returned'};
+ }
+ if(error){displayError('Not saved',error);return false;}
+ c.handled_at=data||new Date().toISOString();
+ if(callsV11)callEvents.push({call_id:c.id,client_id:c.client_id,action:'called',note:note||null,created_at:c.handled_at});
+ render();
+ notice(`${c.requester_name||'Call'} marked as called.`);
+ return true;
+}
+async function reopenCall(c){
+ const ok=await askConfirm({title:`Mark ${c.requester_name||'this call'} as not called yet?`,body:'It goes back on your Call back list. The change is recorded in the log.',ok:'Not called yet',input:'Why (optional)'});
+ if(!ok)return;
+ const note=$('askInput').value.trim();
+ const {error}=await sb.rpc('signix_call_reopen',{p_id:c.id,p_note:note||null});
+ if(error){displayError('Not changed',error);return;}
+ await loadCalls();render();
+ notice('Back on your Call back list.');
+}
+async function callToTask(c){
+ const cl=clientById(c.client_id);
+ if(!cl)return;
+ const files=callFilesList.filter(f=>String(f.call_id)===String(c.id));
+ const name=c.requester_name||'the client';
+ const ok=await askConfirm({title:`Turn ${name}’s call into a task?`,body:`Creates a task for ${cl.Name} with their note${files.length?' and '+plural(files.length,'file'):''}${taskOptional.includes('assigned_to')?`, marked for ${name}`:''}. It does not mark the call as called.`,ok:'Create task'});
+ if(!ok)return;
+ const first=String(c.note||'').split('\n')[0].trim();
+ const title=(first?first.slice(0,90):`${REASONS[c.reason]||'Call request'} · ${name}`);
+ const description=[c.note,c.phone?'Phone: '+c.phone:'',`From ${name}’s call request, ${fmtStamp(c.created_at)}.`].filter(Boolean).join('\n\n');
+ const payload={title,description,client_id:cl.id,priority:c.reason==='urgent'?'High':'Medium',status:'To do'};
+ if(taskOptional.includes('assigned_to')&&c.user_id)payload.assigned_to=c.user_id;
+ notice('Creating task…');
+ let {data:task,error}=await sb.from('tasks').insert(payload).select('id').single();
+ if(error&&payload.assigned_to){delete payload.assigned_to;({data:task,error}=await sb.from('tasks').insert(payload).select('id').single());}
+ if(error||!task){displayError('Task was not created',error||{message:'no row returned'});return;}
+ const failed=[];
+ for(const f of files){
+  try{
+   const u=callUrls[f.path]?.url;if(!u)throw new Error('file link expired, refresh and try again');
+   const blob=await (await fetch(u)).blob();
+   const ext=(f.path.split('.').pop()||'bin').slice(0,5);
+   const path=`${cl.id}/${task.id}/${crypto.randomUUID()}.${ext}`;
+   const type=f.mime_type||blob.type||'application/octet-stream';
+   const {error:upError}=await sb.storage.from(BUCKET).upload(path,blob,{contentType:type,upsert:false});
+   if(upError)throw upError;
+   const {error:rowError}=await sb.from('task_attachments').insert({task_id:task.id,client_id:cl.id,path,kind:f.kind,mime_type:type,size_bytes:blob.size});
+   if(rowError){await sb.storage.from(BUCKET).remove([path]);throw rowError;}
+  }catch(err){failed.push(err.message||String(err));}
+ }
+ const {error:linkErr}=await sb.rpc('signix_call_task',{p_id:c.id,p_task:task.id});
+ if(!linkErr){c.task_id=task.id;callEvents.push({call_id:c.id,client_id:c.client_id,action:'task',note:'Task #'+task.id,created_at:new Date().toISOString()});}
+ await loadTasks();
+ notice(`Task created for ${cl.Name}.`+(failed.length?` ${failed.length} file(s) were not copied: ${failed.join('; ')}`:''));
+}
+$('admin').addEventListener('click',async e=>{
+ if(!isAdmin())return;
+ const b=e.target.closest('[data-called],[data-calltask],[data-reopen]');
+ if(b){
+  const id=b.dataset.called||b.dataset.calltask||b.dataset.reopen;
+  const c=calls.find(x=>String(x.id)===String(id));
+  if(!c)return;
+  b.disabled=true;
+  try{
+   if(b.dataset.called)await markCalled(c);
+   else if(b.dataset.calltask)await callToTask(c);
+   else await reopenCall(c);
+  }finally{b.disabled=false;}
+  return;
+ }
+ const f=e.target.closest('[data-logbiz],[data-logstate]');
+ if(f){
+  if(f.dataset.logbiz!=null)logBiz=f.dataset.logbiz;else logState=f.dataset.logstate;
+  renderCallLog();
+ }
+});
+
+// ===== END OF PART 12 of 13 =====
+/* ---------- Call log: every request, permanently ---------- */
+let callEvents=[],logBiz='',logState='all';
+function fmtDur(ms){
+ const m=Math.max(0,Math.round(ms/60000));
+ if(m<60)return m+' min';
+ if(m<1440)return Math.floor(m/60)+' h'+(m%60?' '+(m%60)+' min':'');
+ const d=Math.round(m/1440);return d+' day'+(d===1?'':'s');
+}
+function logEntryHtml(c,i){
+ const cl=clientById(c.client_id)||archivedClients.find(x=>String(x.id)===String(c.client_id));
+ const ev=callEvents.filter(e=>String(e.call_id)===String(c.id)).sort((a,b)=>String(a.created_at).localeCompare(String(b.created_at)));
+ const files=callFilesList.filter(f=>String(f.call_id)===String(c.id));
+ const open=!c.handled_at;
+ const lines=[`<span>Asked <b>${esc(fmtStamp(c.created_at))}</b></span>`];
+ if(c.seen_at)lines.push(`<span>Seen <b>${esc(fmtStamp(c.seen_at))}</b></span>`);
+ for(const e of ev){
+  if(e.action==='called')lines.push(`<span>Called <b>${esc(fmtStamp(e.created_at))}</b> · waited ${esc(fmtDur(Date.parse(e.created_at)-Date.parse(c.created_at)))}${e.note?` · “${esc(e.note)}”`:''}</span>`);
+  else if(e.action==='reopened')lines.push(`<span>Marked not called <b>${esc(fmtStamp(e.created_at))}</b>${e.note?` · “${esc(e.note)}”`:''}</span>`);
+  else if(e.action==='task')lines.push(`<span>Turned into a task <b>${esc(fmtStamp(e.created_at))}</b></span>`);
+ }
+ if(!ev.some(e=>e.action==='called')&&c.handled_at)lines.push(`<span>Called <b>${esc(fmtStamp(c.handled_at))}</b> · waited ${esc(fmtDur(Date.parse(c.handled_at)-Date.parse(c.created_at)))}</span>`);
+ if(open)lines.push(`<span>Waiting <b>${esc(fmtDur(Date.now()-Date.parse(c.created_at)))}</b></span>`);
+ const acts=open?`<button type="button" class="cb-done" data-called="${esc(c.id)}">✓ Called</button>${c.task_id?'':`<button type="button" class="cb-task" data-calltask="${esc(c.id)}">+ Turn into a task</button>`}`:(callsV11?`<button type="button" data-reopen="${esc(c.id)}">Not called yet</button>`:'');
+ return `<article class="log-entry${open?' open':''}" style="--biz:${cl?bizColor(cl):'#64748b'};--i:${i||0}"><div class="le-top">${cl?bizLogo(cl,'biz-logo'):''}<strong>${esc(c.requester_name||'A client')}</strong><span class="cb-biz">${esc(cl?.Name||'')}</span>${c.reason?`<span class="need-tag call${c.reason==='urgent'?' urgent':''}">${esc(REASONS[c.reason]||'')}</span>`:''}<span class="le-state${open?' wait':''}">${open?'Waiting':'Called'}</span></div>${c.note?`<p class="le-note">${esc(c.note)}</p>`:''}${files.length?`<div class="cb-files">${files.map(callFileHtml).join('')}</div>`:''}<div class="le-time">${lines.join('')}${c.phone?`<span>Phone <a href="${esc(telHref(c.phone))}">${esc(c.phone)}</a></span>`:''}</div><div class="le-actions">${acts}${c.task_id?`<button type="button" class="link-button" data-hgo="task" data-id="${esc(c.task_id)}">Open the task ›</button>`:''}</div></article>`;
+}
+function callLogList(clientId){
+ let list=calls.slice().sort((a,b)=>String(b.created_at).localeCompare(String(a.created_at)));
+ if(clientId!=null)list=list.filter(c=>String(c.client_id)===String(clientId));
+ return list;
+}
+function renderCallLog(){
+ const root=$('callLog');
+ if(!callsReady){root.innerHTML='<p class="muted home-empty">The Call log appears after SQL 5 is run in Supabase.</p>';return;}
+ const all=callLogList(null);
+ const bizIds=[...new Set(all.map(c=>String(c.client_id)))];
+ if(logBiz&&!bizIds.includes(logBiz))logBiz='';
+ let list=logBiz?all.filter(c=>String(c.client_id)===logBiz):all;
+ const nWait=list.filter(c=>!c.handled_at).length,nDone=list.length-nWait;
+ if(logState==='open')list=list.filter(c=>!c.handled_at);
+ else if(logState==='done')list=list.filter(c=>c.handled_at);
+ const chip=(attr,v,label,on)=>`<button type="button" class="chip" ${attr}="${esc(v)}" aria-pressed="${on}">${esc(label)}</button>`;
+ const filters=`<div class="log-filters"><div class="chips" role="group" aria-label="Business">${chip('data-logbiz','','All businesses',!logBiz)}${bizIds.map(id=>chip('data-logbiz',id,clientName(id),logBiz===id)).join('')}</div><div class="chips" role="group" aria-label="Status">${chip('data-logstate','all',`All · ${nWait+nDone}`,logState==='all')}${chip('data-logstate','open',`Waiting · ${nWait}`,logState==='open')}${chip('data-logstate','done',`Called · ${nDone}`,logState==='done')}</div></div>`;
+ root.innerHTML=filters+(list.length?list.map(logEntryHtml).join(''):'<p class="muted home-empty">No call requests here.</p>');
+}
 
 /* ---------- Admin: manage clients ---------- */
 function brandFileHtml(c,col,label,field,removeName){
@@ -5414,7 +5762,8 @@ $('requestTaskForm').onsubmit=async e=>{
   if(cpJobId!=null)closeJob(true);
   cpTab='home';renderPortal();window.scrollTo(0,0);
   if(failed.length)notice(tr('Request sent, but {n} file(s) did not upload:',{n:failed.length})+'\n'+failed.join('\n'));
-  cpToast(tr('Request sent. You can edit it for the next 3 minutes.'));
+  doneCheck(tr('Request sent'));
+  setTimeout(()=>cpToast(tr('You can edit it for the next 3 minutes.')),1500);
  }catch(err){formMsg('taskMsg',tr('Not sent: {msg}',{msg:err.message||''}),'error');}
  finally{button.disabled=false;}
 };
@@ -5473,4 +5822,4 @@ lang=clientLang;applyI18n();
 </script>
 </body>
 </html>
-<!-- ===== END OF PART 12 of 12 ===== -->
+<!-- ===== END OF PART 13 of 13 ===== -->
