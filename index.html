@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>Signix Digital</title>
 <style>
 :root{font-family:system-ui,sans-serif;color-scheme:dark;background:#060b14;color:#eaf0f8}
@@ -321,6 +321,7 @@ body.no-anim-req .request-zone:not([open]) .req-icon,body.no-anim-req .pv-reques
 .menu-item:hover,.menu-item:focus-visible{background:#22324d}
 .menu-item.current{background:#1d2c45;box-shadow:inset 0 0 0 1px #3975db}
 .menu-title{font-size:11px;color:#9fb0c7;text-transform:uppercase;letter-spacing:.05em;padding:4px 8px}
+/* ===== END OF PART 1 of 12 ===== */
 .menu-due{padding:4px 6px}
 .menu-due .row{justify-content:flex-start}
 
@@ -345,7 +346,6 @@ details.fold[open]>summary{margin-bottom:12px}
 .req-sub{display:block;font-size:13px;font-weight:400;color:#cbd5e1;margin-top:2px}
 .request-zone[open] .req-sub{display:none}
 #client .primary{background:var(--brand);color:var(--brand-text);border-color:var(--brand)}
-/* ===== END OF PART 1 of 11 ===== */
 
  
  #client .chip[aria-pressed="true"]{background:var(--brand);color:var(--brand-text);border-color:var(--brand)}
@@ -668,12 +668,12 @@ body.is-mobile #popOutBtn{display:none}
 
 /* Pop-out (all tasks only) mode */
 .tasks-only main{max-width:none;padding:10px 14px}
-/* ===== END OF PART 2 of 11 ===== */
 
  
  .tasks-only header{padding:10px 14px}
 .tasks-only #mainNav,.tasks-only #addTaskPanel,.tasks-only .admin-tools,.tasks-only #popOutBtn,.tasks-only #ipOutBtn{display:none!important}
 .ip-only #admin>.stats,.ip-only #snapshot,.ip-only #viewTool{display:none!important}
+/* ===== END OF PART 2 of 12 ===== */
 .ip-only #tasksPanel{border-color:color-mix(in srgb,var(--ip) 70%,transparent);box-shadow:0 0 0 1px color-mix(in srgb,var(--ip) 25%,transparent),0 0 30px color-mix(in srgb,var(--ip) 18%,transparent)}
 .ip-only #tasksTitle{color:color-mix(in srgb,var(--ip) 35%,#fff)}
 .ip-btn{border-color:color-mix(in srgb,var(--ip) 70%,transparent);color:color-mix(in srgb,var(--ip) 35%,#fff);background:color-mix(in srgb,var(--ip) 12%,transparent)}
@@ -940,7 +940,6 @@ body.has-shell #gearBtn{display:none}
 .trow .tr-t{flex:1;min-width:0;font-weight:600;overflow-wrap:anywhere}
 .trow .tr-chips{display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end}
 .tr-group{margin:14px 0 6px;font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:#9fb0c7}
-/* ===== END OF PART 3 of 11 ===== */
 .person{display:flex;align-items:center;gap:10px;padding:10px 14px;border-top:1px solid #1c2a40}
 .person:first-of-type{border-top:0}
 .person .av{width:34px;height:34px;flex:0 0 34px;border-radius:50%;background:#1c2b42;display:grid;place-items:center;font-weight:700;font-size:12px}
@@ -955,20 +954,6 @@ body.has-shell #gearBtn{display:none}
 .layout-board .un-title span{white-space:normal;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
 .layout-board .un-ctl{margin-left:auto}
 #viewOptsBtn{display:none}
-.brief-card{position:relative;overflow:hidden;border-radius:16px;padding:16px 18px;margin:10px 0 6px;background:radial-gradient(120% 140% at 0% 0%,rgba(56,189,248,.22),rgba(57,117,219,.12) 40%,#0f1a2b 75%);border:1px solid rgba(56,189,248,.45);box-shadow:0 0 0 1px rgba(56,189,248,.12),0 10px 30px rgba(14,116,144,.18);display:flex;flex-direction:column;gap:10px}
-.brief-head{display:flex;align-items:center;gap:10px}
-.brief-head h2{margin:0;flex:1;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:#7dd3fc}
-.brief-orb{width:14px;height:14px;border-radius:50%;flex:0 0 14px;background:radial-gradient(circle at 35% 35%,#e0f2fe,#38bdf8 45%,#0369a1);box-shadow:0 0 10px rgba(56,189,248,.8)}
-.brief-card.speaking .brief-orb{animation:brief-pulse 1.1s ease-in-out infinite}
-.brief-card.speaking{border-color:#38bdf8;box-shadow:0 0 0 1px rgba(56,189,248,.4),0 0 28px rgba(56,189,248,.35)}
-@keyframes brief-pulse{0%,100%{transform:scale(1);box-shadow:0 0 8px rgba(56,189,248,.7)}50%{transform:scale(1.35);box-shadow:0 0 22px rgba(56,189,248,1)}}
-.brief-play{min-height:40px;padding:8px 16px;border-radius:999px;border:1px solid #38bdf8;background:rgba(56,189,248,.16);color:#e0f2fe;font-weight:700}
-.brief-play[aria-pressed="true"]{background:#38bdf8;color:#04131f}
-.brief-text{margin:0;font-size:16px;line-height:1.6;color:#e2e8f0}
-@media (prefers-reduced-motion:reduce){.brief-card.speaking .brief-orb{animation:none}}
-.day-row{display:flex;gap:6px;flex-wrap:wrap;margin:4px 0 12px}
-.day-chip{display:inline-flex;align-items:center;gap:6px;padding:8px 12px;border:1px solid #2c3c54;border-radius:999px;background:#0f1a2b;margin:0;min-height:40px}
-.day-chip input{width:auto;margin:0}
 .logo-circle.biz-logo{flex:0 0 30px;width:30px;height:30px;font-size:11px;border-width:1px}
 .logo-circle.biz-logo.sm2{flex-basis:26px;width:26px;height:26px;font-size:10px}
 .logo-circle.biz-logo.lg{flex-basis:34px;width:34px;height:34px;font-size:12px}
@@ -984,6 +969,237 @@ body.is-mobile .toolbar .search{flex:1 1 auto}
  .panel{padding:14px}
  .stat strong{font-size:24px}
 }
+/* ===== Version 10 ===== */
+html{background:#060b14}
+/* Safari's floating toolbar: keep the tab bars' dark background running down to the screen edge */
+.tab-bar::after,body.portal-on:not(.has-shell) .cp-tabs::after{content:"";position:absolute;left:0;right:0;top:100%;height:160px;background:inherit;pointer-events:none}
+/* Shared confirm box */
+.modal.ask{width:min(440px,100%)}
+.ask h3{margin:0 0 6px;font-size:18px}
+.ask p{margin:0 0 4px;line-height:1.5}
+.ask-btns{display:flex;gap:10px;justify-content:flex-end;flex-wrap:wrap;margin-top:8px}
+.ask-btns button{min-height:44px;padding:10px 18px}
+button.danger,.ask-btns .danger{background:#b91c1c;border-color:#ef4444;color:#fff}
+#askModal{z-index:90}
+/* Welcome pop (about 1 second) and short confirmations */
+.welcome-toast,.cp-toast{position:fixed;left:50%;top:calc(18px + env(safe-area-inset-top));transform:translateX(-50%);z-index:95;background:#0f1a2b;border:1px solid var(--brand,#3975db);color:#fff;font-weight:700;font-size:17px;padding:12px 22px;border-radius:999px;box-shadow:0 12px 32px rgba(0,0,0,.5);white-space:nowrap;max-width:calc(100vw - 32px);overflow:hidden;text-overflow:ellipsis;pointer-events:none}
+.welcome-toast{opacity:0}
+.welcome-toast.go{animation:wt-pop 1s ease forwards}
+@keyframes wt-pop{0%{opacity:0;transform:translate(-50%,-8px) scale(.96)}15%{opacity:1;transform:translate(-50%,0) scale(1)}78%{opacity:1;transform:translate(-50%,0) scale(1)}100%{opacity:0;transform:translate(-50%,-6px) scale(.98)}}
+.cp-toast{font-weight:600;font-size:15px;white-space:normal;text-align:center;border-radius:14px;animation:cp-toast 3.6s ease forwards}
+@keyframes cp-toast{0%{opacity:0;transform:translate(-50%,-8px)}8%,85%{opacity:1;transform:translate(-50%,0)}100%{opacity:0;transform:translate(-50%,-6px)}}
+@media (prefers-reduced-motion:reduce){.welcome-toast.go{animation:wt-fade 1s linear forwards}@keyframes wt-fade{0%,85%{opacity:1}100%{opacity:0}}}
+/* Language switch */
+.lang-sw{display:inline-flex;border:1px solid #40516b;border-radius:999px;overflow:hidden;flex:0 0 auto;background:#0b1525}
+.lang-sw button{border:0;border-radius:0;background:transparent;color:#cbd5e1;padding:7px 12px;font-size:13px;font-weight:700;min-height:36px}
+.lang-sw button[aria-pressed="true"]{background:var(--brand,#3975db);color:var(--brand-text,#fff)}
+.auth-lang{display:flex;justify-content:flex-end;margin:-6px 0 6px}
+
+/* ----- Client portal ----- */
+.cp-preview{display:flex;flex-direction:column;gap:2px;margin:0 0 12px}
+.cp-preview label{margin:0}
+.cp-preview p{margin:0;font-size:14px}
+.cp-shell{max-width:860px;margin:0 auto}
+.cp-hero{padding:16px;margin:0 0 12px}
+.cp-hero .hero-inner{gap:12px}
+.cp-hero .logo-circle{flex-basis:56px;width:56px;height:56px;font-size:19px}
+.cp-hero-text{flex:1;min-width:0}
+.cp-hero-text h2{font-size:21px;overflow-wrap:anywhere}
+.cp-hero-text p{font-size:14px}
+.cp-tabs{position:relative;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));align-items:center;margin:0 0 14px;padding:6px;border-radius:16px;background:#0a1322;border:1px solid #1c2a40}
+.cp-tabs>button{position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;border:0;background:transparent;color:#9fb0c7;font-size:12px;padding:6px 0;min-height:52px;border-radius:12px}
+.cp-tabs>button svg{width:22px;height:22px}
+.cp-tabs>button[aria-current="page"]{color:#fff;font-weight:700;background:#16233a}
+/* ===== END OF PART 3 of 12 ===== */
+.cp-tabs .cpt-act{justify-self:center;width:56px;height:56px;min-height:0;border-radius:50%;background:var(--brand,#3975db);color:var(--brand-text,#fff);box-shadow:0 6px 18px var(--brand-glow,rgba(57,117,219,.5));padding:0}
+.cp-tabs .cpt-act svg{width:26px;height:26px}
+.cp-tabs .cpt-act .cpt-lbl{display:none}
+.cpt-badge{position:absolute;top:4px;left:calc(50% + 8px);font-size:10px;font-weight:800;padding:1px 5px;border-radius:999px;background:var(--mk,#f59e0b);color:var(--mk-t,#1a1204);font-style:normal}
+.cpt-badge:empty{display:none}
+@media (min-width:701px){
+ .cp-tabs{display:flex;gap:4px;padding:5px}
+ .cp-tabs>button{flex-direction:row;gap:8px;font-size:14px;min-height:44px;padding:8px 16px}
+ .cp-tabs>button svg{width:18px;height:18px}
+ .cp-tabs .cpt-act{order:9;margin-left:auto;width:auto;height:auto;min-height:44px;border-radius:999px;padding:8px 18px;box-shadow:none;font-weight:700}
+ .cp-tabs .cpt-act svg{width:18px;height:18px}
+ .cp-tabs .cpt-act .cpt-lbl{display:inline}
+ .cpt-badge{position:static;margin-left:2px}
+}
+@media (max-width:700px){
+ body.portal-on:not(.has-shell) .cp-tabs{position:fixed;left:0;right:0;bottom:0;z-index:40;margin:0;border-radius:0;border-width:1px 0 0;padding:6px 8px calc(8px + env(safe-area-inset-bottom))}
+ body.portal-on:not(.has-shell) main{padding-bottom:110px}
+}
+@media (min-width:701px){body.portal-on:not(.has-shell) .cp-tabs::after{display:none}}
+@media (max-width:700px){
+ body.portal-on:not(.has-shell) .cp-tabs>button[aria-current="page"]{background:transparent}
+ .cp-hero{padding:12px 14px}
+ .cp-hero .logo-circle{flex-basis:46px;width:46px;height:46px;font-size:16px}
+ .cp-hero-text h2{font-size:18px}
+}
+.cp-sec{margin:0 0 18px}
+.cp-sec>h3{margin:0 0 8px;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#cbd5e1}
+.cp-sec.needs>h3{color:color-mix(in srgb,var(--wait) 55%,#fff)}
+.cp-sec.done>h3{color:color-mix(in srgb,var(--dn) 55%,#fff)}
+.cp-empty{padding:22px 16px;border-radius:14px;border:1px dashed #33445e;text-align:center;color:#9fb0c7;margin:0 0 18px}
+.cj-row,.cm-row{display:flex;align-items:center;gap:12px;width:100%;text-align:left;padding:13px 14px;border:0;border-top:1px solid #1c2a40;border-radius:0;background:transparent;color:#eaf0f8;min-height:60px}
+.cj-row:hover,.cm-row:hover{background:#121e30}
+.list-card>.cj-row:first-child,.list-card>.cm-row:first-child{border-top:0}
+.cj-dot{flex:0 0 10px;width:10px;height:10px;border-radius:50%;background:var(--todo)}
+.cj-row.st-incoming .cj-dot{background:var(--inc)}
+.cj-row.st-in-progress .cj-dot{background:var(--ip);box-shadow:0 0 8px var(--ip)}
+.cj-row.st-waiting-on-client .cj-dot{background:var(--wait)}
+.cj-row.st-completed .cj-dot{background:var(--dn)}
+.cj-chev{flex:0 0 auto;color:#64748b;font-size:22px;line-height:1}
+.cm-row .av{flex:0 0 36px;width:36px;height:36px;border-radius:50%;background:#1c2b42;display:grid;place-items:center;font-weight:700;font-size:12px}
+.cm-row .av.sx{background:var(--brand,#3975db);color:var(--brand-text,#fff)}
+.cm-row.is-new{background:linear-gradient(90deg,color-mix(in srgb,var(--mk,#f59e0b) 14%,transparent),transparent 70%)}
+.cm-row.is-new strong::after{content:"";display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--mk,#f59e0b);margin-left:8px;vertical-align:middle}
+.cm-job{color:#9fb0c7;font-weight:400}
+.cp-filter{display:flex;gap:6px;flex-wrap:wrap;margin:0 0 14px}
+.cp-filter button{padding:8px 14px;border-radius:999px;font-size:14px;min-height:40px}
+.cp-filter button[aria-pressed="true"]{background:var(--brand,#3975db);border-color:var(--brand,#3975db);color:var(--brand-text,#fff)}
+.cp-group{margin:14px 0 6px;font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#9fb0c7}
+/* Home: actions, call banner, since your last visit */
+.cp-actions{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:10px;margin:0 0 18px}
+.cp-act{display:flex;align-items:center;gap:14px;text-align:left;padding:16px;border-radius:16px;border:2px solid var(--brand,#3975db);background:linear-gradient(135deg,var(--brand-soft,rgba(57,117,219,.22)),#0a1220 80%);color:#fff;min-height:84px}
+.cp-act.call{border-color:#22c55e;background:linear-gradient(135deg,rgba(34,197,94,.2),#0a1220 80%)}
+.cp-act strong{display:block;font-size:17px}
+.cp-act small{display:block;color:#cbd5e1;font-size:13px;margin-top:3px;line-height:1.35}
+.ca-ic{flex:0 0 46px;width:46px;height:46px;border-radius:50%;display:grid;place-items:center;background:var(--brand,#3975db);color:var(--brand-text,#fff)}
+.cp-act.call .ca-ic{background:#22c55e;color:#04210f}
+.ca-ic svg{width:24px;height:24px}
+.call-banner{display:flex;align-items:center;gap:14px;padding:16px;border-radius:16px;margin:0 0 18px;border:2px solid #22c55e;background:linear-gradient(135deg,rgba(34,197,94,.22),#0a1220 80%)}
+.call-banner .ca-ic{background:#22c55e;color:#04210f;animation:call-ring 2.4s ease-in-out infinite}
+.call-banner strong{display:block;font-size:18px}
+.call-banner small{display:block;color:#cbd5e1;font-size:13px;margin-top:3px}
+@keyframes call-ring{0%,100%{box-shadow:0 0 0 0 rgba(34,197,94,.55)}50%{box-shadow:0 0 0 10px rgba(34,197,94,0)}}
+@media (prefers-reduced-motion:reduce){.call-banner .ca-ic{animation:none}}
+.since-card{position:relative;padding:14px 16px;border-radius:16px;margin:0 0 18px;border:1px solid var(--brand,#3975db);background:#0f1a2b}
+.since-card h3{margin:0 0 2px;font-size:16px}
+.since-card>p{margin:0 0 8px;color:#cbd5e1;font-size:14px}
+.since-card .modal-x{position:absolute;top:6px;right:4px}
+.since-row{display:flex;justify-content:space-between;gap:10px;width:100%;text-align:left;border:0;border-top:1px solid #1c2a40;border-radius:0;background:transparent;color:#eaf0f8;padding:10px 2px}
+.since-row small{color:#9fb0c7;text-align:right}
+/* Job page */
+.cp-back{border:0;background:transparent;color:#9fc2ff;padding:6px 0;font-size:16px;margin:0 0 6px}
+.cjob-head{padding:16px;border-radius:16px;background:#0f1a2b;border:1px solid #22324b;margin:0 0 14px}
+.cjob-head h2{margin:0 0 10px;font-size:21px;overflow-wrap:anywhere}
+.cjob-chips{display:flex;gap:6px;flex-wrap:wrap}
+.cjob-desc{margin:12px 0 0;white-space:pre-wrap;overflow-wrap:anywhere;color:#d5deea;line-height:1.5}
+.cjob-edit{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin-top:12px}
+.cth{display:flex;flex-direction:column;gap:10px;margin:0 0 14px}
+.cth-sys{align-self:center;font-size:12px;color:#9fb0c7;padding:4px 12px;border-radius:999px;background:#0f1a2b;border:1px solid #22324b}
+.cth-msg{max-width:min(85%,560px);padding:10px 12px;border-radius:16px;background:#16233a;border:1px solid #2c3c54}
+.cth-msg.them{align-self:flex-start;border-bottom-left-radius:4px}
+.cth-msg.me{align-self:flex-end;border-bottom-right-radius:4px;background:color-mix(in srgb,var(--brand,#3975db) 26%,#0f1a2b);border-color:color-mix(in srgb,var(--brand,#3975db) 55%,transparent)}
+.cth-msg.is-new{box-shadow:0 0 0 2px var(--mk,#f59e0b)}
+.cth-meta{display:flex;gap:8px;align-items:baseline;font-size:11.5px;color:#9fb0c7;margin-bottom:3px;flex-wrap:wrap}
+.cth-meta strong{color:#e2e8f0;font-size:12.5px}
+.cth-body{white-space:pre-wrap;overflow-wrap:anywhere;line-height:1.45}
+.cth-msg .media{margin-top:8px;gap:6px}
+.cth-msg .media a.thumb img{width:96px;height:96px}
+.cth-msg .media video,.cth-msg .media audio{width:240px}
+.cp-compose{border-radius:16px;background:#0f1a2b;border:1px solid #22324b;padding:12px}
+.cp-compose .note-compose textarea{min-height:64px}
+/* Files grid */
+.cf-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px}
+.cf-tile{margin:0;border-radius:14px;overflow:hidden;background:#0f1a2b;border:1px solid #22324b;display:flex;flex-direction:column}
+.cf-media{position:relative;display:block;aspect-ratio:1;background:#0b1525}
+.cf-media img,.cf-media video{width:100%;height:100%;object-fit:cover;display:block}
+.cf-play{position:absolute;inset:0;display:grid;place-items:center;font-size:30px;color:#fff;text-shadow:0 2px 10px rgba(0,0,0,.7)}
+.cf-tile.audio .cf-media{aspect-ratio:auto;padding:14px 8px}
+.cf-tile.audio audio{width:100%}
+.cf-tile figcaption{padding:8px 10px;display:flex;flex-direction:column;gap:2px;min-width:0}
+.cf-tile figcaption button{border:0;background:transparent;padding:0;color:#e2e8f0;text-align:left;font-size:13px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.cf-tile figcaption small{color:#9fb0c7;font-size:11.5px}
+/* Sheets: Add a task / Request a call */
+.modal.sheet{width:min(620px,100%)}
+@media (max-width:700px){
+ .modal-back.sheet-back{align-items:flex-end;padding:0}
+ .modal-back.sheet-back .modal{border-radius:18px 18px 0 0;max-height:92vh;padding-bottom:env(safe-area-inset-bottom)}
+}
+.reason-chips{border:0;padding:0;margin:0 0 12px}
+.reason-chips legend{color:#cbd5e1;font-size:14px;padding:0;margin:0 0 8px}
+.reason-chips .rc-row{display:flex;gap:8px;flex-wrap:wrap}
+.reason-chips label{display:inline-flex;align-items:center;gap:6px;padding:9px 14px;border-radius:999px;border:1px solid #40516b;background:#0b1525;color:#e2e8f0;cursor:pointer;min-height:42px}
+.reason-chips input{position:absolute;opacity:0;width:1px;height:1px;pointer-events:none}
+.reason-chips label:has(input:checked){background:#22c55e;border-color:#22c55e;color:#04210f;font-weight:700}
+.reason-chips label:has(input:focus-visible){outline:2px solid #90baff;outline-offset:2px}
+.call-confirm{padding:12px 14px;border-radius:12px;background:rgba(34,197,94,.12);border:1px solid rgba(34,197,94,.5);margin:4px 0 12px;font-size:15px;line-height:1.45}
+.call-btns{display:flex;gap:10px;flex-wrap:wrap}
+.call-btns .primary{flex:1 1 220px;min-height:50px;font-size:17px;font-weight:700;background:#22c55e;border-color:#22c55e;color:#04210f}
+.call-btns button{min-height:50px}
+.opt{font-weight:400;color:#9fb0c7}
+
+/* ----- Admin: Call back list ----- */
+.sec-h.red{color:#fca5a5}
+.cb-list{display:flex;flex-direction:column;gap:10px;margin:0 0 4px}
+.cb-row{--biz:#64748b;display:flex;gap:12px;align-items:flex-start;padding:14px;border-radius:16px;background:linear-gradient(135deg,rgba(34,197,94,.14),#0f1a2b 60%);border:1px solid rgba(34,197,94,.55)}
+.cb-main{flex:1;min-width:0;display:flex;flex-direction:column;gap:6px}
+.cb-top{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.cb-top strong a,.cb-top strong{color:#fff;font-size:16px;text-decoration:none}
+.cb-biz{color:#cbd5e1;font-size:13px}
+.need-tag.call{background:#22c55e;color:#04210f}
+.need-tag.call.urgent{background:#ef4444;color:#fff}
+.cb-note{margin:0;white-space:pre-wrap;overflow-wrap:anywhere;color:#d5deea;font-size:14px;line-height:1.45}
+.cb-files{display:flex;gap:6px;flex-wrap:wrap}
+.cb-files a img,.cb-files video{width:64px;height:64px;object-fit:cover;border-radius:8px;border:1px solid #2c3c54;display:block}
+.cb-files audio{width:220px;max-width:100%}
+.cb-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:2px}
+.cb-actions a,.cb-actions button{display:inline-flex;align-items:center;gap:6px;min-height:40px;padding:8px 14px;border-radius:999px;font-size:14px;font-weight:600;text-decoration:none}
+.cb-dial{background:#22c55e;color:#04210f;border:1px solid #22c55e}
+.cb-done{background:#1c2b42;border:1px solid #40516b;color:#fff}
+.cb-wait{flex:0 0 auto;font-size:12px;color:#bbf7d0;white-space:nowrap}
+.calls-hint{margin:0 0 6px}
+
+/* ----- Admin: retainer / job-by-job, archive, last seen ----- */
+.cl-tag{display:inline-flex;align-items:center;font-size:10.5px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;padding:3px 8px;border-radius:999px;white-space:nowrap}
+.cl-tag.ret{background:#f5c542;color:#2a1d00}
+.cl-tag.job{background:#334155;color:#e2e8f0}
+.cl-tag.arch{background:transparent;border:1px solid #64748b;color:#cbd5e1}
+.cl-grp{display:flex;align-items:center;gap:8px;margin:10px 2px 2px;font-size:12px;color:#9fb0c7}
+.cl-grp:first-child{margin-top:0}
+.cl-pick .cp-tags{display:flex;gap:6px;align-items:center;flex-wrap:wrap}
+.cl-arch{margin-top:12px;border-top:1px solid #22324b;padding-top:8px}
+.cl-arch summary{cursor:pointer;color:#9fb0c7;font-size:13px;padding:6px 2px}
+.cl-arch-row{display:flex;align-items:center;gap:10px;padding:8px 6px}
+.cl-arch-row .logo-circle{flex:0 0 30px;width:30px;height:30px;font-size:11px;border-width:1px;filter:grayscale(.7);opacity:.75}
+.cl-arch-row span{flex:1;min-width:0}
+.cl-arch-row small{display:block;color:#9fb0c7;font-size:11.5px}
+.cl-arch-row button{padding:7px 12px;font-size:13px}
+.cl-switch{display:inline-flex;align-items:center;gap:8px;padding:6px 12px;border-radius:999px;border:1px solid #40516b;background:#0b1525;font-size:13px;color:#e2e8f0;cursor:pointer;margin:0}
+.cl-switch input{width:auto;margin:0;accent-color:#f5c542}
+.cl-name-row{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+/* ----- Admin: compact Client Logins ----- */
+.lg-tools{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin:0 0 10px}
+.lg-add{border:1px solid #2c3c54;border-radius:14px;padding:14px;margin:0 0 14px;background:#0b1525}
+.lg-add .muted{font-size:13px;margin-top:0}
+.lg-group{border:1px solid #22324b;border-radius:14px;overflow:hidden;margin:0 0 12px;background:#0f1a2b}
+.lg-ghead{display:flex;align-items:center;gap:10px;padding:10px 12px;background:#121e30;border-bottom:1px solid #22324b}
+.lg-ghead .logo-circle{flex:0 0 30px;width:30px;height:30px;font-size:11px;border-width:1px}
+.lg-ghead strong{flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.lg-ghead small{color:#9fb0c7;font-size:12px}
+.lg-row{display:flex;align-items:center;gap:10px;padding:10px 12px;border-top:1px solid #1c2a40;flex-wrap:wrap}
+.lg-row:first-of-type{border-top:0}
+.lg-row .av{flex:0 0 32px;width:32px;height:32px;border-radius:50%;background:#1c2b42;display:grid;place-items:center;font-weight:700;font-size:11px}
+.lg-main{flex:1 1 180px;min-width:0}
+.lg-main strong{display:block;font-size:14px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.lg-main small{display:block;color:#9fb0c7;font-size:12px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.lg-btns{display:flex;gap:6px;flex-wrap:wrap}
+.lg-btns button{padding:6px 10px;font-size:12.5px;border-radius:8px;min-height:34px}
+.lg-btns .lg-del{color:#fecaca;border-color:rgba(239,68,68,.55);background:rgba(239,68,68,.1)}
+.lg-row .name-form{flex-basis:100%;display:flex;gap:8px}
+.lg-row .name-form input{margin:0;padding:8px 10px;flex:1}
+.lg-row .name-form button{padding:8px 12px}
+.lg-msg{flex-basis:100%;margin:0;font-size:13px;color:#bbf7d0}
+.lg-msg:empty{display:none}
+.lg-msg.err{color:#fecaca}
+@media (max-width:700px){
+ body.portal-on header .header-actions button{padding:8px 10px;font-size:13px}
+ body.portal-on header{padding:10px 12px}
+ .cp-tabs>button span{white-space:nowrap;font-size:11.5px}
+}
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 </style>
 </head>
 <body>
@@ -991,14 +1207,14 @@ body.is-mobile .toolbar .search{flex:1 1 auto}
 <header>
 <div>
 <h1>Signix Digital</h1>
-<small class="muted">Task Management</small>
+<small class="muted" data-i18n="Task Management">Task Management</small>
 </div>
 <div class="header-actions">
 <a id="fullLink" class="hidden" href="./">Full dashboard</a>
 <button type="button" id="needsBtn" class="needs-pill hidden">Needs me</button>
 <button type="button" id="gearBtn" class="icon-btn hidden" aria-label="Settings"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M4.9 19.1L7 17M17 7l2.1-2.1"/></svg></button>
-<button id="changePwBtn" class="hidden" type="button" aria-expanded="false" aria-controls="changePwPanel">Change password</button>
-<button id="logout" class="hidden">Log out</button>
+<button id="changePwBtn" class="hidden" type="button" aria-expanded="false" aria-controls="changePwPanel" data-i18n="Change password">Change password</button>
+<button id="logout" class="hidden" data-i18n="Log out">Log out</button>
 </div>
 </header>
 
@@ -1006,15 +1222,15 @@ body.is-mobile .toolbar .search{flex:1 1 auto}
 <p id="message" role="status" aria-live="polite"></p>
 
 <section id="changePwPanel" class="panel hidden" aria-labelledby="changePwTitle">
-<h2 id="changePwTitle">Change your password</h2>
+<h2 id="changePwTitle" data-i18n="Change your password">Change your password</h2>
 <form id="changePwForm" novalidate>
-<label>New password
+<label><span data-i18n="New password">New password</span>
 <div class="password-wrap">
 <input type="password" id="cpNew" autocomplete="new-password">
 <button class="toggle-password" type="button" data-toggle="cpNew" aria-label="Show new password" aria-pressed="false">Show</button>
 </div>
 </label>
-<label>Confirm new password
+<label><span data-i18n="Confirm new password">Confirm new password</span>
 <div class="password-wrap">
 <input type="password" id="cpConfirm" autocomplete="new-password">
 <button class="toggle-password" type="button" data-toggle="cpConfirm" aria-label="Show confirmation password" aria-pressed="false">Show</button>
@@ -1022,64 +1238,65 @@ body.is-mobile .toolbar .search{flex:1 1 auto}
 </label>
 <div id="cpRules" class="pw-rules" aria-live="polite"><span data-rule="len">• At least 8 characters</span><span data-rule="match">• Type the same password in both boxes</span></div>
 <div class="row" style="justify-content:flex-start">
-<button id="cpSave" class="primary" type="submit">Save new password</button>
-<button id="cpCancel" type="button">Cancel</button>
+<button id="cpSave" class="primary" type="submit" data-i18n="Save new password">Save new password</button>
+<button id="cpCancel" type="button" data-i18n="Cancel">Cancel</button>
 </div>
 <p id="cpMsg" class="form-msg" role="alert" aria-live="assertive"></p>
 </form>
 </section>
 
 <section id="auth" class="panel">
-<h2 id="authTitle">Sign in</h2>
+<div class="auth-lang"><div class="lang-sw" role="group" aria-label="Language / Idioma"><button type="button" data-lang="en" aria-pressed="true">EN</button><button type="button" data-lang="es" aria-pressed="false">ES</button></div></div>
+<h2 id="authTitle" data-key="Sign in">Sign in</h2>
 
 <form id="loginForm" novalidate>
-<label>Email
+<label><span data-i18n="Email">Email</span>
 <input type="email" id="email" required autocomplete="email">
 </label>
-<label>Password
+<label><span data-i18n="Password">Password</span>
 <div class="password-wrap">
 <input type="password" id="password" required autocomplete="current-password">
 <button class="toggle-password" type="button" data-toggle="password" aria-label="Show password" aria-pressed="false">Show</button>
 </div>
 </label>
-<button id="signInButton" class="primary">Sign in</button>
+<button id="signInButton" class="primary" data-i18n="Sign in">Sign in</button>
 <p id="loginMsg" class="form-msg" role="alert" aria-live="assertive"></p>
 </form>
 
 <p id="forgotLink">
-<button id="forgot" class="link-button" type="button">Forgot password?</button>
+<button id="forgot" class="link-button" type="button" data-i18n="Forgot password?">Forgot password?</button>
 </p>
 
 <form id="requestForm" class="hidden" novalidate>
-<label>Email address
+<label><span data-i18n="Email address">Email address</span>
 <input type="email" id="resetEmail" required autocomplete="email">
 </label>
-<button id="sendResetButton" class="primary">Send password reset link</button>
+<button id="sendResetButton" class="primary" data-i18n="Send password reset link">Send password reset link</button>
 <p id="requestMsg" class="form-msg" role="alert" aria-live="assertive"></p>
 </form>
 
 <form id="resetForm" class="hidden" novalidate>
 <p id="resetIntro" class="muted"></p>
-<label>New password
+<label><span data-i18n="New password">New password</span>
 <div class="password-wrap">
 <input type="password" id="newPassword" minlength="8" required autocomplete="new-password">
 <button class="toggle-password" type="button" data-toggle="newPassword" aria-label="Show new password" aria-pressed="false">Show</button>
 </div>
 </label>
-<label>Confirm new password
+<label><span data-i18n="Confirm new password">Confirm new password</span>
 <div class="password-wrap">
 <input type="password" id="confirmPassword" minlength="8" required autocomplete="new-password">
 <button class="toggle-password" type="button" data-toggle="confirmPassword" aria-label="Show confirmation password" aria-pressed="false">Show</button>
 </div>
 </label>
 <div id="pwRules" class="pw-rules" aria-live="polite"><span data-rule="len">• At least 8 characters</span><span data-rule="match">• Type the same password in both boxes</span></div>
-<button id="setPasswordButton" class="primary">Set password</button>
+<button id="setPasswordButton" class="primary" data-i18n="Set password">Set password</button>
 <p id="resetMsg" class="form-msg" role="alert" aria-live="assertive"></p>
-<p><button id="newLinkButton" class="link-button" type="button">Link not working? Email me a new link</button></p>
+<p><button id="newLinkButton" class="link-button" type="button" data-i18n="Link not working? Email me a new link">Link not working? Email me a new link</button></p>
 </form>
 
 <p id="backLink" class="hidden">
-<button id="back" class="link-button" type="button">Back to sign in</button>
+<button id="back" class="link-button" type="button" data-i18n="Back to sign in">Back to sign in</button>
 </p>
 </section>
 
@@ -1111,10 +1328,6 @@ body.is-mobile .toolbar .search{flex:1 1 auto}
 <section id="admin">
 <section id="areaHome" class="area" data-area="home">
 <div class="home-head"><h1 id="homeHello">Welcome</h1><span id="homeDate"></span></div>
-<section id="briefCard" class="brief-card" aria-labelledby="briefTitle">
-<div class="brief-head"><span class="brief-orb" aria-hidden="true"></span><h2 id="briefTitle">Morning brief</h2><button type="button" id="briefPlay" class="brief-play" aria-pressed="false">▶ Play</button></div>
-<p id="briefText" class="brief-text" aria-live="polite"></p>
-</section>
 <div class="stats">
 <button type="button" class="stat" id="openStat">Open tasks<strong id="openCount">0</strong></button>
 <button type="button" class="stat incoming" id="incomingStat">Incoming requests<strong id="requestCount">0</strong></button>
@@ -1125,6 +1338,7 @@ body.is-mobile .toolbar .search{flex:1 1 auto}
 </div>
 <div class="home-grid">
 <div class="home-main">
+<section id="homeCallsSec" class="hidden" aria-labelledby="callsTitle"><h2 class="sec-h red" id="callsTitle">Call back</h2><div id="homeCalls"></div></section>
 <section aria-labelledby="unTitle"><h2 class="sec-h green" id="unTitle">Up next</h2><div id="homeUpNext"></div></section>
 <section aria-labelledby="needsTitle"><h2 class="sec-h amber" id="needsTitle">Needs me</h2><div id="homeNeeds"></div></section>
 </div>
@@ -1194,6 +1408,7 @@ body.is-mobile .toolbar .search{flex:1 1 auto}
 <div class="tool"><span class="tool-label">Layout</span><div class="chips" id="adminLayouts"></div></div>
 <select id="bizFilter" aria-label="Filter by business"><option value="">All businesses</option></select>
 <button type="button" class="tbtn" id="densityBtn" aria-pressed="true" title="Collapse completed tasks into thin lines">Quiet done</button>
+<!-- ===== END OF PART 4 of 12 ===== -->
 <button type="button" class="tbtn" id="selectBtn" aria-pressed="false" title="Select several tasks to change at once">Select</button>
 </div>
 <p id="searchNote" class="search-note hidden"></p>
@@ -1215,26 +1430,6 @@ body.is-mobile .toolbar .search{flex:1 1 auto}
 <h1 class="area-title">Settings</h1>
 <div class="settings-row"><button type="button" id="setPreviewBtn">Preview a client's portal</button><button type="button" id="setPwBtn">Change password</button><button type="button" id="setLogoutBtn">Log out</button></div>
 <div class="admin-tools">
-<details id="briefPanel" class="panel fold">
-<summary>Morning brief</summary>
-<p class="muted">A short rundown of your day, sent to your phone through Pushover. On Home, press ▶ Play any time to hear where things stand right now.</p>
-<form id="briefForm">
-<label class="check"><input type="checkbox" name="enabled"> Send me the brief</label>
-<label>Time (Chicago)<input type="time" name="send_time" value="07:30" step="300"></label>
-<div class="day-row" role="group" aria-label="Days to send">
-<label class="day-chip"><input type="checkbox" name="d0">Sun</label>
-<label class="day-chip"><input type="checkbox" name="d1">Mon</label>
-<label class="day-chip"><input type="checkbox" name="d2">Tue</label>
-<label class="day-chip"><input type="checkbox" name="d3">Wed</label>
-<label class="day-chip"><input type="checkbox" name="d4">Thu</label>
-<label class="day-chip"><input type="checkbox" name="d5">Fri</label>
-<label class="day-chip"><input type="checkbox" name="d6">Sat</label>
-</div>
-</form>
-<div class="settings-row"><button type="button" id="briefSendNow">Send me one now</button></div>
-<p id="briefStatus" class="muted" role="status"></p>
-</details>
-
 <details class="panel fold">
 <summary>Manage Clients</summary>
 <p class="muted">Add a client, or tap a client to edit their details and optional portal branding. Existing tasks stay connected to the same client.</p>
@@ -1247,12 +1442,15 @@ body.is-mobile .toolbar .search{flex:1 1 auto}
 
 <details class="panel fold">
 <summary>Client Logins</summary>
-<p class="muted">Step 1: In Supabase, go to Authentication → Users → Add user → Send invitation, and enter the client's email.<br>Step 2: Link that email to their business below. Several people can be linked to the same business; they all see that business's tasks.</p>
+<p class="muted" style="margin-top:0">Everyone who can sign in to a client portal, grouped by business.</p>
+<div class="lg-tools"><button type="button" id="lgAddBtn" class="primary" aria-expanded="false" aria-controls="lgAdd">+ Add a login</button></div>
+<div id="lgAdd" class="lg-add hidden">
+<p class="muted">Step 1: In Supabase, go to Authentication → Users → Add user → Send invitation, and enter the person's email.<br>Step 2: Link that email to their business here. Several people can share one business; they all see its tasks.</p>
 <form id="linkForm">
-<label>Person's name (shown on the requests they send)
+<label>Person's name (shown on what they send)
 <input name="name" maxlength="80" autocomplete="off" placeholder="Example: Maria Lopez">
 </label>
-<label>Client login email
+<label>Login email
 <input type="email" name="email" required autocomplete="off">
 </label>
 <label>Business
@@ -1263,6 +1461,7 @@ body.is-mobile .toolbar .search{flex:1 1 auto}
 <button class="primary" type="submit">Link login</button>
 <p id="linkMsg" class="form-msg" role="alert" aria-live="assertive"></p>
 </form>
+</div>
 <div id="loginsList" aria-live="polite"></div>
 </details>
 
@@ -1350,73 +1549,36 @@ body.is-mobile .toolbar .search{flex:1 1 auto}
 </section>
 
 <section id="client" class="hidden">
-<div class="panel">
-<div id="portalHero" class="portal-hero">
-<div class="hero-inner">
-<div id="portalLogo" class="logo-circle" aria-hidden="true">SD</div>
-<div>
-<h2 id="portalTitle">Client Portal</h2>
-<p id="portalIntro" class="muted"></p>
-</div>
-</div>
-</div>
-<label id="previewWrap" class="hidden">Preview as client
+<div id="cpPreview" class="cp-preview hidden">
+<label>Preview as client
 <select id="previewClient">
 <option value="">Select a client</option>
 </select>
 </label>
-
-<details id="requestPanel" class="panel fold request-zone hidden">
-<summary><span class="req-head"><span class="req-icon" aria-hidden="true">+</span><span>Need something? Start a request here<span class="req-sub">Tap to add a new request</span></span></span></summary>
-<p class="muted">Tell us what you need. Add photos, videos or a voice note if it helps. You can edit a request for 3 minutes after sending it. After that, add notes to it any time.</p>
-<form id="requestTaskForm">
-<label>Task name
-<input name="title" maxlength="200" required placeholder="Example: New window vinyl">
-</label>
-<label>Details
-<textarea name="description" maxlength="2000" placeholder="Sizes, colors, location, anything we should know"></textarea>
-</label>
-<div class="grid2">
-<label>Priority
-<select name="priority">
-<option>Low</option>
-<option selected>Medium</option>
-<option>High</option>
-</select>
-</label>
-<label>Deadline (optional)
-<input type="date" name="due" id="requestDue">
-</label>
+<p id="cpPreviewNote" class="muted"></p>
 </div>
-<label id="reqAssignWrap" class="hidden">Who is this for
-<select name="assign" id="reqAssign"></select>
-</label>
-<span class="muted" style="font-size:14px">Attachments (optional, up to 10 files, 50 MB each)</span>
-<div class="attach-row">
-<label class="file-button">Add photos or videos
-<input type="file" id="mediaInput" accept="image/*,video/*" multiple>
-</label>
-<button type="button" id="recordBtn" aria-pressed="false">Record voice note</button>
+<div id="cpShell" class="cp-shell">
+<div id="portalHero" class="portal-hero cp-hero">
+<div class="hero-inner">
+<div id="portalLogo" class="logo-circle" aria-hidden="true">SD</div>
+<div class="cp-hero-text"><h2 id="portalTitle">Client Portal</h2><p id="portalIntro" class="muted"></p></div>
+<div class="lang-sw" role="group" aria-label="Language / Idioma"><button type="button" data-lang="en" aria-pressed="true">EN</button><button type="button" data-lang="es" aria-pressed="false">ES</button></div>
 </div>
-<ul id="pendingList" class="pending" aria-live="polite"></ul>
-<button class="primary" type="submit" id="sendRequestBtn">Send request</button>
-</form>
-</details>
-
-<!-- ===== END OF PART 4 of 11 ===== -->
-
- 
- <div class="stats">
-<button type="button" class="stat" id="portalOpenStat">Open tasks<strong id="portalOpen">0</strong></button>
-<button type="button" class="stat today" id="portalNeedsStat">Needs your input<strong id="portalNeeds">0</strong></button>
-<button type="button" class="stat" id="portalDoneStat">Completed<strong id="portalDone">0</strong></button>
 </div>
-<div class="toolbar">
-<div class="tool"><span class="tool-label">View</span><div class="chips" id="clientViews"></div></div>
-<div class="tool" id="clientLayoutTool"><span class="tool-label">Layout</span><div class="chips" id="clientLayouts"></div></div>
-<div class="tool hidden" id="personTool"><span class="tool-label">For</span><div class="chips" id="personChips"></div></div>
+<nav id="cpTabs" class="cp-tabs" aria-label="Portal">
+<button type="button" data-cptab="home"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 11l9-7 9 7"/><path d="M5 10v10h14V10"/></svg><span data-i18n="Home">Home</span><b class="cpt-badge" id="cpHomeBadge"></b></button>
+<button type="button" data-cptab="jobs"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M8 10l2 2 4-4"/><path d="M8 16h8"/></svg><span data-i18n="My jobs">My jobs</span></button>
+<button type="button" class="cpt-act" id="cpMainAct" data-cpact="main"></button>
+<button type="button" data-cptab="messages"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"/></svg><span data-i18n="Messages">Messages</span><b class="cpt-badge" id="cpMsgBadge"></b></button>
+<button type="button" data-cptab="files"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="9" cy="10" r="2"/><path d="M21 17l-5-5-9 8"/></svg><span data-i18n="Files">Files</span></button>
+</nav>
+<div id="cpMain"></div>
+<div id="cpJob" class="hidden">
+<div id="cpJobHead"></div>
+<div id="cpJobThread" class="cth" aria-live="polite"></div>
+<div id="cpJobCompose" class="cp-compose"></div>
+<p id="cpJobPreview" class="muted hidden">Preview only. Your client writes messages here.</p>
 </div>
-<div id="clientBoard" class="board"></div>
 </div>
 </section>
 </section>
@@ -1428,10 +1590,10 @@ body.is-mobile .toolbar .search{flex:1 1 auto}
 <div class="modal-head"><span id="notesLogo"></span><h3 id="notesTitle">Notes</h3><button type="button" class="modal-x" id="notesClose" aria-label="Close notes">×</button></div>
 <div class="modal-body">
 <form id="noteForm" class="note-compose">
-<textarea name="body" id="noteText" maxlength="2000" placeholder="Write a note…" aria-label="Note"></textarea>
+<textarea name="body" id="noteText" maxlength="2000" placeholder="Write a note…" aria-label="Message"></textarea>
 <div id="noteFiles">
 <div class="attach-row">
-<label class="file-button">Add photos or videos
+<label class="file-button"><span>Add photos or videos</span>
 <input type="file" id="noteMediaInput" accept="image/*,video/*" multiple>
 </label>
 <button type="button" id="noteRecordBtn" aria-pressed="false">Record voice note</button>
@@ -1445,12 +1607,98 @@ body.is-mobile .toolbar .search{flex:1 1 auto}
 </div>
 </div>
 </div>
-<div id="welcomeModal" class="modal-back hidden" role="dialog" aria-modal="true" aria-labelledby="welcomeTitle">
-<div class="modal">
-<div class="modal-head"><h3 id="welcomeTitle">Welcome back</h3><button type="button" class="modal-x" id="welcomeClose" aria-label="Close">×</button></div>
-<div class="modal-body" id="welcomeBody"></div>
+<div id="taskSheet" class="modal-back sheet-back hidden" role="dialog" aria-modal="true" aria-labelledby="taskSheetTitle">
+<div class="modal sheet">
+<div class="modal-head"><h3 id="taskSheetTitle" data-i18n="Add a task">Add a task</h3><button type="button" class="modal-x" id="taskSheetClose" data-i18n-aria="Close" aria-label="Close">×</button></div>
+<div class="modal-body">
+<p class="muted" style="margin:0" data-i18n="Tell us what you need. Add photos, videos or a voice note if it helps. You can edit it for 3 minutes after sending.">Tell us what you need. Add photos, videos or a voice note if it helps. You can edit it for 3 minutes after sending.</p>
+<form id="requestTaskForm">
+<label><span data-i18n="Task name">Task name</span>
+<input name="title" maxlength="200" required data-i18n-ph="Example: New window vinyl" placeholder="Example: New window vinyl">
+</label>
+<label><span data-i18n="Details">Details</span>
+<textarea name="description" maxlength="2000" data-i18n-ph="Sizes, colors, location, anything we should know" placeholder="Sizes, colors, location, anything we should know"></textarea>
+</label>
+<div class="grid2">
+<label><span data-i18n="Priority">Priority</span>
+<select name="priority">
+<option value="Low" data-i18n="Low">Low</option>
+<option value="Medium" selected data-i18n="Medium">Medium</option>
+<option value="High" data-i18n="High">High</option>
+</select>
+</label>
+<label><span data-i18n="Deadline (optional)">Deadline (optional)</span>
+<input type="date" name="due" id="requestDue">
+</label>
+</div>
+<label id="reqAssignWrap" class="hidden"><span data-i18n="Who is this for">Who is this for</span>
+<select name="assign" id="reqAssign"></select>
+</label>
+<span class="muted" style="font-size:14px" data-i18n="Attachments (optional, up to 10 files, 50 MB each)">Attachments (optional, up to 10 files, 50 MB each)</span>
+<div class="attach-row">
+<label class="file-button"><span data-i18n="Add photos or videos">Add photos or videos</span>
+<input type="file" id="mediaInput" accept="image/*,video/*" multiple>
+</label>
+<button type="button" id="recordBtn" aria-pressed="false">Record voice note</button>
+</div>
+<ul id="pendingList" class="pending" aria-live="polite"></ul>
+<button class="primary" type="submit" id="sendRequestBtn" data-i18n="Send request">Send request</button>
+<p id="taskMsg" class="form-msg" role="alert" aria-live="assertive"></p>
+</form>
 </div>
 </div>
+</div>
+<div id="callSheet" class="modal-back sheet-back hidden" role="dialog" aria-modal="true" aria-labelledby="callTitle">
+<div class="modal sheet">
+<div class="modal-head"><h3 id="callTitle" data-i18n="Request a call">Request a call</h3><button type="button" class="modal-x" id="callClose" data-i18n-aria="Close" aria-label="Close">×</button></div>
+<div class="modal-body">
+<form id="callForm" novalidate>
+<p class="muted" style="margin:0 0 12px" data-i18n="Sam from Signix Digital will call you back. Everything below is optional.">Sam from Signix Digital will call you back. Everything below is optional.</p>
+<fieldset class="reason-chips">
+<legend data-i18n="What is it about? (optional)">What is it about? (optional)</legend>
+<div class="rc-row">
+<label><input type="radio" name="reason" value="new_project"><span data-i18n="New project">New project</span></label>
+<label><input type="radio" name="reason" value="job_question"><span data-i18n="Question about a job">Question about a job</span></label>
+<label><input type="radio" name="reason" value="urgent"><span data-i18n="Urgent">Urgent</span></label>
+<label><input type="radio" name="reason" value="billing"><span data-i18n="Billing">Billing</span></label>
+<label><input type="radio" name="reason" value="other"><span data-i18n="Other">Other</span></label>
+</div>
+</fieldset>
+<label><span data-i18n="Note (optional)">Note (optional)</span>
+<textarea name="note" maxlength="2000" data-i18n-ph="Example: I need a quote for a new sign" placeholder="Example: I need a quote for a new sign"></textarea>
+</label>
+<label><span data-i18n="Best number to call (optional)">Best number to call (optional)</span>
+<input type="tel" name="phone" maxlength="40" autocomplete="tel" inputmode="tel">
+</label>
+<span class="muted" style="font-size:14px" data-i18n="Photos, videos or a voice note (optional)">Photos, videos or a voice note (optional)</span>
+<div class="attach-row">
+<label class="file-button"><span data-i18n="Add photos or videos">Add photos or videos</span>
+<input type="file" id="callMediaInput" accept="image/*,video/*" multiple>
+</label>
+<button type="button" id="callRecordBtn" aria-pressed="false">Record voice note</button>
+</div>
+<ul id="callPendingList" class="pending" aria-live="polite"></ul>
+<div class="call-confirm" data-i18n="Are you sure you need a call from Signix Digital?">Are you sure you need a call from Signix Digital?</div>
+<div class="call-btns">
+<button class="primary" type="submit" id="callSendBtn" data-i18n="Yes, I need a call">Yes, I need a call</button>
+<button type="button" id="callCancel" data-i18n="Cancel">Cancel</button>
+</div>
+<p id="callMsg" class="form-msg" role="alert" aria-live="assertive"></p>
+</form>
+</div>
+</div>
+</div>
+<div id="askModal" class="modal-back hidden" role="alertdialog" aria-modal="true" aria-labelledby="askTitle" aria-describedby="askBody">
+<div class="modal ask">
+<div class="modal-body">
+<h3 id="askTitle"></h3>
+<p id="askBody" class="muted"></p>
+<div class="ask-btns"><button type="button" id="askNo">Cancel</button><button type="button" id="askYes" class="primary">Confirm</button></div>
+</div>
+</div>
+</div>
+<div id="welcomeToast" class="welcome-toast hidden" role="status" aria-live="polite"></div>
+<div id="cpToastWrap" aria-live="polite"></div>
 <div id="bulkBar" class="bulk-bar hidden" role="toolbar" aria-label="Change selected tasks">
 <span class="bulk-count" id="bulkCount">0 selected</span>
 <button type="button" data-bulk="status">Status ▾</button>
@@ -1473,6 +1721,7 @@ const sb=window.supabase.createClient(SUPABASE_URL,KEY,{auth:{detectSessionInUrl
 const $=id=>document.getElementById(id);
 const show=(id,on)=>$(id).classList.toggle('hidden',!on);
 const notice=s=>{$('message').textContent=s};
+window.notice=notice;
 
 const STATUSES=['Incoming','To do','In progress','Waiting on client','Completed'];
 const PRIORITIES=['High','Medium','Low'];
@@ -1540,6 +1789,136 @@ const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({
 "'":'&#39;'
 }[c]));
 
+/* Spanish text for the client portal (English is the key) */
+const ES={
+'Home':'Inicio','Task Management':'Portal de clientes','My jobs':'Mis trabajos','Messages':'Mensajes','Files':'Archivos',
+'Add a task':'Agregar tarea','Request a call':'Pedir una llamada',
+'Tell us what to do. Add photos, videos or a voice note.':'Dinos qué hacer. Agrega fotos, videos o una nota de voz.',
+'Rather talk? Sam calls you back.':'¿Prefieres hablar? Sam te devuelve la llamada.',
+'Need something new or have a question? Sam calls you back.':'¿Necesitas algo nuevo o tienes una pregunta? Sam te devuelve la llamada.',
+'Sam will call you soon':'Sam te llamará pronto','You asked at {time}':'Lo pediste a las {time}',
+'Sent. Sam will call you soon.':'Enviado. Sam te llamará pronto.','You already asked. Sam will call you soon.':'Ya lo pediste. Sam te llamará pronto.',
+'Sam from Signix Digital will call you back. Everything below is optional.':'Sam de Signix Digital te devolverá la llamada. Todo lo de abajo es opcional.',
+'What is it about? (optional)':'¿De qué se trata? (opcional)',
+'New project':'Proyecto nuevo','Question about a job':'Pregunta sobre un trabajo','Urgent':'Urgente','Billing':'Facturación','Other':'Otro',
+'Note (optional)':'Nota (opcional)','Example: I need a quote for a new sign':'Ejemplo: Necesito un presupuesto para un letrero nuevo',
+'Best number to call (optional)':'Mejor número para llamarte (opcional)',
+'Photos, videos or a voice note (optional)':'Fotos, videos o una nota de voz (opcional)',
+'Are you sure you need a call from Signix Digital?':'¿Seguro que necesitas una llamada de Signix Digital?',
+'Yes, I need a call':'Sí, necesito una llamada','Cancel':'Cancelar','Close':'Cerrar','Confirm':'Confirmar',
+'Your call request was sent, but {n} file(s) did not upload:':'Tu solicitud de llamada se envió, pero {n} archivo(s) no se subieron:',
+'Not sent: {msg}':'No se envió: {msg}','Sending…':'Enviando…','Uploading file {i} of {n}…':'Subiendo archivo {i} de {n}…',
+'Since your last visit':'Desde tu última visita',
+'1 job updated':'1 trabajo actualizado','{n} jobs updated':'{n} trabajos actualizados',
+'1 new message':'1 mensaje nuevo','{n} new messages':'{n} mensajes nuevos',
+'1 new file':'1 archivo nuevo','{n} new files':'{n} archivos nuevos',
+'Now: {s}':'Ahora: {s}','Completed':'Completado',
+'Needs your OK':'Necesita tu OK','In progress':'En proceso','Recently done':'Terminado hace poco',
+'See all {n} jobs':'Ver los {n} trabajos',
+'No jobs yet. When Signix Digital starts work for you, it shows up here.':'Todavía no hay trabajos. Cuando Signix Digital empiece a trabajar para ti, aparecerán aquí.',
+'All':'Todos','Done':'Terminados','Just mine':'Solo los míos','Show':'Mostrar','Hide':'Ocultar',
+'Nothing here right now.':'No hay nada aquí por ahora.',
+'Submitted':'Enviado','Scheduled':'Programado','Needs your input':'Necesita tu respuesta',
+'Incoming':'Enviado','To do':'Programado','Waiting on client':'Necesita tu respuesta',
+'Overdue':'Atrasado','Due today':'Para hoy','Due tomorrow':'Para mañana','Due {date}':'Para el {date}',
+'For you':'Para ti','For {name}':'Para {name}','Untitled':'Sin título','Someone':'Alguien','You':'Tú','now':'ahora',
+'New':'Nuevo','New note':'Nota nueva','New photo':'Foto nueva','New video':'Video nuevo','New voice note':'Nota de voz nueva','New file':'Archivo nuevo','New request':'Solicitud nueva',
+'No messages yet. Open a job to write to Signix Digital.':'Todavía no hay mensajes. Abre un trabajo para escribirle a Signix Digital.',
+'Sent 1 file':'Envió 1 archivo','Sent {n} files':'Envió {n} archivos',
+'No files yet. Photos, videos and voice notes from you and Signix Digital show up here.':'Todavía no hay archivos. Aquí aparecen las fotos, videos y notas de voz tuyas y de Signix Digital.',
+'Job':'Trabajo','Photo':'Foto','Video':'Video',
+'Task name':'Nombre de la tarea','Details':'Detalles','Priority':'Prioridad','High':'Alta','Medium':'Media','Low':'Baja','High priority':'Prioridad alta',
+'Deadline (optional)':'Fecha límite (opcional)','Who is this for':'Para quién es','Everyone':'Todos','Everyone at {biz}':'Todos en {biz}','your business':'tu negocio',
+'Save changes':'Guardar cambios','Edit request':'Editar solicitud','Delete request':'Borrar solicitud',
+'Job started':'Trabajo iniciado','Job started {date}':'Trabajo iniciado el {date}','Files sent with this job':'Archivos enviados con este trabajo',
+'No messages yet. Write the first one below.':'Todavía no hay mensajes. Escribe el primero abajo.',
+'Write a message…':'Escribe un mensaje…','Send message':'Enviar mensaje','Messages can’t be edited or deleted.':'Los mensajes no se pueden editar ni borrar.',
+'Write a message or attach a file.':'Escribe un mensaje o adjunta un archivo.','Message sent.':'Mensaje enviado.',
+'Message sent, but {n} file(s) did not upload:':'Mensaje enviado, pero {n} archivo(s) no se subieron:',
+'Discard the files you attached to this message?':'¿Descartar los archivos que adjuntaste a este mensaje?','Discard the files you attached?':'¿Descartar los archivos que adjuntaste?',
+'Hi {name}. Here’s your work with Signix Digital.':'Hola {name}. Aquí está tu trabajo con Signix Digital.','Your work with Signix Digital.':'Tu trabajo con Signix Digital.','Your projects':'Tus proyectos',
+'Welcome back, {name}':'¡Hola de nuevo, {name}!','Welcome back':'¡Hola de nuevo!',
+'Tell us what you need. Add photos, videos or a voice note if it helps. You can edit it for 3 minutes after sending.':'Dinos qué necesitas. Agrega fotos, videos o una nota de voz si ayuda. Puedes editarla durante 3 minutos después de enviarla.',
+'Example: New window vinyl':'Ejemplo: Vinil nuevo para la ventana','Sizes, colors, location, anything we should know':'Medidas, colores, ubicación, lo que debamos saber',
+'Attachments (optional, up to 10 files, 50 MB each)':'Archivos (opcional, hasta 10 archivos, 50 MB cada uno)',
+'Add photos or videos':'Agregar fotos o videos','Record voice note':'Grabar nota de voz','Stop recording ({t})':'Detener grabación ({t})','Send request':'Enviar solicitud',
+'Please enter a task name.':'Escribe el nombre de la tarea.','Pick a valid priority.':'Elige una prioridad válida.','The deadline cannot be in the past.':'La fecha límite no puede ser en el pasado.',
+'Request created.':'Solicitud creada.','Request sent, but {n} file(s) did not upload:':'Solicitud enviada, pero {n} archivo(s) no se subieron:',
+'Request sent. You can edit it for the next 3 minutes.':'Solicitud enviada. Puedes editarla durante los próximos 3 minutos.',
+'Request updated.':'Solicitud actualizada.','Request was not updated':'La solicitud no se actualizó',
+'The 3-minute edit window has closed.':'Ya pasaron los 3 minutos para editar.',
+'The 3-minute edit window has closed, so the change was not saved.':'Ya pasaron los 3 minutos para editar, así que el cambio no se guardó.',
+'The edit window has closed (or Signix Digital already picked up this request), so the change was not saved.':'Ya pasó el tiempo para editar (o Signix Digital ya tomó esta solicitud), así que el cambio no se guardó.',
+'Photo:':'Foto:','Video:':'Video:','Voice note:':'Nota de voz:','Remove':'Quitar',
+'{name} is not a photo, video or audio file.':'{name} no es una foto, video ni audio.','{name} is {size}. The limit is 50 MB per file.':'{name} pesa {size}. El límite es 50 MB por archivo.',
+'You can attach up to 10 files.':'Puedes adjuntar hasta 10 archivos.','Stop the other voice recording first.':'Primero detén la otra grabación.',
+'Stop the voice recording first.':'Primero detén la grabación de voz.',
+'Voice recording is not supported in this browser. Try the latest Chrome or Safari.':'Este navegador no permite grabar voz. Prueba la versión más reciente de Chrome o Safari.',
+'Microphone access was blocked. Allow microphone access for this site and try again.':'Se bloqueó el micrófono. Permite el acceso al micrófono para este sitio e inténtalo de nuevo.',
+'Unable to start recording on this device.':'No se pudo empezar a grabar en este dispositivo.','The recording was empty. Please try again.':'La grabación quedó vacía. Inténtalo de nuevo.',
+'Voice note added. Press play to check it before sending.':'Nota de voz agregada. Dale play para revisarla antes de enviar.','Recording… press the button again to stop.':'Grabando… presiona el botón otra vez para detener.',
+'Sign in':'Iniciar sesión','Reset your password':'Restablece tu contraseña','Set your password':'Crea tu contraseña',
+'Email':'Correo','Email address':'Correo electrónico','Password':'Contraseña','Forgot password?':'¿Olvidaste tu contraseña?',
+'Send password reset link':'Enviar enlace para restablecer','New password':'Contraseña nueva','Confirm new password':'Confirma la contraseña nueva',
+'Set password':'Guardar contraseña','Link not working? Email me a new link':'¿No funciona el enlace? Envíame uno nuevo','Back to sign in':'Volver a iniciar sesión',
+'Change password':'Cambiar contraseña','Change your password':'Cambia tu contraseña','Save new password':'Guardar contraseña nueva','Log out':'Cerrar sesión','Signed out.':'Sesión cerrada.',
+'Signing in…':'Entrando…','Saving…':'Guardando…',
+'At least 8 characters':'Al menos 8 caracteres','({n} so far)':'({n} hasta ahora)','The two boxes do not match yet':'Las dos casillas todavía no coinciden','Type the same password in both boxes':'Escribe la misma contraseña en las dos casillas',
+'Password must be at least 8 characters. You typed {n}.':'La contraseña debe tener al menos 8 caracteres. Escribiste {n}.',
+'The two passwords do not match. Type the same password in both boxes.':'Las dos contraseñas no coinciden. Escribe la misma en las dos casillas.',
+'Enter your email.':'Escribe tu correo.','Enter your password.':'Escribe tu contraseña.','Enter a valid email address.':'Escribe un correo válido.',
+'Enter your email and we will send you a link to set a new password.':'Escribe tu correo y te enviaremos un enlace para crear una contraseña nueva.',
+'Enter your email and we will send you a new link.':'Escribe tu correo y te enviaremos un enlace nuevo.',
+'Tap "Send password reset link" and we will email a new link to {email}.':'Toca "Enviar enlace para restablecer" y enviaremos un enlace nuevo a {email}.',
+'Done. If this email is registered, a link is on its way.\nCheck your inbox and spam folder, and use the newest email.':'Listo. Si este correo está registrado, el enlace va en camino.\nRevisa tu bandeja de entrada y spam, y usa el correo más reciente.',
+'Finish setting your password first, or tap "Email me a new link".':'Primero termina de crear tu contraseña, o toca "Envíame uno nuevo".',
+'Welcome to Signix Digital. Create a password for {email}.':'Bienvenido a Signix Digital. Crea una contraseña para {email}.','Welcome to Signix Digital. Create a password.':'Bienvenido a Signix Digital. Crea una contraseña.',
+'Choose a new password for {email}.':'Elige una contraseña nueva para {email}.','Choose a new password.':'Elige una contraseña nueva.',
+'Password saved. Next time, sign in with your email and this password.':'Contraseña guardada. La próxima vez, entra con tu correo y esta contraseña.',
+'Password changed. Use the new password next time you sign in.':'Contraseña cambiada. Usa la nueva la próxima vez que entres.',
+'Your sign-in has expired. Log out, sign in again, and try once more.':'Tu sesión expiró. Cierra sesión, vuelve a entrar e inténtalo otra vez.',
+'Email or password is not correct.\nIf you were just invited, set your password first from the invite email, or tap "Forgot password?" to get a new link.':'El correo o la contraseña no son correctos.\nSi te acaban de invitar, primero crea tu contraseña desde el correo de invitación, o toca "¿Olvidaste tu contraseña?" para recibir un enlace nuevo.',
+'This email is not confirmed yet. Open the invite email and tap the link again, or tap "Forgot password?".':'Este correo todavía no está confirmado. Abre el correo de invitación y toca el enlace otra vez, o toca "¿Olvidaste tu contraseña?".',
+'This link has expired or was already used.':'Este enlace expiró o ya se usó.',
+'This link has expired or was already used.\nTap "Email me a new link" below and use the newest email.':'Este enlace expiró o ya se usó.\nToca "Envíame uno nuevo" abajo y usa el correo más reciente.',
+'Choose a password you have not used before on this account.':'Elige una contraseña que no hayas usado antes en esta cuenta.',
+'Too many tries. Please wait a minute and try again.':'Demasiados intentos. Espera un minuto e inténtalo de nuevo.',
+'No connection to the server. Check your internet and try again.':'No hay conexión con el servidor. Revisa tu internet e inténtalo de nuevo.',
+'The server did not respond. Check your internet and try again.':'El servidor no respondió. Revisa tu internet e inténtalo de nuevo.',
+'Something went wrong. Please try again.':'Algo salió mal. Inténtalo de nuevo.',
+'This account is not linked to a business yet. Please contact Signix Digital.':'Esta cuenta todavía no está conectada a un negocio. Comunícate con Signix Digital.',
+'This portal is not active right now. Please contact Signix Digital.':'Este portal no está activo por ahora. Comunícate con Signix Digital.'
+};
+// ===== END OF PART 5 of 12 =====
+/* ---------- Language: the client portal in English or Spanish ---------- */
+let lang='en',clientLang='en';
+try{if(localStorage.getItem('signix-lang')==='es')clientLang='es';}catch(e){}
+function tr(s,v){
+ let o=(lang==='es'&&ES[s])||s;
+ if(v)o=o.replace(/\{(\w+)\}/g,(m,k)=>v[k]!=null?String(v[k]):m);
+ return o;
+}
+function applyI18n(){
+ document.querySelectorAll('[data-i18n]').forEach(el=>{el.textContent=tr(el.dataset.i18n);});
+ document.querySelectorAll('[data-i18n-ph]').forEach(el=>{el.placeholder=tr(el.dataset.i18nPh);});
+ document.querySelectorAll('[data-i18n-aria]').forEach(el=>{el.setAttribute('aria-label',tr(el.dataset.i18nAria));});
+ document.querySelectorAll('[data-lang]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.lang===lang)));
+ document.querySelectorAll('[data-toggle]').forEach(b=>{b.textContent=tr($(b.dataset.toggle).type==='password'?'Show':'Hide');});
+ document.documentElement.lang=lang;
+ if(typeof clientFiles!=='undefined'){clientFiles.ui(false);callFiles.ui(false);}
+ if(!role&&$('auth')&&!$('auth').classList.contains('hidden')){const t=$('authTitle');if(t.dataset.key)t.textContent=tr(t.dataset.key);}
+}
+function setLang(l,save){
+ lang=l==='es'?'es':'en';
+ if(role!=='admin'){
+  clientLang=lang;
+  try{localStorage.setItem('signix-lang',lang);}catch(e){}
+  if(save&&role==='client')sb.rpc('signix_set_lang',{p_lang:lang}).then(()=>{},()=>{});
+ }
+ applyI18n();
+ if(cpJobId!=null&&role==='client')setComposer(true);
+ if(role)renderPortal();
+}
 /* ---------- Preferences (view / layout / filter) ---------- */
 function loadPrefs(){try{return JSON.parse(localStorage.getItem(PREF_KEY))||{};}catch(e){return {};}}
 function savePrefs(){try{localStorage.setItem(PREF_KEY,JSON.stringify(prefs));}catch(e){}}
@@ -1574,7 +1953,6 @@ function buildChips(id,items,current,onPick){
  });
 }
 function buildLayoutChips(){
- buildChips('clientLayouts',CLIENT_MOBILE_LAYOUTS,clientMobileLayout(),v=>{setPref('client','mlayout',v);mOpen.clear();renderPortal();});
  if(mobile)buildChips('adminLayouts',MOBILE_LAYOUTS,adminMobileLayout(),v=>{setPref('admin','mlayout',v);mOpen.clear();renderAdmin();});
  else buildChips('adminLayouts',LAYOUTS,adminLayout(),v=>{setPref('admin','layout',v);renderAdmin();});
 }
@@ -1597,20 +1975,21 @@ function authMode(mode){
  show('requestForm',mode==='request');
  show('resetForm',mode==='reset');
  show('backLink',mode!=='login');
- $('authTitle').textContent=mode==='login'?'Sign in':mode==='request'?'Reset your password':'Set your password';
+ $('authTitle').dataset.key=mode==='login'?'Sign in':mode==='request'?'Reset your password':'Set your password';
+ $('authTitle').textContent=tr($('authTitle').dataset.key);
 }
 
 function busy(id,on,label){
  const b=$(id);
  if(!b.dataset.original)b.dataset.original=b.textContent;
  b.disabled=on;
- b.textContent=on?label:b.dataset.original;
+ b.textContent=on?tr(label):(b.dataset.i18n?tr(b.dataset.i18n):b.dataset.original);
 }
 
 document.querySelectorAll('[data-toggle]').forEach(b=>b.addEventListener('click',()=>{
  const field=$(b.dataset.toggle),visible=field.type==='password';
  field.type=visible?'text':'password';
- b.textContent=visible?'Hide':'Show';
+ b.textContent=tr(visible?'Hide':'Show');
  b.setAttribute('aria-pressed',String(visible));
  b.setAttribute('aria-label',(visible?'Hide ':'Show ')+'password');
 }));
@@ -1621,6 +2000,8 @@ function view(which){
  $('adminBtn').setAttribute('aria-pressed',String(which==='admin'));
  $('clientBtn').setAttribute('aria-pressed',String(which==='client'));
  closeMenu();
+ document.body.classList.toggle('portal-on',which==='client');
+ if(role==='admin'&&which!=='client'&&lang!=='en'){lang='en';applyI18n();}
  if(which==='client'){renderPortal();if(role==='admin')markNav();}
  else{if(role==='admin')applyArea();renderAdmin();}
 }
@@ -1636,16 +2017,19 @@ function clearState(){
  reads={};readBase=null;readsReady=false;notesSince=null;shaken.clear();
  expandedMedia.clear();
  memberNames={};
- quickF='';try{stopBrief();}catch(e){}document.body.classList.remove('has-shell');show('needsBtn',false);show('gearBtn',false);
+ quickF='';document.body.classList.remove('has-shell');show('needsBtn',false);show('gearBtn',false);
  notes=[];notesReady=false;search='';selectMode=false;addPick=null;addBiz=null;personFilter='';
  for(const k in CAL)CAL[k]={focus:null,day:null,anchor:null};
  [selected,expandedDone,mOpen].forEach(s=>s.clear());
- closeNotes(true);closeWelcome();
+ closeNotes(true);closeJob(true);show('taskSheet',false);show('callSheet',false);if(askResolve)askDone(false);
+ calls=[];callsReady=false;callFilesList=[];callUrls={};archivedClients=[];cpTab='home';cpJobId=null;sinceInfo=null;myDisplayName='';cpJobsFilter='all';cpMine=false;
+ callFiles.stop(true);callFiles.clear();document.body.classList.remove('portal-on');
  for(const k in noteDrafts)delete noteDrafts[k];
  animSettings={...ANIM_DEFAULTS};animReady=false;applyAnimations(animSettings);
  stopTimers();
  closeMenu();
  clientFiles.stop(true);clientFiles.clear();
+ noteFiles.stop(true);noteFiles.clear();
  adminFiles.stop(true);adminFiles.clear();
  updateBulkBar();
  document.body.classList.remove('tasks-only');
@@ -1657,15 +2041,16 @@ $('logout').onclick=async()=>{
  if(error)notice(error.message);
  else{
   clearState();
+  if(lang!==clientLang){lang=clientLang;applyI18n();}
   authMode('login');
-  notice('Signed out.');
+  notice(tr('Signed out.'));
  }
 };
 
 /* ---------- Messages shown right under the button that was tapped ---------- */
 function formMsg(id,text,kind){
  const el=$(id);if(!el)return;
- el.textContent=text||'';
+ el.textContent=tr(text||'');
  el.className='form-msg'+(kind&&text?' '+kind:'');
  if(text){
   notice('');
@@ -1758,7 +2143,7 @@ $('resetForm').onsubmit=async e=>{
  const password=$('newPassword').value;
  const confirm=$('confirmPassword').value;
  if(password.length<8){
-  formMsg('resetMsg',`Password must be at least 8 characters. You typed ${password.length}.`,'error');
+  formMsg('resetMsg',tr('Password must be at least 8 characters. You typed {n}.',{n:password.length}),'error');
   return;
  }
  if(password!==confirm){
@@ -1786,7 +2171,7 @@ $('resetForm').onsubmit=async e=>{
   updatePwRules();
   clearAuthMsgs();
   await refresh();
-  if(currentUser)notice('Password saved. Next time, sign in with your email and this password.');
+  if(currentUser)notice(tr('Password saved. Next time, sign in with your email and this password.'));
  }catch(err){
   formMsg('resetMsg',friendlyAuthError(err),'error');
  }finally{
@@ -1803,16 +2188,16 @@ $('newLinkButton').onclick=async()=>{
  authMode('request');
  clearAuthMsgs();
  $('resetEmail').value=email;
- formMsg('requestMsg',email?'Tap "Send password reset link" and we will email a new link to '+email+'.':'Enter your email and we will send you a new link.','info');
+ formMsg('requestMsg',email?tr('Tap "Send password reset link" and we will email a new link to {email}.',{email}):'Enter your email and we will send you a new link.','info');
 };
 
 /* ---------- Change password (for anyone signed in) ---------- */
 function setPwRules(rootId,p,c){
  const len=p.length>=8,match=!!p&&p===c,root=$(rootId);
  const lenEl=root.querySelector('[data-rule="len"]'),matchEl=root.querySelector('[data-rule="match"]');
- lenEl.textContent=(len?'✓ ':'• ')+'At least 8 characters'+(p&&!len?` (${p.length} so far)`:'');
+ lenEl.textContent=(len?'✓ ':'• ')+tr('At least 8 characters')+(p&&!len?' '+tr('({n} so far)',{n:p.length}):'');
  lenEl.classList.toggle('met',len);
- matchEl.textContent=(match?'✓ ':'• ')+(c&&!match?'The two boxes do not match yet':'Type the same password in both boxes');
+ matchEl.textContent=(match?'✓ ':'• ')+tr(c&&!match?'The two boxes do not match yet':'Type the same password in both boxes');
  matchEl.classList.toggle('met',match);
 }
 function closeChangePw(){
@@ -1834,7 +2219,7 @@ $('cpCancel').onclick=closeChangePw;
 $('changePwForm').onsubmit=async e=>{
  e.preventDefault();
  const password=$('cpNew').value,confirm=$('cpConfirm').value;
- if(password.length<8){formMsg('cpMsg',`Password must be at least 8 characters. You typed ${password.length}.`,'error');return;}
+ if(password.length<8){formMsg('cpMsg',tr('Password must be at least 8 characters. You typed {n}.',{n:password.length}),'error');return;}
  if(password!==confirm){formMsg('cpMsg','The two passwords do not match. Type the same password in both boxes.','error');return;}
  formMsg('cpMsg','');
  busy('cpSave',true,'Saving…');
@@ -1855,7 +2240,6 @@ $('changePwForm').onsubmit=async e=>{
  }
 };
 
-// ===== END OF PART 5 of 11 =====
 
  
 function resetMode(kind){
@@ -1863,16 +2247,15 @@ function resetMode(kind){
  clearAuthMsgs();
  notice('');
  updatePwRules();
- const who=linkEmail?` for ${linkEmail}`:'';
  $('resetIntro').textContent=kind==='invite'
-  ?`Welcome to Signix Digital. Create a password${who}.`
-  :`Choose a new password${who}.`;
+  ?(linkEmail?tr('Welcome to Signix Digital. Create a password for {email}.',{email:linkEmail}):tr('Welcome to Signix Digital. Create a password.'))
+  :(linkEmail?tr('Choose a new password for {email}.',{email:linkEmail}):tr('Choose a new password.'));
 }
 
 /* ---------- Helpers ---------- */
 function isAdmin(){return currentUser?.id===ADMIN_UID;}
 function clientName(id){
- return clients.find(c=>String(c.id)===String(id))?.Name||`ID ${id}`;
+ return (clients.find(c=>String(c.id)===String(id))||archivedClients.find(c=>String(c.id)===String(id)))?.Name||`ID ${id}`;
 }
 function displayError(prefix,error){
  const parts=[error?.message,error?.details,error?.hint].filter(Boolean);
@@ -2024,6 +2407,7 @@ function groupTasks(list,v,clientSide){
    return STATUSES.map(s=>g(statusClass(s),statusLabel(s,clientSide),list.filter(t=>normStatus(t)===s).sort(s==='Completed'?byCompleted:!clientSide&&AGE_STATUSES.includes(s)?agedFirst(byDue):byDue),{cls:statusClass(s),keep:true}));
  }
 }
+// ===== END OF PART 6 of 12 =====
 function emptyText(v){
  return ({
   business:'No tasks yet.',
@@ -2204,7 +2588,6 @@ ${(()=>{const pp=portalPeople(null);return pp.length>=2?`<label>Who is this for<
 </form>
 </article>`;
 }
-// ===== END OF PART 6 of 11 =====
 
  
  
@@ -2430,6 +2813,7 @@ function jumpTo(v,groupKey){
  if(el){el.classList.add('flash');setTimeout(()=>el.classList.remove('flash'),1800);}
  else if(groupKey)notice('Nothing in that list right now.');
 }
+// ===== END OF PART 7 of 12 =====
 $('openStat').onclick=()=>jumpTo('status',null);
 $('incomingStat').onclick=()=>jumpTo('status','st-incoming');
 $('overdueStat').onclick=()=>jumpTo('deadline','due-overdue');
@@ -2466,63 +2850,6 @@ function applyBranding(c){
  else logo.textContent=initials(c?.Name||'Signix Digital');
 }
 
-function renderPortal(){
- let list=[],c=null;
- show('requestPanel',role==='client');
- if(role==='admin'){
-  show('previewWrap',true);
-  $('portalTitle').textContent='Client Portal preview';
-  const id=$('previewClient').value;
-  $('portalIntro').textContent=id
-   ?`This is exactly what ${clientName(id)} sees when they sign in.`
-   :'Select a client to preview what they see when they sign in.';
-  c=id?clients.find(x=>String(x.id)===id):null;
-  list=id?tasks.filter(t=>String(t.client_id)===id&&!t.archived_at):[];
- }else if(role==='client'){
-  show('previewWrap',false);
-  $('portalTitle').textContent=myClientName||'Your projects';
-  $('portalIntro').textContent='Track the status of your work with Signix Digital. This page refreshes every minute.';
-  c=clients.find(x=>String(x.id)===String(myClientId));
-  list=tasks.filter(t=>!t.archived_at);
-  $('requestDue').min=todayStr();
- }else return;
- applyBranding(c);
- const people=portalPeople(c);
- const showPeople=people.length>=2;
- show('personTool',showPeople);
- if(showPeople){
-  if(personFilter&&personFilter!=='none'&&!people.some(p=>p.id===personFilter))personFilter='';
-  buildChips('personChips',[['','All'],...people.map(p=>[p.id,p.name]),['none','For everyone']],personFilter,v=>{personFilter=v;renderPortal();});
-  if(personFilter==='none')list=list.filter(t=>!t.assigned_to);
-  else if(personFilter)list=list.filter(t=>t.assigned_to===personFilter);
- }else personFilter='';
- const showReq=role==='client'&&people.length>=2;
- $('reqAssignWrap').classList.toggle('hidden',!showReq);
- if(showReq){
-  const sel=$('reqAssign'),prior=sel.value;
-  sel.replaceChildren(new Option(`Everyone at ${myClientName||'your business'}`,''),...people.map(p=>new Option(p.name,p.id)));
-  if(people.some(p=>p.id===prior))sel.value=prior;
- }
- $('portalOpen').textContent=list.filter(t=>!isDone(t)).length;
- $('portalNeeds').textContent=list.filter(t=>t.status==='Waiting on client').length;
- $('portalDone').textContent=list.filter(isDone).length;
- const board=$('clientBoard');
- if(role==='admin'&&!c){board.className='board';board.innerHTML='<p class="muted empty">Select a client above to preview their portal.</p>';return;}
- const co={admin:false,client:role==='client',clientSide:true,view:clientView(),layout:clientLayout()};
- if(co.view==='calendar')renderCalendar(board,list,co);
- else renderBoard(board,list,co);
- updateCountdowns();
-}
-function portalJump(groupKey){
- setPref('client','view','status');setChip('clientViews','status');
- renderPortal();
- const el=groupKey?$(`grp-clientBoard-${groupKey}`):null;
- (el||$('clientBoard')).scrollIntoView({behavior:'smooth',block:'start',inline:'start'});
- if(el){el.classList.add('flash');setTimeout(()=>el.classList.remove('flash'),1800);}
-}
-$('portalOpenStat').onclick=()=>portalJump(null);
-$('portalNeedsStat').onclick=()=>portalJump('st-waiting-on-client');
-$('portalDoneStat').onclick=()=>portalJump('st-completed');
 
 /* ---------- Popover menu (status / priority / due date) ---------- */
 function closeMenu(){
@@ -2560,7 +2887,6 @@ function dueMenu(t){
  return `<form class="menu-due" data-pick-form="due"><div class="menu-title">${t?'Due date':'Due date for selected'}</div><input type="date" name="due" value="${esc(t?.due_date||'')}" aria-label="Due date"><div class="row"><button class="primary" type="submit">Save</button>${!t||t.due_date?'<button type="button" data-pick="due" data-value="">Clear date</button>':''}</div></form>`;
 }
 
-// ===== END OF PART 7 of 11 =====
 
  
  $('menu').addEventListener('click',e=>{
@@ -2803,7 +3129,7 @@ function onBoardClick(e){
 function onBoardKey(e){
  if((e.key==='Enter'||e.key===' ')&&e.target.matches?.('[data-act="expand-done"],[data-calday]')){e.preventDefault();e.target.click();}
 }
-['adminBoard','clientBoard'].forEach(id=>{
+['adminBoard'].forEach(id=>{
  $(id).addEventListener('click',onBoardClick);
  $(id).addEventListener('keydown',onBoardKey);
 });
@@ -2826,6 +3152,9 @@ function openNotes(id){
  notesTaskId=t.id;
  notesSince=readsReady?seenAt(t.id):null;
  markSeen(t.id);
+ if(cpJobId!=null)closeJob(true);
+ if(!$('notesModal').querySelector('#noteForm'))document.querySelector('#notesModal .modal-body').prepend($('noteForm'));
+ setComposer(false);
  $('noteText').value=noteDrafts[String(t.id)]||'';
  noteSay('');
  $('noteFiles').classList.toggle('hidden',!noteFilesReady);
@@ -2836,7 +3165,7 @@ function openNotes(id){
  if(!mobile)$('noteText').focus();
 }
 function renderNotesModal(){
- if(notesTaskId==null)return;
+ if(notesTaskId==null||cpJobId!=null)return;
  const t=tasks.find(x=>String(x.id)===String(notesTaskId));
  if(!t||(role==='client'&&t.archived_at)){closeNotes(true);return;}
  $('notesTitle').textContent=`Notes · ${t.title||'Untitled'}`;
@@ -2851,7 +3180,7 @@ function closeNotes(force){
  notesTaskId=null;notesSince=null;
  if(readsReady&&closedId!=null){const a=newActivityRaw(tasks.find(x=>String(x.id)===String(closedId)));if(a){markSeen(closedId);render();}}
  show('notesModal',false);
- if($('welcomeModal').classList.contains('hidden'))document.body.style.overflow='';
+ lockScroll();
  return true;
 }
 $('notesClose').onclick=()=>closeNotes();
@@ -2861,13 +3190,13 @@ $('noteForm').onsubmit=async e=>{
  e.preventDefault();
  const t=tasks.find(x=>String(x.id)===String(notesTaskId));
  if(!t){noteSay('That task is no longer available.');return;}
- if(noteFiles.recorder&&noteFiles.recorder.state==='recording'){noteSay('Stop the voice recording first.');return;}
+ if(noteFiles.recorder&&noteFiles.recorder.state==='recording'){noteSay(tr('Stop the voice recording first.'));return;}
  const body=$('noteText').value.trim();
  const nFiles=noteFilesReady?noteFiles.pending.length:0;
- if(!body&&!nFiles){noteSay('Write a note or attach a file.');return;}
+ if(!body&&!nFiles){noteSay(role==='client'?tr('Write a message or attach a file.'):'Write a note or attach a file.');return;}
  if(body.length>2000){noteSay('Notes can be up to 2000 characters.');return;}
  const button=$('noteSendBtn');button.disabled=true;
- noteSay('Saving note…');
+ noteSay(role==='client'?tr('Sending…'):'Saving note…');
  try{
   const {data,error}=await sb.from('task_notes').insert({task_id:t.id,body}).select(NOTE_FIELDS).single();
   if(error){noteSay('Note was not added: '+(error.message||'unknown error'));return;}
@@ -2879,7 +3208,7 @@ $('noteForm').onsubmit=async e=>{
   noteFiles.clear();
   if(nFiles)await loadAttachments();
   render();
-  noteSay(failed.length?`Note saved, but ${failed.length} file(s) did not upload:\n${failed.join('\n')}`:'Note added.');
+  noteSay(failed.length?(role==='client'?tr('Message sent, but {n} file(s) did not upload:',{n:failed.length}):`Note saved, but ${failed.length} file(s) did not upload:`)+'\n'+failed.join('\n'):(role==='client'?tr('Message sent.'):'Note added.'));
  }catch(err){noteSay('Note was not added: '+(err.message||'unknown error'));}
  finally{button.disabled=false;}
 };
@@ -2888,104 +3217,538 @@ async function loadNotes(){
  if(error){notes=[];notesReady=false;return false;}
  notes=data||[];notesReady=true;return true;
 }
-// ===== END OF PART 8 of 11 =====
 
  
  
-/* ---------- Client welcome-back pop-up ---------- */
-function lastVisitKey(){return 'signix-lastvisit-'+(currentUser?.id||'x');}
-function saveLastVisit(){try{localStorage.setItem(lastVisitKey(),new Date().toISOString());}catch(e){}}
-function closeWelcome(){
- show('welcomeModal',false);
- if(notesTaskId==null)document.body.style.overflow='';
-}
-function showWelcome(){
- if(role!=='client'||!currentUser)return;
- let last=null;
- try{last=localStorage.getItem(lastVisitKey());}catch(e){}
- const since=last?Date.parse(last):NaN;
- saveLastVisit();
- const me=currentUser.id;
- const vis=tasks.filter(t=>!t.archived_at&&(!t.assigned_to||t.assigned_to===me));
- const after=s=>!isNaN(since)&&Date.parse(s)>since;
- const done=vis.filter(t=>isDone(t)&&t.completed_at&&after(t.completed_at)).sort(byCompleted);
- const fresh=notes.filter(n=>n.author_id!==me&&after(n.created_at)&&vis.some(t=>String(t.id)===String(n.task_id)))
-  .sort((a,b)=>Date.parse(b.created_at)-Date.parse(a.created_at));
- const input=vis.filter(t=>t.status==='Waiting on client').sort(byDue);
- if(!done.length&&!fresh.length&&!input.length)return;
- const title=id=>tasks.find(t=>String(t.id)===String(id))?.title||'a task';
- const sec=(cls,head,items,line,kind)=>items.length?`<div class="wb-sec ${cls}"><h4>${head}</h4>${items.slice(0,3).map(x=>`<button type="button" class="wb-line" data-wb="${kind}" data-id="${esc(kind==='note'?x.task_id:x.id)}">${line(x)}</button>`).join('')}${items.length>3?`<p class="wb-more">and ${items.length-3} more</p>`:''}</div>`:'';
- $('welcomeBody').innerHTML=
-  sec('input',`Needs your input · ${input.length}`,input,t=>`⚠ ${esc(t.title||'Untitled')}${t.due_date?` <small class="muted">· ${esc(dueInfo(t)?.label||'')}</small>`:''}`,'task')+
-  sec('notes',`New notes · ${fresh.length}`,fresh,n=>`💬 <strong>${esc(n.author_name||'Someone')}</strong> added a note to “${esc(title(n.task_id))}”`,'note')+
-  sec('done',`Completed since your last visit · ${done.length}`,done,t=>`✓ ${esc(t.title||'Untitled')}`,'task');
- show('welcomeModal',true);
- document.body.style.overflow='hidden';
-}
-$('welcomeClose').onclick=closeWelcome;
-$('welcomeModal').addEventListener('click',e=>{
- if(e.target===e.currentTarget){closeWelcome();return;}
- const b=e.target.closest('[data-wb]');
- if(!b)return;
- closeWelcome();
- if(b.dataset.wb==='note'){openNotes(b.dataset.id);return;}
- jumpToTask(b.dataset.id);
-});
-function jumpToTask(id){
- const board=role==='admin'?$('adminBoard'):$('clientBoard');
- let card=board.querySelector(`.tcard[data-id="${CSS.escape(String(id))}"]`);
- if(!card&&role==='client'){setPref('client','view','status');setChip('clientViews','status');renderPortal();card=board.querySelector(`.tcard[data-id="${CSS.escape(String(id))}"]`);}
- if(!card)return;
- card.scrollIntoView({behavior:'smooth',block:'center'});
- card.classList.add('flash');setTimeout(()=>card.classList.remove('flash'),2000);
-}
-document.addEventListener('keydown',e=>{
- if(e.key!=='Escape'||menuCtx)return;
- if(!$('welcomeModal').classList.contains('hidden'))closeWelcome();
- else if(notesTaskId!=null)closeNotes();
-});
-document.addEventListener('visibilitychange',()=>{if(document.hidden&&role==='client')saveLastVisit();});
+/* ---------- Client portal (version 10): Home, My jobs, Messages, Files, one page per job ---------- */
+const PLUS_SVG='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>';
+const PHONE_SVG='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg>';
+const CP_TABS=['home','jobs','messages','files'];
+const REASONS={new_project:'New project',job_question:'Question about a job',urgent:'Urgent',billing:'Billing',other:'Other'};
+const CALL_BUCKET='call-files';
+let cpTab='home',cpJobId=null,cpJobFrom='home',cpJobsFilter='all',cpMine=false,sinceInfo=null,myDisplayName='';
+let calls=[],callsReady=false,callFilesList=[],callUrls={},archivedClients=[],clientFieldsV10=true;
 
-$('clientBoard').addEventListener('submit',async e=>{
+function locale(){return lang==='es'?'es-US':'en-US';}
+function relTimeL(ms){const r=relTime(ms);return r==='now'?tr('now'):r;}
+function stampL(s){const d=new Date(s);return isNaN(d)?'':d.toLocaleString(locale(),{month:'short',day:'numeric',hour:'numeric',minute:'2-digit'});}
+function dayL(s){return parseDay(s).toLocaleDateString(locale(),{weekday:'short',month:'short',day:'numeric'});}
+function cpDue(t){
+ if(!t.due_date||isDone(t))return '';
+ const d=daysUntil(t.due_date);
+ if(d<0)return tr('Overdue');
+ if(d===0)return tr('Due today');
+ if(d===1)return tr('Due tomorrow');
+ return tr('Due {date}',{date:dayL(t.due_date)});
+}
+function cpStatus(t){return tr(statusLabel(normStatus(t),true));}
+function isRetainer(c){return !c||c.retainer!==false;}
+function portalCtx(){
+ if(role==='admin'){
+  const id=$('previewClient').value,c=id?clientById(id):null;
+  return {c,preview:true,me:null,list:c?tasks.filter(t=>String(t.client_id)===String(c.id)&&!t.archived_at):[]};
+ }
+ if(role==='client'){
+  const c=clients.find(x=>String(x.id)===String(myClientId))||null;
+  return {c,preview:false,me:currentUser?.id||null,list:tasks.filter(t=>!t.archived_at)};
+ }
+ return null;
+}
+function myOpenCall(ctx){
+ if(!callsReady||!ctx.c)return null;
+ return calls.find(x=>!x.handled_at&&String(x.client_id)===String(ctx.c.id)&&(ctx.preview||x.user_id===ctx.me))||null;
+}
+function forText(t,ctx){
+ if(!t.assigned_to)return '';
+ if(ctx.me&&t.assigned_to===ctx.me)return tr('For you');
+ return tr('For {name}',{name:personName(t.assigned_to)});
+}
+function unseenNote(n,ctx){return !ctx.preview&&readsReady&&fromOtherSide(n)&&Date.parse(n.created_at)>seenAt(n.task_id);}
+function cjRow(t,ctx){
+ const st=normStatus(t),a=ctx.preview?null:newActivityRaw(t);
+ const sub=[cpStatus(t),cpDue(t),forText(t,ctx)].filter(Boolean).join(' · ');
+ return `<button type="button" class="cj-row ${statusClass(st)}" data-job="${esc(t.id)}"><span class="cj-dot" aria-hidden="true"></span><span class="nr-main"><strong>${esc(t.title||tr('Untitled'))}</strong><small>${esc(sub)}</small></span>${a?`<span class="need-tag act">${esc(tr(ACT_LABEL[a.kind]||'New'))}</span>`:''}<span class="cj-chev" aria-hidden="true">›</span></button>`;
+}
+function cpSection(cls,title,items,ctx,limit){
+ if(!items.length)return '';
+ return `<section class="cp-sec ${cls}"><h3>${esc(title)} · ${items.length}</h3><div class="list-card">${items.slice(0,limit||99).map(t=>cjRow(t,ctx)).join('')}</div></section>`;
+}
+function sinceHtml(){
+ if(!sinceInfo||role!=='client')return '';
+ const parts=[];
+ if(sinceInfo.nJobs)parts.push(sinceInfo.nJobs===1?tr('1 job updated'):tr('{n} jobs updated',{n:sinceInfo.nJobs}));
+ if(sinceInfo.nMsg)parts.push(sinceInfo.nMsg===1?tr('1 new message'):tr('{n} new messages',{n:sinceInfo.nMsg}));
+ if(sinceInfo.nFiles)parts.push(sinceInfo.nFiles===1?tr('1 new file'):tr('{n} new files',{n:sinceInfo.nFiles}));
+ const rows=sinceInfo.rows.slice(0,4).map(r=>{
+  const t=tasks.find(x=>String(x.id)===String(r.id));if(!t)return '';
+  const what=r.what.map(([k,v])=>tr(k,v&&v.s?{...v,s:tr(v.s)}:v)).join(' · ');
+  return `<button type="button" class="since-row" data-job="${esc(t.id)}"><span>${esc(t.title||tr('Untitled'))}</span><small>${esc(what)}</small></button>`;
+ }).join('');
+ return `<section class="since-card" aria-labelledby="sinceTitle"><button type="button" class="modal-x" data-cpact="since-close" aria-label="${esc(tr('Close'))}">×</button><h3 id="sinceTitle">${esc(tr('Since your last visit'))}</h3><p>${esc(parts.join(' · '))}</p>${rows}</section>`;
+}
+function actionsHtml(ctx){
+ const call=myOpenCall(ctx);
+ let out='';
+ if(call){
+  const at=new Date(call.created_at);
+  const when=isNaN(at)?'':at.toLocaleTimeString(locale(),{hour:'numeric',minute:'2-digit'});
+  out+=`<div class="call-banner" role="status"><span class="ca-ic">${PHONE_SVG}</span><span><strong>${esc(tr('Sam will call you soon'))}</strong><small>${esc(tr('You asked at {time}',{time:when})+(call.reason?' · '+tr(REASONS[call.reason]||''):''))}</small></span></div>`;
+ }
+ const btns=[];
+ if(isRetainer(ctx.c))btns.push(`<button type="button" class="cp-act" data-cpact="task"><span class="ca-ic">${PLUS_SVG}</span><span><strong>${esc(tr('Add a task'))}</strong><small>${esc(tr('Tell us what to do. Add photos, videos or a voice note.'))}</small></span></button>`);
+ if(callsReady&&!call)btns.push(`<button type="button" class="cp-act call" data-cpact="call"><span class="ca-ic">${PHONE_SVG}</span><span><strong>${esc(tr('Request a call'))}</strong><small>${esc(isRetainer(ctx.c)?tr('Rather talk? Sam calls you back.'):tr('Need something new or have a question? Sam calls you back.'))}</small></span></button>`);
+ if(btns.length)out+=`<div class="cp-actions">${btns.join('')}</div>`;
+ return out;
+}
+function homeHtml(ctx){
+ const open=ctx.list.filter(t=>!isDone(t));
+ const needs=open.filter(t=>t.status==='Waiting on client').sort(byDue);
+ const order={'In progress':0,'To do':1,'Incoming':2};
+ const active=open.filter(t=>t.status!=='Waiting on client').sort((a,b)=>(order[normStatus(a)]??3)-(order[normStatus(b)]??3)||byDue(a,b));
+ const done=ctx.list.filter(isDone).sort(byCompleted).slice(0,5);
+ let out=sinceHtml()+actionsHtml(ctx);
+ out+=cpSection('needs',tr('Needs your OK'),needs,ctx);
+ out+=cpSection('active',tr('In progress'),active,ctx,8);
+ if(active.length>8)out+=`<p class="muted" style="margin:-10px 0 18px"><button type="button" class="link-button" data-cptab="jobs">${esc(tr('See all {n} jobs',{n:open.length}))}</button></p>`;
+ out+=cpSection('done',tr('Recently done'),done,ctx);
+ if(!ctx.list.length)out+=`<p class="cp-empty">${esc(tr('No jobs yet. When Signix Digital starts work for you, it shows up here.'))}</p>`;
+ return out;
+}
+function jobsHtml(ctx){
+ const filters=[['all','All'],['needs','Needs your OK'],['active','In progress'],['done','Done']];
+ let list=ctx.list.slice();
+ const people=portalPeople(ctx.c);
+ if(cpMine&&ctx.me)list=list.filter(t=>!t.assigned_to||t.assigned_to===ctx.me);
+ const pick={needs:t=>t.status==='Waiting on client',active:t=>!isDone(t)&&t.status!=='Waiting on client',done:isDone}[cpJobsFilter];
+ if(pick)list=list.filter(pick);
+ let out=`<div class="cp-filter" role="group" aria-label="${esc(tr('Show'))}">${filters.map(([k,l])=>`<button type="button" data-cpfilter="${k}" aria-pressed="${cpJobsFilter===k}">${esc(tr(l))}</button>`).join('')}${people.length>=2&&ctx.me?`<button type="button" data-cpmine="1" aria-pressed="${cpMine}">${esc(tr('Just mine'))}</button>`:''}</div>`;
+ if(!list.length)return out+`<p class="cp-empty">${esc(tr('Nothing here right now.'))}</p>`;
+ const groups=[['Waiting on client','needs'],['In progress',''],['To do',''],['Incoming',''],['Completed','done']];
+ for(const [st,cls] of groups){
+  const items=list.filter(t=>normStatus(t)===st).sort(st==='Completed'?byCompleted:byDue);
+  if(!items.length)continue;
+  out+=`<h3 class="cp-group">${esc(tr(statusLabel(st,true)))} · ${items.length}</h3><div class="list-card${cls?' '+cls:''}" style="margin-bottom:6px">${items.map(t=>cjRow(t,ctx)).join('')}</div>`;
+ }
+ return out;
+}
+function noteWho(n,ctx){
+ if(n.is_admin)return 'Signix Digital';
+ if(ctx.me&&n.author_id===ctx.me)return tr('You');
+ return n.author_name||tr('Someone');
+}
+function messagesHtml(ctx){
+ const ids=new Set(ctx.list.map(t=>String(t.id)));
+ const ns=notes.filter(n=>ids.has(String(n.task_id))).sort((a,b)=>String(b.created_at).localeCompare(String(a.created_at))).slice(0,100);
+ if(!ns.length)return `<p class="cp-empty">${esc(tr('No messages yet. Open a job to write to Signix Digital.'))}</p>`;
+ return `<div class="list-card">${ns.map(n=>{
+  const t=tasks.find(x=>String(x.id)===String(n.task_id));
+  const files=attachments.filter(a=>String(a.note_id)===String(n.id)).length;
+  const who=noteWho(n,ctx);
+  const text=n.body?n.body.slice(0,140):(files===1?tr('Sent 1 file'):tr('Sent {n} files',{n:files}));
+  return `<button type="button" class="cm-row${unseenNote(n,ctx)?' is-new':''}" data-job="${esc(n.task_id)}"><span class="av${n.is_admin?' sx':''}" aria-hidden="true">${esc(n.is_admin?'SD':initials(who))}</span><span class="nr-main"><strong>${esc(who)} <span class="cm-job">· ${esc(t?.title||'')}</span></strong><small>${esc(text)}</small></span><span class="nr-time">${esc(relTimeL(Date.parse(n.created_at)))}</span></button>`;
+ }).join('')}</div>`;
+}
+// ===== END OF PART 8 of 12 =====
+function filesHtml(ctx){
+ const ids=new Set(ctx.list.map(t=>String(t.id)));
+ const list=attachments.filter(a=>ids.has(String(a.task_id))).sort((a,b)=>Number(b.id)-Number(a.id)).slice(0,150);
+ if(!list.length)return `<p class="cp-empty">${esc(tr('No files yet. Photos, videos and voice notes from you and Signix Digital show up here.'))}</p>`;
+ return `<div class="cf-grid">${list.map(a=>{
+  const t=tasks.find(x=>String(x.id)===String(a.task_id)),url=urlFor(a.path),u=url?esc(url):'';
+  const n=a.note_id!=null?notes.find(x=>String(x.id)===String(a.note_id)):null;
+  const who=n?noteWho(n,ctx):'';
+  const cap=`<figcaption><button type="button" data-job="${esc(a.task_id)}">${esc(t?.title||tr('Job'))}</button><small>${esc([who,n?stampL(n.created_at):''].filter(Boolean).join(' · '))}</small></figcaption>`;
+  if(!url)return `<figure class="cf-tile"><span class="cf-media"></span>${cap}</figure>`;
+  if(a.kind==='image')return `<figure class="cf-tile"><a class="cf-media" href="${u}" target="_blank" rel="noopener"><img src="${u}" alt="${esc(tr('Photo'))}" loading="lazy"></a>${cap}</figure>`;
+  if(a.kind==='video')return `<figure class="cf-tile"><a class="cf-media" href="${u}" target="_blank" rel="noopener"><video src="${u}" preload="metadata" muted playsinline></video><span class="cf-play" aria-hidden="true">▶</span><span class="sr-only">${esc(tr('Video'))}</span></a>${cap}</figure>`;
+  return `<figure class="cf-tile audio"><div class="cf-media"><audio src="${u}" controls preload="metadata"></audio></div>${cap}</figure>`;
+ }).join('')}</div>`;
+}
+function editFormHtml(t){
+ const pr=normPriority(t),pp=portalPeople(null);
+ return `<form class="edit-form" data-edit-id="${esc(t.id)}" style="margin-top:12px">
+<label>${esc(tr('Task name'))}<input name="title" maxlength="200" required value="${esc(t.title||'')}"></label>
+<label>${esc(tr('Details'))}<textarea name="description" maxlength="2000">${esc(t.description||'')}</textarea></label>
+<div class="grid2">
+<label>${esc(tr('Priority'))}<select name="priority">${PRIORITIES.slice().reverse().map(p=>`<option value="${p}"${p===pr?' selected':''}>${esc(tr(p))}</option>`).join('')}</select></label>
+<label>${esc(tr('Deadline (optional)'))}<input type="date" name="due" min="${todayStr()}" value="${esc(t.due_date||'')}"></label>
+</div>
+${pp.length>=2?`<label>${esc(tr('Who is this for'))}<select name="assign"><option value="">${esc(tr('Everyone'))}</option>${pp.map(p=>`<option value="${esc(p.id)}"${t.assigned_to===p.id?' selected':''}>${esc(p.name)}</option>`).join('')}</select></label>`:''}
+<div class="row" style="justify-content:flex-start"><button class="primary" type="submit">${esc(tr('Save changes'))}</button><button type="button" data-jact="cancel-edit">${esc(tr('Cancel'))}</button><small class="muted" data-until="${editUntil(t)}"></small></div>
+</form>`;
+}
+function renderJob(t,ctx){
+ const st=normStatus(t);
+ const editable=!ctx.preview&&canEdit(t);
+ const chips=[`<span class="badge ${statusClass(st)}">${esc(cpStatus(t))}</span>`,
+  t.priority==='High'?`<span class="badge pr-high">${esc(tr('High priority'))}</span>`:'',
+  cpDue(t)?`<span class="badge${isOverdue(t)?' pr-high':''}">${esc(cpDue(t))}</span>`:'',
+  forText(t,ctx)?`<span class="badge">${esc(forText(t,ctx))}</span>`:''].join('');
+ const backLbl={home:'Home',jobs:'My jobs',messages:'Messages',files:'Files'}[cpJobFrom]||'Home';
+ let head=`<button type="button" class="cp-back" data-cpback="1">‹ ${esc(tr(backLbl))}</button><div class="cjob-head ${statusClass(st)}"><h2>${esc(t.title||tr('Untitled'))}</h2><div class="cjob-chips">${chips}</div>`;
+ if(editable&&String(editingId)===String(t.id))head+=editFormHtml(t);
+ else{
+  if(t.description)head+=`<p class="cjob-desc">${esc(t.description)}</p>`;
+  if(editable)head+=`<div class="cjob-edit"><button type="button" data-jact="edit">${esc(tr('Edit request'))}</button><button type="button" class="link-button del-link" data-jact="delete-own">${esc(tr('Delete request'))}</button><small class="muted" data-until="${editUntil(t)}"></small></div>`;
+ }
+ head+='</div>';
+ if($('cpJobHead').dataset.sig!==head){$('cpJobHead').innerHTML=head;$('cpJobHead').dataset.sig=head;}
+ const items=[];
+ const created=t.created_at?stampL(t.created_at):'';
+ items.push(`<div class="cth-sys">${esc(created?tr('Job started {date}',{date:created}):tr('Job started'))}</div>`);
+ const tf=taskFiles(t.id);
+ if(tf.length){
+  const byClient=t.created_by&&t.created_by!==ADMIN_UID;
+  const mine=byClient&&ctx.me&&t.created_by===ctx.me;
+  const who=!byClient?'Signix Digital':mine?tr('You'):(memberNames[t.created_by]||tr('Someone'));
+  items.push(`<div class="cth-msg ${byClient?'me':'them'}"><div class="cth-meta"><strong>${esc(who)}</strong><time>${esc(created)}</time></div><div class="cth-body">${esc(tr('Files sent with this job'))}</div>${mediaListHtml(tf)}</div>`);
+ }
+ const list=notesFor(t.id).slice().reverse();
+ for(const n of list){
+  const files=attachments.filter(a=>String(a.note_id)===String(n.id));
+  const fresh=!ctx.preview&&notesSince!=null&&fromOtherSide(n)&&Date.parse(n.created_at)>notesSince;
+  items.push(`<div class="cth-msg ${n.is_admin?'them':'me'}${fresh?' is-new':''}"><div class="cth-meta"><strong>${esc(noteWho(n,ctx))}</strong><time datetime="${esc(n.created_at)}">${esc(stampL(n.created_at))}</time></div>${n.body?`<div class="cth-body">${esc(n.body)}</div>`:''}${files.length?mediaListHtml(files):''}</div>`);
+ }
+ if(!list.length&&!tf.length)items.push(`<p class="muted" style="text-align:center;margin:4px 0">${esc(tr('No messages yet. Write the first one below.'))}</p>`);
+ const thread=items.join('');
+ if($('cpJobThread').dataset.sig!==thread){$('cpJobThread').innerHTML=thread;$('cpJobThread').dataset.sig=thread;}
+ show('cpJobCompose',!ctx.preview);
+ show('cpJobPreview',ctx.preview);
+}
+function setComposer(forClient){
+ const f=$('noteForm');
+ $('noteText').placeholder=forClient?tr('Write a message…'):'Write a note…';
+ $('noteSendBtn').textContent=forClient?tr('Send message'):'Add note';
+ const lbl=f.querySelector('.file-button span');if(lbl)lbl.textContent=forClient?tr('Add photos or videos'):'Add photos or videos';
+ const hint=f.querySelector('.row small');if(hint)hint.textContent=forClient?tr('Messages can’t be edited or deleted.'):'Notes can\'t be edited or deleted. Each one is stamped with the name, date and time.';
+ noteFiles.ui(false);
+}
+function openJob(id,from){
+ const t=tasks.find(x=>String(x.id)===String(id));
+ if(!t)return;
+ const ctx=portalCtx();if(!ctx)return;
+ if(cpJobId!=null&&String(cpJobId)!==String(t.id))closeJob(true);
+ cpJobFrom=from||cpTab;
+ cpJobId=t.id;
+ editingId=null;
+ $('cpJobHead').dataset.sig='';$('cpJobThread').dataset.sig='';
+ if(!ctx.preview){
+  notesTaskId=t.id;
+  notesSince=readsReady?seenAt(t.id):null;
+  markSeen(t.id);
+  $('noteText').value=noteDrafts[String(t.id)]||'';
+  noteSay('');
+  $('noteFiles').classList.toggle('hidden',!noteFilesReady);
+  $('cpJobCompose').append($('noteForm'));
+  setComposer(true);
+ }
+ renderPortal();
+ window.scrollTo(0,0);
+}
+function closeJob(force){
+ if(cpJobId==null)return true;
+ const ctx=portalCtx();
+ if(ctx&&!ctx.preview){
+  if(!force&&(noteFiles.pending.length||noteFiles.recorder)&&!confirm(tr('Discard the files you attached to this message?')))return false;
+  noteFiles.stop(true);noteFiles.clear();
+  const closed=notesTaskId;
+  notesTaskId=null;notesSince=null;
+  if(readsReady&&closed!=null&&newActivityRaw(tasks.find(x=>String(x.id)===String(closed))))markSeen(closed);
+ }
+ document.querySelector('#notesModal .modal-body').prepend($('noteForm'));
+ setComposer(false);
+ cpJobId=null;editingId=null;
+ return true;
+}
+function setCpTab(tab){
+ if(!CP_TABS.includes(tab))tab='home';
+ if(cpJobId!=null&&!closeJob())return;
+ cpTab=tab;
+ setPref('client','tab',tab);
+ renderPortal();
+ window.scrollTo(0,0);
+}
+function renderCpTabs(ctx){
+ document.querySelectorAll('#cpTabs [data-cptab]').forEach(b=>{
+  if(cpJobId==null&&b.dataset.cptab===cpTab)b.setAttribute('aria-current','page');else b.removeAttribute('aria-current');
+ });
+ const ret=isRetainer(ctx.c);
+ const btn=$('cpMainAct');
+ const label=ret?tr('Add a task'):tr('Request a call');
+ const sig=(ret?'t':'c')+lang;
+ if(btn.dataset.sig!==sig){btn.innerHTML=(ret?PLUS_SVG:PHONE_SVG)+`<span class="cpt-lbl">${esc(label)}</span>`;btn.dataset.sig=sig;}
+ btn.setAttribute('aria-label',label);
+ btn.classList.toggle('hidden',!ret&&!callsReady);
+ const needs=ctx.list.filter(t=>t.status==='Waiting on client').length;
+ $('cpHomeBadge').textContent=needs?String(needs):'';
+ const ids=new Set(ctx.list.map(t=>String(t.id)));
+ const unread=notes.filter(n=>ids.has(String(n.task_id))&&unseenNote(n,ctx)).length;
+ $('cpMsgBadge').textContent=unread?String(unread):'';
+}
+function renderPortal(){
+ const ctx=portalCtx();
+ if(!ctx)return;
+ document.body.classList.toggle('portal-on',!$('client').classList.contains('hidden'));
+ show('cpPreview',ctx.preview);
+ if(ctx.preview)$('cpPreviewNote').textContent=ctx.c?`This is exactly what ${ctx.c.Name||'this client'} sees when they sign in.`:'Select a client to preview what they see when they sign in.';
+ applyBranding(ctx.c);
+ show('cpShell',!ctx.preview||!!ctx.c);
+ if(ctx.preview&&!ctx.c)return;
+ $('portalTitle').textContent=ctx.c?.Name||tr('Your projects');
+ const name=ctx.preview?'':myDisplayName;
+ $('portalIntro').textContent=name?tr('Hi {name}. Here’s your work with Signix Digital.',{name}):tr('Your work with Signix Digital.');
+ renderCpTabs(ctx);
+ if(cpJobId!=null){
+  const t=ctx.list.find(x=>String(x.id)===String(cpJobId));
+  if(!t)closeJob(true);
+  else{show('cpMain',false);show('cpJob',true);renderJob(t,ctx);updateCountdowns();return;}
+ }
+ show('cpJob',false);show('cpMain',true);
+ $('cpMain').innerHTML=cpTab==='jobs'?jobsHtml(ctx):cpTab==='messages'?messagesHtml(ctx):cpTab==='files'?filesHtml(ctx):homeHtml(ctx);
+}
+function cpToast(text){
+ const el=document.createElement('div');
+ el.className='cp-toast';el.setAttribute('role','status');el.textContent=text;
+ $('cpToastWrap').replaceChildren(el);
+ setTimeout(()=>el.remove(),3700);
+}
+function previewOnly(){notice('Preview only. Your client can use this button in their portal.');}
+$('client').addEventListener('click',e=>{
+ const lb=e.target.closest('[data-lang]');
+ if(lb){setLang(lb.dataset.lang,true);return;}
+ const tb=e.target.closest('[data-cptab]');
+ if(tb){setCpTab(tb.dataset.cptab);return;}
+ const fb=e.target.closest('[data-cpfilter]');
+ if(fb){cpJobsFilter=fb.dataset.cpfilter;renderPortal();return;}
+ if(e.target.closest('[data-cpmine]')){cpMine=!cpMine;renderPortal();return;}
+ if(e.target.closest('[data-cpback]')){if(closeJob())renderPortal();window.scrollTo(0,0);return;}
+ const jb=e.target.closest('[data-job]');
+ if(jb){openJob(jb.dataset.job);return;}
+ const ja=e.target.closest('[data-jact]');
+ if(ja&&cpJobId!=null){
+  const t=tasks.find(x=>String(x.id)===String(cpJobId));
+  const a=ja.dataset.jact;
+  if(a==='edit'){if(t&&canEdit(t)){editingId=t.id;renderPortal();}else{notice(tr('The 3-minute edit window has closed.'));renderPortal();}}
+  else if(a==='cancel-edit'){editingId=null;renderPortal();}
+  else if(a==='delete-own'&&t)deleteOwnRequest(t.id,ja);
+  return;
+ }
+ const ab=e.target.closest('[data-cpact]');
+ if(!ab)return;
+ const act=ab.dataset.cpact,ctx=portalCtx();
+ if(act==='since-close'){sinceInfo=null;renderPortal();return;}
+ if(!ctx)return;
+ const which=act==='main'?(isRetainer(ctx.c)?'task':'call'):act;
+ if(ctx.preview){previewOnly();return;}
+ if(which==='task')openTaskSheet();
+ else if(which==='call')openCallSheet();
+});
+$('client').addEventListener('submit',async e=>{
  const form=e.target.closest('form[data-edit-id]');
  if(!form)return;
  e.preventDefault();
  const t=tasks.find(x=>String(x.id)===form.dataset.editId);
- if(!t||!canEdit(t)){editingId=null;renderPortal();notice('The 3-minute edit window has closed, so the change was not saved.');return;}
+ if(!t||!canEdit(t)){editingId=null;renderPortal();notice(tr('The 3-minute edit window has closed, so the change was not saved.'));return;}
  const fd=new FormData(form);
  const title=String(fd.get('title')||'').trim().replace(/\s+/g,' ');
  const description=String(fd.get('description')||'').trim()||null;
  const priority=String(fd.get('priority')||'Medium');
  const due=String(fd.get('due')||'');
- if(!title){notice('Please enter a task name.');return;}
- if(!PRIORITIES.includes(priority)){notice('Pick a valid priority.');return;}
+ if(!title){notice(tr('Please enter a task name.'));return;}
+ if(!PRIORITIES.includes(priority)){notice(tr('Pick a valid priority.'));return;}
  const button=form.querySelector('button[type="submit"]');button.disabled=true;
  try{
   const update={title,description,priority,due_date:due||null};
   const hasAssign=fd.has('assign')&&taskOptional.includes('assigned_to');
   if(hasAssign)update.assigned_to=String(fd.get('assign')||'')||null;
   let {data,error}=await sb.from('tasks').update(update).eq('id',t.id).select(taskFields());
-  let tagSkipped=false;
-  if(error&&hasAssign){
-   delete update.assigned_to;
-   ({data,error}=await sb.from('tasks').update(update).eq('id',t.id).select(taskFields()));
-   tagSkipped=!error;
-  }
-  if(error){displayError('Request was not updated',error);return;}
-  if(!data?.length){editingId=null;renderPortal();notice('The edit window has closed (or Signix Digital already picked up this request), so the change was not saved.');return;}
+  if(error&&hasAssign){delete update.assigned_to;({data,error}=await sb.from('tasks').update(update).eq('id',t.id).select(taskFields()));}
+  if(error){displayError(tr('Request was not updated'),error);return;}
+  if(!data?.length){editingId=null;renderPortal();notice(tr('The edit window has closed (or Signix Digital already picked up this request), so the change was not saved.'));return;}
   Object.assign(t,data[0]);
   editingId=null;
   renderPortal();
-  notice('Request updated.'+(tagSkipped?' The "who is this for" choice was not saved.':''));
- }catch(err){displayError('Request was not updated',err);}
+  cpToast(tr('Request updated.'));
+ }catch(err){displayError(tr('Request was not updated'),err);}
  finally{button.disabled=false;}
 });
+
+$('auth').addEventListener('click',e=>{const b=e.target.closest('[data-lang]');if(b)setLang(b.dataset.lang,false);});
+
+/* "Since your last visit" (only when something changed) and the 1-second welcome, once a day */
+function lastVisitKey(){return 'signix-lastvisit-'+(currentUser?.id||'x');}
+function saveLastVisit(){try{localStorage.setItem(lastVisitKey(),new Date().toISOString());}catch(e){}}
+function computeSince(){
+ if(role!=='client'||!currentUser)return null;
+ let last=null;
+ try{last=localStorage.getItem(lastVisitKey());}catch(e){}
+ saveLastVisit();
+ const since=last?Date.parse(last):NaN;
+ if(isNaN(since))return null;
+ const after=s=>!!s&&Date.parse(s)>since;
+ const rows=[];let nMsg=0,nFiles=0;
+ for(const t of tasks){
+  if(t.archived_at)continue;
+  const what=[];let at=0;
+  if(isDone(t)&&after(t.completed_at)){what.push(['Completed']);at=Date.parse(t.completed_at);}
+  else if(after(t.status_changed_at)&&t.status!=='Incoming'){what.push(['Now: {s}',{s:statusLabel(normStatus(t),true)}]);at=Date.parse(t.status_changed_at);}
+  const ns=notes.filter(n=>String(n.task_id)===String(t.id)&&n.is_admin&&after(n.created_at));
+  const fs=attachments.filter(a=>a.note_id!=null&&ns.some(n=>String(n.id)===String(a.note_id)));
+  if(ns.length){nMsg+=ns.length;what.push(ns.length===1?['1 new message']:['{n} new messages',{n:ns.length}]);at=Math.max(at,...ns.map(n=>Date.parse(n.created_at)));}
+  if(fs.length){nFiles+=fs.length;what.push(fs.length===1?['1 new file']:['{n} new files',{n:fs.length}]);}
+  if(what.length)rows.push({id:t.id,what,at});
+ }
+ if(!rows.length)return null;
+ rows.sort((a,b)=>b.at-a.at);
+ return {rows,nJobs:rows.length,nMsg,nFiles};
+}
+function welcomeToast(){
+ if(role!=='client'||!currentUser)return;
+ const key='signix-welcome-'+currentUser.id,today=todayStr();
+ try{if(localStorage.getItem(key)===today)return;localStorage.setItem(key,today);}catch(e){}
+ const el=$('welcomeToast');
+ el.textContent=myDisplayName?tr('Welcome back, {name}',{name:myDisplayName}):tr('Welcome back');
+ el.classList.remove('hidden','go');
+ void el.offsetWidth;
+ el.classList.add('go');
+ clearTimeout(welcomeToast.t);
+ welcomeToast.t=setTimeout(()=>{el.classList.add('hidden');el.classList.remove('go');},1050);
+}
+document.addEventListener('visibilitychange',()=>{if(document.hidden&&role==='client')saveLastVisit();});
+document.addEventListener('keydown',e=>{
+ if(e.key!=='Escape'||menuCtx)return;
+ if(!$('askModal').classList.contains('hidden'))askDone(false);
+ else if(!$('callSheet').classList.contains('hidden'))closeCallSheet();
+ else if(!$('taskSheet').classList.contains('hidden'))closeTaskSheet();
+ else if(!$('notesModal').classList.contains('hidden'))closeNotes();
+ else if(cpJobId!=null&&role){if(closeJob())renderPortal();}
+});
+
+/* Sheets: Add a task (retainer clients) and Request a call (everyone) */
+function anyModalOpen(){return ['notesModal','taskSheet','callSheet','askModal'].some(id=>!$(id).classList.contains('hidden'));}
+function lockScroll(){document.body.style.overflow=anyModalOpen()?'hidden':'';}
+function openTaskSheet(){
+ if(role!=='client')return;
+ const ctx=portalCtx();
+ if(!isRetainer(ctx?.c))return;
+ formMsg('taskMsg','');
+ $('requestDue').min=todayStr();
+ const people=portalPeople(ctx.c),showReq=people.length>=2;
+ $('reqAssignWrap').classList.toggle('hidden',!showReq);
+ if(showReq){
+  const sel=$('reqAssign'),prior=sel.value;
+  sel.replaceChildren(new Option(tr('Everyone at {biz}',{biz:myClientName||tr('your business')}),''),...people.map(p=>new Option(p.name,p.id)));
+  if(people.some(p=>p.id===prior))sel.value=prior;
+ }
+ clientFiles.ui(false);
+ show('taskSheet',true);lockScroll();
+ if(!mobile)document.querySelector('#requestTaskForm input[name="title"]').focus();
+}
+function closeTaskSheet(force){
+ if(!force&&(clientFiles.pending.length||clientFiles.recorder)&&!confirm(tr('Discard the files you attached?')))return;
+ clientFiles.stop(true);
+ if(force!=='keep')clientFiles.clear();
+ show('taskSheet',false);lockScroll();
+}
+$('taskSheetClose').onclick=()=>closeTaskSheet();
+$('taskSheet').addEventListener('click',e=>{if(e.target===e.currentTarget)closeTaskSheet();});
+function phoneKey(){return 'signix-phone-'+(currentUser?.id||'x');}
+function openCallSheet(){
+ if(role!=='client'||!callsReady)return;
+ const ctx=portalCtx();
+ if(myOpenCall(ctx)){cpToast(tr('Sam will call you soon'));return;}
+ const f=$('callForm');
+ f.reset();callFiles.clear();formMsg('callMsg','');
+ let phone='';
+ try{phone=localStorage.getItem(phoneKey())||'';}catch(e){}
+ if(!phone){const last=calls.find(c=>c.user_id===currentUser.id&&c.phone);phone=last?.phone||'';}
+ f.elements.phone.value=phone;
+ callFiles.ui(false);
+ show('callSheet',true);lockScroll();
+}
+function closeCallSheet(force){
+ if(!force&&(callFiles.pending.length||callFiles.recorder)&&!confirm(tr('Discard the files you attached?')))return;
+ callFiles.stop(true);callFiles.clear();
+ show('callSheet',false);lockScroll();
+}
+$('callClose').onclick=()=>closeCallSheet();
+$('callCancel').onclick=()=>closeCallSheet();
+$('callSheet').addEventListener('click',e=>{if(e.target===e.currentTarget)closeCallSheet();});
+async function uploadCallFiles(A,clientId,callId){
+ const failed=[];
+ for(let i=0;i<A.pending.length;i++){
+  const p=A.pending[i];
+  formMsg('callMsg',tr('Uploading file {i} of {n}…',{i:i+1,n:A.pending.length}),'info');
+  const path=`${clientId}/${callId}/${crypto.randomUUID()}.${extFor(p.file,p.type)}`;
+  const {error:upError}=await sb.storage.from(CALL_BUCKET).upload(path,p.file,{contentType:p.type,upsert:false});
+  if(upError){failed.push(`${p.file.name}: ${upError.message}`);continue;}
+  const {error:rowError}=await sb.from('call_files').insert({call_id:callId,client_id:clientId,path,kind:p.kind,mime_type:p.type,size_bytes:p.file.size});
+  if(rowError){failed.push(`${p.file.name}: ${rowError.message}`);await sb.storage.from(CALL_BUCKET).remove([path]);}
+ }
+ return failed;
+}
+$('callForm').onsubmit=async e=>{
+ e.preventDefault();
+ if(role!=='client'||myClientId==null)return;
+ if(callFiles.recorder&&callFiles.recorder.state==='recording'){formMsg('callMsg',tr('Stop the voice recording first.'),'error');return;}
+ const f=e.currentTarget,fd=new FormData(f);
+ const reason=String(fd.get('reason')||'')||null;
+ const note=String(fd.get('note')||'').trim()||null;
+ const phone=String(fd.get('phone')||'').trim().slice(0,40)||null;
+ const button=$('callSendBtn');button.disabled=true;
+ formMsg('callMsg',tr('Sending…'),'info');
+ try{
+  const {data,error}=await sb.from('call_requests').insert({client_id:myClientId,reason,note,phone}).select('id,client_id,user_id,requester_name,reason,note,phone,created_at,handled_at').single();
+  if(error){
+   if(/duplicate|one_open|unique/i.test(error.message||'')){await loadCalls();closeCallSheet(true);renderPortal();cpToast(tr('You already asked. Sam will call you soon.'));return;}
+   formMsg('callMsg',tr('Not sent: {msg}',{msg:errText(error)}),'error');return;
+  }
+  try{if(phone)localStorage.setItem(phoneKey(),phone);}catch(_){}
+  const failed=callFiles.pending.length?await uploadCallFiles(callFiles,myClientId,data.id):[];
+  calls=[data,...calls.filter(c=>String(c.id)!==String(data.id))];
+  closeCallSheet(true);
+  if(cpJobId!=null)closeJob(true);
+  cpTab='home';
+  renderPortal();
+  window.scrollTo(0,0);
+  if(failed.length)notice(tr('Your call request was sent, but {n} file(s) did not upload:',{n:failed.length})+'\n'+failed.join('\n'));
+  cpToast(tr('Sent. Sam will call you soon.'));
+ }catch(err){formMsg('callMsg',tr('Not sent: {msg}',{msg:err.message||''}),'error');}
+ finally{button.disabled=false;}
+};
+
+/* Call requests: loaded for both sides (each person only sees what the database allows) */
+async function loadCalls(){
+ if(!role)return false;
+ try{
+  const {data,error}=await sb.from('call_requests').select('id,client_id,user_id,requester_name,reason,note,phone,created_at,handled_at').order('created_at',{ascending:false}).limit(300);
+  if(error){callsReady=false;calls=[];return false;}
+  calls=data||[];callsReady=true;
+  if(role==='admin')await loadCallFiles();
+  return true;
+ }catch(e){callsReady=false;calls=[];return false;}
+}
+async function loadCallFiles(){
+ const open=calls.filter(c=>!c.handled_at).map(c=>c.id);
+ if(!open.length){callFilesList=[];return;}
+ try{
+  const {data,error}=await sb.from('call_files').select('id,call_id,client_id,path,kind,mime_type').in('call_id',open);
+  if(error){callFilesList=[];return;}
+  callFilesList=data||[];
+  const soon=Date.now()+5*60000;
+  const need=callFilesList.map(f=>f.path).filter(p=>!(callUrls[p]&&callUrls[p].exp>soon));
+  if(need.length){
+   const {data:urls}=await sb.storage.from(CALL_BUCKET).createSignedUrls(need,3600);
+   const exp=Date.now()+3540*1000;
+   for(const u of urls||[])if(u.signedUrl&&u.path)callUrls[u.path]={url:u.signedUrl,exp};
+  }
+ }catch(e){callFilesList=[];}
+}
 
 /* ---------- Toolbars ---------- */
 applyMobile();
 buildChips('adminViews',ADMIN_VIEWS,adminView(),v=>{setPref('admin','view',v);CAL.adminBoard.focus=null;CAL.adminBoard.day=null;if(v==='archive'&&selectMode)selected.clear();renderAdmin();});
 buildLayoutChips();
-buildChips('clientViews',CLIENT_VIEWS,clientView(),v=>{setPref('client','view',v);renderPortal();});
 MQ.addEventListener('change',()=>{applyMobile();buildLayoutChips();mOpen.clear();render();});
 $('bizFilter').addEventListener('change',()=>{setPref('admin','biz',$('bizFilter').value);renderAdmin();});
 $('snapshot').addEventListener('click',e=>{
@@ -3016,7 +3779,7 @@ $('popOutBtn').onclick=()=>{
  const w=window.open(location.pathname+'?mode=tasks','signix-all-tasks','popup=yes,width=1400,height=900');
  if(!w)notice('Your browser blocked the new window. Allow pop-ups for this site and try again.');
 };
-$('previewClient').addEventListener('change',()=>{personFilter='';renderPortal();});
+$('previewClient').addEventListener('change',()=>{personFilter='';if(cpJobId!=null)closeJob(true);renderPortal();});
 
 /* ---------- Data loading ---------- */
 function fillClientSelect(select,placeholder){
@@ -3033,6 +3796,7 @@ async function loadTasks(){
   displayError('Unable to load tasks',error);return false;
  }
  tasks=data||[];
+ if(role==='admin'&&archivedClients.length){const gone=new Set(archivedClients.map(c=>String(c.id)));tasks=tasks.filter(t=>!gone.has(String(t.client_id)));}
  lastLoad=Date.now();
  const attachmentsOk=await loadAttachments();
  await loadNotes();
@@ -3070,9 +3834,11 @@ async function loadBranding(){
 }
 
 async function loadClients(){
- const {data,error}=await sb.from('Clients').select(CLIENT_FIELDS).order('Name');
+ const {data,error}=await sb.from('Clients').select(CLIENT_FIELDS+(clientFieldsV10?',retainer,archived_at':'')).order('Name');
+ if(error&&clientFieldsV10&&/retainer|archived_at/.test(error.message||'')){clientFieldsV10=false;return loadClients();}
  if(error){displayError('Unable to load clients',error);return false;}
- clients=data||[];
+ clients=(data||[]).filter(c=>!c.archived_at);
+ archivedClients=(data||[]).filter(c=>c.archived_at);
  const brandingOk=await loadBranding();
  if(addBiz!=null&&!clients.some(c=>String(c.id)===String(addBiz)))resetAddBiz();
  renderBizPicker();
@@ -3089,7 +3855,8 @@ async function loadClients(){
 }
 
 async function loadOwnClient(){
- const {data:own}=await sb.from('Clients').select(CLIENT_FIELDS).eq('id',myClientId).maybeSingle();
+ let {data:own,error}=await sb.from('Clients').select(CLIENT_FIELDS+(clientFieldsV10?',retainer':'')).eq('id',myClientId).maybeSingle();
+ if(error&&clientFieldsV10&&/retainer/.test(error.message||'')){clientFieldsV10=false;({data:own}=await sb.from('Clients').select(CLIENT_FIELDS).eq('id',myClientId).maybeSingle());}
  clients=own?[own]:[];
  myClientName=own?.Name||'';
  await loadBranding();
@@ -3166,6 +3933,7 @@ function renderLoginLog(){
  }
  root.innerHTML=out;
 }
+// ===== END OF PART 9 of 12 =====
 $('logRefresh').onclick=()=>loadLoginLog();
 $('loginLogPanel').addEventListener('toggle',()=>{if($('loginLogPanel').open&&isAdmin())loadLoginLog();});
 $('logClear').onclick=async()=>{
@@ -3543,7 +4311,6 @@ $('animForm').addEventListener('change',async()=>{
  }
 });
 
-// ===== END OF PART 9 of 11 =====
 
  
  
@@ -3602,6 +4369,7 @@ $('setPwBtn').onclick=()=>{$('changePwBtn').click();window.scrollTo(0,0);};
 $('setLogoutBtn').onclick=()=>$('logout').click();
 
 function relTime(ms){
+ if(ms==null||isNaN(ms))return '';
  const s=Math.max(0,(Date.now()-ms)/1000);
  if(s<60)return 'now';
  if(s<3600)return Math.floor(s/60)+'m';
@@ -3668,19 +4436,25 @@ function activityEvents(clientId){
   }
   if(t.completed_at)ev.push({at:Date.parse(t.completed_at),color:'var(--dn)',text:'Completed',sub:`${clientName(t.client_id)} · ${t.title||'Untitled'}`,go:'task',id:t.id});
  }
+ if(callsReady)for(const c of calls){
+  if(!match(c.client_id))continue;
+  ev.push({at:Date.parse(c.created_at),color:'#22c55e',text:`${c.requester_name||'A client'} asked for a call`,sub:clientName(c.client_id)+(c.reason?' · '+(REASONS[c.reason]||''):''),go:'',id:''});
+  if(c.handled_at)ev.push({at:Date.parse(c.handled_at),color:'#22c55e',text:`You called ${c.requester_name||'a client'}`,sub:clientName(c.client_id),go:'',id:''});
+ }
  for(const e of loginLog){
   if(!match(e.client_id))continue;
   ev.push({at:Date.parse(e.created_at),color:'var(--ip)',text:`${e.display_name||e.email||'Someone'} ${e.kind==='login'?'signed in':'opened the portal'}`,sub:clientName(e.client_id),go:clientId==null?'client':'',id:e.client_id});
  }
  return ev.filter(x=>!isNaN(x.at)).sort((a,b)=>b.at-a.at);
 }
+// ===== END OF PART 10 of 12 =====
 function feedRow(e){
  const tag=e.go?'button':'div';
  return `<${tag}${e.go?' type="button"':''} class="feed-row"${e.go?` data-hgo="${esc(e.go)}" data-id="${esc(e.id)}"`:''}><span class="feed-dot" style="background:${e.color}"></span><span class="nr-main"><strong>${esc(e.text)}</strong><small>${esc(e.sub||'')}</small></span><span class="nr-time">${esc(relTime(e.at))}</span></${tag}>`;
 }
 function renderShell(needs){
  const live=tasks.filter(t=>!t.archived_at);
- const n=needs.length;
+ const n=needs.length+openCalls().length;
  $('snNeeds').textContent=n?String(n):'';
  $('tbNeeds').textContent=n?String(n):'';
  $('snTasks').textContent=String(live.filter(t=>!isDone(t)).length);
@@ -3704,7 +4478,7 @@ function renderHome(needs){
   if(q.length>1)un+=`<div class="un-row">${q.slice(1).map((id,i)=>{const t=tasks.find(x=>String(x.id)===String(id)),c=clientById(t.client_id);return `<button type="button" class="un-chip" data-hgo="task" data-id="${esc(t.id)}" style="${qStyle(i+2)}"><span class="uc-num">${i+2}</span>${bizLogo(c,'biz-logo')}<span style="min-width:0"><span class="uc-t">${esc(t.title||'Untitled')}</span><small>${esc(c?.Name||'')}</small></span></button>`;}).join('')}</div>`;
  }
  $('homeUpNext').innerHTML=un;
- renderBrief();
+ renderCalls();
  $('needsTitle').textContent=`Needs me · ${needs.length}`;
  $('homeNeeds').innerHTML=needs.length
   ?`<div class="list-card">${needs.slice(0,15).map(needRow).join('')}</div>${needs.length>15?`<p class="muted more-note">and ${needs.length-15} more</p>`:''}`
@@ -3761,11 +4535,20 @@ function renderClientsArea(){
  if(!clientById(pick)&&!window.matchMedia('(max-width: 900px)').matches)pick=String(clients[0].id);
  const c=clientById(pick);
  const needs=needsItems();
- const list=clients.map(x=>{
+ const pickRow=x=>{
   const open=tasks.filter(t=>!t.archived_at&&!isDone(t)&&String(t.client_id)===String(x.id)).length;
-  const nn=needs.filter(n=>String(n.t.client_id)===String(x.id)).length;
-  return `<button type="button" class="cl-pick" data-pickclient="${esc(x.id)}" aria-current="${c&&String(c.id)===String(x.id)}" style="--biz:${bizColor(x)}">${bizLogo(x)}<span class="cp-main"><strong>${esc(x.Name||'Client '+x.id)}</strong><small>${open} open</small></span>${nn?`<span class="sn-badge">${nn}</span>`:''}</button>`;
- }).join('');
+  const nn=needs.filter(n=>String(n.t.client_id)===String(x.id)).length+openCalls().filter(k=>String(k.client_id)===String(x.id)).length;
+  const seen=clientLastSeen(x.id);
+  const seenTxt=loginLogReady?(seen?'seen '+relTime(seen):'not seen yet'):'';
+  return `<button type="button" class="cl-pick" data-pickclient="${esc(x.id)}" aria-current="${c&&String(c.id)===String(x.id)}" style="--biz:${bizColor(x)}">${bizLogo(x)}<span class="cp-main"><strong>${esc(x.Name||'Client '+x.id)}</strong><small>${open} open${seenTxt?' · '+esc(seenTxt):''}</small></span>${nn?`<span class="sn-badge">${nn}</span>`:''}</button>`;
+ };
+ let list;
+ if(clientFieldsV10){
+  const ret=clients.filter(x=>x.retainer),job=clients.filter(x=>!x.retainer);
+  list=(ret.length?`<div class="cl-grp"><span class="cl-tag ret">Retainer</span>${ret.length}</div>${ret.map(pickRow).join('')}`:'')
+   +(job.length?`<div class="cl-grp"><span class="cl-tag job">Job by job</span>${job.length}</div>${job.map(pickRow).join('')}`:'')
+   +(archivedClients.length?`<details class="cl-arch"><summary>Archived · ${archivedClients.length}</summary>${archivedClients.map(x=>`<div class="cl-arch-row">${bizLogo(x)}<span>${esc(x.Name||'Client '+x.id)}<small>Archived ${esc(fmtShort(x.archived_at))}</small></span><button type="button" data-restore="${esc(x.id)}">Restore</button></div>`).join('')}</details>`:'');
+ }else list=clients.map(pickRow).join('');
  let page='';
  if(c){
   const tab=getPref('admin','ctab','overview',CL_TABS.map(x=>x[0]));
@@ -3782,7 +4565,7 @@ function renderClientsArea(){
   if(tab==='overview'){
    const ev=activityEvents(c.id).slice(0,8);
    body=`<div class="cl-stats"><div>Open<strong>${open.length}</strong></div><div>Needs me<strong style="color:#fde68a">${myNeeds.length}</strong></div><div>Waiting on them<strong style="color:#fdba74">${open.filter(t=>t.status==='Waiting on client').length}</strong></div><div>Done this month<strong style="color:#86efac">${doneMonth}</strong></div></div>
-<div class="cl-grid"><div class="cl-col">${myNeeds.length?`<section><h3 class="sec-h amber">Needs me</h3><div class="list-card">${myNeeds.map(needRow).join('')}</div></section>`:''}<section><h3 class="sec-h" style="color:#cbd5e1">Open tasks</h3>${open.length?`<div class="list-card">${open.sort(byStatusThenDue).map(taskRow).join('')}</div>`:'<p class="muted home-empty">No open tasks.</p>'}</section></div>
+<div class="cl-grid"><div class="cl-col">${(()=>{const mc=openCalls().filter(k=>String(k.client_id)===String(c.id));return mc.length?`<section><h3 class="sec-h red">Call back · ${mc.length}</h3><div class="cb-list">${mc.map(callRow).join('')}</div></section>`:'';})()}${myNeeds.length?`<section><h3 class="sec-h amber">Needs me</h3><div class="list-card">${myNeeds.map(needRow).join('')}</div></section>`:''}<section><h3 class="sec-h" style="color:#cbd5e1">Open tasks</h3>${open.length?`<div class="list-card">${open.sort(byStatusThenDue).map(taskRow).join('')}</div>`:'<p class="muted home-empty">No open tasks.</p>'}</section></div>
 <div class="cl-col"><section class="side-card"><div class="side-head"><h2>People</h2><button type="button" class="link-button" data-cact="logins">Manage</button></div>${peopleHtml}</section><section class="side-card"><div class="side-head"><h2>Timeline</h2></div>${ev.length?ev.map(feedRow).join(''):'<p class="muted side-empty">Nothing yet.</p>'}</section></div></div>`;
   }else if(tab==='tasks'){
    const order=['Incoming','In progress','To do','Waiting on client','Completed'];
@@ -3795,13 +4578,15 @@ function renderClientsArea(){
    body=`<section class="side-card"><div class="side-head"><h2>Portal logins</h2><button type="button" class="link-button" data-cact="logins">Manage logins</button></div>${peopleHtml}</section>`;
   }
   page=`<button type="button" class="cl-back" data-pickclient="">‹ All clients</button>
-<div class="cl-head" style="--biz:${bizColor(c)}"><div class="cl-top">${logoHtml({...c,brand_color:bizColor(c)},'')}<div style="min-width:0"><h2>${esc(c.Name||'Client '+c.id)}</h2><p>${esc(sub)}</p></div>
-<div class="cl-actions"><button type="button" class="primary" data-cact="newtask">+ Task</button><button type="button" data-cact="portal">View their portal</button><button type="button" data-cact="edit">Edit details</button></div></div></div>
+<div class="cl-head" style="--biz:${bizColor(c)}"><div class="cl-top">${logoHtml({...c,brand_color:bizColor(c)},'')}<div style="min-width:0"><div class="cl-name-row"><h2>${esc(c.Name||'Client '+c.id)}</h2>${clientTag(c)}</div><p>${esc(sub)}${(()=>{const s=clientLastSeen(c.id);return loginLogReady?' · '+(s?'last seen '+esc(relTime(s))+(relTime(s)==='now'?'':' ago'):'no portal visits yet'):'';})()}</p></div>
+<div class="cl-actions">${clientFieldsV10?`<label class="cl-switch" title="Retainer clients can add tasks. Job-by-job clients can only request calls."><input type="checkbox" data-retainer="${esc(c.id)}"${c.retainer?' checked':''}> Retainer</label>`:''}<button type="button" class="primary" data-cact="newtask">+ Task</button><button type="button" data-cact="portal">View their portal</button><button type="button" data-cact="edit">Edit details</button>${clientFieldsV10?'<button type="button" data-cact="archive">Archive</button>':''}</div></div></div>
 <div class="cl-tabs" role="tablist" aria-label="Client sections">${tabs}</div>${body}`;
  }
  root.innerHTML=`<h1 class="area-title">Clients</h1><div class="cl-wrap${c?' has-pick':''}"><div class="cl-list">${list}</div><div class="cl-page" data-client="${c?esc(c.id):''}">${page}</div></div>`;
 }
 $('clientsArea').addEventListener('click',e=>{
+ const rs=e.target.closest('[data-restore]');
+ if(rs){restoreClient(rs.dataset.restore);return;}
  const p=e.target.closest('[data-pickclient]');
  if(p){setPref('admin','client',p.dataset.pickclient);renderClientsArea();window.scrollTo(0,0);return;}
  const tb=e.target.closest('[data-ctab]');
@@ -3811,6 +4596,7 @@ $('clientsArea').addEventListener('click',e=>{
  const id=e.target.closest('.cl-page')?.dataset.client;
  const act=a.dataset.cact;
  if(act==='newtask')openNewTask(id);
+ else if(act==='archive')archiveClient(id);
  else if(act==='portal')openPortalPreview(id);
  else if(act==='edit'){
   setArea('settings');openClientId=id;renderClients();
@@ -3820,6 +4606,10 @@ $('clientsArea').addEventListener('click',e=>{
   setArea('settings');const d=$('loginsList').closest('details');d.open=true;
   requestAnimationFrame(()=>d.scrollIntoView({behavior:'smooth',block:'start'}));
  }
+});
+$('clientsArea').addEventListener('change',e=>{
+ const r=e.target.closest('[data-retainer]');
+ if(r)setRetainer(r.dataset.retainer,r.checked);
 });
 /* Rows anywhere in the new areas: open the notes, or jump to the card on the board */
 $('admin').addEventListener('click',e=>{
@@ -3843,124 +4633,6 @@ $('waitStat').onclick=()=>jumpTo('status','st-waiting-on-client');
 $('agedStat').onclick=()=>{quickF='aged';setArea('tasks');};
 
 
-/* ---------- Morning brief (free: written from your live data, read out loud by your phone) ---------- */
-const BRIEF_OPEN=['Here’s your rundown.','Let’s line up the day.','Here’s where things stand.','Quick status check.','Here’s what’s on deck.'];
-const BRIEF_CLOSE=['Let’s make it a great one.','You’ve got this.','Let’s go.','One task at a time.','Let’s get it done.'];
-const DAY_NAMES=['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
-let briefReady=false,briefSettings=null,speaking=false;
-function dayOfYear(d){return Math.floor((d-new Date(d.getFullYear(),0,0))/864e5);}
-function buildBrief(){
- const now=new Date(),h=now.getHours(),seed=dayOfYear(now);
- const out=[(h<12?'Good morning, Sam.':h<18?'Good afternoon, Sam.':'Good evening, Sam.')+' '+BRIEF_OPEN[seed%5]];
- const live=tasks.filter(t=>!t.archived_at),open=live.filter(t=>!isDone(t));
- const title=t=>t.title||'Untitled';
- let urgent=false;
- const doneToday=live.filter(t=>isDone(t)&&t.completed_at&&new Date(t.completed_at).toDateString()===now.toDateString()).length;
- if(h>=12&&doneToday)out.push(`You’ve finished ${doneToday} today. Nice work.`);
- const fresh=needsItems().filter(n=>n.type==='act'||n.type==='req').slice(0,3).map(n=>{
-  if(n.type==='req')return `new request from ${clientName(n.t.client_id)}: ${title(n.t)}`;
-  const note=latestOtherNote(n.t),who=note?.author_name||'A client';
-  if(n.kind==='note')return `${who} left a note on ${title(n.t)}`;
-  if(n.kind==='input')return `${who} needs your input on ${title(n.t)}`;
-  return `${who} sent ${(ACT_LABEL[n.kind]||'New file').replace('New','a new').toLowerCase()} on ${title(n.t)}`;
- });
- if(fresh.length){urgent=true;out.push('New from clients: '+fresh.join('; ')+'.');}
- const od=open.filter(isOverdue).sort(byDue);
- if(od.length){urgent=true;out.push(`${od.length} overdue: ${od.slice(0,3).map(title).join(', ')}.`);}
- const today=open.filter(t=>t.due_date&&daysUntil(t.due_date)===0);
- if(today.length){urgent=true;out.push(`Due today: ${today.slice(0,4).map(title).join(', ')}.`);}
- const aged=open.filter(isAged).sort((a,b)=>Date.parse(a.status_changed_at)-Date.parse(b.status_changed_at));
- if(aged.length){urgent=true;out.push(`${aged.length} ${aged.length===1?'has':'have'} been sitting over 4 days. Oldest is ${title(aged[0])} at ${Math.floor(ageMs(aged[0])/864e5)} days.`);}
- const wait=open.filter(t=>t.status==='Waiting on client').length;
- if(wait)out.push(`${wait} waiting on clients.`);
- const q=focusReady?liveQueue().map(id=>tasks.find(x=>String(x.id)===String(id))).filter(Boolean):[];
- if(q.length)out.push('Up next: '+q.slice(0,3).map((t,i)=>i?title(t):`${title(t)} for ${clientName(t.client_id)}`).join(', ')+'.');
- else{const ip=open.filter(t=>normStatus(t)==='In progress').length;if(ip)out.push(`${ip} in progress.`);}
- if(!urgent)out.push('Nothing urgent. Great time to get ahead.');
- out.push(BRIEF_CLOSE[(seed+h)%5]);
- return out.join(' ');
-}
-function renderBrief(){
- const h=new Date().getHours();
- $('briefTitle').textContent=h<12?'Morning brief':'Your brief right now';
- if(!speaking)$('briefText').textContent=buildBrief();
-}
-function setPlay(){
- const b=$('briefPlay');
- b.textContent=speaking?'■ Stop':'▶ Play';
- b.setAttribute('aria-pressed',String(speaking));
- $('briefCard').classList.toggle('speaking',speaking);
-}
-function briefVoice(){
- const vs=speechSynthesis.getVoices();
- return vs.find(v=>/^en[-_]US/i.test(v.lang)&&/Samantha|Google US English|Aria|Jenny|Natural|Ava/i.test(v.name))||vs.find(v=>/^en[-_]US/i.test(v.lang))||vs.find(v=>/^en/i.test(v.lang))||null;
-}
-function stopBrief(){try{speechSynthesis.cancel();}catch(e){}speaking=false;if($('briefPlay'))setPlay();}
-$('briefPlay').onclick=()=>{
- if(!('speechSynthesis' in window)){notice('This browser can’t read out loud. The brief is written below the Play button.');return;}
- if(speaking){stopBrief();return;}
- const text=buildBrief();
- $('briefText').textContent=text;
- const u=new SpeechSynthesisUtterance(text);
- u.lang='en-US';u.rate=1.03;
- const v=briefVoice();if(v)u.voice=v;
- u.onend=u.onerror=()=>{speaking=false;setPlay();};
- speechSynthesis.cancel();
- speaking=true;setPlay();
- speechSynthesis.speak(u);
-};
-/* Settings: time, days, on/off, send now (saved in brief_settings) */
-function fmtClock(t){const d=new Date('2000-01-01T'+t+':00');return isNaN(d)?t:d.toLocaleTimeString([],{hour:'numeric',minute:'2-digit'});}
-function briefSummary(s){
- if(!s.enabled)return 'The daily brief is off.';
- const days=(s.days||[]).slice().sort();
- const when=days.length===7?'every day':days.length?days.map(i=>DAY_NAMES[i]).join(', '):'no days picked';
- return `Daily brief: ${fmtClock(String(s.send_time).slice(0,5))} Chicago time, ${when}. It can arrive up to 5 minutes after that.`;
-}
-async function loadBriefSettings(){
- if(!isAdmin())return;
- try{
-  const {data,error}=await sb.from('brief_settings').select('enabled,send_time,days,tz').eq('id',1).maybeSingle();
-  briefReady=!error&&!!data;briefSettings=briefReady?data:null;
- }catch(e){briefReady=false;briefSettings=null;}
- fillBriefForm();
-}
-function fillBriefForm(){
- const f=$('briefForm').elements;
- $('briefSendNow').disabled=!briefReady;
- if(!briefReady){$('briefStatus').textContent='Run the Morning brief SQL step in Supabase to turn on the daily alert. ▶ Play on Home already works.';return;}
- f.enabled.checked=!!briefSettings.enabled;
- if(document.activeElement!==f.send_time)f.send_time.value=String(briefSettings.send_time||'07:30').slice(0,5);
- for(let i=0;i<7;i++)f['d'+i].checked=(briefSettings.days||[]).includes(i);
- $('briefStatus').textContent=briefSummary(briefSettings);
-}
-$('briefForm').addEventListener('submit',e=>e.preventDefault());
-$('briefForm').addEventListener('change',async()=>{
- if(!isAdmin())return;
- if(!briefReady){fillBriefForm();return;}
- const f=$('briefForm').elements;
- const days=[0,1,2,3,4,5,6].filter(i=>f['d'+i].checked);
- const t=/^\d{2}:\d{2}/.test(f.send_time.value)?f.send_time.value.slice(0,5):'07:30';
- $('briefStatus').textContent='Saving…';
- try{
-  const {data,error}=await sb.from('brief_settings').update({enabled:f.enabled.checked,send_time:t,days,updated_at:new Date().toISOString()}).eq('id',1).select('enabled,send_time,days,tz');
-  if(error||!data?.length){$('briefStatus').textContent='Not saved: '+(error?.message||'no row returned. Run the Morning brief SQL step.');return;}
-  briefSettings=data[0];
-  $('briefStatus').textContent='Saved. '+briefSummary(briefSettings);
- }catch(err){$('briefStatus').textContent='Not saved: '+(err.message||'unknown error');}
-});
-$('briefSendNow').onclick=async()=>{
- if(!isAdmin()||!briefReady)return;
- const b=$('briefSendNow');b.disabled=true;
- $('briefStatus').textContent='Sending…';
- try{
-  const {error}=await sb.rpc('signix_send_brief',{p_force:true});
-  $('briefStatus').textContent=error?'Not sent: '+errText(error):'Sent. Check your phone in a few seconds.';
- }catch(err){$('briefStatus').textContent='Not sent: '+(err.message||'unknown error');}
- finally{b.disabled=false;}
-};
-$('briefPanel').addEventListener('toggle',()=>{if($('briefPanel').open)loadBriefSettings();});
-
 /* ---------- Auto refresh ---------- */
 function stopTimers(){
  clearInterval(pollTimer);pollTimer=null;
@@ -3983,6 +4655,7 @@ async function poll(force){
  await loadMemberNames();
  if(role==='admin')await loadFocus();
  await loadReads();
+ await loadCalls();
  await loadTasks();
  if(role==='admin'&&$('loginLogPanel').open)await loadLoginLog();
 }
@@ -3999,6 +4672,7 @@ async function refresh(){
 
  if(isAdmin()){
   role='admin';
+  if(lang!=='en'){lang='en';applyI18n();}
   document.body.classList.toggle('tasks-only',TASKS_ONLY);
   document.body.classList.toggle('ip-only',IP_ONLY);
   if(TASKS_ONLY){document.title=IP_ONLY?'Signix Digital | In progress':'Signix Digital | All tasks';$('fullLink').href=location.pathname;show('fullLink',true);}
@@ -4012,28 +4686,36 @@ async function refresh(){
   await loadMemberNames();
   await loadFocus();
   await loadReads();
+  await loadCalls();
   const clientsOk=await loadClients();
   const tasksOk=await loadTasks();
   const loginsOk=await loadLogins();
   await loadLoginLog();
-  await loadBriefSettings();
   render();
   if(clientsOk&&tasksOk&&loginsOk)notice('');
   startTimers();
   return;
  }
 
- const {data:membership,error:mErr}=await sb.from('client_memberships').select('client_id').maybeSingle();
+ let {data:membership,error:mErr}=await sb.from('client_memberships').select('client_id,display_name,lang').maybeSingle();
+ if(mErr&&/display_name|lang/.test(mErr.message||''))({data:membership,error:mErr}=await sb.from('client_memberships').select('client_id').maybeSingle());
  if(mErr||!membership){
+  let access='';
+  if(!mErr){try{const {data}=await sb.rpc('signix_my_access');access=data||'';}catch(e){}}
   await sb.auth.signOut();
   clearState();
   authMode('login');
   if(mErr)formMsg('loginMsg','Unable to check client access: '+errText(mErr),'error');
+  else if(access==='archived')formMsg('loginMsg','This portal is not active right now. Please contact Signix Digital.','error');
   else formMsg('loginMsg','This account is not linked to a business yet. Please contact Signix Digital.','error');
   return;
  }
  role='client';
  myClientId=membership.client_id;
+ myDisplayName=String(membership.display_name||'').trim();
+ if(membership.lang==='es'||membership.lang==='en'){if(membership.lang!==lang)setLang(membership.lang,false);}
+ else if(lang==='es')sb.rpc('signix_set_lang',{p_lang:'es'}).then(()=>{},()=>{});
+ cpTab=getPref('client','tab','home',CP_TABS);
  recordLogin(signedInNow?'login':'visit');signedInNow=false;
  document.body.classList.remove('tasks-only');
  await loadOwnClient();
@@ -4041,10 +4723,14 @@ async function refresh(){
  await loadActStyles();
  await loadMemberNames();
  await loadReads();
+ await loadCalls();
+ if(!myDisplayName&&memberNames[currentUser.id])myDisplayName=memberNames[currentUser.id];
  show('auth',false);show('app',true);show('logout',true);show('changePwBtn',true);show('mainNav',false);
  view('client');
  if(await loadTasks())notice('');
- showWelcome();
+ sinceInfo=computeSince();
+ renderPortal();
+ welcomeToast();
  startTimers();
 }
 
@@ -4099,7 +4785,7 @@ async function uploadPending(A,clientId,taskId,label,noteId,say){
  const failed=[],tell=say||notice;
  for(let i=0;i<A.pending.length;i++){
   const p=A.pending[i];
-  tell(`${label} Uploading file ${i+1} of ${A.pending.length}…`);
+  tell(`${label} `+tr('Uploading file {i} of {n}…',{i:i+1,n:A.pending.length}));
   const path=`${clientId}/${taskId}/${noteId?'note-'+noteId+'-':''}${crypto.randomUUID()}.${extFor(p.file,p.type)}`;
   const {error:upError}=await sb.storage.from(BUCKET).upload(path,p.file,{contentType:p.type,upsert:false});
   if(upError){failed.push(`${p.file.name}: ${upError.message}`);continue;}
@@ -4141,6 +4827,153 @@ $('taskForm').onsubmit=async e=>{
  finally{button.disabled=false;}
 };
 
+/* ---------- Confirm box (used before anything that's hard to undo) ---------- */
+let askResolve=null;
+function askConfirm(o){
+ return new Promise(res=>{
+  if(askResolve)askResolve(false);
+  askResolve=res;
+  $('askTitle').textContent=o.title||'';
+  $('askBody').textContent=o.body||'';
+  $('askYes').textContent=o.ok||tr('Confirm');
+  $('askNo').textContent=o.cancel||tr('Cancel');
+  $('askYes').className=o.danger?'danger':'primary';
+  show('askModal',true);lockScroll();
+  $('askYes').focus();
+ });
+}
+function askDone(v){
+ show('askModal',false);lockScroll();
+ const r=askResolve;askResolve=null;
+ if(r)r(v);
+}
+$('askYes').onclick=()=>askDone(true);
+$('askNo').onclick=()=>askDone(false);
+$('askModal').addEventListener('click',e=>{if(e.target===e.currentTarget)askDone(false);});
+
+/* ---------- Call back list (admin Home) ---------- */
+function openCalls(){
+ if(!callsReady)return [];
+ return calls.filter(c=>!c.handled_at&&clientById(c.client_id)).sort((a,b)=>Date.parse(a.created_at)-Date.parse(b.created_at));
+}
+function telHref(p){return 'tel:'+String(p||'').replace(/[^\d+]/g,'');}
+function callFileHtml(f){
+ const e=callUrls[f.path],u=e?esc(e.url):'';
+ if(!u)return '';
+ if(f.kind==='image')return `<a href="${u}" target="_blank" rel="noopener"><img src="${u}" alt="Photo from the client" loading="lazy"></a>`;
+ if(f.kind==='video')return `<a href="${u}" target="_blank" rel="noopener"><video src="${u}" preload="metadata" muted playsinline></video></a>`;
+ return `<audio src="${u}" controls preload="metadata"></audio>`;
+}
+function callRow(c){
+ const cl=clientById(c.client_id);
+ const files=callFilesList.filter(f=>String(f.call_id)===String(c.id));
+ const name=esc(c.requester_name||'A client');
+ const who=c.phone?`<a href="${esc(telHref(c.phone))}" title="Call ${name}">${name}</a>`:name;
+ const reason=c.reason?`<span class="need-tag call${c.reason==='urgent'?' urgent':''}">${esc(REASONS[c.reason]||c.reason)}</span>`:'';
+ return `<div class="cb-row" style="--biz:${bizColor(cl)}">${bizLogo(cl,'biz-logo lg')}<div class="cb-main"><div class="cb-top"><strong>${who}</strong><span class="cb-biz">${esc(cl?.Name||'')}</span>${reason}</div>${c.note?`<p class="cb-note">${esc(c.note)}</p>`:''}${files.length?`<div class="cb-files">${files.map(callFileHtml).join('')}</div>`:''}<div class="cb-actions">${c.phone?`<a class="cb-dial" href="${esc(telHref(c.phone))}">${PHONE_SVG.replace('<svg ','<svg width="16" height="16" ')} ${esc(c.phone)}</a>`:''}<button type="button" class="cb-done" data-called="${esc(c.id)}">✓ Called</button></div></div><span class="cb-wait" title="Asked ${esc(fmtStamp(c.created_at))}">waiting ${esc(relTime(Date.parse(c.created_at)))}</span></div>`;
+}
+function renderCalls(){
+ const list=openCalls();
+ show('homeCallsSec',list.length>0);
+ $('callsTitle').textContent=`Call back · ${list.length}`;
+ $('homeCalls').innerHTML=list.length?`<div class="cb-list">${list.map(callRow).join('')}</div>`:'';
+}
+$('admin').addEventListener('click',async e=>{
+ const b=e.target.closest('[data-called]');
+ if(!b||!isAdmin())return;
+ const c=calls.find(x=>String(x.id)===b.dataset.called);
+ if(!c)return;
+ const ok=await askConfirm({title:`Mark ${c.requester_name||'this client'} as called?`,body:`It comes off your Call back list, and their “Sam will call you soon” message goes away.`,ok:'Yes, called'});
+ if(!ok)return;
+ b.disabled=true;
+ try{
+  const {data,error}=await sb.from('call_requests').update({handled_at:new Date().toISOString(),handled_by:currentUser.id}).eq('id',c.id).select('id,handled_at');
+  if(error){displayError('Not saved',error);b.disabled=false;return;}
+  if(!data?.length){notice('Not saved: no row returned. Run SQL 5 in Supabase.');b.disabled=false;return;}
+  c.handled_at=data[0].handled_at;
+  render();
+  notice(`${c.requester_name||'Call'} marked as called.`);
+ }catch(err){displayError('Not saved',err);b.disabled=false;}
+});
+
+/* ---------- Clients: retainer / job-by-job, archive, last seen ---------- */
+function clientLastSeen(id){
+ const e=loginLog.find(x=>String(x.client_id)===String(id));
+ return e?Date.parse(e.created_at):null;
+}
+function clientTag(c){
+ if(!clientFieldsV10)return '';
+ if(c.archived_at)return '<span class="cl-tag arch">Archived</span>';
+ return c.retainer?'<span class="cl-tag ret">Retainer</span>':'<span class="cl-tag job">Job by job</span>';
+}
+// ===== END OF PART 11 of 12 =====
+async function setRetainer(id,on){
+ const c=clientById(id);
+ if(!c||!isAdmin())return;
+ const {data,error}=await sb.from('Clients').update({retainer:on}).eq('id',c.id).select('id,retainer');
+ if(error){displayError('Not saved',error);render();return;}
+ if(!data?.length){notice('Not saved: no row returned.');return;}
+ c.retainer=data[0].retainer;
+ render();renderClients();
+ notice(on?`${c.Name} is now a Retainer client: they can add tasks and request calls.`:`${c.Name} is now Job by job: they can request calls but not add tasks.`);
+}
+async function archiveClient(id){
+ const c=clientById(id);
+ if(!c||!isAdmin())return;
+ const people=logins.filter(l=>String(l.client_id)===String(c.id)).length;
+ const ok=await askConfirm({title:`Archive ${c.Name}?`,body:`${people?plural(people,'portal login')+' will stop working':'They won’t be able to sign in'} and they won’t see anything. Their tasks, notes and files are kept. You can restore them any time from Archived at the bottom of your Clients list.`,ok:'Archive client',danger:true});
+ if(!ok)return;
+ const {data,error}=await sb.from('Clients').update({archived_at:new Date().toISOString()}).eq('id',c.id).select('id');
+ if(error){displayError('Client was not archived',error);return;}
+ if(!data?.length){notice('Client was not archived: no row returned.');return;}
+ setPref('admin','client','');
+ await loadClients();await loadTasks();await loadLogins();
+ notice(`${c.Name} archived.`);
+}
+async function restoreClient(id){
+ const c=archivedClients.find(x=>String(x.id)===String(id));
+ if(!c||!isAdmin())return;
+ const ok=await askConfirm({title:`Restore ${c.Name}?`,body:'Their logins work again and they see their tasks like before.',ok:'Restore'});
+ if(!ok)return;
+ const {data,error}=await sb.from('Clients').update({archived_at:null}).eq('id',c.id).select('id');
+ if(error){displayError('Client was not restored',error);return;}
+ if(!data?.length){notice('Client was not restored: no row returned.');return;}
+ setPref('admin','client',String(c.id));
+ await loadClients();await loadTasks();await loadLogins();
+ notice(`${c.Name} restored.`);
+}
+
+/* ---------- Client Logins: compact, grouped by business ---------- */
+function loginSeenText(l){
+ const s=lastSeen(l.user_id);
+ return s?'seen '+relTime(Date.parse(s))+(relTime(Date.parse(s))==='now'?'':' ago'):(loginLogReady?'not signed in yet':'');
+}
+function renderLogins(){
+ const root=$('loginsList');
+ if(!logins.length){root.innerHTML='<p class="muted">No client logins linked yet. Tap “+ Add a login” to link the first one.</p>';return;}
+ const all=[...clients,...archivedClients];
+ const ids=[...new Set(logins.map(l=>String(l.client_id)))];
+ const order=ids.sort((a,b)=>{
+  const ca=all.find(c=>String(c.id)===a),cb=all.find(c=>String(c.id)===b);
+  return (!!ca?.archived_at-!!cb?.archived_at)||String(ca?.Name||'~').localeCompare(String(cb?.Name||'~'));
+ });
+ root.innerHTML=order.map(id=>{
+  const c=all.find(x=>String(x.id)===id);
+  const people=logins.filter(l=>String(l.client_id)===id).sort((a,b)=>String(a.display_name||a.email).localeCompare(String(b.display_name||b.email)));
+  return `<div class="lg-group"><div class="lg-ghead">${c?bizLogo(c):''}<strong>${esc(c?.Name||'Unknown business')}</strong>${c?clientTag(c):''}<small>${plural(people.length,'login')}</small></div>${people.map(l=>{
+   const nm=l.display_name||'No name yet';
+   return `<div class="lg-row" data-login="${esc(l.user_id)}"><span class="av" aria-hidden="true">${esc(initials(l.display_name||l.email))}</span><div class="lg-main"><strong>${esc(nm)}</strong><small>${esc([l.email,loginSeenText(l)].filter(Boolean).join(' · '))}</small></div><div class="lg-btns"><button type="button" data-lg="rename">Rename</button><button type="button" data-lg="reset">Reset password</button><button type="button" class="lg-del" data-lg="remove">Remove</button></div><form class="name-form hidden" data-name-for="${esc(l.user_id)}"><input name="name" maxlength="80" value="${esc(l.display_name||'')}" placeholder="Their name" aria-label="Name for ${esc(l.email)}"><button type="submit" class="primary">Save</button></form><p class="lg-msg" role="status"></p></div>`;
+  }).join('')}</div>`;
+ }).join('');
+}
+$('lgAddBtn').onclick=()=>{
+ const open=$('lgAdd').classList.contains('hidden');
+ show('lgAdd',open);
+ $('lgAddBtn').setAttribute('aria-expanded',String(open));
+ $('lgAddBtn').textContent=open?'Close':'+ Add a login';
+ if(open)$('linkForm').querySelector('input[name="name"]').focus();
+};
+
 /* ---------- Admin: manage clients ---------- */
 function brandFileHtml(c,col,label,field,removeName){
  const url=c[col]&&brandUrls[c[col]];
@@ -4164,6 +4997,7 @@ function renderClients(){
  <label>Client name<input name="name" maxlength="120" required value="${esc(c.Name||'')}"></label>
  <label>Email<input type="email" name="email" maxlength="200" value="${esc(c.Email||'')}"></label>
  <label>Company<input name="company" maxlength="200" value="${esc(c.Company||'')}"></label>
+ ${clientFieldsV10?`<label class="check"><input type="checkbox" name="retainer"${c.retainer?' checked':''}> Retainer client (they can add tasks in their portal; job-by-job clients can only request calls)</label>`:''}
  <fieldset>
  <legend>Client portal branding (optional)</legend>
  <label class="check"><input type="checkbox" name="useColors"${hasColors?' checked':''}> Use custom brand colors</label>
@@ -4176,21 +5010,12 @@ function renderClients(){
  <button type="button" class="preview-btn" data-preview="${esc(c.id)}" aria-expanded="false">View preview</button>
  <div class="brand-live hidden" aria-live="polite"></div>
  </fieldset>
- <button class="primary" type="submit">Save changes</button>
+ <div class="row" style="justify-content:flex-start"><button class="primary" type="submit">Save changes</button>${clientFieldsV10?`<button type="button" class="danger" data-archive-client="${esc(c.id)}">Archive client</button>`:''}</div>
  </form>
  </details>`;
  }).join('');
 }
 
-function renderLogins(){
- const root=$('loginsList');
- if(!logins.length){root.innerHTML='<p class="muted">No client logins linked yet.</p>';return;}
- root.innerHTML=logins.map(l=>`<div class="login-row">
- <div class="row"><div><strong>${esc(l.display_name||'No name yet')}</strong><br><small class="muted">${esc(l.email)} · Sees: ${esc(clientName(l.client_id))}${lastSeen(l.user_id)?` · Last seen ${esc(fmtStamp(lastSeen(l.user_id)))}`:''}</small></div>
- <button type="button" data-unlink="${esc(l.user_id)}" data-email="${esc(l.email)}">Remove access</button></div>
- <form class="name-form" data-name-for="${esc(l.user_id)}"><input name="name" maxlength="80" value="${esc(l.display_name||'')}" placeholder="Add this person's name" aria-label="Name for ${esc(l.email)}"><button type="submit">Save name</button></form>
- </div>`).join('');
-}
 
 $('addClientForm').onsubmit=async e=>{
  e.preventDefault();
@@ -4257,6 +5082,8 @@ function refreshPreview(form){
  if(c)box.innerHTML=brandPreviewHtml(readBrandForm(form,c));
 }
 $('clientsList').addEventListener('click',e=>{
+ const ar=e.target.closest('button[data-archive-client]');
+ if(ar){archiveClient(ar.dataset.archiveClient);return;}
  const b=e.target.closest('button[data-preview]');
  if(!b)return;
  const form=b.closest('form[data-client-id]'),box=form?.querySelector('.brand-live');
@@ -4277,7 +5104,6 @@ $('clientsList').addEventListener('toggle',e=>{
  if(d&&d.open)openClientId=d.dataset.card;
 },true);
 
-// ===== END OF PART 10 of 11 =====
 
  
  $('clientsList').addEventListener('submit',async e=>{
@@ -4295,6 +5121,7 @@ $('clientsList').addEventListener('toggle',e=>{
  if(!name){notice('Client name cannot be empty.');return;}
  if(duplicateName(name,id)){notice('Another client already has that name.');return;}
  const update={Name:name,Email:email||null,Company:company||null};
+ if(clientFieldsV10)update.retainer=!!fd.get('retainer');
  if(fd.get('useColors')){
   const c1=String(fd.get('brand_color')||''),c2=String(fd.get('brand_color_2')||'');
   if(!validHex(c1)||!validHex(c2)){notice('Pick valid brand colors.');return;}
@@ -4383,17 +5210,41 @@ $('loginsList').addEventListener('submit',async e=>{
 });
 
 $('loginsList').addEventListener('click',async e=>{
- const b=e.target.closest('button[data-unlink]');
+ const b=e.target.closest('button[data-lg]');
  if(!b||!isAdmin())return;
- if(!confirm(`Remove portal access for ${b.dataset.email}?`))return;
+ const row=b.closest('[data-login]'),l=logins.find(x=>x.user_id===row?.dataset.login);
+ if(!l)return;
+ const msg=row.querySelector('.lg-msg');
+ const say=(t,err)=>{msg.textContent=t;msg.classList.toggle('err',!!err);};
+ const act=b.dataset.lg,who=l.display_name||l.email;
+ if(act==='rename'){
+  const f=row.querySelector('.name-form');
+  f.classList.toggle('hidden');
+  if(!f.classList.contains('hidden'))f.elements.name.focus();
+  return;
+ }
+ if(act==='reset'){
+  const ok=await askConfirm({title:'Send a password reset email?',body:`${l.email} gets an email with a link to set a new password. Their current password keeps working until they change it.`,ok:'Send email'});
+  if(!ok)return;
+  b.disabled=true;say('Sending…');
+  try{
+   const {error}=await withTimeout(sb.auth.resetPasswordForEmail(l.email,{redirectTo:location.origin+location.pathname}),20000);
+   if(error)say('Not sent: '+friendlyAuthError(error),true);
+   else say(`Reset email sent to ${l.email}. Tell them to check spam too.`);
+  }catch(err){say('Not sent: '+friendlyAuthError(err),true);}
+  finally{b.disabled=false;}
+  return;
+ }
+ if(act!=='remove')return;
+ const ok=await askConfirm({title:`Remove ${who}?`,body:`${l.email} won’t be able to sign in to the ${clientName(l.client_id)} portal anymore. Their requests and notes stay. You can link them again any time.`,ok:'Remove access',danger:true});
+ if(!ok)return;
  b.disabled=true;
  try{
-  const {data,error}=await sb.from('client_memberships').delete().eq('user_id',b.dataset.unlink).select('user_id');
-  if(error){displayError('Access was not removed',error);return;}
-  if(!data?.length){notice('Access was not removed: no row returned.');return;}
-  if(await loadLogins())notice('Portal access removed.');
- }catch(err){displayError('Access was not removed',err);}
- finally{b.disabled=false;}
+  const {data,error}=await sb.from('client_memberships').delete().eq('user_id',l.user_id).select('user_id');
+  if(error){say('Access was not removed: '+errText(error),true);b.disabled=false;return;}
+  if(!data?.length){say('Access was not removed: no row returned.',true);b.disabled=false;return;}
+  if(await loadLogins())notice(`Portal access removed for ${who}.`);
+ }catch(err){say('Access was not removed: '+errText(err),true);b.disabled=false;}
 });
 
 /* ---------- Client: request form with attachments + voice ---------- */
@@ -4421,8 +5272,9 @@ function extFor(file,type){
 }
 
 /* One attachment picker (photos, videos, voice notes). Used by the client request form and the admin Add task form. */
-function makeAttacher(inputId,recordId,listId){
+function makeAttacher(inputId,recordId,listId,msgId){
  const A={pending:[],recorder:null,stream:null,chunks:[],timer:null,start:0};
+ const notice=t=>msgId?formMsg(msgId,t,'info'):window.notice(t);
  A.render=()=>{
   const root=$(listId);
   root.replaceChildren();
@@ -4432,18 +5284,18 @@ function makeAttacher(inputId,recordId,listId){
    else if(p.kind==='audio'){const audio=document.createElement('audio');audio.src=p.url;audio.controls=true;li.append(audio);}
    const name=document.createElement('span');
    name.className='name';
-   name.textContent=(p.kind==='video'?'Video: ':p.kind==='audio'?'Voice note: ':'Photo: ')+p.file.name+' ('+formatSize(p.file.size)+')';
+   name.textContent=tr(p.kind==='video'?'Video:':p.kind==='audio'?'Voice note:':'Photo:')+' '+p.file.name+' ('+formatSize(p.file.size)+')';
    const remove=document.createElement('button');
-   remove.type='button';remove.textContent='Remove';remove.dataset.remove=String(i);
+   remove.type='button';remove.textContent=tr('Remove');remove.dataset.remove=String(i);
    li.append(name,remove);root.append(li);
   });
  };
  A.clear=()=>{A.pending.forEach(p=>URL.revokeObjectURL(p.url));A.pending=[];A.render();};
  A.add=(file,type)=>{
   const kind=kindOf(type);
-  if(!kind){notice(`${file.name} is not a photo, video or audio file.`);return false;}
-  if(file.size>MAX_FILE_BYTES){notice(`${file.name} is ${formatSize(file.size)}. The limit is 50 MB per file.`);return false;}
-  if(A.pending.length>=MAX_FILES){notice('You can attach up to 10 files per task.');return false;}
+  if(!kind){notice(tr('{name} is not a photo, video or audio file.',{name:file.name}));return false;}
+  if(file.size>MAX_FILE_BYTES){notice(tr('{name} is {size}. The limit is 50 MB per file.',{name:file.name,size:formatSize(file.size)}));return false;}
+  if(A.pending.length>=MAX_FILES){notice(tr('You can attach up to 10 files.'));return false;}
   A.pending.push({file,type,kind,url:URL.createObjectURL(file)});
   A.render();
   return true;
@@ -4452,9 +5304,9 @@ function makeAttacher(inputId,recordId,listId){
   const b=$(recordId);
   b.classList.toggle('recording',on);
   b.setAttribute('aria-pressed',String(on));
-  if(!on){b.textContent='Record voice note';return;}
+  if(!on){b.textContent=tr('Record voice note');return;}
   const secs=Math.floor((Date.now()-A.start)/1000);
-  b.textContent=`Stop recording (${Math.floor(secs/60)}:${String(secs%60).padStart(2,'0')})`;
+  b.textContent=tr('Stop recording ({t})',{t:`${Math.floor(secs/60)}:${String(secs%60).padStart(2,'0')}`});
  };
  A.stop=discard=>{
   clearInterval(A.timer);A.timer=null;
@@ -4481,16 +5333,16 @@ function makeAttacher(inputId,recordId,listId){
  });
  $(recordId).onclick=async()=>{
   if(A.recorder&&A.recorder.state==='recording'){A.stop(false);return;}
-  if(recordingNow()){notice('Stop the other voice recording first.');return;}
+  if(recordingNow()){notice(tr('Stop the other voice recording first.'));return;}
   if(!navigator.mediaDevices?.getUserMedia||!window.MediaRecorder){
-   notice('Voice recording is not supported in this browser. Try the latest Chrome or Safari.');return;
+   notice(tr('Voice recording is not supported in this browser. Try the latest Chrome or Safari.'));return;
   }
-  if(A.pending.length>=MAX_FILES){notice('You can attach up to 10 files per task.');return;}
+  if(A.pending.length>=MAX_FILES){notice(tr('You can attach up to 10 files.'));return;}
   try{A.stream=await navigator.mediaDevices.getUserMedia({audio:true});}
-  catch(err){notice('Microphone access was blocked. Allow microphone access for this site and try again.');return;}
+  catch(err){notice(tr('Microphone access was blocked. Allow microphone access for this site and try again.'));return;}
   const type=pickAudioType();
   try{A.recorder=type?new MediaRecorder(A.stream,{mimeType:type}):new MediaRecorder(A.stream);}
-  catch(err){A.stream.getTracks().forEach(t=>t.stop());A.stream=null;notice('Unable to start recording on this device.');return;}
+  catch(err){A.stream.getTracks().forEach(t=>t.stop());A.stream=null;notice(tr('Unable to start recording on this device.'));return;}
   A.chunks=[];
   const rec=A.recorder;
   rec.ondataavailable=e=>{if(e.data&&e.data.size)A.chunks.push(e.data);};
@@ -4501,15 +5353,15 @@ function makeAttacher(inputId,recordId,listId){
    const blob=new Blob(A.chunks,{type:mime});
    A.chunks=[];A.recorder=null;
    A.ui(false);
-   if(!blob.size){notice('The recording was empty. Please try again.');return;}
+   if(!blob.size){notice(tr('The recording was empty. Please try again.'));return;}
    const ext=mime.includes('mp4')?'m4a':mime.includes('ogg')?'ogg':'webm';
    const file=new File([blob],`voice-note-${new Date().toISOString().slice(0,19).replace(/[:T]/g,'-')}.${ext}`,{type:mime});
-   if(A.add(file,mime))notice('Voice note added. Press play to check it before sending.');
+   if(A.add(file,mime))notice(tr('Voice note added. Press play to check it before sending.'));
   };
   A.start=Date.now();
   rec.start();
   A.ui(true);
-  notice('Recording… press the button again to stop.');
+  notice(tr('Recording… press the button again to stop.'));
   A.timer=setInterval(()=>{
    A.ui(true);
    if(Date.now()-A.start>=MAX_RECORD_SECONDS*1000)A.stop(false);
@@ -4522,26 +5374,27 @@ function pickAudioType(){
  const types=['audio/webm;codecs=opus','audio/webm','audio/mp4','audio/ogg;codecs=opus'];
  return types.find(t=>MediaRecorder.isTypeSupported&&MediaRecorder.isTypeSupported(t))||'';
 }
-const clientFiles=makeAttacher('mediaInput','recordBtn','pendingList');
+const clientFiles=makeAttacher('mediaInput','recordBtn','pendingList','taskMsg');
 const adminFiles=makeAttacher('adminMediaInput','adminRecordBtn','adminPendingList');
-const noteFiles=makeAttacher('noteMediaInput','noteRecordBtn','notePendingList');
-function recordingNow(){return [clientFiles,adminFiles,noteFiles].some(A=>A.recorder&&A.recorder.state==='recording');}
+const noteFiles=makeAttacher('noteMediaInput','noteRecordBtn','notePendingList','noteStatus');
+const callFiles=makeAttacher('callMediaInput','callRecordBtn','callPendingList','callMsg');
+function recordingNow(){return [clientFiles,adminFiles,noteFiles,callFiles].some(A=>A.recorder&&A.recorder.state==='recording');}
 
 $('requestTaskForm').onsubmit=async e=>{
  e.preventDefault();
  if(role!=='client'||myClientId==null){notice('Client sign-in required.');return;}
- if(clientFiles.recorder&&clientFiles.recorder.state==='recording'){notice('Stop the voice recording before sending.');return;}
+ if(clientFiles.recorder&&clientFiles.recorder.state==='recording'){formMsg('taskMsg',tr('Stop the voice recording first.'),'error');return;}
  const form=e.currentTarget,fd=new FormData(form),button=$('sendRequestBtn');
  const title=String(fd.get('title')||'').trim().replace(/\s+/g,' ');
  const description=String(fd.get('description')||'').trim()||null;
  const priority=String(fd.get('priority')||'Medium');
  const due=String(fd.get('due')||'');
- if(!title){notice('Please enter a task name.');return;}
- if(!PRIORITIES.includes(priority)){notice('Pick a valid priority.');return;}
- if(due&&due<todayStr()){notice('The deadline cannot be in the past.');return;}
+ if(!title){formMsg('taskMsg',tr('Please enter a task name.'),'error');return;}
+ if(!PRIORITIES.includes(priority)){formMsg('taskMsg',tr('Pick a valid priority.'),'error');return;}
+ if(due&&due<todayStr()){formMsg('taskMsg',tr('The deadline cannot be in the past.'),'error');return;}
  button.disabled=true;
  try{
-  notice('Sending request…');
+  formMsg('taskMsg',tr('Sending…'),'info');
   const payload={title,description,client_id:myClientId,status:'Incoming',priority,due_date:due||null};
   const assign=String(fd.get('assign')||'');
   if(assign&&taskOptional.includes('assigned_to'))payload.assigned_to=assign;
@@ -4552,16 +5405,17 @@ $('requestTaskForm').onsubmit=async e=>{
    ({data:created,error}=await sb.from('tasks').insert(payload).select('id').single());
    tagSkipped=!error;
   }
-  if(error){displayError('Request was not sent',error);return;}
-  const failed=await uploadPending(clientFiles,myClientId,created.id,'Request created.');
+  if(error){formMsg('taskMsg',tr('Not sent: {msg}',{msg:errText(error)}),'error');return;}
+  const failed=await uploadPending(clientFiles,myClientId,created.id,tr('Request created.'),null,t=>formMsg('taskMsg',t,'info'));
   form.reset();
-  clientFiles.clear();
-  $('requestPanel').open=false;
+  formMsg('taskMsg','');
+  closeTaskSheet(true);
   await loadTasks();
-  notice(failed.length
-   ?`Request sent, but ${failed.length} file(s) did not upload:\n${failed.join('\n')}`
-   :'Request sent. You can edit it for the next 3 minutes, and add notes to it any time.'+(tagSkipped?' The "who is this for" choice was not saved.':''));
- }catch(err){displayError('Request was not sent',err);}
+  if(cpJobId!=null)closeJob(true);
+  cpTab='home';renderPortal();window.scrollTo(0,0);
+  if(failed.length)notice(tr('Request sent, but {n} file(s) did not upload:',{n:failed.length})+'\n'+failed.join('\n'));
+  cpToast(tr('Request sent. You can edit it for the next 3 minutes.'));
+ }catch(err){formMsg('taskMsg',tr('Not sent: {msg}',{msg:err.message||''}),'error');}
  finally{button.disabled=false;}
 };
 
@@ -4569,6 +5423,7 @@ $('requestTaskForm').onsubmit=async e=>{
 sb.auth.onAuthStateChange(event=>{
  if(event==='PASSWORD_RECOVERY')resetMode('recovery');
  else if(event==='SIGNED_OUT'&&!recoveryActive){
+  document.body.classList.remove('portal-on');
   stopTimers();
   show('app',false);
   show('auth',true);
@@ -4576,6 +5431,7 @@ sb.auth.onAuthStateChange(event=>{
  }
 });
 
+lang=clientLang;applyI18n();
 (async()=>{
  const q=new URLSearchParams(location.search);
  const h=new URLSearchParams(location.hash.slice(1));
@@ -4617,4 +5473,4 @@ sb.auth.onAuthStateChange(event=>{
 </script>
 </body>
 </html>
-<!-- ===== END OF PART 11 of 11 ===== -->
+<!-- ===== END OF PART 12 of 12 ===== -->
