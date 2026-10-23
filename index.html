@@ -400,9 +400,9 @@ details.fold[open]>summary{margin-bottom:12px}
 /* ===== Card extras: footer, notes, overdue, density, selection ===== */
 .tcard{position:relative}
 .tc-foot{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
-/* ===== END OF PART 1 of 13 ===== */
 .notes-toggle{display:inline-flex;align-items:center;gap:6px;font-size:12px;padding:5px 10px;min-height:30px;border-radius:20px;background:transparent;border:1px solid #40516b;color:#cbd5e1}
 .notes-toggle svg{width:14px;height:14px}
+/* ===== END OF PART 1 of 13 ===== */
 .notes-toggle.has{border-color:rgba(167,139,250,.65);color:#ddd6fe;background:rgba(167,139,250,.1)}
 .notes-toggle[aria-expanded="true"]{background:#1c2b42}
 .tc-notes{border-top:1px solid #29384f;padding-top:8px;display:grid;gap:8px}
@@ -787,13 +787,13 @@ body.mk-shake.mk-outline .tcard.has-new.shake-now{animation:card-shake .75s ease
 @keyframes card-shake{0%,100%{transform:translateX(0) rotate(0)}15%{transform:translateX(-6px) rotate(-1.2deg)}30%{transform:translateX(5px) rotate(1deg)}45%{transform:translateX(-4px) rotate(-.6deg)}60%{transform:translateX(3px) rotate(.4deg)}75%{transform:translateX(-1px)}}
 .note.is-new{border-color:var(--mk);border-left-color:var(--mk);box-shadow:0 0 0 1px color-mix(in srgb,var(--mk) 45%,transparent);background:linear-gradient(90deg,color-mix(in srgb,var(--mk) 10%,transparent),#0b1525 70%)}
 .note.is-new .note-head strong::after{content:"NEW";margin-left:8px;font-size:10px;font-weight:800;letter-spacing:.06em;padding:1px 6px;border-radius:999px;background:var(--mk);color:var(--mk-t)}
-/* ===== END OF PART 2 of 13 ===== */
 @media (prefers-reduced-motion:reduce){body.mk-outline .tcard.has-new,body.mk-shake .tcard.has-new.shake-now{animation:none!important;box-shadow:0 0 0 2px var(--mk)}body.mk-badge .act-badge::before{animation:none}}
 
 /* =====================================================================
    VERSION 2 LAYOUT (admin only): side menu on computers, bottom tabs on phones,
    and five areas: Home, Tasks, Clients, Activity, Settings. Client portal unchanged.
    ===================================================================== */
+/* ===== END OF PART 2 of 13 ===== */
 .side-nav,.tab-bar{display:none}
 .needs-pill{height:38px;padding:0 14px;border-radius:999px;border:1px solid #f59e0b;background:rgba(245,158,11,.12);color:#fde68a;font-weight:700;display:inline-flex;align-items:center;gap:8px;white-space:nowrap}
 .needs-pill::before{content:"";width:8px;height:8px;border-radius:50%;background:#f59e0b}
@@ -1225,12 +1225,12 @@ button:not(:disabled):active,.cj-row:active,.cm-row:active,.cp-act:active,.snap:
 .cj-row.st-in-progress{--sc:var(--ip);background:linear-gradient(90deg,color-mix(in srgb,var(--ip) 16%,transparent),transparent 65%);overflow:hidden}
 .cj-row.st-waiting-on-client{--sc:var(--wait);background:linear-gradient(90deg,color-mix(in srgb,var(--wait) 12%,transparent),transparent 60%)}
 .cj-row.st-completed{--sc:var(--dn)}
-/* ===== END OF PART 3 of 13 ===== */
 .cj-row.st-in-progress .cj-dot{animation:ip-dot 1.6s ease-in-out infinite}
 .cj-row.st-in-progress::after{content:"";position:absolute;top:0;bottom:0;left:-40%;width:35%;background:linear-gradient(90deg,transparent,color-mix(in srgb,var(--ip) 22%,transparent),transparent);animation:ip-sweep 3.2s ease-in-out infinite;pointer-events:none}
 .cp-sec.active .list-card{border-color:color-mix(in srgb,var(--ip) 55%,#22324b);box-shadow:0 0 0 1px color-mix(in srgb,var(--ip) 25%,transparent),0 0 22px color-mix(in srgb,var(--ip) 18%,transparent);animation:ip-card 3s ease-in-out infinite}
 .cp-sec.active>h3{color:color-mix(in srgb,var(--ip) 55%,#fff)}
 .cp-sec.active>h3::before{content:"";display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--ip);margin-right:8px;vertical-align:middle;animation:ip-dot 1.6s ease-in-out infinite}
+/* ===== END OF PART 3 of 13 ===== */
 @keyframes ip-dot{0%,100%{box-shadow:0 0 0 0 color-mix(in srgb,var(--ip) 70%,transparent)}50%{box-shadow:0 0 0 7px transparent}}
 @keyframes ip-sweep{0%{left:-40%}60%,100%{left:110%}}
 @keyframes ip-card{0%,100%{box-shadow:0 0 0 1px color-mix(in srgb,var(--ip) 25%,transparent),0 0 14px color-mix(in srgb,var(--ip) 12%,transparent)}50%{box-shadow:0 0 0 1px color-mix(in srgb,var(--ip) 45%,transparent),0 0 26px color-mix(in srgb,var(--ip) 28%,transparent)}}
@@ -1581,6 +1581,31 @@ body:has(#workRoot .wk-modal) #notesModal{z-index:127}
 .wk-modal{width:min(1680px,calc(100vw - 48px))}
 @media (min-width:1001px){.wk-modal{grid-template-columns:minmax(0,1.15fr) auto minmax(0,1fr)}}
 @media (max-width:1000px){.wk-modal{align-content:start}}
+/* ===== v19.1: phone timer fits one screen, full width ===== */
+.wk-main{display:contents}
+.wk-peek{display:none}
+@media (max-width:1000px){.wk-main{display:contents}}
+@media (max-width:700px){
+ .wk-modal{display:block;position:fixed;inset:0;left:0;top:0;transform:none;width:100%;max-width:none;height:100vh;height:100dvh;max-height:none;padding:0;border-radius:0;border:0;overflow-y:auto;-webkit-overflow-scrolling:touch;text-align:center}
+ .wk-main{display:flex;flex-direction:column;align-items:center;justify-content:space-between;gap:10px;box-sizing:border-box;height:100vh;height:100dvh;padding:max(52px,calc(env(safe-area-inset-top) + 44px)) 18px max(8px,env(safe-area-inset-bottom))}
+ .wk-left,.wk-right{width:100%}
+ .wk-left .wk-head{align-items:center;gap:8px;margin-bottom:6px}
+ .wk-left .biz-logo.wk-logo,.wk-left .logo-circle.wk-logo{width:64px;height:64px;font-size:21px}
+ .wk-modal .wk-title{font-size:clamp(22px,7vw,30px);display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+ .wk-client{margin-top:4px;font-size:15px}
+ .wk-modal .wk-ring{width:min(78vw,340px);flex:none;margin:0}
+ .wk-modal .wk-big{font-size:clamp(34px,min(12vw,7dvh),58px)}
+ .wk-lbl{margin-top:6px;font-size:11.5px}
+ .wk-right .wk-stats{text-align:center;gap:10px}
+ .wk-stats>div{padding:10px}
+ .wk-stats b{font-size:21px}
+ .wk-btns{margin-top:12px}
+ .wk-btn{min-height:50px;padding:12px}
+ .wk-link{margin-top:6px;padding:4px}
+ .wk-peek{order:5;display:block;margin:0 auto;border:0;background:transparent;color:#93c5fd;font-size:13px;font-weight:700;letter-spacing:.06em;padding:6px 10px;cursor:pointer}
+ .wk-modal .wk-notes{width:auto;margin:6px 14px max(24px,env(safe-area-inset-bottom))}
+ .wk-min{position:absolute;top:max(10px,env(safe-area-inset-top));right:10px;z-index:2}
+}
 /* ===== Version 18: follow-ups ===== */
 #homeFollowSec{margin-top:18px}
 .sec-h.violet{color:#c4b5fd}
@@ -1603,13 +1628,13 @@ body:has(#workRoot .wk-modal) #notesModal{z-index:127}
 .fu-note{margin:0;padding:10px 14px;font-size:12.5px}
 .fu-chip{display:inline-flex;align-items:center;gap:4px;padding:3px 9px;border-radius:99px;font-size:12px;font-weight:700;line-height:1.3;white-space:nowrap;background:rgba(167,139,250,.12);border:1px solid rgba(167,139,250,.45);color:#ddd6fe}
 .fu-chip.due{background:rgba(220,38,38,.14);border-color:rgba(248,113,113,.6);color:#fca5a5}
+/* ===== END OF PART 4 of 13 ===== */
 .fu-pick{position:fixed;z-index:125;left:50%;top:50%;transform:translate(-50%,-50%);width:min(460px,calc(100vw - 28px));box-sizing:border-box;padding:24px 22px 16px;border-radius:22px;text-align:center;color:#eaf0f8;background:#0d1628;border:1px solid rgba(167,139,250,.4);box-shadow:0 30px 80px rgba(0,0,0,.65);animation:wk-pop .3s cubic-bezier(.2,1.2,.4,1)}
 .fu-pick h3{margin:0 0 4px;font-size:21px}
 .fu-pick>p{margin:0 0 16px;color:#9fb0c7;font-size:14px;overflow-wrap:anywhere}
 .fu-days{display:grid;grid-template-columns:repeat(5,1fr);gap:8px}
 .fu-days button{display:flex;flex-direction:column;align-items:center;gap:2px;padding:12px 4px;border-radius:14px;border:1px solid rgba(167,139,250,.45);background:rgba(167,139,250,.1);color:#fff;cursor:pointer}
 .fu-days button:hover,.fu-days button:focus-visible{background:rgba(167,139,250,.25)}
-/* ===== END OF PART 4 of 13 ===== */
 .fu-days b{font-size:24px;font-weight:800;line-height:1}
 .fu-days small{font-size:11.5px;color:#c4b5fd;font-weight:600}
 .fu-date{display:flex;align-items:flex-end;gap:8px;margin-top:14px;text-align:left}
@@ -2104,6 +2129,7 @@ body:has(#workRoot .wk-modal) #notesModal{z-index:127}
 <label><span data-i18n="Note (optional)">Note (optional)</span>
 <textarea name="note" maxlength="2000" data-i18n-ph="Example: I need a quote for a new sign" placeholder="Example: I need a quote for a new sign"></textarea>
 </label>
+<!-- ===== END OF PART 5 of 13 ===== -->
 <label><span data-i18n="Best number to call (optional)">Best number to call (optional)</span>
 <input type="tel" name="phone" maxlength="40" autocomplete="tel" inputmode="tel">
 </label>
@@ -2112,7 +2138,6 @@ body:has(#workRoot .wk-modal) #notesModal{z-index:127}
 <label class="file-button"><span data-i18n="Add photos or videos">Add photos or videos</span>
 <input type="file" id="callMediaInput" accept="image/*,video/*" multiple>
 </label>
-<!-- ===== END OF PART 5 of 13 ===== -->
 <button type="button" id="callRecordBtn" aria-pressed="false">Record voice note</button>
 </div>
 <ul id="callPendingList" class="pending" aria-live="polite"></ul>
@@ -5637,7 +5662,6 @@ function logEntryHtml(c,i){
  const acts=open?`<button type="button" class="cb-done" data-called="${esc(c.id)}">✓ Called</button>${c.task_id?'':`<button type="button" class="cb-task" data-calltask="${esc(c.id)}">+ Turn into a task</button>`}`:(callsV11?`<button type="button" data-reopen="${esc(c.id)}">Not called yet</button>`:'');
  return `<article class="log-entry${open?' open':''}" style="--biz:${cl?bizColor(cl):'#64748b'};--i:${i||0}"><div class="le-top">${cl?bizLogo(cl,'biz-logo'):''}<strong>${esc(c.requester_name||'A client')}</strong><span class="cb-biz">${esc(cl?.Name||'')}</span>${c.reason?`<span class="need-tag call${c.reason==='urgent'?' urgent':''}">${esc(REASONS[c.reason]||'')}</span>`:''}<span class="le-state${open?' wait':''}">${open?'Waiting':'Called'}</span></div>${c.note?`<p class="le-note">${esc(c.note)}</p>`:''}${files.length?`<div class="cb-files">${files.map(callFileHtml).join('')}</div>`:''}<div class="le-time">${lines.join('')}${c.phone?`<span>Phone <a href="${esc(telHref(c.phone))}">${esc(c.phone)}</a></span>`:''}</div><div class="le-actions">${acts}${c.task_id?`<button type="button" class="link-button" data-hgo="task" data-id="${esc(c.task_id)}">Open the task ›</button>`:''}</div></article>`;
 }
-// ===== END OF PART 11 of 13 =====
 function callLogList(clientId){
  let list=calls.slice().sort((a,b)=>String(b.created_at).localeCompare(String(a.created_at)));
  if(clientId!=null)list=list.filter(c=>String(c.client_id)===String(clientId));
@@ -5658,6 +5682,7 @@ function renderCallLog(){
  root.innerHTML=filters+(list.length?list.map(logEntryHtml).join(''):'<p class="muted home-empty">No call requests here.</p>');
 }
 
+// ===== END OF PART 11 of 13 =====
 /* ---------- Home graphs: pending jobs per business (lines, bubbles, rings, bars) ---------- */
 const GRAPH_VIEWS=[['lines','Lines'],['bubbles','Bubbles'],['rings','Rings'],['bars','Bars']];
 const GRAPH_RANGES=[['24h','24H',864e5,24],['1w','1W',7*864e5,14],['1m','1M',30*864e5,30]];
@@ -5974,6 +5999,7 @@ document.addEventListener('click',e=>{
  const a=b.dataset.work;
  if(a==='start'){e.preventDefault();workStart(tasks.find(x=>sameId(x.id,b.dataset.id)));}
  else if(a==='open'){workUiOpen=true;renderWorkUI();}
+ else if(a==='peek'){document.querySelector('#workRoot .wk-notes')?.scrollIntoView({behavior:'smooth',block:'start'});}
  else if(a==='notes'){const t=tasks.find(x=>sameId(x.id,b.dataset.id));if(t)openNotes(t.id);}
  else if(a==='min'){workUiOpen=false;workConfirm=false;renderWorkUI();}
  else if(a==='pause')workPause();
@@ -6008,16 +6034,38 @@ function renderWorkUI(){
   const ut=sessionUntouchedBefore(s,t);
   r.innerHTML=`<div class="wk-dim"></div><div class="wk-modal wk-${mode}" role="dialog" aria-modal="true" aria-label="Job timer">
    <button type="button" class="wk-min" data-work="min">Minimize ↘</button>
-   <div class="wk-left"><div class="wk-head">${c?bizLogo(c,'biz-logo wk-logo'):''}<div class="wk-kick">${paused?'Paused':'Focusing on'}</div></div><div class="wk-title">${title}</div>${c?`<div class="wk-client">${esc(c.Name||'')}</div>`:''}</div>
-   <div class="wk-notes" data-wnotes>${t?workNotesHtml(t):''}</div>
+   <div class="wk-main"><div class="wk-left"><div class="wk-head">${c?bizLogo(c,'biz-logo wk-logo'):''}<div class="wk-kick">${paused?'Paused':'Focusing on'}</div></div><div class="wk-title">${title}</div>${c?`<div class="wk-client">${esc(c.Name||'')}</div>`:''}</div>
    <div class="wk-ring">${ringSvg('wkm','wk-bar')}<div class="wk-mid"><div><div class="wk-big" data-wbig>${fmtClock(jobSecs(s))}</div><div class="wk-lbl">${paused?'Paused':'Working time'}</div></div></div></div>
    <div class="wk-right"><div class="wk-stats"><div>Sat untouched<b class="wk-y">${ut>=6e4?esc(fmtSpanMs(ut)):'—'}</b></div><div>This session<b class="wk-g" data-wsess>${esc(fmtDur(workSecs(s)))}</b></div></div>
     <div class="wk-btns">${paused?'<button type="button" class="wk-btn" data-work="resume">Resume</button>':'<button type="button" class="wk-btn" data-work="pause">Pause</button>'}<button type="button" class="wk-btn wk-green" data-work="done">✓ Job done</button></div>
     <button type="button" class="wk-link" data-work="stop">Stop for now (job stays open)</button></div>
+    <button type="button" class="wk-peek" data-work="peek">Latest notes ↓</button></div>
+   <div class="wk-notes" data-wnotes>${t?workNotesHtml(t):''}</div>
   </div>${workConfirm?`<div class="wk-cdim" data-work="done-no"></div><div class="wk-confirm" role="alertdialog" aria-modal="true" aria-labelledby="wkcT"><h3 id="wkcT">Mark this job done?</h3><p>${title}${c?' · '+esc(c.Name||''):''}</p><div class="wk-btns"><button type="button" class="wk-btn" data-work="done-no">Cancel</button><button type="button" class="wk-btn wk-green" data-work="done-yes">Yes, job done</button></div></div>`:''}`;
  }
  workTickNow();startWorkTick();
+ if(workUiOpen)requestAnimationFrame(workFit);
 }
+/* Phone: make logo, title, timer, boxes and buttons fit one screen */
+function workFit(){
+ const m=document.querySelector('#workRoot .wk-main');if(!m)return;
+ const title=m.querySelector('.wk-title'),ring=m.querySelector('.wk-ring'),big=m.querySelector('.wk-big'),logo=m.querySelector('.wk-logo');
+ [title,ring,big,logo].forEach(el=>el&&el.removeAttribute('style'));
+ if(innerWidth>700||!title||!ring)return;
+ let rw=ring.getBoundingClientRect().width,fs=parseFloat(getComputedStyle(title).fontSize)||28;
+ const over=()=>m.scrollHeight>m.clientHeight+1;
+ const setRing=w=>{rw=w;ring.style.width=w+'px';if(big)big.style.fontSize=Math.round(w*.19)+'px';};
+ setRing(rw);
+ let g=0;
+ while(over()&&g++<80){
+  if(rw>210)setRing(rw-8);
+  else if(fs>20){fs-=1;title.style.fontSize=fs+'px';}
+  else if(rw>150)setRing(rw-8);
+  else if(logo&&!logo.style.width){logo.style.width=logo.style.height='48px';logo.style.fontSize='16px';}
+  else break;
+ }
+}
+window.addEventListener('resize',()=>{if(workUiOpen)workFit();});
 /* Latest notes and files for the job, right on the timer */
 function workNotesSig(t){
  const ns=notesFor(t.id),ids=new Set(ns.map(n=>String(n.id)));
