@@ -393,7 +393,6 @@ details.fold[open]>summary{margin-bottom:12px}
 .pending{list-style:none;padding:0;margin:0 0 12px}
 .pending li{display:flex;align-items:center;gap:10px;flex-wrap:wrap;border-top:1px solid #29384f;padding:8px 0}
 .pending img{width:48px;height:48px;object-fit:cover;border-radius:8px}
-/* ===== END OF PART 1 of 13 ===== */
 .pending audio{width:220px;max-width:100%}
 .pending .name{flex:1 1 140px;overflow-wrap:anywhere;font-size:14px}
 .pending button{padding:7px 10px;font-size:13px}
@@ -401,6 +400,7 @@ details.fold[open]>summary{margin-bottom:12px}
 /* ===== Card extras: footer, notes, overdue, density, selection ===== */
 .tcard{position:relative}
 .tc-foot{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+/* ===== END OF PART 1 of 13 ===== */
 .notes-toggle{display:inline-flex;align-items:center;gap:6px;font-size:12px;padding:5px 10px;min-height:30px;border-radius:20px;background:transparent;border:1px solid #40516b;color:#cbd5e1}
 .notes-toggle svg{width:14px;height:14px}
 .notes-toggle.has{border-color:rgba(167,139,250,.65);color:#ddd6fe;background:rgba(167,139,250,.1)}
@@ -782,12 +782,12 @@ body.mk-ribbon .act-ribbon{display:block;position:absolute;top:0;right:14px;z-in
 .board[class*="layout-m-"] .act-ribbon{right:36px;font-size:10px;padding:3px 8px 4px}
 body.mk-outline .tcard.has-new{border-top-color:var(--mk);border-right-color:var(--mk);border-bottom-color:var(--mk);animation:new-glow calc(2.6s*var(--spd,1)) ease-in-out infinite}
 @keyframes new-glow{0%,100%{box-shadow:0 0 0 1px color-mix(in srgb,var(--mk) 70%,transparent),0 0 10px color-mix(in srgb,var(--mk) 25%,transparent)}50%{box-shadow:0 0 0 2px color-mix(in srgb,var(--mk) 70%,#fff),0 0 26px color-mix(in srgb,var(--mk) 55%,transparent)}}
-/* ===== END OF PART 2 of 13 ===== */
 body.mk-shake .tcard.has-new.shake-now{animation:card-shake .75s ease-in-out 1}
 body.mk-shake.mk-outline .tcard.has-new.shake-now{animation:card-shake .75s ease-in-out 1,new-glow calc(2.6s*var(--spd,1)) ease-in-out .75s infinite}
 @keyframes card-shake{0%,100%{transform:translateX(0) rotate(0)}15%{transform:translateX(-6px) rotate(-1.2deg)}30%{transform:translateX(5px) rotate(1deg)}45%{transform:translateX(-4px) rotate(-.6deg)}60%{transform:translateX(3px) rotate(.4deg)}75%{transform:translateX(-1px)}}
 .note.is-new{border-color:var(--mk);border-left-color:var(--mk);box-shadow:0 0 0 1px color-mix(in srgb,var(--mk) 45%,transparent);background:linear-gradient(90deg,color-mix(in srgb,var(--mk) 10%,transparent),#0b1525 70%)}
 .note.is-new .note-head strong::after{content:"NEW";margin-left:8px;font-size:10px;font-weight:800;letter-spacing:.06em;padding:1px 6px;border-radius:999px;background:var(--mk);color:var(--mk-t)}
+/* ===== END OF PART 2 of 13 ===== */
 @media (prefers-reduced-motion:reduce){body.mk-outline .tcard.has-new,body.mk-shake .tcard.has-new.shake-now{animation:none!important;box-shadow:0 0 0 2px var(--mk)}body.mk-badge .act-badge::before{animation:none}}
 
 /* =====================================================================
@@ -1213,7 +1213,6 @@ button:not(:disabled):active,.cj-row:active,.cm-row:active,.cp-act:active,.snap:
 .pchip span,button.pchip{display:inline-flex;align-items:center;gap:8px;min-height:42px;padding:8px 14px;border-radius:999px;border:2px solid color-mix(in srgb,var(--pc,#64748b) 70%,transparent);background:color-mix(in srgb,var(--pc,#64748b) 12%,#0b1525);color:#fff;font-weight:700;font-size:14px;cursor:pointer}
 .pchip span::before,button.pchip::before{content:"";width:10px;height:10px;border-radius:50%;background:var(--pc,#64748b);box-shadow:0 0 8px var(--pc,#64748b)}
 .pchip input:checked+span,button.pchip[aria-pressed="true"]{background:var(--pc,#64748b);color:var(--pc-t,#fff);box-shadow:0 0 16px color-mix(in srgb,var(--pc,#64748b) 60%,transparent)}
-/* ===== END OF PART 3 of 13 ===== */
 .pchip input:checked+span::before,button.pchip[aria-pressed="true"]::before{background:var(--pc-t,#fff);box-shadow:none}
 .pchip input:focus-visible+span{outline:2px solid #90baff;outline-offset:2px}
 .pchips-lbl{display:block;color:#cbd5e1;font-size:14px;margin:4px 0 8px;font-weight:600}
@@ -1226,6 +1225,7 @@ button:not(:disabled):active,.cj-row:active,.cm-row:active,.cp-act:active,.snap:
 .cj-row.st-in-progress{--sc:var(--ip);background:linear-gradient(90deg,color-mix(in srgb,var(--ip) 16%,transparent),transparent 65%);overflow:hidden}
 .cj-row.st-waiting-on-client{--sc:var(--wait);background:linear-gradient(90deg,color-mix(in srgb,var(--wait) 12%,transparent),transparent 60%)}
 .cj-row.st-completed{--sc:var(--dn)}
+/* ===== END OF PART 3 of 13 ===== */
 .cj-row.st-in-progress .cj-dot{animation:ip-dot 1.6s ease-in-out infinite}
 .cj-row.st-in-progress::after{content:"";position:absolute;top:0;bottom:0;left:-40%;width:35%;background:linear-gradient(90deg,transparent,color-mix(in srgb,var(--ip) 22%,transparent),transparent);animation:ip-sweep 3.2s ease-in-out infinite;pointer-events:none}
 .cp-sec.active .list-card{border-color:color-mix(in srgb,var(--ip) 55%,#22324b);box-shadow:0 0 0 1px color-mix(in srgb,var(--ip) 25%,transparent),0 0 22px color-mix(in srgb,var(--ip) 18%,transparent);animation:ip-card 3s ease-in-out infinite}
@@ -1539,6 +1539,48 @@ body.is-mobile .quick-layouts{display:flex}
  .wk-modal .wk-ring{width:min(78vw,40vh,320px)}
  .wk-modal .wk-big{font-size:clamp(44px,12vw,58px)}
 }
+
+/* ===== Timer: bigger business logo + latest notes and files ===== */
+.wk-left .wk-head{flex-direction:column;align-items:flex-start;gap:12px}
+.wk-left .biz-logo.wk-logo,.wk-left .logo-circle.wk-logo{width:clamp(64px,6.2vw,96px);height:clamp(64px,6.2vw,96px);flex:0 0 auto;font-size:clamp(22px,2vw,32px);border-width:3px;box-shadow:0 8px 26px rgba(0,0,0,.45)}
+.wk-notes{min-width:0;border-radius:18px;background:rgba(255,255,255,.035);border:1px solid rgba(255,255,255,.08);padding:14px 14px 12px;text-align:left}
+.wkn-head{display:flex;justify-content:space-between;align-items:baseline;gap:8px;margin-bottom:8px}
+.wkn-head span{font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#93c5fd}
+.wkn-head small{color:#7c8aa3;font-size:12px}
+.wkn-list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px;max-height:min(38vh,340px);overflow-y:auto}
+.wkn-note{padding:9px 11px;border-radius:12px;background:rgba(255,255,255,.04);border-left:3px solid #f59e0b}
+.wkn-note.by-admin{border-left-color:#3975db}
+.wkn-meta{display:flex;justify-content:space-between;gap:8px;font-size:12.5px;color:#9fb0c7}
+.wkn-meta b{color:#e8edf5;font-weight:600}
+.wkn-body{margin-top:3px;font-size:14px;line-height:1.4;color:#e8edf5;white-space:pre-wrap;overflow-wrap:anywhere;display:-webkit-box;-webkit-line-clamp:5;-webkit-box-orient:vertical;overflow:hidden}
+.wk-notes .media{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}
+.wk-notes .media .thumb img{width:64px;height:64px;object-fit:cover;border-radius:8px;display:block}
+.wk-notes .media .clip{max-width:100%}
+.wk-notes .media video{max-width:220px;max-height:130px;border-radius:8px}
+.wk-notes .media audio{max-width:220px}
+.wkn-empty{margin:0 0 4px;color:#7c8aa3;font-size:13px}
+.wkn-files{margin-top:10px}
+.wkn-files>small{font-size:12px;color:#9fb0c7;font-weight:600}
+.wkn-acts{display:flex;gap:8px;margin-top:10px}
+.wkn-acts .wk-btn{min-height:42px;padding:9px 10px;font-size:13.5px;border-radius:12px}
+.wkn-acts .wkn-add{border-color:rgba(57,117,219,.6);background:rgba(57,117,219,.18)}
+body:has(#workRoot .wk-modal) #notesModal{z-index:127}
+@media (min-width:1001px){
+ .wk-modal{grid-template-rows:auto 1fr;align-items:start}
+ .wk-left{grid-column:1;grid-row:1;align-self:end}
+ .wk-notes{grid-column:1;grid-row:2;align-self:start}
+ .wk-modal .wk-ring{grid-column:2;grid-row:1/3;align-self:center}
+ .wk-right{grid-column:3;grid-row:1/3;align-self:center}
+}
+@media (max-width:1000px){
+ .wk-left .wk-head{align-items:center}
+ .wk-notes{width:100%;box-sizing:border-box;order:4}
+ .wk-right{order:3}
+ .wk-modal .wk-ring{order:2}
+}
+.wk-modal{width:min(1680px,calc(100vw - 48px))}
+@media (min-width:1001px){.wk-modal{grid-template-columns:minmax(0,1.15fr) auto minmax(0,1fr)}}
+@media (max-width:1000px){.wk-modal{align-content:start}}
 /* ===== Version 18: follow-ups ===== */
 #homeFollowSec{margin-top:18px}
 .sec-h.violet{color:#c4b5fd}
@@ -1567,6 +1609,7 @@ body.is-mobile .quick-layouts{display:flex}
 .fu-days{display:grid;grid-template-columns:repeat(5,1fr);gap:8px}
 .fu-days button{display:flex;flex-direction:column;align-items:center;gap:2px;padding:12px 4px;border-radius:14px;border:1px solid rgba(167,139,250,.45);background:rgba(167,139,250,.1);color:#fff;cursor:pointer}
 .fu-days button:hover,.fu-days button:focus-visible{background:rgba(167,139,250,.25)}
+/* ===== END OF PART 4 of 13 ===== */
 .fu-days b{font-size:24px;font-weight:800;line-height:1}
 .fu-days small{font-size:11.5px;color:#c4b5fd;font-weight:600}
 .fu-date{display:flex;align-items:flex-end;gap:8px;margin-top:14px;text-align:left}
@@ -1593,7 +1636,6 @@ body.is-mobile .quick-layouts{display:flex}
 <a id="fullLink" class="hidden" href="./">Full dashboard</a>
 <button type="button" id="needsBtn" class="needs-pill hidden">Needs me</button>
 <button type="button" id="gearBtn" class="icon-btn hidden" aria-label="Settings"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg></button>
-<!-- ===== END OF PART 4 of 13 ===== -->
 <button id="changePwBtn" class="hidden" type="button" aria-expanded="false" aria-controls="changePwPanel" data-i18n="Change password">Change password</button>
 <button id="logout" class="hidden" data-i18n="Log out">Log out</button>
 </div>
@@ -2070,6 +2112,7 @@ body.is-mobile .quick-layouts{display:flex}
 <label class="file-button"><span data-i18n="Add photos or videos">Add photos or videos</span>
 <input type="file" id="callMediaInput" accept="image/*,video/*" multiple>
 </label>
+<!-- ===== END OF PART 5 of 13 ===== -->
 <button type="button" id="callRecordBtn" aria-pressed="false">Record voice note</button>
 </div>
 <ul id="callPendingList" class="pending" aria-live="polite"></ul>
@@ -2093,7 +2136,6 @@ body.is-mobile .quick-layouts{display:flex}
 </div>
 </div>
 </div>
-<!-- ===== END OF PART 5 of 13 ===== -->
 <div id="welcomeToast" class="welcome-toast hidden" role="status" aria-live="polite"></div>
 <div id="cpToastWrap" aria-live="polite"></div>
 <div id="bulkBar" class="bulk-bar hidden" role="toolbar" aria-label="Change selected tasks">
@@ -2597,6 +2639,7 @@ $('newLinkButton').onclick=async()=>{
  formMsg('requestMsg',email?tr('Tap "Send password reset link" and we will email a new link to {email}.',{email}):'Enter your email and we will send you a new link.','info');
 };
 
+// ===== END OF PART 6 of 13 =====
 /* ---------- Change password (for anyone signed in) ---------- */
 function setPwRules(rootId,p,c){
  const len=p.length>=8,match=!!p&&p===c,root=$(rootId);
@@ -2612,7 +2655,6 @@ function closeChangePw(){
  $('cpNew').value='';$('cpConfirm').value='';
  setPwRules('cpRules','','');formMsg('cpMsg','');
 }
-// ===== END OF PART 6 of 13 =====
 $('changePwBtn').onclick=()=>{
  if(!$('changePwPanel').classList.contains('hidden')){closeChangePw();return;}
  closeChangePw();
@@ -4428,7 +4470,6 @@ function moveInQueue(id,dir){
  [q[i],q[j]]=[q[j],q[i]];
  saveQueue(q);
 }
-// ===== END OF PART 9 of 13 =====
 function clearFocusIfDone(){
  const q=liveQueue();
  if(q.length!==queue.length)queue=q;
@@ -4444,6 +4485,7 @@ function upNextGroupHtml(){
   return `<li class="un-item" style="--biz:${bizColor(c)};${qStyle(i+1)}"><span class="un-num">${i+1}</span>${bizLogo(c,'biz-logo lg')}<button type="button" class="un-title" data-un="jump" data-id="${tid}"><span>${esc(t.title||'Untitled')}</span><small>${esc(c?.Name||'')} · ${esc(normStatus(t))}${t.due_date?' · '+esc(dueInfo(t)?.label||''):''}</small></button><span class="un-ctl">${queueCol?`<button type="button" data-un="up" data-id="${tid}" aria-label="Move up"${i===0?' disabled':''}>▲</button><button type="button" data-un="down" data-id="${tid}" aria-label="Move down"${i===q.length-1?' disabled':''}>▼</button>`:''}<button type="button" data-un="remove" data-id="${tid}" aria-label="Remove from lineup">✕</button></span></li>`;
  }).join('')}</ol></div></section>`;
 }
+// ===== END OF PART 9 of 13 =====
 function jumpToCard(t){
  if(curArea()!=='tasks'||!$('client').classList.contains('hidden'))setArea('tasks',true);
  if(mobile&&adminMobileLayout()==='tabs')setPref('admin','mtab',isOverdue(t)?'overdue':statusClass(normStatus(t)));
@@ -5932,6 +5974,7 @@ document.addEventListener('click',e=>{
  const a=b.dataset.work;
  if(a==='start'){e.preventDefault();workStart(tasks.find(x=>sameId(x.id,b.dataset.id)));}
  else if(a==='open'){workUiOpen=true;renderWorkUI();}
+ else if(a==='notes'){const t=tasks.find(x=>sameId(x.id,b.dataset.id));if(t)openNotes(t.id);}
  else if(a==='min'){workUiOpen=false;workConfirm=false;renderWorkUI();}
  else if(a==='pause')workPause();
  else if(a==='resume')workResume();
@@ -5965,7 +6008,8 @@ function renderWorkUI(){
   const ut=sessionUntouchedBefore(s,t);
   r.innerHTML=`<div class="wk-dim"></div><div class="wk-modal wk-${mode}" role="dialog" aria-modal="true" aria-label="Job timer">
    <button type="button" class="wk-min" data-work="min">Minimize ↘</button>
-   <div class="wk-left"><div class="wk-head">${c?bizLogo(c,'biz-logo'):''}<div class="wk-kick">${paused?'Paused':'Focusing on'}</div></div><div class="wk-title">${title}</div>${c?`<div class="wk-client">${esc(c.Name||'')}</div>`:''}</div>
+   <div class="wk-left"><div class="wk-head">${c?bizLogo(c,'biz-logo wk-logo'):''}<div class="wk-kick">${paused?'Paused':'Focusing on'}</div></div><div class="wk-title">${title}</div>${c?`<div class="wk-client">${esc(c.Name||'')}</div>`:''}</div>
+   <div class="wk-notes" data-wnotes>${t?workNotesHtml(t):''}</div>
    <div class="wk-ring">${ringSvg('wkm','wk-bar')}<div class="wk-mid"><div><div class="wk-big" data-wbig>${fmtClock(jobSecs(s))}</div><div class="wk-lbl">${paused?'Paused':'Working time'}</div></div></div></div>
    <div class="wk-right"><div class="wk-stats"><div>Sat untouched<b class="wk-y">${ut>=6e4?esc(fmtSpanMs(ut)):'—'}</b></div><div>This session<b class="wk-g" data-wsess>${esc(fmtDur(workSecs(s)))}</b></div></div>
     <div class="wk-btns">${paused?'<button type="button" class="wk-btn" data-work="resume">Resume</button>':'<button type="button" class="wk-btn" data-work="pause">Pause</button>'}<button type="button" class="wk-btn wk-green" data-work="done">✓ Job done</button></div>
@@ -5974,9 +6018,30 @@ function renderWorkUI(){
  }
  workTickNow();startWorkTick();
 }
+/* Latest notes and files for the job, right on the timer */
+function workNotesSig(t){
+ const ns=notesFor(t.id),ids=new Set(ns.map(n=>String(n.id)));
+ const files=attachments.filter(a=>String(a.task_id)===String(t.id));
+ return [ns.length,ns[0]?.id,files.length,files.filter(a=>urlFor(a.path)).length,ids.size].join('|');
+}
+function workNotesHtml(t){
+ const ns=notesFor(t.id),jf=taskFiles(t.id);
+ const nFiles=attachments.filter(a=>String(a.task_id)===String(t.id)).length;
+ const items=ns.slice(0,3).map(n=>{
+  const files=attachments.filter(a=>String(a.note_id)===String(n.id));
+  return `<li class="wkn-note${n.is_admin?' by-admin':''}"><div class="wkn-meta"><b>${esc(n.author_name||'')}</b><time datetime="${esc(n.created_at)}" title="${esc(fmtStamp(n.created_at))}">${esc(relTime(Date.parse(n.created_at)))}</time></div>${n.body?`<div class="wkn-body">${esc(n.body)}</div>`:''}${files.length?mediaListHtml(files):''}</li>`;
+ }).join('');
+ return `<div class="wkn-head"><span>Latest notes</span><small>${esc(plural(ns.length,'note'))}${nFiles?' · '+esc(plural(nFiles,'file')):''}</small></div>
+  ${items?`<ul class="wkn-list">${items}</ul>`:'<p class="wkn-empty">No notes yet.</p>'}
+  ${jf.length?`<div class="wkn-files"><small>Job files</small>${mediaListHtml(jf)}</div>`:''}
+  <div class="wkn-acts"><button type="button" class="wk-btn wkn-add" data-work="notes" data-id="${esc(t.id)}">＋ Add note or files</button><button type="button" class="wk-btn" data-work="notes" data-id="${esc(t.id)}">All notes &amp; files${ns.length>3?` (${ns.length})`:''}</button></div>`;
+}
+let workNotesKey='';
 function workTickNow(){
  const s=workOpen;if(!s||s.ended_at)return;
  const now=wNow();
+ const box=document.querySelector('#workRoot [data-wnotes]');
+ if(box){const t=tasks.find(x=>sameId(x.id,s.task_id));if(t){const k=workNotesSig(t);if(k!==box.dataset.k){if(box.dataset.k!=null)box.innerHTML=workNotesHtml(t);box.dataset.k=k;}}}
  const w=jobSecs(s,now),big=fmtClock(w);
  document.querySelectorAll('[data-wbig]').forEach(el=>{if(el.textContent!==big)el.textContent=big;});
  document.querySelectorAll('[data-wclock]').forEach(el=>{el.textContent=fmtClock(w);});
