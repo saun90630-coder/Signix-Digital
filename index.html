@@ -1648,6 +1648,106 @@ body:has(#workRoot .wk-modal) #notesModal{z-index:127}
  .fu-count{justify-self:end}
  .fu-when{justify-self:start}
 }
+/* ===== Version 20: lines view, inline detail, inbox, note edit ===== */
+.layout-lines .groups{max-width:1100px;margin:0 auto;gap:14px}
+.layout-lines .group,.layout-m-lines .group{padding:10px 12px}
+.board .group-body.ln-body{display:flex;flex-direction:column;gap:5px}
+.ln{position:relative;border-radius:10px;overflow:hidden;background:#0f1a2c;border:1px solid #22324b;border-left:5px solid var(--biz,#64748b)}
+.ln.in-q{border-color:color-mix(in srgb,var(--qc,#3b82f6) 70%,#22324b);border-left-color:var(--biz,#64748b)}
+.ln.od{background:linear-gradient(90deg,rgba(239,68,68,.12),#0f1a2c 45%)}
+.ln.has-new{box-shadow:0 0 0 1px rgba(250,204,21,.55)}
+.ln-swipe{position:absolute;inset:0;display:none;align-items:center;justify-content:space-between;padding:0 16px;font-weight:700;font-size:14px;color:#fff}
+.ln.sw-r .ln-swipe,.ln.sw-l .ln-swipe{display:flex}
+.ln.sw-r .ln-swipe{background:#0e7490}.ln.sw-l .ln-swipe{background:#c2410c}
+.ln.sw-r .sw-fu,.ln.sw-l .sw-start{visibility:hidden}
+.ln.sw-go .ln-swipe{filter:brightness(1.25)}
+.ln-row{position:relative;z-index:1;display:flex;align-items:center;gap:10px;width:100%;min-height:52px;padding:7px 10px;margin:0;border:0;border-radius:0;background:#0f1a2c;color:inherit;text-align:left;cursor:pointer;font:inherit;touch-action:pan-y}
+.ln.od .ln-row{background:transparent}
+.ln-row:hover{background:#14223a}
+.ln.open .ln-row{background:#16263f}
+.ln-row .q-badge{flex:0 0 auto}
+.ln-row .biz-logo{flex:0 0 auto}
+.ln-main{flex:1 1 auto;min-width:0;display:flex;flex-direction:column;gap:2px}
+.ln-t{font-size:14.5px;font-weight:600;color:#e8eef8;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ln-sub{font-size:12px;color:#93a4bd;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ln-sub b{font-weight:600;color:#b8c6da}
+.layout-lines .ln-info{display:none}
+.ln-dot{display:inline-block;width:9px;height:9px;border-radius:50%;background:#facc15;margin-right:7px;vertical-align:1px;box-shadow:0 0 8px #facc15;animation:ln-dot 1.6s ease-in-out infinite}
+@keyframes ln-dot{50%{opacity:.35}}
+.ln-chips{flex:0 1 auto;display:flex;align-items:center;gap:6px;flex-wrap:wrap;justify-content:flex-end;max-width:55%}
+.ln-chips .badge,.ln-chips .due-chip,.ln-chips .fu-chip,.ln-chips .ut-chip,.ln-chips .od-flag{font-size:11px;padding:2px 8px;min-height:22px;white-space:nowrap}
+.layout-m-lines .ln-chips .ln-x{display:none}
+.layout-m-lines .ln-chips{max-width:40%;gap:4px}
+.layout-m-lines .ln-chips .fu-chip{display:inline-block;max-width:120px;overflow:hidden;text-overflow:ellipsis}
+.layout-m-lines .ln-chips .fu-chip.later{display:none}
+.ln-days{font-size:11px;padding:2px 7px;border-radius:20px;background:#1c2a40;border:1px solid #33465f;color:#cbd5e1;white-space:nowrap}
+.ln-days.warn{background:rgba(245,158,11,.15);border-color:rgba(245,158,11,.6);color:#fcd34d}
+.ln-days.old{background:rgba(239,68,68,.15);border-color:rgba(239,68,68,.6);color:#fca5a5}
+.ln-arrow{flex:0 0 auto;width:22px;text-align:center;color:#93a4bd;font-size:14px;transition:transform .2s}
+.ln.open .ln-arrow{transform:rotate(180deg);color:#e8eef8}
+.ln-detail{position:relative;z-index:1;padding:8px;background:#0b1525;border-top:1px solid #22324b;animation:ln-in .18s ease-out}
+.ln-detail .tcard{margin:0}
+@keyframes ln-in{from{opacity:0;transform:translateY(-4px)}}
+.layout-m-lines .group-head{padding:0 2px 6px}
+.layout-m-lines .ln-row{gap:8px;padding:6px 8px;min-height:50px}
+.layout-m-lines .ln-t{font-size:14px}
+.layout-m-lines .ln-detail{padding:6px}
+/* Home: a row opens right under itself */
+.home-detail{margin:6px 0 10px;padding:8px;border-radius:12px;background:#0b1525;border:1px solid #2c3c54;animation:ln-in .18s ease-out}
+.home-detail .tcard{margin:0}
+.hd-foot{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:8px 2px 0}
+.hd-foot button{min-height:34px}
+.hd-on{outline:2px solid #60a5fa;outline-offset:1px}
+/* Move to follow-up button on cards */
+.tc-tofu{font-size:12px;padding:3px 10px;min-height:28px;border-radius:20px;background:rgba(249,115,22,.12);border:1px solid rgba(249,115,22,.55);color:#fdba74;white-space:nowrap}
+.tc-tofu:hover{background:rgba(249,115,22,.25)}
+.board[class*="layout-m-"] .tc-tofu{font-size:11px;min-height:24px;padding:2px 8px}
+/* New from clients (yellow) */
+.inbox-sec{border:2px solid #facc15;border-radius:16px;padding:12px 14px;margin-bottom:18px;background:linear-gradient(180deg,#3b3108,#1f1a06);box-shadow:0 0 0 1px rgba(250,204,21,.25),0 0 22px rgba(250,204,21,.28);animation:ib-glow 2.4s ease-in-out infinite}
+@keyframes ib-glow{50%{box-shadow:0 0 0 1px rgba(250,204,21,.45),0 0 34px rgba(250,204,21,.5)}}
+.inbox-sec.ib-flash{animation:ib-flash .45s ease-in-out 6,ib-glow 2.4s ease-in-out 2.7s infinite}
+@keyframes ib-flash{50%{background:#a16207;transform:scale(1.01)}}
+.ib-head{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:10px}
+.ib-head .sec-h{margin:0;color:#fde047;font-size:14px;font-weight:800}
+.ib-all{font-size:12px;padding:5px 12px;min-height:32px;border-radius:20px;background:#facc15;border:0;color:#1f1a06;font-weight:700}
+.ib-list{display:flex;flex-direction:column;gap:6px}
+.ib-row{display:flex;align-items:flex-start;gap:10px;padding:9px 10px;border-radius:12px;background:rgba(250,204,21,.1);border:1px solid rgba(250,204,21,.45);border-left:5px solid var(--biz,#facc15)}
+.ib-row .biz-logo{flex:0 0 auto;margin-top:2px}
+.ib-main{flex:1 1 auto;min-width:0;display:flex;flex-direction:column;gap:3px}
+.ib-top{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.ib-top strong{color:#fef9c3;font-size:14px}
+.ib-tag{font-size:10.5px;font-weight:800;text-transform:uppercase;letter-spacing:.05em;padding:2px 8px;border-radius:20px;background:#facc15;color:#1f1a06}
+.ib-call .ib-tag{background:#f87171;color:#fff}
+.ib-request .ib-tag{background:#c084fc;color:#1b0b2e}
+.ib-photo .ib-tag,.ib-video .ib-tag{background:#38bdf8;color:#04202e}
+.ib-voice .ib-tag{background:#34d399;color:#03251a}
+.ib-time{font-size:11.5px;color:#e5d9a4;margin-left:auto}
+.ib-what{font-size:13.5px;color:#fffbeb;overflow-wrap:anywhere}
+.ib-where{font-size:12px;color:#d6c98f}
+.ib-acts{flex:0 0 auto;display:flex;flex-direction:column;gap:6px}
+.ib-acts button{min-height:32px;padding:4px 12px;font-size:12.5px;border-radius:8px;white-space:nowrap}
+.ib-seen{background:#facc15;border:0;color:#1f1a06;font-weight:700}
+.ib-open{background:transparent;border:1px solid rgba(250,204,21,.6);color:#fde68a}
+@media (max-width:700px){
+ .inbox-sec{padding:10px;margin-left:-2px;margin-right:-2px}
+ .ib-row{flex-wrap:wrap}
+ .ib-time{margin-left:0;width:100%}
+ .ib-acts{flex-direction:row;width:100%;justify-content:flex-end}
+ .ib-acts button{flex:1}
+}
+/* Notes: edit / delete (admin only) */
+.note-acts{margin-left:auto;display:inline-flex;gap:6px}
+.note-acts button{font-size:11.5px;padding:2px 9px;min-height:26px;border-radius:14px;background:transparent;border:1px solid #33465f;color:#cbd5e1}
+.note-acts .del-link{color:#fca5a5;border-color:rgba(239,68,68,.5)}
+.note-head{flex-wrap:wrap}
+.note-edit textarea{width:100%;min-height:90px;margin-top:6px;box-sizing:border-box}
+.ne-row{display:flex;gap:8px;margin-top:6px}
+.media .mf{position:relative;display:inline-flex;flex-direction:column}
+.mf-del{position:absolute;top:4px;right:4px;z-index:2;width:28px;height:28px;min-height:28px;padding:0;border-radius:50%;background:rgba(15,23,42,.85);border:1px solid rgba(239,68,68,.7);color:#fca5a5;font-size:13px;line-height:1}
+.mf-del:hover{background:#b91c1c;color:#fff}
+#sndForm label{display:flex;flex-direction:column;gap:4px;margin:8px 0}
+#sndForm label.nudge-chk{flex-direction:row;align-items:center;gap:8px}
+#sndForm select,#sndForm input[type=range]{max-width:280px}
 </style>
 </head>
 <body>
@@ -1781,12 +1881,13 @@ body:has(#workRoot .wk-modal) #notesModal{z-index:127}
 <button type="button" class="stat" id="openStat">Open tasks<strong id="openCount">0</strong></button>
 <button type="button" class="stat incoming" id="incomingStat">Incoming requests<strong id="requestCount">0</strong></button>
 <button type="button" class="stat" id="overdueStat">Overdue<strong id="overdueCount">0</strong></button>
-<button type="button" class="stat wait" id="waitStat">Waiting on clients<strong id="waitCount">0</strong></button>
+<button type="button" class="stat wait" id="waitStat">Follow-ups<strong id="waitCount">0</strong></button>
 <button type="button" class="stat aged" id="agedStat">Over 4 days<strong id="agedCount">0</strong></button>
 <button type="button" class="stat today" id="todayStat">Due today<strong id="todayCount">0</strong></button>
 </div>
 <div class="home-grid">
 <div class="home-main">
+<section id="homeInboxSec" class="inbox-sec hidden" aria-labelledby="inboxTitle"><div class="ib-head"><h2 class="sec-h" id="inboxTitle">New from clients</h2><button type="button" class="ib-all" data-inbox="all">✓ Mark all seen</button></div><div id="homeInbox"></div></section>
 <section id="homeCallsSec" class="hidden" aria-labelledby="callsTitle"><h2 class="sec-h red" id="callsTitle">Call back</h2><div id="homeCalls"></div></section>
 <section aria-labelledby="unTitle"><h2 class="sec-h green" id="unTitle">Up next</h2><div id="homeUpNext"></div></section>
 <section id="homeFollowSec" class="hidden" aria-labelledby="fuTitle"><h2 class="sec-h violet" id="fuTitle">Follow-ups</h2><div id="homeFollow"></div></section>
@@ -1995,7 +2096,7 @@ body:has(#workRoot .wk-modal) #notesModal{z-index:127}
 <h4>Up next lineup colors (only you see these)</h4>
 <p class="muted" style="font-size:13px;margin:0 0 6px">The color each spot in your lineup glows. #1 is the task you are working on now.</p>
 <div class="qc-grid" id="qcGrid"></div>
-<div class="qc-row"><button type="button" id="qcSame">Make #3–#10 match #2</button><button type="button" id="qcReset">Reset to green and blue</button></div>
+<div class="qc-row"><button type="button" id="qcSame">Make #3–#15 match #2</button><button type="button" id="qcReset">Reset to green and blue</button></div>
 <div class="anim-preview" id="qcPreview" aria-label="Preview"></div>
 <p id="qcStatus" class="muted" role="status"></p>
 </form>
@@ -2003,12 +2104,23 @@ body:has(#workRoot .wk-modal) #notesModal{z-index:127}
 <details class="panel fold" id="nudgePanel">
 <summary>Work timer &amp; Pushover nudge</summary>
 <form id="nudgeForm" class="off">
-<p class="muted" style="margin-top:0">If you haven't tapped Start job or finished a job by this time, your phone gets one Pushover ping that names your #1 job. One nudge a day at most.</p>
+<p class="muted" style="margin-top:0"><strong>Off by default now.</strong> Pushover only pings you when a client asks for a call or adds a note, photo, video, voice note or request. If you ever want the daily "you haven't started" reminder back, tick the box below: one ping a day at most, naming your #1 job.</p>
 <label class="nudge-chk"><input type="checkbox" name="on"> Send the nudge</label>
 <label class="nudge-time">Time<input type="time" name="time" value="10:30" step="300"></label>
 <label class="nudge-chk"><input type="checkbox" name="weekends"> Weekends too</label>
 <div class="qc-row"><button class="primary" type="submit">Save</button><button type="button" id="nudgeTest">Send a test nudge</button></div>
 <p id="nudgeStatus" class="muted" role="status"></p>
+</form>
+</details>
+<details class="panel fold" id="soundPanel">
+<summary>Client activity sound</summary>
+<form id="sndForm" onsubmit="return false">
+<p class="muted" style="margin-top:0">Plays when a client adds a note, photo, video, voice note, request or call request while this dashboard is open. Saved on this device only. Browsers only allow sound after you've tapped the page once.</p>
+<label class="nudge-chk"><input type="checkbox" name="on"> Play a sound</label>
+<label>Sound<select name="snd"></select></label>
+<label>Volume<input type="range" name="vol" min="5" max="100" step="5"></label>
+<div class="qc-row"><button type="button" id="sndTest">Play test sound</button></div>
+<p id="sndStatus" class="muted" role="status"></p>
 </form>
 </details>
 </div>
@@ -2067,7 +2179,7 @@ body:has(#workRoot .wk-modal) #notesModal{z-index:127}
 </div>
 <ul id="notePendingList" class="pending" aria-live="polite"></ul>
 </div>
-<div class="row"><button class="primary" type="submit" id="noteSendBtn">Add note</button><small class="muted">Notes can't be edited or deleted. Each one is stamped with the name, date and time.</small></div>
+<div class="row"><button class="primary" type="submit" id="noteSendBtn">Add note</button><small class="muted">Only you can edit or delete notes and files. Clients can only add. Each note is stamped with the name, date and time.</small></div>
 <p id="noteStatus" class="muted" role="status" aria-live="polite" style="margin:6px 0 0;font-size:13px;white-space:pre-wrap"></p>
 </form>
 <div id="notesList"></div>
@@ -2194,6 +2306,7 @@ const CLIENT_VIEWS=[['status','Status'],['deadline','Deadline'],['calendar','Cal
 const CLIENT_STATUS_LABELS={'Incoming':'Submitted','To do':'Scheduled','Waiting on client':'Needs your input'};
 const svgIcon=d=>`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${d}</svg>`;
 const LAYOUTS=[
+ ['lines','Lines',svgIcon('<path d="M9 6h12M9 12h12M9 18h12"/><circle cx="4.5" cy="6" r="1.5"/><circle cx="4.5" cy="12" r="1.5"/><circle cx="4.5" cy="18" r="1.5"/>')],
  ['comfortable','Comfortable',svgIcon('<rect x="3" y="4" width="8" height="16" rx="2"/><rect x="13" y="4" width="8" height="16" rx="2"/>')],
  ['compact','Compact',svgIcon('<rect x="3" y="3" width="5" height="8" rx="1"/><rect x="10" y="3" width="5" height="8" rx="1"/><rect x="17" y="3" width="4" height="8" rx="1"/><rect x="3" y="13" width="5" height="8" rx="1"/><rect x="10" y="13" width="5" height="8" rx="1"/><rect x="17" y="13" width="4" height="8" rx="1"/>')],
  ['list','List',svgIcon('<path d="M4 6h16M4 12h16M4 18h16"/>')],
@@ -2201,8 +2314,8 @@ const LAYOUTS=[
  ['board','Board',svgIcon('<rect x="3" y="3" width="5" height="18" rx="1"/><rect x="10" y="3" width="5" height="12" rx="1"/><rect x="17" y="3" width="4" height="15" rx="1"/>')]
 ];
 /* Phone layouts: add or change one here, then add/adjust its CSS block under "MOBILE" in the style section. */
-const MOBILE_LAYOUTS=[['tabs','Tabs'],['stack','Stack'],['grid2','2-up'],['grid3','3-up'],['slim','Slim'],['swipe','Swipe']];
-const CLIENT_MOBILE_LAYOUTS=MOBILE_LAYOUTS.filter(l=>l[0]!=='swipe'&&l[0]!=='tabs');
+const MOBILE_LAYOUTS=[['lines','Lines'],['tabs','Tabs'],['stack','Stack'],['grid2','2-up'],['grid3','3-up'],['slim','Slim'],['swipe','Swipe']];
+const CLIENT_MOBILE_LAYOUTS=MOBILE_LAYOUTS.filter(l=>l[0]!=='swipe'&&l[0]!=='tabs'&&l[0]!=='lines');
 const CAL_MODES=[['month','Month'],['week','Week'],['agenda','Agenda'],['timeline','Timeline']];
 const BAR_STYLES=[['glide','Glide (light streak)'],['comet','Comet'],['wave','Color wave'],['barber','Barber stripes'],['segments','Segments'],['edge','Glowing edge'],['frost','Frosted glass'],['trail','Dot trail'],['liquid','Liquid fill'],['pulse','Brand pulse']];
 const HEAD_STYLES=[['arrows','Arrows drifting right'],['sweep','Light sweep'],['stripes','Diagonal stripes'],['dots','Dot track'],['flow','Flowing edge'],['scan','Scan line'],['ripple','Logo ripple'],['comet','Shooting comet'],['sparks','Sparks'],['nudge','Arrow nudge']];
@@ -2237,6 +2350,8 @@ const shaken=new Set();
 let attachments=[],signedUrls={};
 let brandUrls={},brandLoadedAt=0,openClientId=null,editingId=null,menuCtx=null,pollTimer=null,tickTimer=null,lastLoad=0;
 let prefs=loadPrefs();
+/* Version 20: one line per task is the new default view (one time; any view can still be picked) */
+if(!prefs.admin?.v20lines){prefs.admin={...(prefs.admin||{}),layout:'lines',mlayout:'lines',v20lines:1};savePrefs();}
 const expandedMedia=new Set();
 let memberNames={};
 let notes=[],notesReady=false,search='',selectMode=false,lastVisible=[];
@@ -2395,8 +2510,8 @@ function getPref(scope,key,fallback,allowed){
 }
 function setPref(scope,key,value){prefs[scope]={...(prefs[scope]||{}),[key]:value};savePrefs();}
 const adminView=()=>getPref('admin','view','status',ADMIN_VIEWS.map(v=>v[0]));
-const adminMobileLayout=()=>getPref('admin','mlayout','tabs',MOBILE_LAYOUTS.map(v=>v[0]));
-const adminLayout=()=>mobile?'m-'+adminMobileLayout():getPref('admin','layout','board',LAYOUTS.map(v=>v[0]));
+const adminMobileLayout=()=>getPref('admin','mlayout','lines',MOBILE_LAYOUTS.map(v=>v[0]));
+const adminLayout=()=>mobile?'m-'+adminMobileLayout():getPref('admin','layout','lines',LAYOUTS.map(v=>v[0]));
 const clientView=()=>getPref('client','view','status',CLIENT_VIEWS.map(v=>v[0]));
 const clientMobileLayout=()=>getPref('client','mlayout','stack',CLIENT_MOBILE_LAYOUTS.map(v=>v[0]));
 const clientLayout=()=>mobile?'m-'+clientMobileLayout():'board';
@@ -2420,7 +2535,7 @@ function buildChips(id,items,current,onPick){
 }
 function buildLayoutChips(){
  if(mobile){
-  const quick=['stack','grid2','grid3'];
+  const quick=['lines','stack','grid2','grid3'];
   const pick=v=>{setPref('admin','mlayout',v);mOpen.clear();buildLayoutChips();renderAdmin();};
   buildChips('quickLayouts',MOBILE_LAYOUTS.filter(l=>quick.includes(l[0])),adminMobileLayout(),pick);
   buildChips('adminLayouts',MOBILE_LAYOUTS.filter(l=>!quick.includes(l[0])),adminMobileLayout(),pick);
@@ -2922,14 +3037,18 @@ function mediaHtml(taskId){
  return mediaListHtml(list);
 }
 function mediaListHtml(list){
- return `<div class="media">${list.map(a=>{
+ const del=isAdmin()&&role==='admin';
+ return `<div class="media">${list.map(a=>{const h=mediaItemHtml(a);return del?`<div class="mf">${h}<button type="button" class="mf-del" data-delfile="${esc(a.id)}" title="Delete this file" aria-label="Delete this file">✕</button></div>`:h;}).join('')}</div>`;
+}
+function mediaItemHtml(a){
+ return [a].map(a=>{
   const url=urlFor(a.path);
   if(!url)return `<small class="muted">${esc(a.kind)} file unavailable. Refresh the page.</small>`;
   const u=esc(url);
   if(a.kind==='image')return `<a class="thumb" href="${u}" target="_blank" rel="noopener"><img src="${u}" alt="Attached photo" loading="lazy"></a>`;
   if(a.kind==='video')return `<div class="clip"><video src="${u}" controls preload="metadata" playsinline></video><small><a href="${u}" target="_blank" rel="noopener">Open video</a></small></div>`;
   return `<div class="clip"><small class="muted">Voice note</small><audio src="${u}" controls preload="metadata"></audio><small><a href="${u}" target="_blank" rel="noopener">Download</a></small></div>`;
- }).join('')}</div>`;
+ })[0];
 }
 
 const CLIP_ICON='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21.4 11.1l-9.2 9.2a6 6 0 0 1-8.5-8.5l9.2-9.2a4 4 0 0 1 5.7 5.7l-9.2 9.2a2 2 0 0 1-2.8-2.8l8.5-8.5"/></svg>';
@@ -2961,7 +3080,10 @@ function notesListHtml(t,since){
  return `<ul class="note-list">${list.map(n=>{
   const files=attachments.filter(a=>String(a.note_id)===String(n.id));
   const fresh=since!=null&&fromOtherSide(n)&&Date.parse(n.created_at)>since;
-  return `<li class="note${n.is_admin?' by-admin':''}${fresh?' is-new':''}"><div class="note-head"><strong>${esc(n.author_name||'')}</strong><time datetime="${esc(n.created_at)}">${esc(fmtStamp(n.created_at))}</time></div>${n.body?`<div class="note-body">${esc(n.body)}</div>`:''}${files.length?mediaListHtml(files):''}</li>`;
+  const nid=esc(n.id),adm=isAdmin()&&role==='admin',editing=adm&&String(noteEditId)===String(n.id);
+  const acts=adm&&!editing?`<span class="note-acts"><button type="button" data-note="edit" data-nid="${nid}">Edit</button><button type="button" class="del-link" data-note="del" data-nid="${nid}">Delete</button></span>`:'';
+  const body=editing?`<div class="note-edit"><textarea data-noteedit="${nid}" maxlength="2000" aria-label="Edit note">${esc(n.body||'')}</textarea><div class="ne-row"><button type="button" class="primary" data-note="save" data-nid="${nid}">Save</button><button type="button" data-note="cancel" data-nid="${nid}">Cancel</button></div></div>`:(n.body?`<div class="note-body">${esc(n.body)}</div>`:'');
+  return `<li class="note${n.is_admin?' by-admin':''}${fresh?' is-new':''}"><div class="note-head"><strong>${esc(n.author_name||'')}</strong><time datetime="${esc(n.created_at)}">${esc(fmtStamp(n.created_at))}${n.edited_at?' · edited':''}</time>${acts}</div>${body}${files.length?mediaListHtml(files):''}</li>`;
  }).join('')}</ul>`;
 }
 function taskFiles(id){return attachments.filter(a=>String(a.task_id)===String(id)&&a.note_id==null);}
@@ -3034,7 +3156,7 @@ function taskCard(t,o){
  ${sel}${actRibbon}
  ${o.admin?bizHeader(t.client_id):''}
  <h4 class="tc-title" data-act="mopen" data-id="${id}">${esc(t.title||'Untitled')}</h4>
- <div class="tc-meta">${actBadge}${qBadge}${od?'<span class="od-flag">Overdue</span>':''}${ageEl}${o.admin?untouchedChip(t)+fuChip(t):''}${statusEl}${prEl}${dueEl}${tagChip(t,o)}${focusBtn}${corner}</div>
+ <div class="tc-meta">${actBadge}${qBadge}${od?'<span class="od-flag">Overdue</span>':''}${ageEl}${o.admin?untouchedChip(t)+fuChip(t):''}${statusEl}${prEl}${dueEl}${tagChip(t,o)}${o.admin&&!t.archived_at&&!isDone(t)&&!isWaiting(t)?`<button type="button" class="tc-tofu" data-act="tofollow" data-id="${id}" title="Move to follow-up (Waiting on client)">↻ Follow-up</button>`:''}${focusBtn}${corner}</div>
  ${t.created_by&&memberNames[t.created_by]?`<div class="tc-by">${PERSON_ICON}<span>Submitted by <strong>${esc(memberNames[t.created_by])}</strong></span></div>`:''}
  ${o.admin&&t.created_at?`<div class="tc-added">${CLOCK_ICON}<span>Added ${esc(fmtStamp(t.created_at))}</span></div>`:''}
  ${st==='In progress'?`<div class="work-bar" role="img" aria-label="Being worked on"${o.admin?` style="--bc:${bizColor(clientById(t.client_id))}"`:''}></div>`:''}
@@ -3083,6 +3205,7 @@ function updateBoardTop(root){
 function renderBoard(root,list,o){
  const saved=captureScroll(root);
  root.className='board layout-'+o.layout;
+ const lnMode=isLines(o);
  let groups;
  if(o.admin&&!['deadline','archive','inprogress'].includes(o.view)){
   const od=list.filter(isOverdue);
@@ -3110,7 +3233,7 @@ function renderBoard(root,list,o){
  const unAt=ipAt>=0?ipAt:0;
  root.innerHTML=`${tabsHtml}<div class="groups">${groups.map((gr,gi)=>{const isDoneGrp=o.admin&&!tabsHtml&&gr.key==='st-completed',shut=doneShut&&isDoneGrp;return (gi===unAt?un:'')+`<section class="group ${gr.cls||''}${shut?' is-shut':''}" data-group="${esc(gr.key)}" id="grp-${root.id}-${esc(gr.key)}"${gr.biz?` style="--gc:${bizColor(gr.biz)}"`:''}>
 <header class="group-head">${gr.biz?logoHtml({...gr.biz,brand_color:bizColor(gr.biz)},'sm'):'<span class="gdot"></span>'}<h3>${esc(gr.label)}</h3><span class="count">${gr.items.length}</span>${isDoneGrp?`<button type="button" class="grp-toggle" data-grptoggle="done" aria-expanded="${!shut}">${shut?'Show':'Hide'}</button>`:''}</header>
-${shut?'':`<div class="group-body">${gr.items.length?gr.items.map(t=>taskCard(t,o)).join(''):'<p class="muted empty-col">Nothing here</p>'}</div>`}
+${shut?'':`<div class="group-body${lnMode?' ln-body':''}">${gr.items.length?gr.items.map(t=>lnMode?lineRow(t,o):taskCard(t,o)).join(''):'<p class="muted empty-col">Nothing here</p>'}</div>`}
 </section>`;}).join('')}${groups.length?'':un}</div>`;
  restoreScroll(root,saved);
  updateBoardTop(root);
@@ -3136,18 +3259,18 @@ function renderSnapshot(live){
  const biz=$('bizFilter').value;
  const rows=clients.map(c=>{
   const mine=live.filter(t=>String(t.client_id)===String(c.id)&&!isDone(t));
-  return {c,open:mine.length,od:mine.filter(isOverdue).length,neu:mine.filter(t=>t.status==='Incoming').length};
- }).filter(r=>r.open).sort((a,b)=>b.od-a.od||b.open-a.open);
+  return {c,open:mine.filter(t=>!isWaiting(t)).length,fu:mine.filter(isWaiting).length,od:mine.filter(isOverdue).length,neu:mine.filter(t=>t.status==='Incoming').length};
+ }).filter(r=>r.open||r.fu).sort((a,b)=>b.od-a.od||b.open-a.open);
  if(!rows.length){root.innerHTML='';root.classList.add('hidden');return;}
  root.classList.remove('hidden');
- root.innerHTML=`<button type="button" class="snap snap-all" data-snap="" aria-pressed="${!biz}">All businesses</button>`+rows.map(r=>`<button type="button" class="snap${r.od?' has-od':''}" data-snap="${esc(r.c.id)}" aria-pressed="${String(r.c.id)===biz}" style="--biz:${bizColor(r.c)}" title="Show only ${esc(r.c.Name||'')}">${bizLogo(r.c)}<span><strong>${esc(r.c.Name||'Client '+r.c.id)}</strong>${r.open} open${r.od?` · <span class="od">${r.od} overdue</span>`:''}${r.neu?` · ${r.neu} new`:''}</span></button>`).join('');
+ root.innerHTML=`<button type="button" class="snap snap-all" data-snap="" aria-pressed="${!biz}">All businesses</button>`+rows.map(r=>`<button type="button" class="snap${r.od?' has-od':''}" data-snap="${esc(r.c.id)}" aria-pressed="${String(r.c.id)===biz}" style="--biz:${bizColor(r.c)}" title="Show only ${esc(r.c.Name||'')}">${bizLogo(r.c)}<span><strong>${esc(r.c.Name||'Client '+r.c.id)}</strong>${r.open} open${r.fu?` · ${r.fu} follow-up${r.fu===1?'':'s'}`:''}${r.od?` · <span class="od">${r.od} overdue</span>`:''}${r.neu?` · ${r.neu} new`:''}</span></button>`).join('');
 }
 function renderAdmin(){
  if(role!=='admin')return;
  const live=tasks.filter(t=>!t.archived_at);
  const open=live.filter(t=>!isDone(t));
  const overdue=open.filter(isOverdue).length;
- $('openCount').textContent=open.length;
+ $('openCount').textContent=open.filter(t=>!isWaiting(t)).length;
  $('requestCount').textContent=live.filter(t=>t.status==='Incoming').length;
  $('overdueCount').textContent=overdue;
  $('overdueStat').classList.toggle('alert',overdue>0);
@@ -3172,6 +3295,7 @@ function renderAdmin(){
  const needs=needsItems();
  renderShell(needs);
  const ar=curArea();
+ inboxCheck();
  if(ar==='home')renderHome(needs);
  else if(ar==='clients')renderClientsArea();
  else if(ar==='activity')renderActivity();
@@ -3538,7 +3662,7 @@ async function deleteOwnRequest(id,button){
  }catch(err){displayError('Request was not deleted',err);if(button)button.disabled=false;}
 }
 
-function rerenderFor(root){if(root===$('adminBoard'))renderAdmin();else renderPortal();}
+function rerenderFor(root){if(root===$('adminBoard')||root===$('areaHome'))renderAdmin();else renderPortal();}
 function onBoardClick(e){
  const root=e.currentTarget;
  const b=e.target.closest('[data-act]');
@@ -3591,7 +3715,8 @@ function onBoardClick(e){
   if(role==='client')deleteOwnRequest(id,b);
   return;
  }
- if(!isAdmin()||!t||root!==$('adminBoard'))return;
+ if(!isAdmin()||!t||(root!==$('adminBoard')&&root!==$('areaHome')))return;
+ if(act==='tofollow'){e.stopPropagation();applyChange(t.id,'status','Waiting on client');return;}
  if(act==='delete'){deleteTask(t,b);return;}
  if(act==='archive'){setArchived(t,true,b);return;}
  if(act==='restore'){setArchived(t,false,b);return;}
@@ -3606,7 +3731,7 @@ function onBoardClick(e){
 function onBoardKey(e){
  if((e.key==='Enter'||e.key===' ')&&e.target.matches?.('[data-act="expand-done"],[data-calday]')){e.preventDefault();e.target.click();}
 }
-['adminBoard'].forEach(id=>{
+['adminBoard','areaHome'].forEach(id=>{
  $(id).addEventListener('click',onBoardClick);
  $(id).addEventListener('keydown',onBoardKey);
 });
@@ -3675,7 +3800,7 @@ $('noteForm').onsubmit=async e=>{
  const button=$('noteSendBtn');button.disabled=true;
  noteSay(role==='client'?tr('Sending…'):'Saving note…');
  try{
-  const {data,error}=await sb.from('task_notes').insert({task_id:t.id,body}).select(NOTE_FIELDS).single();
+  const {data,error}=await sb.from('task_notes').insert({task_id:t.id,body}).select(noteFields()).single();
   if(error){noteSay('Note was not added: '+(error.message||'unknown error'));return;}
   if(data)notes.push(data);
   let failed=[];
@@ -3691,7 +3816,8 @@ $('noteForm').onsubmit=async e=>{
  finally{button.disabled=false;}
 };
 async function loadNotes(){
- const {data,error}=await sb.from('task_notes').select(NOTE_FIELDS).order('created_at',{ascending:false});
+ let {data,error}=await sb.from('task_notes').select(noteFields()).order('created_at',{ascending:false});
+ if(error&&noteEditCol&&/edited_at/.test(error.message||'')){noteEditCol=false;({data,error}=await sb.from('task_notes').select(NOTE_FIELDS).order('created_at',{ascending:false}));}
  if(error){notes=[];notesReady=false;return false;}
  notes=data||[];notesReady=true;return true;
 }
@@ -3905,7 +4031,7 @@ function setComposer(forClient){
  $('noteText').placeholder=forClient?tr('Write a message…'):'Write a note…';
  $('noteSendBtn').textContent=forClient?tr('Send message'):'Add note';
  const lbl=f.querySelector('.file-button span');if(lbl)lbl.textContent=forClient?tr('Add photos or videos'):'Add photos or videos';
- const hint=f.querySelector('.row small');if(hint)hint.textContent=forClient?tr('Messages can’t be edited or deleted.'):'Notes can\'t be edited or deleted. Each one is stamped with the name, date and time.';
+ const hint=f.querySelector('.row small');if(hint)hint.textContent=forClient?tr('Messages can’t be edited or deleted.'):'Only you can edit or delete notes and files. Clients can only add. Each note is stamped with the name, date and time.';
  noteFiles.ui(false);
 }
 function openJob(id,from){
@@ -4440,8 +4566,8 @@ $('logClear').onclick=async()=>{
 };
 
 /* ---------- Up next lineup (admin only, synced through admin_prefs) ---------- */
-const QUEUE_MAX=10;
-const Q_DEFAULTS=['#22c55e','#3b82f6','#3b82f6','#3b82f6','#3b82f6','#3b82f6','#3b82f6','#3b82f6','#3b82f6','#3b82f6'];
+const QUEUE_MAX=15;
+const Q_DEFAULTS=['#22c55e',...Array(QUEUE_MAX-1).fill('#3b82f6')];
 let qColors=[...Q_DEFAULTS],qColorsCol=false,qColorsDirty=false;
 function liveQueue(){
  return queue.filter(id=>{const t=tasks.find(x=>String(x.id)===String(id));return t&&!isDone(t)&&!t.archived_at;});
@@ -4512,6 +4638,7 @@ function upNextGroupHtml(){
 }
 // ===== END OF PART 9 of 13 =====
 function jumpToCard(t){
+ lnOpen.add(String(t.id));
  if(curArea()!=='tasks'||!$('client').classList.contains('hidden'))setArea('tasks',true);
  if(mobile&&adminMobileLayout()==='tabs')setPref('admin','mtab',isOverdue(t)?'overdue':statusClass(normStatus(t)));
  if(isDone(t))setPref('admin','doneOpen',true);
@@ -4955,7 +5082,7 @@ function renderShell(needs){
  $('snNeeds').textContent=n?String(n):'';
  $('snCalls').textContent=openCalls().length?String(openCalls().length):'';
  $('tbNeeds').textContent=n?String(n):'';
- $('snTasks').textContent=String(live.filter(t=>!isDone(t)).length);
+ $('snTasks').textContent=String(live.filter(t=>!isDone(t)&&!isWaiting(t)).length);
  $('snClients').textContent=String(clients.length);
  const nb=$('needsBtn');
  nb.textContent=n?`Needs me · ${n}`:'All caught up';
@@ -4987,6 +5114,8 @@ function renderHome(needs){
  $('homeIP').innerHTML=ip.length?ip.slice(0,8).map(t=>miniRow(t)).join(''):'<p class="muted side-empty">Nothing in progress.</p>';
  const ev=activityEvents(null).slice(0,7);
  $('homeFeed').innerHTML=ev.length?ev.map(feedRow).join(''):'<p class="muted side-empty">No activity yet.</p>';
+ renderInbox();
+ attachHomeDetail();
 }
 function renderActivity(){
  const ev=activityEvents(null).slice(0,150);
@@ -5124,6 +5253,11 @@ $('admin').addEventListener('click',e=>{
  const t=tasks.find(x=>String(x.id)===String(id));
  if(!t)return;
  if(g==='notes')openNotes(t.id);
+ else if(b.closest('#areaHome')){
+  const sec=b.closest('[id^="home"]')?.id||'';
+  homeOpen=homeOpen&&homeOpen.id===String(t.id)&&homeOpen.sec===sec?null:{id:String(t.id),sec};
+  renderAdmin();
+ }
  else jumpToCard(t);
 });
 $('adminBoard').addEventListener('click',e=>{
@@ -5137,6 +5271,371 @@ $('waitStat').onclick=()=>jumpTo('status','st-waiting-on-client');
 $('agedStat').onclick=()=>{quickF='aged';setArea('tasks');};
 
 
+/* ===================== Version 20 =====================
+   Lines view (one task per line, tap to open in place), swipe on phone,
+   Home rows open in place, admin note/file edit + delete,
+   "New from clients" inbox with sound. */
+
+/* ---- Lines view ---- */
+const lnOpen=new Set();
+let lnSwiped=0,homeOpen=null;
+function isLines(o){return !!(o&&o.admin&&!o.detail&&!selectMode&&(o.layout==='lines'||o.layout==='m-lines'));}
+function daysFrom(iso){const ms=Date.now()-(Date.parse(iso)||Date.now());return Math.max(0,Math.floor(ms/864e5));}
+function lineDays(t){
+ if(isDone(t)||t.archived_at)return '';
+ if(isLive(t))return `<span class="ut-chip live">● ${workOpen.state==='paused'?'Paused':'Working'}</span>`;
+ if(isWaiting(t)){
+  const d=daysFrom(t.status_changed_at||t.created_at);
+  return d>=1?`<span class="ln-days${d>=5?' old':d>=3?' warn':''}" title="Waiting on the client for ${d} day${d===1?'':'s'}">⏳ ${d}d waiting</span>`:'';
+ }
+ const ms=untouchedMs(t),d=Math.floor(ms/864e5);
+ return d>=1?`<span class="ln-days${d>=5?' old':d>=3?' warn':''}" title="Nobody has worked on this for ${esc(fmtSpanMs(ms))}">⏳ ${d}d</span>`:'';
+}
+function lineRow(t,o){
+ const key=String(t.id),id=esc(t.id),c=clientById(t.client_id);
+ const st=normStatus(t),pr=normPriority(t),due=dueInfo(t),od=isOverdue(t);
+ const open=lnOpen.has(key);
+ const qp=focusReady?queuePos(t):0;
+ const act=newActivityRaw(t);
+ const nC=notesReady?notesFor(t.id).length:0;
+ const cls=['ln',statusClass(st),open?'open':'',act?'has-new':'',od?'od':'',qp?'in-q':''].filter(Boolean).join(' ');
+ const title=esc(t.title||'Untitled');
+ return `<div class="${cls}" data-ln="${id}" style="--biz:${bizColor(c)}${qp?';'+qStyle(qp):''}">
+<div class="ln-swipe" aria-hidden="true"><span class="sw-start">▶ Start</span><span class="sw-fu">↻ Follow-up</span></div>
+<button type="button" class="ln-row" data-line="toggle" data-id="${id}" aria-expanded="${open}" title="${open?'Tap to close':'Tap to see everything'}">
+${qp?`<span class="q-badge${qp===1?' now':''}">#${qp}</span>`:''}${bizLogo(c,'biz-logo lg')}
+<span class="ln-main"><span class="ln-t">${act?`<i class="ln-dot" title="${esc(ACT_LABEL[act.kind]||'New from client')}"></i>`:''}${title}</span><span class="ln-sub"><b>${esc(c?.Name||'')}</b><span class="ln-info"> · ${esc(st)} · ${esc(pr)}${due?' · '+esc(due.label):''}</span>${nC?` · ${nC} note${nC===1?'':'s'}`:''}</span></span>
+<span class="ln-chips">${od?'<span class="od-flag">Overdue</span>':''}<span class="badge ${statusClass(st)} ln-x">${esc(st)}</span><span class="badge ${priorityClass(pr)} ln-x">${esc(pr)}</span>${due&&!od?`<span class="due-chip ${due.cls} ln-x">${esc(due.label)}</span>`:''}${fuChip(t)}${lineDays(t)}</span>
+<span class="ln-arrow" aria-hidden="true">▾</span>
+</button>
+${open?`<div class="ln-detail">${taskCard(t,{...o,detail:true})}</div>`:''}
+</div>`;
+}
+$('adminBoard').addEventListener('click',e=>{
+ const b=e.target.closest('[data-line="toggle"]');
+ if(!b)return;
+ if(Date.now()-lnSwiped<450)return;
+ const k=String(b.dataset.id);
+ if(lnOpen.has(k))lnOpen.delete(k);else lnOpen.add(k);
+ renderAdmin();
+});
+/* Phone: swipe a line right to start it, left to move it to follow-up */
+(function(){
+ const root=$('adminBoard');
+ let sw=null;
+ root.addEventListener('touchstart',e=>{
+  const row=e.target.closest('.ln-row');
+  if(!row||!mobile||e.touches.length!==1){sw=null;return;}
+  const tc=e.touches[0];
+  sw={row,ln:row.closest('.ln'),x:tc.clientX,y:tc.clientY,dx:0,lock:null};
+ },{passive:true});
+ root.addEventListener('touchmove',e=>{
+  if(!sw)return;
+  const tc=e.touches[0],dx=tc.clientX-sw.x,dy=tc.clientY-sw.y;
+  if(!sw.lock){
+   if(Math.abs(dx)>10&&Math.abs(dx)>Math.abs(dy)*1.3)sw.lock='x';
+   else if(Math.abs(dy)>10){sw=null;return;}
+   else return;
+  }
+  e.preventDefault();
+  sw.dx=Math.max(-140,Math.min(140,dx));
+  sw.row.style.transition='none';
+  sw.row.style.transform=`translateX(${sw.dx}px)`;
+  sw.ln.classList.toggle('sw-r',sw.dx>0);
+  sw.ln.classList.toggle('sw-l',sw.dx<0);
+  sw.ln.classList.toggle('sw-go',Math.abs(sw.dx)>=80);
+ },{passive:false});
+ const end=()=>{
+  if(!sw)return;
+  const s0=sw;sw=null;
+  if(s0.lock!=='x')return;
+  lnSwiped=Date.now();
+  s0.row.style.transition='transform .2s';
+  s0.row.style.transform='';
+  s0.ln.classList.remove('sw-r','sw-l','sw-go');
+  if(Math.abs(s0.dx)<80)return;
+  const t=tasks.find(x=>String(x.id)===String(s0.row.dataset.id));
+  if(!t||!isAdmin()||isDone(t)||t.archived_at)return;
+  if(navigator.vibrate)try{navigator.vibrate(25);}catch(_){}
+  if(s0.dx>0){
+   if(workReady)workStart(t);
+   else if(normStatus(t)!=='In progress')applyChange(t.id,'status','In progress');
+  }else{
+   if(isWaiting(t))fuFollowed(t);
+   else applyChange(t.id,'status','Waiting on client');
+  }
+ };
+ root.addEventListener('touchend',end);
+ root.addEventListener('touchcancel',()=>{if(sw){sw.row.style.transform='';sw.ln.classList.remove('sw-r','sw-l','sw-go');}sw=null;});
+})();
+
+/* ---- Home: a task row opens right under itself ---- */
+function attachHomeDetail(){
+ if(!homeOpen)return;
+ const t=tasks.find(x=>String(x.id)===homeOpen.id);
+ const box=homeOpen.sec?$(homeOpen.sec):null;
+ const row=box?box.querySelector(`[data-hgo="task"][data-id="${CSS.escape(homeOpen.id)}"]`):null;
+ if(!t||!row){homeOpen=null;return;}
+ row.classList.add('hd-on');
+ let after=row;
+ if(row.closest('.un-row'))after=row.closest('.un-row');
+ else if(row.classList.contains('fu-main')&&row.parentElement)after=row.parentElement;
+ else if(row.classList.contains('un-big')){const n=row.nextElementSibling;if(n&&(n.classList.contains('work-start')||n.classList.contains('work-hint')))after=n;}
+ const wrap=document.createElement('div');
+ wrap.className='home-detail board layout-detail';
+ wrap.innerHTML=`${taskCard(t,{admin:true,view:'status',layout:'detail',detail:true})}<div class="hd-foot"><button type="button" class="link-button" data-hd="jump" data-id="${esc(t.id)}">Open in Tasks →</button><button type="button" data-hd="close">Close ▴</button></div>`;
+ after.insertAdjacentElement('afterend',wrap);
+}
+$('areaHome').addEventListener('click',e=>{
+ const b=e.target.closest('[data-hd]');
+ if(!b)return;
+ if(b.dataset.hd==='close'){homeOpen=null;renderAdmin();return;}
+ const t=tasks.find(x=>String(x.id)===String(b.dataset.id));
+ homeOpen=null;
+ if(t)jumpToCard(t);
+});
+
+/* ---- Notes and files: only you can edit or delete ---- */
+let noteEditCol=true,noteEditId=null;
+function noteFields(){return NOTE_FIELDS+(noteEditCol?',edited_at':'');}
+function adminCanEdit(){return isAdmin()&&role==='admin';}
+async function saveNoteEdit(nid){
+ const n=notes.find(x=>String(x.id)===String(nid));
+ const box=document.querySelector(`[data-noteedit="${CSS.escape(String(nid))}"]`);
+ if(!n||!box)return;
+ const body=box.value.trim();
+ const files=attachments.filter(a=>String(a.note_id)===String(nid)).length;
+ if(!body&&!files){noteSay('A note can’t be empty. Use Delete instead.');return;}
+ if(body.length>2000){noteSay('Notes can be up to 2000 characters.');return;}
+ if(body===(n.body||'')){noteEditId=null;renderNotesModal();return;}
+ noteSay('Saving…');
+ const {data,error}=await sb.from('task_notes').update({body}).eq('id',n.id).select(noteFields());
+ if(error||!data?.length){noteSay('Note was not changed: '+(error?.message||'no permission. Run SQL 10 in Supabase.'));return;}
+ Object.assign(n,data[0]);
+ noteEditId=null;
+ noteSay('Note updated.');
+ renderNotesModal();render();
+}
+async function deleteNote(nid){
+ const n=notes.find(x=>String(x.id)===String(nid));
+ if(!n)return;
+ const files=attachments.filter(a=>String(a.note_id)===String(nid));
+ const ok=await askConfirm({title:'Delete this note?',body:`This removes the note${files.length?` and its ${plural(files.length,'file')}`:''} for you and the client. It can't be undone.`,ok:'Delete',cancel:'Keep it',danger:true});
+ if(!ok)return;
+ noteSay('Deleting…');
+ if(files.length){
+  const {error:fe}=await sb.from('task_attachments').delete().eq('note_id',n.id);
+  if(fe){noteSay('Note was not deleted: '+(fe.message||'')+' Run SQL 10 in Supabase.');return;}
+ }
+ const {data,error}=await sb.from('task_notes').delete().eq('id',n.id).select('id');
+ if(error||!data?.length){noteSay('Note was not deleted: '+(error?.message||'no permission. Run SQL 10 in Supabase.'));if(files.length)await loadAttachments();renderNotesModal();return;}
+ notes=notes.filter(x=>String(x.id)!==String(nid));
+ const paths=files.map(a=>a.path).filter(Boolean);
+ attachments=attachments.filter(a=>String(a.note_id)!==String(nid));
+ let msg='Note deleted.';
+ if(paths.length){const {error:se}=await sb.storage.from(BUCKET).remove(paths);if(se)msg+=` The ${plural(paths.length,'file')} could not be removed from storage: ${se.message}`;}
+ noteSay(msg);
+ renderNotesModal();render();
+}
+async function deleteFile(fid){
+ const a=attachments.find(x=>String(x.id)===String(fid));
+ if(!a)return;
+ const what=a.kind==='image'?'photo':a.kind==='video'?'video':a.kind==='audio'?'voice note':'file';
+ const ok=await askConfirm({title:`Delete this ${what}?`,body:`It will be gone for you and the client. It can't be undone.`,ok:'Delete',cancel:'Keep it',danger:true});
+ if(!ok)return;
+ const {data,error}=await sb.from('task_attachments').delete().eq('id',a.id).select('id');
+ if(error||!data?.length){const m='File was not deleted: '+(error?.message||'no permission. Run SQL 10 in Supabase.');if(notesTaskId!=null)noteSay(m);else notice(m);return;}
+ attachments=attachments.filter(x=>String(x.id)!==String(fid));
+ let msg=`${what[0].toUpperCase()+what.slice(1)} deleted.`;
+ if(a.path){const {error:se}=await sb.storage.from(BUCKET).remove([a.path]);if(se)msg+=` (Storage copy not removed: ${se.message})`;}
+ if(notesTaskId!=null)noteSay(msg);else notice(msg);
+ renderNotesModal();render();
+}
+document.addEventListener('click',e=>{
+ const b=e.target.closest('[data-note],[data-delfile]');
+ if(!b||!adminCanEdit())return;
+ e.preventDefault();e.stopPropagation();
+ if(b.dataset.delfile){deleteFile(b.dataset.delfile);return;}
+ const nid=b.dataset.nid,a=b.dataset.note;
+ if(a==='edit'){noteEditId=nid;renderNotesModal();const box=document.querySelector(`[data-noteedit="${CSS.escape(String(nid))}"]`);if(box){box.focus();box.setSelectionRange(box.value.length,box.value.length);}}
+ else if(a==='cancel'){noteEditId=null;renderNotesModal();}
+ else if(a==='save')saveNoteEdit(nid);
+ else if(a==='del')deleteNote(nid);
+},true);
+
+/* ---- New from clients (yellow inbox on Home) ---- */
+const IB_KEY='signix-inbox';
+const IB_TAG={note:'Note',photo:'Photo',video:'Video',voice:'Voice note',file:'File',request:'New request',call:'Call request'};
+let inboxSeen=new Set(),inboxSince=0,inboxDb=false,inboxLoaded=false,inboxPrev=null,inboxBoot=0,inboxDirty=new Set(),inboxSaveTimer=null;
+function ibLocal(){try{return JSON.parse(localStorage.getItem(IB_KEY)||'{}')||{};}catch(e){return {};}}
+async function loadInbox(){
+ if(!isAdmin())return false;
+ const loc=ibLocal();
+ let ok=false;
+ try{
+  const {data,error}=await sb.from('admin_prefs').select('inbox_seen,inbox_since').eq('id',1).maybeSingle();
+  if(!error&&data){
+   ok=true;inboxDb=true;
+   inboxSeen=new Set((Array.isArray(data.inbox_seen)?data.inbox_seen:[]).map(String));
+   inboxSince=data.inbox_since?Date.parse(data.inbox_since):0;
+  }
+ }catch(e){}
+ if(!ok){inboxDb=false;inboxSeen=new Set((loc.seen||[]).map(String));inboxSince=Number(loc.since)||0;}
+ for(const k of inboxDirty)inboxSeen.add(k);
+ if(loc.since&&Number(loc.since)>inboxSince&&!ok)inboxSince=Number(loc.since);
+ if(!inboxSince){inboxSince=Date.now()-3*864e5;saveInbox();}
+ inboxLoaded=true;
+ return ok;
+}
+function saveInbox(){
+ clearTimeout(inboxSaveTimer);
+ inboxSaveTimer=setTimeout(async()=>{
+  if(notesReady){const live=new Set(inboxItems(true).map(i=>i.k));inboxSeen=new Set([...inboxSeen].filter(k=>live.has(k)));}
+  const seen=[...inboxSeen].slice(-500),since=new Date(inboxSince).toISOString();
+  try{localStorage.setItem(IB_KEY,JSON.stringify({seen,since:inboxSince}));}catch(e){}
+  if(!inboxDb){inboxDirty.clear();return;}
+  try{
+   const {error}=await sb.from('admin_prefs').update({inbox_seen:seen,inbox_since:since}).eq('id',1);
+   if(!error)inboxDirty.clear();
+  }catch(e){}
+ },400);
+}
+function inboxItems(all){
+ if(!isAdmin()||!inboxLoaded)return [];
+ const out=[],since=inboxSince||0;
+ const add=it=>{if(!(it.at>since))return;if(!all&&inboxSeen.has(it.k))return;out.push(it);};
+ for(const n of notes){
+  if(n.is_admin)continue;
+  const t=tasks.find(x=>String(x.id)===String(n.task_id));
+  const files=attachments.filter(a=>String(a.note_id)===String(n.id));
+  const kind=!files.length?'note':files.some(a=>a.kind==='image')?'photo':files.some(a=>a.kind==='video')?'video':files.some(a=>a.kind==='audio')?'voice':'file';
+  const body=String(n.body||'').trim();
+  add({k:'n'+n.id,at:Date.parse(n.created_at),iso:n.created_at,kind,who:n.author_name||'Client',what:body?'“'+(body.length>140?body.slice(0,140)+'…':body)+'”':'Sent '+(mediaSummary(files)||'files'),t,cid:t?t.client_id:n.client_id});
+ }
+ for(const t of tasks){
+  if(!t.created_by||t.created_by===ADMIN_UID||!t.created_at)continue;
+  const d=String(t.description||'').trim();
+  add({k:'t'+t.id,at:Date.parse(t.created_at),iso:t.created_at,kind:'request',who:memberNames[t.created_by]||'A client',what:(t.title||'New request')+(d?' — '+(d.length>100?d.slice(0,100)+'…':d):''),t,cid:t.client_id});
+ }
+ if(callsReady)for(const c of calls){
+  add({k:'c'+c.id,at:Date.parse(c.created_at),iso:c.created_at,kind:'call',who:c.requester_name||'A client',what:(REASONS[c.reason]||'Wants a call')+(c.note?': “'+String(c.note).slice(0,120)+'”':''),t:c.task_id?tasks.find(x=>String(x.id)===String(c.task_id)):null,cid:c.client_id,call:c});
+ }
+ return out.sort((a,b)=>b.at-a.at);
+}
+function ibRow(it){
+ const c=clientById(it.cid);
+ const where=[it.t?(it.t.title||'Untitled'):'',c?.Name||''].filter(Boolean).join(' · ');
+ return `<div class="ib-row ib-${it.kind}" data-k="${esc(it.k)}" style="--biz:${bizColor(c)}">${bizLogo(c,'biz-logo')}<div class="ib-main"><div class="ib-top"><span class="ib-tag">${esc(IB_TAG[it.kind]||'New')}</span><strong>${esc(it.who)}</strong><span class="ib-time" title="${esc(fmtStamp(it.iso))}">${esc(relTime(it.at))} · ${esc(fmtStamp(it.iso))}</span></div><div class="ib-what">${esc(it.what)}</div>${where?`<small class="ib-where">${esc(where)}</small>`:''}</div><div class="ib-acts"><button type="button" class="ib-open" data-inbox="open" data-k="${esc(it.k)}">Open</button><button type="button" class="ib-seen" data-inbox="seen" data-k="${esc(it.k)}">✓ Seen</button></div></div>`;
+}
+function renderInbox(){
+ if(!$('homeInboxSec'))return;
+ const items=inboxItems();
+ show('homeInboxSec',items.length>0);
+ $('inboxTitle').textContent=`New from clients · ${items.length}`;
+ $('homeInbox').innerHTML=items.length?`<div class="ib-list">${items.slice(0,40).map(ibRow).join('')}</div>${items.length>40?`<p class="muted more-note">and ${items.length-40} more</p>`:''}`:'';
+}
+function inboxTitleBadge(n){
+ const base=document.title.replace(/^\(\d+\) /,'');
+ document.title=n?`(${n}) ${base}`:base;
+}
+function inboxCheck(){
+ if(role!=='admin'||!inboxLoaded||!notesReady)return;
+ const items=inboxItems();
+ inboxTitleBadge(items.length);
+ const keys=new Set(items.map(i=>i.k));
+ if(!inboxPrev){inboxPrev=keys;inboxBoot=Date.now();return;}
+ const fresh=items.filter(i=>!inboxPrev.has(i.k)&&i.at>inboxBoot-10*60000);
+ inboxPrev=keys;
+ if(!fresh.length)return;
+ playAlert();
+ if(navigator.vibrate&&mobile)try{navigator.vibrate([200,100,200]);}catch(_){}
+ const sec=$('homeInboxSec');
+ if(sec){sec.classList.remove('ib-flash');void sec.offsetWidth;sec.classList.add('ib-flash');}
+ if(curArea()!=='home')notice(`New from ${fresh[0].who}: ${IB_TAG[fresh[0].kind]||'activity'}${fresh.length>1?` (+${fresh.length-1} more)`:''}. See Home.`);
+}
+function inboxMark(keys){
+ for(const k of keys){inboxSeen.add(k);inboxDirty.add(k);}
+ saveInbox();
+}
+$('homeInboxSec').addEventListener('click',e=>{
+ const b=e.target.closest('[data-inbox]');
+ if(!b||!isAdmin())return;
+ const a=b.dataset.inbox;
+ if(a==='all'){
+  const items=inboxItems();
+  const ids=new Set(items.map(i=>i.t&&String(i.t.id)).filter(Boolean));
+  inboxSince=Date.now();inboxSeen.clear();inboxDirty.clear();saveInbox();
+  ids.forEach(id=>markSeen(id));
+  renderAdmin();return;
+ }
+ const it=inboxItems(true).find(i=>i.k===b.dataset.k);
+ if(!it)return;
+ if(a==='seen'){
+  inboxMark([it.k]);
+  if(it.t&&!inboxItems().some(i=>i.t&&String(i.t.id)===String(it.t.id)))markSeen(it.t.id);
+  renderAdmin();return;
+ }
+ if(a==='open'){
+  if(it.kind==='call')setArea('calls');
+  else if(it.t)openNotes(it.t.id);
+ }
+});
+
+/* ---- Sounds (made in the browser, no files) ---- */
+const SOUNDS=[['chime','Chime'],['bell','Bell'],['alarm','Alarm (loud)'],['ding','Ding-dong'],['pop','Pop']];
+const SND_KEY='signix-sound';
+function sndCfg(){
+ let c={};try{c=JSON.parse(localStorage.getItem(SND_KEY)||'{}')||{};}catch(e){}
+ return {on:c.on!==false,snd:SOUNDS.some(s=>s[0]===c.snd)?c.snd:'chime',vol:Math.max(5,Math.min(100,Number(c.vol)||70))};
+}
+function sndSave(c){try{localStorage.setItem(SND_KEY,JSON.stringify(c));}catch(e){}}
+let actx=null;
+function audioCtx(){
+ try{
+  if(!actx){const C=window.AudioContext||window.webkitAudioContext;if(!C)return null;actx=new C();}
+  if(actx.state==='suspended')actx.resume().catch(()=>{});
+ }catch(e){return null;}
+ return actx;
+}
+document.addEventListener('pointerdown',()=>{if(role==='admin'&&sndCfg().on)audioCtx();},{passive:true,capture:true});
+function tone(ctx,f,at,dur,type,vol){
+ const o=ctx.createOscillator(),g=ctx.createGain();
+ o.type=type;o.frequency.setValueAtTime(f,at);
+ g.gain.setValueAtTime(0.0001,at);
+ g.gain.exponentialRampToValueAtTime(Math.max(0.0002,vol),at+0.015);
+ g.gain.exponentialRampToValueAtTime(0.0001,at+dur);
+ o.connect(g);g.connect(ctx.destination);
+ o.start(at);o.stop(at+dur+0.05);
+}
+function playSound(name,vol){
+ const ctx=audioCtx();
+ if(!ctx)return false;
+ const v=(vol/100)*0.45,t=ctx.currentTime+0.03;
+ if(name==='bell'){[0,0.8].forEach(d=>{tone(ctx,987.8,t+d,1.5,'sine',v);tone(ctx,1975.5,t+d,0.9,'sine',v*0.35);tone(ctx,2963.2,t+d,0.4,'sine',v*0.15);});}
+ else if(name==='alarm'){for(let i=0;i<10;i++)tone(ctx,i%2?660:880,t+i*0.2,0.18,'square',v*0.5);}
+ else if(name==='ding'){tone(ctx,784,t,0.7,'sine',v);tone(ctx,622.3,t+0.45,1.1,'sine',v);}
+ else if(name==='pop'){tone(ctx,520,t,0.12,'triangle',v);tone(ctx,880,t+0.14,0.14,'triangle',v);}
+ else{[880,1108.7,1318.5,1760].forEach((f,i)=>tone(ctx,f,t+i*0.13,0.9,'sine',v*0.8));}
+ return ctx.state==='running';
+}
+let sndWarned=false;
+function playAlert(){
+ const c=sndCfg();
+ if(!c.on)return;
+ const ok=playSound(c.snd,c.vol);
+ if(!ok&&!sndWarned){sndWarned=true;notice('New client activity. Tap anywhere on the page once so the dashboard can play its alert sound.');}
+}
+(function(){
+ const f=$('sndForm');
+ if(!f)return;
+ f.snd.innerHTML=SOUNDS.map(([v,l])=>`<option value="${v}">${esc(l)}</option>`).join('');
+ const c=sndCfg();
+ f.on.checked=c.on;f.snd.value=c.snd;f.vol.value=c.vol;
+ const save=()=>{sndSave({on:f.on.checked,snd:f.snd.value,vol:Number(f.vol.value)});$('sndStatus').textContent='Saved on this device.';};
+ f.addEventListener('change',e=>{save();if(e.target===f.snd&&f.on.checked)playSound(f.snd.value,Number(f.vol.value));});
+ $('sndTest').onclick=()=>{const ok=playSound(f.snd.value,Number(f.vol.value));$('sndStatus').textContent=ok?'Playing…':'Your browser blocked the sound. Tap the button again.';};
+})();
+
 /* ---------- Auto refresh ---------- */
 function stopTimers(){
  clearInterval(pollTimer);pollTimer=null;
@@ -5148,7 +5647,7 @@ function startTimers(){
  if(role==='client')tickTimer=setInterval(tick,1000);
 }
 async function poll(force){
- if(!role||document.hidden)return;
+ if(!role||(document.hidden&&!(role==='admin'&&sndCfg().on)))return;
  if(!force&&(menuCtx||editingId!=null||recordingNow()))return;
  if(Date.now()-brandLoadedAt>50*60000){
   if(role==='admin')await loadClients();
@@ -5162,6 +5661,7 @@ async function poll(force){
  await loadCalls();
  if(role==='admin')await loadJobCounts();
  if(role==='admin')await loadFollowups();
+ if(role==='admin')await loadInbox();
  await loadTasks();
  if(role==='admin')await loadWork();
  if(role==='admin'&&$('loginLogPanel').open)await loadLoginLog();
@@ -5196,6 +5696,7 @@ async function refresh(){
   await loadCalls();
   await loadJobCounts(true);
   await loadFollowups();
+  await loadInbox();
   const clientsOk=await loadClients();
   const tasksOk=await loadTasks();
   const loginsOk=await loadLogins();
