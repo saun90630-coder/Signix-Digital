@@ -1758,7 +1758,15 @@ body:has(#workRoot .wk-modal) #notesModal{z-index:127}
 .q-drop-after{box-shadow:0 4px 0 0 #fde047,0 0 14px rgba(253,224,71,.5)!important}
 .un-row .q-drop-before{box-shadow:-4px 0 0 0 #fde047,0 0 14px rgba(253,224,71,.5)!important}
 .un-row .q-drop-after{box-shadow:4px 0 0 0 #fde047,0 0 14px rgba(253,224,71,.5)!important}
-.un-big .q-grip{font-size:22px;width:30px}
+.un-list [data-qid],#homeUpNext [data-qid]{-webkit-touch-callout:none;-webkit-user-select:none;user-select:none}
+@media (hover:hover){.un-list [data-qid],#homeUpNext [data-qid]{cursor:grab}}
+.q-drag-on{overflow-anchor:none}
+/* Rename a task */
+.tc-ren{margin-left:8px;width:26px;height:26px;min-height:26px;padding:0;border-radius:50%;background:transparent;border:1px solid #33465f;color:#9fb0c8;font-size:13px;line-height:1;vertical-align:2px;opacity:.75}
+.tc-ren:hover{opacity:1;color:#fff;border-color:#60a5fa}
+.tc-rename{display:flex;gap:6px;flex-wrap:wrap;align-items:center}
+.tc-rename input{flex:1 1 220px;min-width:0;font-size:15px;font-weight:600;padding:7px 10px}
+.tc-rename button{min-height:36px}
 </style>
 </head>
 <body>
@@ -2107,7 +2115,7 @@ body:has(#workRoot .wk-modal) #notesModal{z-index:127}
 <h4>Up next lineup colors (only you see these)</h4>
 <p class="muted" style="font-size:13px;margin:0 0 6px">The color each spot in your lineup glows. #1 is the task you are working on now.</p>
 <div class="qc-grid" id="qcGrid"></div>
-<div class="qc-row"><button type="button" id="qcSame">Make #3–#15 match #2</button><button type="button" id="qcReset">Reset to green and blue</button></div>
+<div class="qc-row"><button type="button" id="qcSame">Make #3–#20 match #2</button><button type="button" id="qcReset">Reset to green and blue</button></div>
 <div class="anim-preview" id="qcPreview" aria-label="Preview"></div>
 <p id="qcStatus" class="muted" role="status"></p>
 </form>
@@ -3166,7 +3174,7 @@ function taskCard(t,o){
  return `<article class="${cls}" data-id="${id}"${qp?` style="${qStyle(qp)}"`:''}>
  ${sel}${actRibbon}
  ${o.admin?bizHeader(t.client_id):''}
- <h4 class="tc-title" data-act="mopen" data-id="${id}">${esc(t.title||'Untitled')}</h4>
+ ${o.admin&&String(renameId)===key?`<form class="tc-rename" data-rename="${id}"><input name="t" maxlength="200" required value="${esc(renameDraft??t.title??'')}" aria-label="Task name"><button type="submit" class="primary">Save</button><button type="button" data-act="rename-cancel" data-id="${id}">Cancel</button></form>`:`<h4 class="tc-title" data-act="mopen" data-id="${id}">${esc(t.title||'Untitled')}${o.admin&&!t.archived_at?`<button type="button" class="tc-ren" data-act="rename" data-id="${id}" title="Change the task name" aria-label="Rename task">✎</button>`:''}</h4>`}
  <div class="tc-meta">${actBadge}${qBadge}${od?'<span class="od-flag">Overdue</span>':''}${ageEl}${o.admin?untouchedChip(t)+fuChip(t):''}${statusEl}${prEl}${dueEl}${tagChip(t,o)}${o.admin&&!t.archived_at&&!isDone(t)&&!isWaiting(t)?`<button type="button" class="tc-tofu" data-act="tofollow" data-id="${id}" title="Move to follow-up (Waiting on client)">↻ Follow-up</button>`:''}${focusBtn}${corner}</div>
  ${t.created_by&&memberNames[t.created_by]?`<div class="tc-by">${PERSON_ICON}<span>Submitted by <strong>${esc(memberNames[t.created_by])}</strong></span></div>`:''}
  ${o.admin&&t.created_at?`<div class="tc-added">${CLOCK_ICON}<span>Added ${esc(fmtStamp(t.created_at))}</span></div>`:''}
@@ -3727,6 +3735,8 @@ function onBoardClick(e){
   return;
  }
  if(!isAdmin()||!t||(root!==$('adminBoard')&&root!==$('areaHome')))return;
+ if(act==='rename'){e.stopPropagation();renameId=key;renameDraft=null;rerenderFor(root);const inp=document.querySelector(`form[data-rename="${CSS.escape(key)}"] input`);if(inp){inp.focus();inp.select();}return;}
+ if(act==='rename-cancel'){e.stopPropagation();renameId=null;renameDraft=null;rerenderFor(root);return;}
  if(act==='tofollow'){e.stopPropagation();applyChange(t.id,'status','Waiting on client');return;}
  if(act==='delete'){deleteTask(t,b);return;}
  if(act==='archive'){setArchived(t,true,b);return;}
@@ -4577,7 +4587,7 @@ $('logClear').onclick=async()=>{
 };
 
 /* ---------- Up next lineup (admin only, synced through admin_prefs) ---------- */
-const QUEUE_MAX=15;
+const QUEUE_MAX=20;
 const Q_DEFAULTS=['#22c55e',...Array(QUEUE_MAX-1).fill('#3b82f6')];
 let qColors=[...Q_DEFAULTS],qColorsCol=false,qColorsDirty=false;
 function liveQueue(){
@@ -4642,9 +4652,9 @@ function upNextGroupHtml(){
  if(!q.length)return '';
  return `<section class="group upnext-grp" data-group="upnext" id="grp-adminBoard-upnext" style="--qc1:${qColor(1)}" aria-label="Up next">
 <header class="group-head"><span class="gdot"></span><h3>Up next</h3><span class="count">${q.length}</span></header>
-<div class="group-body un-body"><p class="muted un-hint">Tap a title to jump to the task. Drag ⠿ to move a job to any spot.</p><ol class="un-list">${q.map((id,i)=>{
+<div class="group-body un-body"><p class="muted un-hint">Tap a title to jump to the task. On a phone, press and hold a job, then drag it. On a computer, click and drag it.</p><ol class="un-list">${q.map((id,i)=>{
   const t=tasks.find(x=>String(x.id)===String(id)),c=clientById(t.client_id),tid=esc(t.id);
-  return `<li class="un-item" data-qid="${tid}" style="--biz:${bizColor(c)};${qStyle(i+1)}">${queueCol&&liveQueue().length>1?`<span class="q-grip" data-qdrag title="Drag to move" aria-hidden="true">⠿</span>`:''}<span class="un-num">${i+1}</span>${bizLogo(c,'biz-logo lg')}<button type="button" class="un-title" data-un="jump" data-id="${tid}"><span>${esc(t.title||'Untitled')}</span><small>${esc(c?.Name||'')} · ${esc(normStatus(t))}${t.due_date?' · '+esc(dueInfo(t)?.label||''):''}</small></button><span class="un-ctl">${queueCol?`<button type="button" data-un="up" data-id="${tid}" aria-label="Move up"${i===0?' disabled':''}>▲</button><button type="button" data-un="down" data-id="${tid}" aria-label="Move down"${i===q.length-1?' disabled':''}>▼</button>`:''}<button type="button" data-un="remove" data-id="${tid}" aria-label="Remove from lineup">✕</button></span></li>`;
+  return `<li class="un-item" data-qid="${tid}" style="--biz:${bizColor(c)};${qStyle(i+1)}"><span class="un-num">${i+1}</span>${bizLogo(c,'biz-logo lg')}<button type="button" class="un-title" data-un="jump" data-id="${tid}"><span>${esc(t.title||'Untitled')}</span><small>${esc(c?.Name||'')} · ${esc(normStatus(t))}${t.due_date?' · '+esc(dueInfo(t)?.label||''):''}</small></button></li>`;
  }).join('')}</ol></div></section>`;
 }
 // ===== END OF PART 9 of 13 =====
@@ -5111,7 +5121,7 @@ function renderHome(needs){
  else{
   const t1=tasks.find(x=>String(x.id)===String(q[0])),c1=clientById(t1.client_id);
   un=unBigHtml(t1,c1);
-  if(q.length>1)un+=`<div class="un-row">${q.slice(1).map((id,i)=>{const t=tasks.find(x=>String(x.id)===String(id)),c=clientById(t.client_id);return `<button type="button" class="un-chip" data-hgo="task" data-id="${esc(t.id)}" data-qid="${esc(t.id)}" style="${qStyle(i+2)}">${queueCol&&liveQueue().length>1?`<span class="q-grip" data-qdrag title="Drag to move" aria-hidden="true">⠿</span>`:''}<span class="uc-num">${i+2}</span>${bizLogo(c,'biz-logo')}<span style="min-width:0"><span class="uc-t">${esc(t.title||'Untitled')}</span><small>${esc(c?.Name||'')}</small>${untouchedChip(t,true)}</span></button>`;}).join('')}</div>`;
+  if(q.length>1)un+=`<div class="un-row">${q.slice(1).map((id,i)=>{const t=tasks.find(x=>String(x.id)===String(id)),c=clientById(t.client_id);return `<button type="button" class="un-chip" data-hgo="task" data-id="${esc(t.id)}" data-qid="${esc(t.id)}" style="${qStyle(i+2)}"><span class="uc-num">${i+2}</span>${bizLogo(c,'biz-logo')}<span style="min-width:0"><span class="uc-t">${esc(t.title||'Untitled')}</span><small>${esc(c?.Name||'')}</small>${untouchedChip(t,true)}</span></button>`;}).join('')}</div>`;
  }
  $('homeUpNext').innerHTML=un;
  renderFollowups();
@@ -5647,32 +5657,27 @@ function playAlert(){
  $('sndTest').onclick=()=>{const ok=playSound(f.snd.value,Number(f.vol.value));$('sndStatus').textContent=ok?'Playing…':'Your browser blocked the sound. Tap the button again.';};
 })();
 
-/* ---- Up next: drag ⠿ to any spot (board list and Home) ---- */
-let qDrag=null,qDragEnd=0;
-function qDragStart(e){
- const h=e.target.closest('[data-qdrag]');
- if(!h||!isAdmin()||!queueCol||(e.button!=null&&e.button>0))return;
- const item=h.closest('[data-qid]'),scope=item&&(item.closest('.un-list')||item.closest('#homeUpNext'));
- if(!item||!scope)return;
- e.preventDefault();e.stopPropagation();
+/* ---- Up next: move any job to any spot (board list and Home) ----
+   Phone: press and hold ~0.4s, then drag. Computer: click and drag. */
+let qDrag=null,qDragEnd=0,qPend=null;
+function qItemAt(x,y){const el=document.elementFromPoint(x,y);return el&&el.closest('[data-qid]');}
+function qScopeOf(item){return item&&(item.closest('.un-list')||item.closest('#homeUpNext'));}
+function qCan(item){return !!(item&&isAdmin()&&queueCol&&qScopeOf(item)&&liveQueue().length>1);}
+function qBegin(item,x,y){
  const r=item.getBoundingClientRect();
  const ghost=item.cloneNode(true);
  ghost.classList.add('q-ghost');
  Object.assign(ghost.style,{position:'fixed',left:r.left+'px',top:r.top+'px',width:r.width+'px',height:r.height+'px',margin:'0',zIndex:9999,pointerEvents:'none'});
  document.body.appendChild(ghost);
  item.classList.add('q-dragging');
- qDrag={id:String(item.dataset.qid),scope,item,ghost,x:e.clientX,y:e.clientY,ox:r.left,oy:r.top,target:null,moved:false,pid:e.pointerId};
- try{h.setPointerCapture(e.pointerId);}catch(_){}
  document.body.classList.add('q-drag-on');
+ qDrag={id:String(item.dataset.qid),scope:qScopeOf(item),item,ghost,x,y,target:null};
+ if(navigator.vibrate)try{navigator.vibrate(30);}catch(_){}
 }
-function qDragMove(e){
- if(!qDrag||e.pointerId!==qDrag.pid)return;
- e.preventDefault();
- const dx=e.clientX-qDrag.x,dy=e.clientY-qDrag.y;
- if(Math.abs(dx)+Math.abs(dy)>4)qDrag.moved=true;
- qDrag.ghost.style.transform=`translate(${dx}px,${dy}px)`;
- const el=document.elementFromPoint(e.clientX,e.clientY);
- let t=el&&el.closest('[data-qid]');
+function qMove(x,y){
+ if(!qDrag)return;
+ qDrag.ghost.style.transform=`translate(${x-qDrag.x}px,${y-qDrag.y}px) scale(1.02)`;
+ let t=qItemAt(x,y);
  if(t&&!qDrag.scope.contains(t))t=null;
  if(qDrag.target&&qDrag.target!==t)qDrag.target.classList.remove('q-drop-before','q-drop-after');
  qDrag.target=t&&t!==qDrag.item?t:null;
@@ -5681,13 +5686,13 @@ function qDragMove(e){
   qDrag.target.classList.toggle('q-drop-after',to>from);
   qDrag.target.classList.toggle('q-drop-before',to<from);
  }
- const edge=70;
- if(e.clientY<edge)window.scrollBy(0,-12);else if(e.clientY>innerHeight-edge)window.scrollBy(0,12);
+ const edge=80;
+ if(y<edge)window.scrollBy(0,-14);else if(y>innerHeight-edge)window.scrollBy(0,14);
  const row=qDrag.scope.querySelector('.un-row');
- if(row&&row.contains(el)){const rr=row.getBoundingClientRect();if(e.clientX<rr.left+40)row.scrollLeft-=12;else if(e.clientX>rr.right-40)row.scrollLeft+=12;}
+ if(row){const rr=row.getBoundingClientRect();if(y>rr.top&&y<rr.bottom){if(x<rr.left+40)row.scrollLeft-=14;else if(x>rr.right-40)row.scrollLeft+=14;}}
 }
-function qDragStop(e,cancel){
- if(!qDrag||(e&&e.pointerId!==qDrag.pid))return;
+function qEnd(cancel){
+ if(!qDrag)return;
  const d=qDrag;qDrag=null;qDragEnd=Date.now();
  d.ghost.remove();d.item.classList.remove('q-dragging');
  if(d.target)d.target.classList.remove('q-drop-before','q-drop-after');
@@ -5699,13 +5704,62 @@ function qDragStop(e,cancel){
  const t=tasks.find(x=>String(x.id)===d.id);
  saveQueue(q,`"${t?.title||'Job'}" moved to #${to+1}.`);
 }
-document.addEventListener('pointerdown',qDragStart,true);
-document.addEventListener('pointermove',qDragMove,{passive:false});
-document.addEventListener('pointerup',e=>qDragStop(e,false));
-document.addEventListener('pointercancel',e=>qDragStop(e,true));
-document.addEventListener('keydown',e=>{if(e.key==='Escape'&&qDrag)qDragStop(null,true);});
-/* a tap on the grip never opens the task */
-document.addEventListener('click',e=>{if(e.target.closest('[data-qdrag]')||Date.now()-qDragEnd<350){if(e.target.closest('[data-qid],[data-qdrag]')){e.preventDefault();e.stopPropagation();}}},true);
+/* Computer: press the mouse on a job and move it */
+document.addEventListener('mousedown',e=>{
+ if(e.button!==0||mobile&&('ontouchstart' in window))return;
+ const item=e.target.closest('[data-qid]');
+ if(!qCan(item))return;
+ qPend={item,x:e.clientX,y:e.clientY};
+ e.preventDefault();
+});
+document.addEventListener('mousemove',e=>{
+ if(qPend&&!qDrag&&Math.abs(e.clientX-qPend.x)+Math.abs(e.clientY-qPend.y)>6){qBegin(qPend.item,qPend.x,qPend.y);qPend=null;}
+ if(qDrag){e.preventDefault();qMove(e.clientX,e.clientY);}
+});
+document.addEventListener('mouseup',()=>{qPend=null;if(qDrag)qEnd(false);});
+/* Phone: press and hold, then drag */
+document.addEventListener('touchstart',e=>{
+ if(e.touches.length!==1){if(qPend)clearTimeout(qPend.timer);qPend=null;return;}
+ const item=e.target.closest('[data-qid]');
+ if(!qCan(item))return;
+ const tc=e.touches[0];
+ qPend={item,x:tc.clientX,y:tc.clientY,lx:tc.clientX,ly:tc.clientY};
+ qPend.timer=setTimeout(()=>{if(qPend&&qPend.item===item){qBegin(item,qPend.lx,qPend.ly);qPend=null;}},420);
+},{passive:true});
+document.addEventListener('touchmove',e=>{
+ const tc=e.touches[0];
+ if(qDrag){e.preventDefault();qMove(tc.clientX,tc.clientY);return;}
+ if(qPend){qPend.lx=tc.clientX;qPend.ly=tc.clientY;if(Math.abs(tc.clientX-qPend.x)+Math.abs(tc.clientY-qPend.y)>10){clearTimeout(qPend.timer);qPend=null;}}
+},{passive:false});
+document.addEventListener('touchend',e=>{if(qPend){clearTimeout(qPend.timer);qPend=null;}if(qDrag){e.preventDefault();qEnd(false);}},{passive:false});
+document.addEventListener('touchcancel',()=>{if(qPend){clearTimeout(qPend.timer);qPend=null;}qEnd(true);});
+document.addEventListener('contextmenu',e=>{if(qDrag||e.target.closest?.('.un-list [data-qid],#homeUpNext [data-qid]'))e.preventDefault();});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&qDrag)qEnd(true);});
+/* the click that ends a drag never opens the task */
+document.addEventListener('click',e=>{if(Date.now()-qDragEnd<400&&e.target.closest('[data-qid]')){e.preventDefault();e.stopPropagation();}},true);
+
+/* ---- Rename a task (admin only) ---- */
+let renameId=null,renameDraft=null;
+document.addEventListener('input',e=>{if(e.target.closest?.('form[data-rename]'))renameDraft=e.target.value;});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&renameId!=null&&e.target.closest?.('form[data-rename]')){renameId=null;renameDraft=null;renderAdmin();}});
+document.addEventListener('submit',async e=>{
+ const f=e.target.closest?.('form[data-rename]');
+ if(!f)return;
+ e.preventDefault();
+ if(!isAdmin())return;
+ const t=tasks.find(x=>String(x.id)===String(f.dataset.rename));
+ const title=f.t.value.trim();
+ if(!t)return;
+ if(!title){notice('The task name can’t be empty.');return;}
+ if(title===t.title){renameId=null;renameDraft=null;renderAdmin();return;}
+ f.querySelectorAll('button,input').forEach(x=>x.disabled=true);
+ const {data,error}=await sb.from('tasks').update({title}).eq('id',t.id).select('id,title');
+ if(error||!data?.length){f.querySelectorAll('button,input').forEach(x=>x.disabled=false);displayError('Name was not changed',error||{message:'no row returned'});return;}
+ const old=t.title;t.title=data[0].title;
+ renameId=null;renameDraft=null;
+ renderAdmin();if(notesTaskId!=null)renderNotesModal();
+ notice(`Renamed "${old}" to "${t.title}".`);
+});
 
 /* ---------- Auto refresh ---------- */
 function stopTimers(){
@@ -5719,7 +5773,7 @@ function startTimers(){
 }
 async function poll(force){
  if(!role||(document.hidden&&!(role==='admin'&&sndCfg().on)))return;
- if(!force&&(qDrag||menuCtx||editingId!=null||recordingNow()))return;
+ if(!force&&(qDrag||renameId!=null||menuCtx||editingId!=null||recordingNow()))return;
  if(Date.now()-brandLoadedAt>50*60000){
   if(role==='admin')await loadClients();
   else await loadOwnClient();
@@ -6429,7 +6483,7 @@ function unBigHtml(t1,c1){
  const live=isLive(t1),cw=live?0:clientWaitMs(t1);
  const lvl=cw?(cw<864e5?1:cw<3*864e5?2:3):0;
  const pills=(cw?`<span class="cw-tag"><i></i>Client waiting ${esc(fmtSpanMs(cw))}</span>`:'')+untouchedChip(t1);
- return `<button type="button" class="un-big${lvl?' cw cw-'+lvl:''}" data-hgo="task" data-id="${esc(t1.id)}" data-qid="${esc(t1.id)}" style="${qStyle(1)};--biz:${bizColor(c1)}">${queueCol&&liveQueue().length>1?`<span class="q-grip" data-qdrag title="Drag to move" aria-hidden="true">⠿</span>`:''}<span class="ub-num">1</span><span class="cw-ring">${bizLogo(c1,'biz-logo xl')}</span><span class="ub-main"><span class="ub-kicker">${cw?esc((c1?.Name||'Your client')+' is waiting'):'Working on now'}</span><span class="ub-title">${esc(t1.title||'Untitled')}</span><span class="ub-sub"><span>${esc(c1?.Name||'')} · ${esc(normStatus(t1))}${t1.due_date?' · '+esc(dueInfo(t1)?.label||''):''}</span></span>${pills?`<span class="ub-pills">${pills}</span>`:''}</span></button>${workStartBtn(t1)}`;
+ return `<button type="button" class="un-big${lvl?' cw cw-'+lvl:''}" data-hgo="task" data-id="${esc(t1.id)}" data-qid="${esc(t1.id)}" style="${qStyle(1)};--biz:${bizColor(c1)}"><span class="ub-num">1</span><span class="cw-ring">${bizLogo(c1,'biz-logo xl')}</span><span class="ub-main"><span class="ub-kicker">${cw?esc((c1?.Name||'Your client')+' is waiting'):'Working on now'}</span><span class="ub-title">${esc(t1.title||'Untitled')}</span><span class="ub-sub"><span>${esc(c1?.Name||'')} · ${esc(normStatus(t1))}${t1.due_date?' · '+esc(dueInfo(t1)?.label||''):''}</span></span>${pills?`<span class="ub-pills">${pills}</span>`:''}</span></button>${workStartBtn(t1)}`;
 }
 function workStartBtn(t){
  if(!workReady)return workTried?'<p class="muted work-hint">Run SQL 8 in Supabase to turn on Start job.</p>':'';
