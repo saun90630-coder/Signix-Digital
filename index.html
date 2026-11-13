@@ -1767,6 +1767,46 @@ body:has(#workRoot .wk-modal) #notesModal{z-index:127}
 .tc-rename{display:flex;gap:6px;flex-wrap:wrap;align-items:center}
 .tc-rename input{flex:1 1 220px;min-width:0;font-size:15px;font-weight:600;padding:7px 10px}
 .tc-rename button{min-height:36px}
+/* ===== Version 21 ===== */
+/* Up next: tap a job to open it in place */
+.un-item{flex-wrap:wrap}
+.un-item .un-title{flex:1 1 0}
+.un-item .ln-arrow{align-self:center}
+.un-item.open .ln-arrow{transform:rotate(180deg);color:#e8eef8}
+.un-detail{flex:1 1 100%;min-width:0;margin-top:6px;padding:8px;border-radius:10px;background:#0b1525;border:1px solid #22324b;animation:ln-in .18s ease-out;cursor:auto;-webkit-user-select:text;user-select:text}
+.un-detail .tcard{margin:0}
+.un-title .ln-dot{margin-right:6px}
+/* By business */
+.bz-groups{display:flex;flex-direction:column;gap:12px;max-width:1100px;margin:0 auto}
+.bz-card{padding:0;overflow:hidden;border:1px solid #22324b;border-top:4px solid var(--biz,#64748b);border-radius:14px;background:#0d1729}
+.bz-head{display:flex;align-items:center;gap:8px;padding:8px 10px;background:linear-gradient(90deg,color-mix(in srgb,var(--biz,#64748b) 18%,#0d1729),#0d1729 70%)}
+.bz-fold{flex:1 1 auto;min-width:0;display:flex;align-items:center;gap:10px;background:transparent;border:0;padding:4px 2px;color:inherit;text-align:left;cursor:pointer;font:inherit}
+.bz-name{display:flex;flex-direction:column;min-width:0}
+.bz-name strong{font-size:16px;color:#f1f5f9;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.bz-name small{font-size:12.5px;color:#a5b4c8;margin-top:2px}
+.bz-name .od{color:#fca5a5;font-weight:700}
+.bz-arrow{margin-left:auto;color:#93a4bd;transition:transform .2s;padding:0 4px}
+.bz-card.is-shut .bz-arrow{transform:rotate(-90deg)}
+.bz-add{flex:0 0 auto;min-height:34px;padding:4px 12px;border-radius:20px;background:color-mix(in srgb,var(--biz,#3b82f6) 30%,#13213a);border:1px solid color-mix(in srgb,var(--biz,#3b82f6) 70%,#33465f);color:#fff;font-weight:600;font-size:13px}
+.bz-body{padding:4px 10px 10px}
+.bz-sub{margin-top:8px}
+.bz-sub h4{margin:0 0 5px;font-size:11.5px;font-weight:800;text-transform:uppercase;letter-spacing:.06em;color:#93a4bd}
+.bz-sub h4 b{font-weight:700;color:#cbd5e1;margin-left:4px}
+.bz-up h4{color:#4ade80}.bz-new h4{color:#c4b5fd}.bz-ip h4{color:#67e8f9}.bz-fu h4{color:#fdba74}
+.bz-sub .ln-body{display:flex;flex-direction:column;gap:5px}
+.bz-card .ln{border-left-width:3px}
+/* More / Less view buttons */
+.chips:not(.more-open) .more-x:not([aria-pressed="true"]){display:none}
+.chip.more-btn{opacity:.85;border-style:dashed}
+/* Mic */
+.mic-bar{display:flex;align-items:center;gap:6px;margin:5px 0 2px;flex-wrap:wrap}
+.mic-btn,.mic-lang{min-height:32px;padding:3px 12px;border-radius:20px;font-size:12.5px;font-weight:600;background:#13213a;border:1px solid #33465f;color:#dbe4f0;display:inline-flex;align-items:center;gap:6px}
+.mic-lang{padding:3px 10px;min-width:40px;justify-content:center;letter-spacing:.04em}
+.mic-bar.on .mic-btn{background:#b91c1c;border-color:#ef4444;color:#fff;animation:mic-pulse 1.2s ease-in-out infinite}
+@keyframes mic-pulse{50%{box-shadow:0 0 0 6px rgba(239,68,68,.25)}}
+.mic-live{font-size:12px;color:#a5b4c8}
+form[data-rename] .mic-bar{flex:1 1 100%;order:3;margin:0}
+.note-compose .mic-bar{grid-column:1/-1}
 </style>
 </head>
 <body>
@@ -2320,7 +2360,7 @@ window.notice=notice;
 
 const STATUSES=['Incoming','To do','In progress','Waiting on client','Completed'];
 const PRIORITIES=['High','Medium','Low'];
-const ADMIN_VIEWS=[['status','Status'],['business','Business'],['deadline','Deadline'],['calendar','Calendar'],['waiting','Waiting'],['high','High'],['recent','Recent'],['archive','Archive']];
+const ADMIN_VIEWS=[['status','Status'],['business','By business'],['deadline','Deadline'],['calendar','Calendar'],['waiting','Waiting'],['high','High'],['recent','Recent'],['archive','Archive']];
 const CLIENT_VIEWS=[['status','Status'],['deadline','Deadline'],['calendar','Calendar'],['needs','Needs your input'],['recent','Recent'],['done','Completed']];
 const CLIENT_STATUS_LABELS={'Incoming':'Submitted','To do':'Scheduled','Waiting on client':'Needs your input'};
 const svgIcon=d=>`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${d}</svg>`;
@@ -2558,8 +2598,9 @@ function buildLayoutChips(){
   const pick=v=>{setPref('admin','mlayout',v);mOpen.clear();buildLayoutChips();renderAdmin();};
   buildChips('quickLayouts',MOBILE_LAYOUTS.filter(l=>quick.includes(l[0])),adminMobileLayout(),pick);
   buildChips('adminLayouts',MOBILE_LAYOUTS.filter(l=>!quick.includes(l[0])),adminMobileLayout(),pick);
+  addMore('quickLayouts',['lines']);addMore('adminLayouts',[]);
  }
- else buildChips('adminLayouts',LAYOUTS,adminLayout(),v=>{setPref('admin','layout',v);renderAdmin();});
+ else{buildChips('adminLayouts',LAYOUTS,adminLayout(),v=>{setPref('admin','layout',v);renderAdmin();addMore('adminLayouts',['lines']);});addMore('adminLayouts',['lines']);}
 }
 function applyMobile(){
  mobile=MQ.matches;
@@ -3225,6 +3266,17 @@ function renderBoard(root,list,o){
  const saved=captureScroll(root);
  root.className='board layout-'+o.layout;
  const lnMode=isLines(o);
+ if(o.admin&&!o.detail&&!selectMode&&o.view==='business'){
+  const lo={...o,layout:mobile?'m-lines':'lines'};
+  root.className='board biz-view layout-'+lo.layout;
+  root.innerHTML=bizBoardHtml(list,lo);
+  restoreScroll(root,saved);updateBoardTop(root);
+  return;
+ }
+ const unShow=o.admin&&!o.detail&&o.view==='status'&&focusReady&&role==='admin';
+ const qIds=new Set(unShow?liveQueue().map(String):[]);
+ const unIds=new Set(list.filter(t=>qIds.has(String(t.id))).map(t=>String(t.id)));
+ if(unShow)list=list.filter(t=>!qIds.has(String(t.id)));
  let groups;
  if(o.admin&&!['deadline','archive','inprogress'].includes(o.view)){
   const od=list.filter(isOverdue);
@@ -3233,23 +3285,22 @@ function renderBoard(root,list,o){
  }else groups=groupTasks(list,o.view,o.clientSide);
  if(o.admin&&o.view==='status'){const ORD=['overdue','st-incoming','st-in-progress','st-to-do','st-waiting-on-client','st-completed'];groups.sort((a,b)=>ORD.indexOf(a.key)-ORD.indexOf(b.key));}
  const total=groups.reduce((n,gr)=>n+gr.items.length,0);
- if(!total&&!groups.some(gr=>gr.keep)&&!(o.admin&&!o.detail&&focusReady&&liveQueue().length)){
+ if(!total&&!groups.some(gr=>gr.keep)&&!unIds.size){
   root.innerHTML=`<p class="muted empty">${esc(search&&o.admin?'No tasks match your search.':emptyText(o.view))}</p>`;
   return;
  }
- let un=o.admin&&!o.detail?upNextGroupHtml():'';
+ let un=unShow?upNextGroupHtml(unIds):'';
  if(un&&!total&&!groups.some(gr=>gr.keep))groups=[];
  let tabsHtml='';
  if(o.layout==='m-tabs'&&groups.length>1){
   const saved=getPref('admin','mtab','');
   const act=groups.find(g=>g.key===saved)||groups.find(g=>g.key===statusClass('In progress'))||groups[0];
   tabsHtml=`<div class="mtabs" role="tablist" aria-label="Sections">${groups.map(g=>`<button type="button" role="tab" class="mtab ${g.cls||''}" data-mtab="${esc(g.key)}" aria-selected="${g===act}"><span class="gdot"></span>${esc(g.label)} <b>${g.items.length}</b></button>`).join('')}</div>`;
-  if(act.key!==statusClass('In progress'))un='';
   groups=[act];
  }
  const doneShut=o.admin&&!o.detail&&!tabsHtml&&!getPref('admin','doneOpen',false);
  const ipAt=groups.findIndex(gr=>gr.key===statusClass('In progress'));
- const unAt=ipAt>=0?ipAt:0;
+ const unAt=0;
  root.innerHTML=`${tabsHtml}<div class="groups">${groups.map((gr,gi)=>{const isDoneGrp=o.admin&&!tabsHtml&&gr.key==='st-completed',shut=doneShut&&isDoneGrp;return (gi===unAt?un:'')+`<section class="group ${gr.cls||''}${shut?' is-shut':''}" data-group="${esc(gr.key)}" id="grp-${root.id}-${esc(gr.key)}"${gr.biz?` style="--gc:${bizColor(gr.biz)}"`:''}>
 <header class="group-head">${gr.biz?logoHtml({...gr.biz,brand_color:bizColor(gr.biz)},'sm'):'<span class="gdot"></span>'}<h3>${esc(gr.label)}</h3><span class="count">${gr.items.length}</span>${isDoneGrp?`<button type="button" class="grp-toggle" data-grptoggle="done" aria-expanded="${!shut}">${shut?'Show':'Hide'}</button>`:''}</header>
 ${shut?'':`<div class="group-body${lnMode?' ln-body':''}">${gr.items.length?gr.items.map(t=>lnMode?lineRow(t,o):taskCard(t,o)).join(''):'<p class="muted empty-col">Nothing here</p>'}</div>`}
@@ -4392,6 +4443,7 @@ async function loadCallFiles(){
 /* ---------- Toolbars ---------- */
 applyMobile();
 buildChips('adminViews',ADMIN_VIEWS,adminView(),v=>{setPref('admin','view',v);CAL.adminBoard.focus=null;CAL.adminBoard.day=null;if(v==='archive'&&selectMode)selected.clear();renderAdmin();});
+addMore('adminViews',['status','business','calendar','archive']);
 buildLayoutChips();
 MQ.addEventListener('change',()=>{applyMobile();buildLayoutChips();mOpen.clear();render();});
 $('bizFilter').addEventListener('change',()=>{setPref('admin','biz',$('bizFilter').value);renderAdmin();});
@@ -4647,14 +4699,15 @@ function clearFocusIfDone(){
  if(q.length!==queue.length)queue=q;
 }
 /* The Up next list sits on the board, right above the In progress section */
-function upNextGroupHtml(){
- const q=focusReady&&role==='admin'?liveQueue():[];
+function upNextGroupHtml(only){
+ const all=focusReady&&role==='admin'?liveQueue():[];
+ const q=only?all.filter(id=>only.has(String(id))):all;
  if(!q.length)return '';
  return `<section class="group upnext-grp" data-group="upnext" id="grp-adminBoard-upnext" style="--qc1:${qColor(1)}" aria-label="Up next">
 <header class="group-head"><span class="gdot"></span><h3>Up next</h3><span class="count">${q.length}</span></header>
-<div class="group-body un-body"><p class="muted un-hint">Tap a title to jump to the task. On a phone, press and hold a job, then drag it. On a computer, click and drag it.</p><ol class="un-list">${q.map((id,i)=>{
-  const t=tasks.find(x=>String(x.id)===String(id)),c=clientById(t.client_id),tid=esc(t.id);
-  return `<li class="un-item" data-qid="${tid}" style="--biz:${bizColor(c)};${qStyle(i+1)}"><span class="un-num">${i+1}</span>${bizLogo(c,'biz-logo lg')}<button type="button" class="un-title" data-un="jump" data-id="${tid}"><span>${esc(t.title||'Untitled')}</span><small>${esc(c?.Name||'')} · ${esc(normStatus(t))}${t.due_date?' · '+esc(dueInfo(t)?.label||''):''}</small></button></li>`;
+<div class="group-body un-body"><p class="muted un-hint">Tap a job to open it. To move it: press and hold on a phone, or click and drag on a computer.</p><ol class="un-list">${q.map(id=>{
+  const t=tasks.find(x=>String(x.id)===String(id)),c=clientById(t.client_id),tid=esc(t.id),n=all.indexOf(id)+1,open=lnOpen.has(String(t.id));
+  return `<li class="un-item${open?' open':''}" data-qid="${tid}" style="--biz:${bizColor(c)};${qStyle(n)}"><span class="un-num">${n}</span>${bizLogo(c,'biz-logo lg')}<button type="button" class="un-title" data-un="jump" data-id="${tid}" aria-expanded="${open}"><span>${newActivityRaw(t)?'<i class="ln-dot" title="New from client"></i>':''}${esc(t.title||'Untitled')}</span><small>${esc(c?.Name||'')} · ${esc(normStatus(t))}${t.due_date?' · '+esc(dueInfo(t)?.label||''):''}</small></button><span class="ln-arrow" aria-hidden="true">▾</span>${open?`<div class="un-detail">${taskCard(t,{admin:true,view:'status',layout:'detail',detail:true})}</div>`:''}</li>`;
  }).join('')}</ol></div></section>`;
 }
 // ===== END OF PART 9 of 13 =====
@@ -4665,7 +4718,7 @@ function jumpToCard(t){
  if(isDone(t))setPref('admin','doneOpen',true);
  if(quickF&&!quickMatch(t))quickF='';
  renderAdmin();
- const find=()=>$('adminBoard').querySelector(`.group:not(.upnext-grp) .tcard[data-id="${CSS.escape(String(t.id))}"]`);
+ const find=()=>$('adminBoard').querySelector(`.tcard[data-id="${CSS.escape(String(t.id))}"]`);
  let card=find();
  if(!card){
   setPref('admin','view','status');setChip('adminViews','status');
@@ -4683,7 +4736,7 @@ $('adminBoard').addEventListener('click',e=>{
  const t=tasks.find(x=>String(x.id)===b.dataset.id);
  if(!t)return;
  const a=b.dataset.un;
- if(a==='jump')jumpToCard(t);
+ if(a==='jump'){const k=String(t.id);lnOpen.has(k)?lnOpen.delete(k):lnOpen.add(k);renderAdmin();}
  else if(a==='up')moveInQueue(t.id,-1);
  else if(a==='down')moveInQueue(t.id,1);
  else if(a==='remove')setFocus(t);
@@ -5131,8 +5184,8 @@ function renderHome(needs){
  $('homeNeeds').innerHTML=needs.length
   ?`<div class="list-card">${needs.slice(0,15).map(needRow).join('')}</div>${needs.length>15?`<p class="muted more-note">and ${needs.length-15} more</p>`:''}`
   :'<p class="muted home-empty">You’re all caught up. Nothing new from clients and nothing sitting too long.</p>';
- const ip=tasks.filter(t=>!t.archived_at&&normStatus(t)==='In progress').sort(byDue);
- $('homeIP').innerHTML=ip.length?ip.slice(0,8).map(t=>miniRow(t)).join(''):'<p class="muted side-empty">Nothing in progress.</p>';
+ const ip=tasks.filter(t=>!t.archived_at&&normStatus(t)==='In progress'&&!(focusReady&&queuePos(t))).sort(byDue);
+ $('homeIP').innerHTML=ip.length?ip.slice(0,8).map(t=>miniRow(t)).join(''):'<p class="muted side-empty">Nothing in progress outside Up next.</p>';
  const ev=activityEvents(null).slice(0,7);
  $('homeFeed').innerHTML=ev.length?ev.map(feedRow).join(''):'<p class="muted side-empty">No activity yet.</p>';
  renderInbox();
@@ -5707,6 +5760,7 @@ function qEnd(cancel){
 /* Computer: press the mouse on a job and move it */
 document.addEventListener('mousedown',e=>{
  if(e.button!==0||mobile&&('ontouchstart' in window))return;
+ if(e.target.closest('.un-detail,.home-detail,input,textarea,select'))return;
  const item=e.target.closest('[data-qid]');
  if(!qCan(item))return;
  qPend={item,x:e.clientX,y:e.clientY};
@@ -5720,6 +5774,7 @@ document.addEventListener('mouseup',()=>{qPend=null;if(qDrag)qEnd(false);});
 /* Phone: press and hold, then drag */
 document.addEventListener('touchstart',e=>{
  if(e.touches.length!==1){if(qPend)clearTimeout(qPend.timer);qPend=null;return;}
+ if(e.target.closest('.un-detail,.home-detail,input,textarea,select'))return;
  const item=e.target.closest('[data-qid]');
  if(!qCan(item))return;
  const tc=e.touches[0];
@@ -5760,6 +5815,123 @@ document.addEventListener('submit',async e=>{
  renderAdmin();if(notesTaskId!=null)renderNotesModal();
  notice(`Renamed "${old}" to "${t.title}".`);
 });
+
+/* ===================== Version 21 =====================
+   By-business view, fewer view buttons, mic (EN/ES) on tasks and notes. */
+
+/* ---- By business: one card per business ---- */
+function bizBoardHtml(list,o){
+ const folded=new Set((getPref('admin','bzFold',[])||[]).map(String));
+ const open=list.filter(t=>!isDone(t)&&!t.archived_at);
+ const rows=clients.map(c=>({c,items:open.filter(t=>String(t.client_id)===String(c.id))}))
+  .filter(r=>r.items.length)
+  .map(r=>{const od=r.items.filter(isOverdue).length,fu=r.items.filter(isWaiting).length;return {...r,od,fu,score:od*1000+fu*50+r.items.length};})
+  .sort((a,b)=>b.score-a.score||String(a.c.Name||'').localeCompare(String(b.c.Name||'')));
+ if(!rows.length)return `<p class="muted empty">${esc(search?'No tasks match your search.':'No open tasks.')}</p>`;
+ const SUBS=[['up','Up next',t=>focusReady&&queuePos(t)>0],['new','New','Incoming'],['ip','In progress','In progress'],['todo','To do','To do'],['fu','Follow-ups','Waiting on client']];
+ return `<div class="groups bz-groups">${rows.map(r=>{
+  const used=new Set();
+  const subs=SUBS.map(([k,l,m])=>{
+   const its=r.items.filter(t=>!used.has(t.id)&&(typeof m==='function'?m(t):normStatus(t)===m));
+   its.forEach(t=>used.add(t.id));
+   its.sort(k==='up'?(a,b)=>queuePos(a)-queuePos(b):byDue);
+   return {k,l,its};
+  }).filter(s=>s.its.length);
+  const rest=r.items.filter(t=>!used.has(t.id));
+  if(rest.length)subs.push({k:'other',l:'Other',its:rest});
+  const shut=folded.has(String(r.c.id));
+  const sum=subs.map(s=>`${s.its.length} ${esc(s.l.toLowerCase())}`).join(' · ')+(r.od?` · <span class="od">${r.od} overdue</span>`:'');
+  return `<section class="group bz-card${shut?' is-shut':''}" data-bz="${esc(r.c.id)}" style="--gc:${bizColor(r.c)};--biz:${bizColor(r.c)}">
+<header class="bz-head"><button type="button" class="bz-fold" data-bzfold="${esc(r.c.id)}" aria-expanded="${!shut}">${bizLogo(r.c,'biz-logo lg')}<span class="bz-name"><strong>${esc(r.c.Name||'')}</strong><small>${sum}</small></span><span class="bz-arrow" aria-hidden="true">▾</span></button><button type="button" class="bz-add" data-bzadd="${esc(r.c.id)}">+ Task</button></header>
+${shut?'':`<div class="bz-body">${subs.map(s=>`<div class="bz-sub bz-${s.k}"><h4>${esc(s.l)} <b>${s.its.length}</b></h4><div class="ln-body">${s.its.map(t=>lineRow(t,o)).join('')}</div></div>`).join('')}</div>`}
+</section>`;
+ }).join('')}</div>`;
+}
+$('adminBoard').addEventListener('click',e=>{
+ const f=e.target.closest('[data-bzfold]');
+ if(f){const id=String(f.dataset.bzfold),s=new Set((getPref('admin','bzFold',[])||[]).map(String));s.has(id)?s.delete(id):s.add(id);setPref('admin','bzFold',[...s]);renderAdmin();return;}
+ const a=e.target.closest('[data-bzadd]');
+ if(a&&isAdmin())openNewTask(a.dataset.bzadd);
+});
+
+/* ---- Fewer view buttons: the rest sit under More ---- */
+function addMore(id,primary){
+ const root=$(id);
+ if(!root)return;
+ let extra=0;
+ root.querySelectorAll('button[data-value]').forEach(b=>{const x=!primary.includes(b.dataset.value);b.classList.toggle('more-x',x);if(x)extra++;});
+ root.querySelector('.more-btn')?.remove();
+ if(!extra)return;
+ const open=root.classList.contains('more-open');
+ const m=document.createElement('button');
+ m.type='button';m.className='chip more-btn';m.setAttribute('aria-expanded',String(open));
+ m.textContent=open?'Less ▴':'More ▾';
+ m.onclick=()=>{root.classList.toggle('more-open');addMore(id,primary);};
+ root.appendChild(m);
+}
+
+/* ---- Mic: speak instead of typing (English / Spanish) ---- */
+const SpeechRec=window.SpeechRecognition||window.webkitSpeechRecognition;
+const MIC_SEL='form input[name="title"],form textarea[name="description"],#noteText,textarea[data-noteedit],form[data-rename] input[name="t"],#callForm textarea[name="note"]';
+let micRec=null;
+function micLang(){try{return localStorage.getItem('signix-mic')==='es'?'es':'en';}catch(e){return 'en';}}
+function micSetLang(l){try{localStorage.setItem('signix-mic',l);}catch(e){}document.querySelectorAll('.mic-lang').forEach(b=>{b.textContent=l.toUpperCase();b.title=l==='es'?'Listening for Spanish. Tap for English.':'Listening for English. Tap for Spanish.';});}
+function micify(el){
+ if(!SpeechRec||el.dataset.mic)return;
+ el.dataset.mic='1';
+ const l=micLang();
+ const bar=document.createElement('div');
+ bar.className='mic-bar';
+ bar.innerHTML=`<button type="button" class="mic-btn" aria-label="Speak instead of typing"><span class="mic-ico" aria-hidden="true">🎤</span><span class="mic-txt">Speak</span></button><button type="button" class="mic-lang" title="${l==='es'?'Listening for Spanish. Tap for English.':'Listening for English. Tap for Spanish.'}">${l.toUpperCase()}</button><span class="mic-live" role="status"></span>`;
+ el.insertAdjacentElement('afterend',bar);
+}
+function micScan(){if(SpeechRec)document.querySelectorAll(MIC_SEL).forEach(el=>{if(!el.dataset.mic&&el.type!=='hidden')micify(el);});}
+function micStop(){const r=micRec;micRec=null;if(r){try{r.stop();}catch(e){}r._done&&r._done();}}
+function micStart(el,bar){
+ micStop();
+ const r=new SpeechRec();
+ r.lang=micLang()==='es'?'es-US':'en-US';
+ r.interimResults=true;r.continuous=true;
+ const base=el.value,live=bar.querySelector('.mic-live');
+ r._done=()=>{bar.classList.remove('on');bar.querySelector('.mic-txt').textContent='Speak';if(live.textContent==='Listening…'||live.textContent==='Escuchando…')live.textContent='';};
+ r.onresult=ev=>{
+  if(!el.isConnected){micStop();return;}
+  let txt='';
+  for(let i=0;i<ev.results.length;i++)txt+=ev.results[i][0].transcript;
+  txt=txt.trim();
+  const sep=base&&!/\s$/.test(base)?' ':'';
+  let v=base+(txt?sep+txt:'');
+  if(el.maxLength>0)v=v.slice(0,el.maxLength);
+  el.value=v;
+  el.dispatchEvent(new Event('input',{bubbles:true}));
+ };
+ r.onerror=ev=>{live.textContent=ev.error==='not-allowed'||ev.error==='service-not-allowed'?'Microphone is blocked. Allow it for this site in your browser settings.':ev.error==='no-speech'?'Didn’t hear anything. Tap Speak and try again.':ev.error==='aborted'?'':'Mic problem: '+ev.error;};
+ r.onend=()=>{if(micRec===r)micRec=null;r._done();};
+ micRec=r;
+ bar.classList.add('on');
+ bar.querySelector('.mic-txt').textContent='Stop';
+ live.textContent=micLang()==='es'?'Escuchando…':'Listening…';
+ try{r.start();}catch(e){micRec=null;r._done();live.textContent='Mic could not start: '+e.message;}
+}
+document.addEventListener('click',e=>{
+ const b=e.target.closest('.mic-btn,.mic-lang');
+ if(!b)return;
+ e.preventDefault();e.stopPropagation();
+ const bar=b.closest('.mic-bar'),el=bar&&bar.previousElementSibling;
+ if(!el)return;
+ if(b.classList.contains('mic-lang')){
+  micSetLang(micLang()==='es'?'en':'es');
+  if(micRec&&bar.classList.contains('on'))micStart(el,bar);
+  return;
+ }
+ if(bar.classList.contains('on'))micStop();
+ else{el.focus({preventScroll:true});micStart(el,bar);}
+},true);
+if(SpeechRec){
+ let micQ=false;
+ new MutationObserver(()=>{if(micQ)return;micQ=true;requestAnimationFrame(()=>{micQ=false;micScan();});}).observe(document.body,{childList:true,subtree:true});
+ micScan();
+}
 
 /* ---------- Auto refresh ---------- */
 function stopTimers(){
